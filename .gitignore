@@ -18,7 +18,6 @@ MindTV-Unity/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 # Unity Temporary auto-generated Android Assets
 MindTV-Unity/[Aa]ssets/[Ss]treamingAssets/aa.meta
 MindTV-Unity/[Aa]ssets/[Ss]treamingAssets/aa/*
-MindTV-Unity/UserSettings/Layouts/default-2021.dwlt
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 #DON'T IGNORE META DATA - This will break everything...so it is getting commented out.
