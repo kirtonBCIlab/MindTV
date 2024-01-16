@@ -51,7 +51,7 @@ MonoBehaviour:
   _selectableSPOs: []
   windowLength: 1
   interWindowInterval: 0
-  setup: {fileID: 0}
+  setup: {fileID: 2030029592026349048}
   setupRequired: 1
   numTrainingSelections: 0
   numTrainWindows: 3
@@ -131,7 +131,7 @@ MonoBehaviour:
   _selectableSPOs: []
   windowLength: 1
   interWindowInterval: 0
-  setup: {fileID: 0}
+  setup: {fileID: 6323301349158517225}
   setupRequired: 1
   numTrainingSelections: 0
   numTrainWindows: 3
@@ -221,7 +221,7 @@ MonoBehaviour:
   _selectableSPOs: []
   windowLength: 1
   interWindowInterval: 0
-  setup: {fileID: 0}
+  setup: {fileID: 251709338349118591}
   setupRequired: 0
   numTrainingSelections: 0
   numTrainWindows: 3
