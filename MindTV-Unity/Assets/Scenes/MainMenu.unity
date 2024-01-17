@@ -766,7 +766,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2267871353319844068, guid: c3b353e14b45f41809b257c996983a83, type: 3}
       propertyPath: m_text
-      value: Setup Videos (n/a)
+      value: Setup Videos
       objectReference: {fileID: 0}
     - target: {fileID: 2267871353319844068, guid: c3b353e14b45f41809b257c996983a83, type: 3}
       propertyPath: m_Enabled
@@ -882,7 +882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3858215274948335727, guid: c3b353e14b45f41809b257c996983a83, type: 3}
       propertyPath: m_text
-      value: Train (n/a)
+      value: Train
       objectReference: {fileID: 0}
     - target: {fileID: 4828578690465554048, guid: c3b353e14b45f41809b257c996983a83, type: 3}
       propertyPath: m_Interactable
