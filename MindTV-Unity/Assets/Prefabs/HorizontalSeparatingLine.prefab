@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5000375507937176621}
   - component: {fileID: 3622104004393426803}
   m_Layer: 5
-  m_Name: HorizontalSeparator
+  m_Name: HorizontalSeparatingLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
