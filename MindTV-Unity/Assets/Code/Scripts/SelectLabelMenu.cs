@@ -79,4 +79,14 @@ public class SelectLabelMenu : MonoBehaviour
     {
       createnew.SetActive(true);
     }
+
+    public void OnCancel()
+    {
+        createnew.SetActive(false);
+    }
+
+    public void ToTrainingMenu()
+    {
+        SceneManager.LoadScene("TrainingScene");
+    }
 }
