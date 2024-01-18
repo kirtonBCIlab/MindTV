@@ -22,7 +22,7 @@ public class SelectLabelMenu : MonoBehaviour
         createnew.SetActive(false);
 
         // Add the title placeholder to the dropdown
-        dropdown.options.Insert(dropdown.value, title);
+       // dropdown.options.Insert(dropdown.value, title);
         dropdown.RefreshShownValue();
     }
 
