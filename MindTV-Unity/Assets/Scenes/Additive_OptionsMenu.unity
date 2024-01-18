@@ -238,6 +238,18 @@ PrefabInstance:
 
 '
       objectReference: {fileID: 0}
+    - target: {fileID: 3888124603898891935, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e92290f643e5f274e9347f0aac42f26c, type: 2}
+    - target: {fileID: 3888124603898891935, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6549346952791216184, guid: e92290f643e5f274e9347f0aac42f26c, type: 2}
+    - target: {fileID: 3888124603898891935, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8504948679883275487, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -751,6 +763,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1883708993}
     m_Modifications:
+    - target: {fileID: 93485988531031658, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2248192279300007672, guid: 3006f798617c344d4925678409effa07, type: 3}
       propertyPath: m_Name
       value: OptionDropdown
@@ -843,10 +859,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3448484102148446211, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3448484102148446211, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3448484102148446211, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6296670754055523235, guid: 3006f798617c344d4925678409effa07, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6363037393217406403, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6878946562325193492, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b4a13d39272bee74d84c113af9daed2a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
