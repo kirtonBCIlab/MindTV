@@ -15,6 +15,7 @@ public class HeadsetConnectManager : MonoBehaviour
     [SerializeField] private Image _headsetStatusIndicator;
     [SerializeField] private TextMeshProUGUI _headsetStatusText;
     [SerializeField] private GameObject _bciControllerGO;
+    [SerializeField] private float _headsetCheckDelay = 3.0f;
 
     private LSLResponseStream _lslResponseStream;
 
@@ -27,9 +28,8 @@ public class HeadsetConnectManager : MonoBehaviour
 
 
     // Call this method when the Headset Connect button is clicked
-    public void ButtonHeadsetConnection()
+    public void UpdateButtonHeadsetConnection()
     {
-        Debug.Log("Attempting to connect to stream...");
             UpdateHeadsetConnectionStatus();
     }
 
@@ -37,11 +37,24 @@ public class HeadsetConnectManager : MonoBehaviour
     {
         //This is depricated behavior
         _lslResponseStream.Connect();
+        //Check the headset connectivity after the headset check delay
+        Debug.Log("Waiting for a second to update the conneciton status...");
+        Invoke("UpdateHeadsetConnectionStatus", _headsetCheckDelay);
+    }
+
+    public void UnsubscribeLSLResponseStream()
+    {
+        //This is depricated behavior
+        _lslResponseStream.Disconnect();
+        //Check the headset connectivity after the headset check delay
+        Debug.Log("Waiting for a second to update the conneciton status...");
+        Invoke("UpdateHeadsetConnectionStatus", _headsetCheckDelay);
     }
 
     // Update the headset connection status UI
     private void UpdateHeadsetConnectionStatus()
     {
+        Debug.Log("Updating the headset connection...");
         if (_lslResponseStream.Connected)
         {
             _headsetStatusIndicator.color = Color.green; // Unity's predefined green color

@@ -252,6 +252,7 @@ MonoBehaviour:
   _headsetStatusIndicator: {fileID: 3671210063551300407}
   _headsetStatusText: {fileID: 3671210063551300406}
   _bciControllerGO: {fileID: 0}
+  _headsetCheckDelay: 3
 --- !u!4 &1533264466
 Transform:
   m_ObjectHideFlags: 0
@@ -545,6 +546,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3587482332833661932, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1533264465}
+    - target: {fileID: 3587482332833661932, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UnsubscribeLSLResponseStream
+      objectReference: {fileID: 0}
     - target: {fileID: 3985449735293657230, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1106.8035
@@ -559,7 +568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -583,7 +592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: ButtonHeadsetConnection
+      value: UpdateButtonHeadsetConnection
       objectReference: {fileID: 0}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -596,6 +605,10 @@ PrefabInstance:
     - target: {fileID: 7849142185285816888, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_text
       value: BCI-Essentials
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959571748910295529, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -400
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
