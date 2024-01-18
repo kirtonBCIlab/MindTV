@@ -15,10 +15,10 @@ public class CreateLabelMenu : MonoBehaviour
         bool isUnique = true;
 
         // Get the input field with the profile name
-        labelInputField = transform.Find("labelInputField").GetComponent<TMP_InputField>();
+        labelInputField = transform.Find("CreateLabelInput").GetComponent<TMP_InputField>();
         
         // Get the text box to display the user profile name valididy message
-        labelValidityMessage = transform.Find("labelValidityMessage").GetComponent<TMP_Text>(); ;
+        labelValidityMessage = transform.Find("LabelValidityMessage").GetComponent<TMP_Text>(); ;
         
         // Check if the field is empty or if the profile name already exists
         if (labelInputField.text != "")
@@ -37,6 +37,8 @@ public class CreateLabelMenu : MonoBehaviour
                 labelValidityMessage.text = "";
                 labelMenu.AddLabel(labelInputField.text);
                 labelMenu.RemoveTitle();
+                Debug.Log(labelInputField.text);
+                labelMenu.createnew.SetActive(false);
             } 
             else
             {
