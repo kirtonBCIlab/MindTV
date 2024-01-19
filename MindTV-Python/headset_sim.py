@@ -43,9 +43,9 @@ channel_names = [
 ]
 n_channels = len(channel_names)
 
-# Create the outlet StreamInfo with extended data
+# Create the outlet StreamInfo with extended data.  Set up stream to look like an Emotiv headset.
 # https://github.com/sccn/xdf/wiki/EEG-Meta-Data
-stream_info = StreamInfo("MindTV Headset Sim", "EEG", n_channels, fsample, "float32", "EmotivEEG")
+stream_info = StreamInfo("MindTV Headset Sim", "EEG", n_channels, fsample, "float32", "MindTVEEG")
 channel_info = stream_info.desc().append_child("channels")
 for label in channel_names:
     print(label)
