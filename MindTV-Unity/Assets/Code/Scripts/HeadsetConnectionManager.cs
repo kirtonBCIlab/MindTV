@@ -36,7 +36,7 @@ public class HeadsetConnectManager : MonoBehaviour
         //This is depricated behavior
         _lslResponseStream.Connect();
         //Check the headset connectivity after the headset check delay
-        Debug.Log("Waiting for a second to update the conneciton status...");
+        Debug.Log("Waiting for a second to update the connection status...");
         Invoke("UpdateHeadsetConnectionStatus", _headsetCheckDelay);
     }
 
@@ -45,7 +45,7 @@ public class HeadsetConnectManager : MonoBehaviour
         //This is depricated behavior
         _lslResponseStream.Disconnect();
         //Check the headset connectivity after the headset check delay
-        Debug.Log("Waiting for a second to update the conneciton status...");
+        Debug.Log("Waiting for a second to update the connection status...");
         Invoke("UpdateHeadsetConnectionStatus", _headsetCheckDelay);
     }
 
