@@ -48,7 +48,6 @@ n_channels = len(channel_names)
 stream_info = StreamInfo("MindTV Headset Sim", "EEG", n_channels, fsample, "float32", "MindTVEEG")
 channel_info = stream_info.desc().append_child("channels")
 for label in channel_names:
-    print(label)
     ch = channel_info.append_child("channel")
     ch.append_child_value("label", label)
     ch.append_child_value("unit", "microvolts")
