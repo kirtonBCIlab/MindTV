@@ -33,7 +33,7 @@ public class HeadsetConnectManager : MonoBehaviour
 
     public void SubscribeLSLResponseStream()
     {
-        //This is depricated behavior
+        //This is deprecated behavior
         _lslResponseStream.Connect();
         //Check the headset connectivity after the headset check delay
         Debug.Log("Waiting for a second to update the connection status...");
@@ -42,7 +42,7 @@ public class HeadsetConnectManager : MonoBehaviour
 
     public void UnsubscribeLSLResponseStream()
     {
-        //This is depricated behavior
+        //This is deprecated behavior
         _lslResponseStream.Disconnect();
         //Check the headset connectivity after the headset check delay
         Debug.Log("Waiting for a second to update the connection status...");
