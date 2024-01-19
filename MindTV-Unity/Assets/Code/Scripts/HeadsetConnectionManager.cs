@@ -66,5 +66,4 @@ public class HeadsetConnectManager : MonoBehaviour
             _headsetStatusText.color = Color.red; // Text color changed to red
         }
     }
-        }
 }
