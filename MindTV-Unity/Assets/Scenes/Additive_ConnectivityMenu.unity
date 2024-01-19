@@ -584,36 +584,48 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1533264465}
+      objectReference: {fileID: 1533264467}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1533264467}
+      objectReference: {fileID: 1533264465}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SubscribeLSLResponseStream
-      objectReference: {fileID: 0}
-    - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: LaunchExecutable
       objectReference: {fileID: 0}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SubscribeLSLResponseStream
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: LaunchExternalApplication, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: HeadsetConnectManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: main
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
