@@ -8,8 +8,6 @@ using BCIEssentials.LSLFramework;
 
 public class HeadsetConnectManager : MonoBehaviour
 {
-
-    
     public bool HeadsetConnected { get; private set; }
 
     [SerializeField] private Image _headsetStatusIndicator;
@@ -67,5 +65,55 @@ public class HeadsetConnectManager : MonoBehaviour
             _headsetStatusText.text = "Not Connected";
             _headsetStatusText.color = Color.red; // Text color changed to red
         }
+    }
+
+    public void LaunchExecutable(string fileName)
+    {
+        if (string.IsNullOrEmpty(fileName))
+        {
+            UnityEngine.Debug.LogError("Filename is not provided. Please assign a filename in the Inspector.");
+            return;
+        }
+
+        // Append '.exe' for Windows platforms if not already present
+        #if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+        if (!fileName.EndsWith(".exe"))
+        {
+            fileName += ".exe";
+        }
+        #endif
+
+        // The relative directory path to the script or executable
+        string relativeDirectoryPath = @"../MindTV-Python/"; // Adjust the directory path as necessary
+
+        // Combine the directory path with the filename
+        string fullPath = System.IO.Path.Combine(System.IO.Path.GetFullPath(relativeDirectoryPath), fileName);
+
+        ProcessStartInfo processStartInfo = new ProcessStartInfo
+        {
+            FileName = fullPath,
+            CreateNoWindow = false, // Set to true if you don't want to show a console window
+            UseShellExecute = true, // Must be true to use FileName as a document on macOS
+            RedirectStandardOutput = false, // Set to true to capture output (if needed)
+            WorkingDirectory = System.IO.Path.GetDirectoryName(fullPath)
+        };
+
+        // Start the process
+        Process process = new Process
+        {
+            StartInfo = processStartInfo
+        };
+
+        try
+        {
+            process.Start();
+        }
+        catch (System.Exception e)
+        {
+            UnityEngine.Debug.LogError("Failed to start the process with the given filename: " + e.Message);
+        }
+
+        // Optional: Wait for the process to finish
+        // process.WaitForExit();
     }
 }
