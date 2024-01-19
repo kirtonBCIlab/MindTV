@@ -5,6 +5,11 @@ using System.Diagnostics;
 
 public class LaunchExternalApplication : MonoBehaviour
 {
+    // The relative directory path to the script or executable
+    // Relative to the Unity project folder
+    // Adjust the directory path as necessary
+    private string _relativeDirectoryPath = @"../MindTV-Python/";
+
     public void LaunchExecutable(string fileName)
     {
         if (string.IsNullOrEmpty(fileName))
@@ -21,11 +26,8 @@ public class LaunchExternalApplication : MonoBehaviour
         }
         #endif
 
-        // The relative directory path to the script or executable
-        string relativeDirectoryPath = @"../MindTV-Python/"; // Adjust the directory path as necessary
-
         // Combine the directory path with the filename
-        string fullPath = System.IO.Path.Combine(System.IO.Path.GetFullPath(relativeDirectoryPath), fileName);
+        string fullPath = System.IO.Path.Combine(System.IO.Path.GetFullPath(_relativeDirectoryPath), fileName);
 
         ProcessStartInfo processStartInfo = new ProcessStartInfo
         {
