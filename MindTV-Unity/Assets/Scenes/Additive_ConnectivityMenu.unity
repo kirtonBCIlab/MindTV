@@ -230,6 +230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1533264466}
   - component: {fileID: 1533264465}
+  - component: {fileID: 1533264467}
   m_Layer: 0
   m_Name: ConnectionManager
   m_TagString: Untagged
@@ -268,6 +269,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1533264467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533264464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1500ffd0b1e6f41e0accb3e36123a799, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1883708989
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,7 +581,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -577,7 +594,7 @@ PrefabInstance:
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1533264465}
+      objectReference: {fileID: 1533264467}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -588,15 +605,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SubscribeLSLResponseStream
+      value: LaunchExecutable
       objectReference: {fileID: 0}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: UpdateButtonHeadsetConnection
+      value: SubscribeLSLResponseStream
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LaunchExternalApplication, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: HeadsetConnectManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: main
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
