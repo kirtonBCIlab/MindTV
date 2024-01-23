@@ -9,19 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7ad5e3fbcec7cf478bb86f68378cbfd, type: 3}
-  m_Name: TrainCell
+  m_Script: {fileID: 11500000, guid: 70b12c78d1d593142961580b49849577, type: 3}
+  m_Name: TrainingCellExample
   m_EditorClassIdentifier: 
+  cellObjectName: TrainExample1
+  cellObjectType: 1
+  description: 
+  prefabModel: {fileID: 8824080520341172153, guid: c4585b3887d475d4aab7186bebd8f529, type: 3}
   sprite: {fileID: 0}
-  prefabSize: {x: 0, y: 0}
-  prefabColor: {r: 0, g: 0, b: 0, a: 0}
-  includeOutline: 0
-  outlineColor: {r: 0, g: 0, b: 0, a: 0}
+  prefabSize: {x: 100, y: 100}
+  prefabColor: {r: 1, g: 1, b: 1, a: 0}
   startSound: {fileID: 0}
   saveAutomatically: 0
-  useInTraining: 0
+  useInTraining: 1
   feedbackAnimations: []
-  cellObjectType: 0
-  prefab: {fileID: 0}
-  description: 
-  _label: 

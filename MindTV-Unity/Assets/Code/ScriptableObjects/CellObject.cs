@@ -10,7 +10,8 @@ public enum CellObjectType
     NavigationCell
 }
 
-public abstract class CellObject : ScriptableObject
+[CreateAssetMenu(fileName = "New Cell Object", menuName = "Scriptable Objects/Cell Object")]
+public class CellObject : ScriptableObject
 {
     public string cellObjectName; //I don't know if this is needed.
     public CellObjectType cellObjectType;
