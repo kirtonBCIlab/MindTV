@@ -13,8 +13,9 @@ public class SaveData
         public Color backgroundColor;
     }
 
+    //This is the data controls the cell (SPO) object settings
     [System.Serializable]
-    public struct BCIStimulusPrefs
+    public struct BciCellPrefs
     {
         public string itemID;
         public bool isVisible;
@@ -25,6 +26,8 @@ public class SaveData
         public bool outlineOn;
         public int outlineIndex;
         public Color outlineColor;
+        public Color backgroundColor;
+        
 
     }
 
@@ -33,7 +36,7 @@ public class SaveData
     {
         public string userProfileName;
         public GeneralSettingsPrefs generalSettingsPrefs;
-        public List<BCIStimulusPrefs> bciStimulusPrefs;
+        public List<BciCellPrefs> bciCellPrefs;
     }
 
     [System.Serializable]
