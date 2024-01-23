@@ -4,13 +4,13 @@ using UnityEngine;
 
 public enum CellObjectType
 {
+    DefaultCell,
     TrainingCell,
     VideoCell,
     NavigationCell
 }
 
-[CreateAssetMenu(fileName = "New Cell Object", menuName = "Scriptable Objects/Cell Object")]
-public class CellObject : ScriptableObject
+public abstract class CellObject : ScriptableObject
 {
     public Sprite sprite;
     public Vector2 prefabSize;
@@ -19,12 +19,9 @@ public class CellObject : ScriptableObject
     public Color outlineColor;
     public AudioClip startSound;
     public bool saveAutomatically;
-    public bool usedInTrainingSequence;
+    public bool useInTraining;
     public AnimationClip[] feedbackAnimations;
-    public string label;
     public CellObjectType cellObjectType;
-    public string cellObjectID;
-    public string cellObjectPath;
     public GameObject prefab;
 
     [TextArea (5,10)]
