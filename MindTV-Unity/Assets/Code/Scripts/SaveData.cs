@@ -27,8 +27,12 @@ public class SaveData
         public int outlineIndex;
         public Color outlineColor;
         public Color backgroundColor;
-        
+    }
 
+    [System.Serializable]
+    public struct PageObjectPrefs
+    {
+        
     }
 
     [System.Serializable]
