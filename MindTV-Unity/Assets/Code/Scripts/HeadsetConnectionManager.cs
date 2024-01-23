@@ -8,8 +8,6 @@ using BCIEssentials.LSLFramework;
 
 public class HeadsetConnectManager : MonoBehaviour
 {
-
-    
     public bool HeadsetConnected { get; private set; }
 
     [SerializeField] private Image _headsetStatusIndicator;
@@ -35,19 +33,19 @@ public class HeadsetConnectManager : MonoBehaviour
 
     public void SubscribeLSLResponseStream()
     {
-        //This is depricated behavior
+        //This is deprecated behavior
         _lslResponseStream.Connect();
         //Check the headset connectivity after the headset check delay
-        Debug.Log("Waiting for a second to update the conneciton status...");
+        Debug.Log("Waiting for a second to update the connection status...");
         Invoke("UpdateHeadsetConnectionStatus", _headsetCheckDelay);
     }
 
     public void UnsubscribeLSLResponseStream()
     {
-        //This is depricated behavior
+        //This is deprecated behavior
         _lslResponseStream.Disconnect();
         //Check the headset connectivity after the headset check delay
-        Debug.Log("Waiting for a second to update the conneciton status...");
+        Debug.Log("Waiting for a second to update the connection status...");
         Invoke("UpdateHeadsetConnectionStatus", _headsetCheckDelay);
     }
 
