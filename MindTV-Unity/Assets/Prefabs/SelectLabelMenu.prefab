@@ -468,7 +468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4905885313158151516, guid: 3006f798617c344d4925678409effa07, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -7.5000305
+      value: -7.5
       objectReference: {fileID: 0}
     - target: {fileID: 5760389634866556882, guid: 3006f798617c344d4925678409effa07, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
@@ -529,6 +529,34 @@ PrefabInstance:
     - target: {fileID: 5760389634866556882, guid: 3006f798617c344d4925678409effa07, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6878946562325193492, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6878946562325193492, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 6878946562325193492, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6878946562325193492, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6878946562325193492, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6878946562325193492, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6878946562325193492, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7663740023537511629, guid: 3006f798617c344d4925678409effa07, type: 3}
       propertyPath: m_LocalScale.x
