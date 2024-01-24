@@ -58,41 +58,47 @@ public class LoadUserProfile : MonoBehaviour
         firstSelection = false;
     }
 
-    public void StartTraining()
+    public void LoadSelectedUserForTraining()
     {
-        // var currentUserProfileName = dropdown.options[dropdown.value].text;
+        string selectedProfileName = dropdown.options[dropdown.value].text;
+        UserProfileManager.Instance.StartTraining(selectedProfileName);
+    }
 
-        // // Check if the current user is a new user or an existing one
-        // var existingUser = UserProfileManager.Instance.userProfiles.Find(user => user.userProfileName == currentUserProfileName);
+    // public void StartTraining()
+    // {
+    //     // var currentUserProfileName = dropdown.options[dropdown.value].text;
+
+    //     // // Check if the current user is a new user or an existing one
+    //     // var existingUser = UserProfileManager.Instance.userProfiles.Find(user => user.userProfileName == currentUserProfileName);
         
-        // if (existingUser != null)
-        // {
-        //     Debug.Log("User profile found");
-        //     // Set the current user as the existing user
-        //     CurrentUser.currentUser = existingUser;
-        //     CurrentUser.newUser = false;
-        // }
-        // else
-        // {
-        //     Debug.Log("New user");
-        //     // Create a new user profile and set it as the current user
-        //     var newUser = new SaveData.User { userProfileName = currentUserProfileName };
-        //     CurrentUser.currentUser = newUser;
-        //     UserProfileManager.Instance.AddUserProfile(currentUserProfileName);
-        //     CurrentUser.newUser = true;
-        // }
+    //     // if (existingUser != null)
+    //     // {
+    //     //     Debug.Log("User profile found");
+    //     //     // Set the current user as the existing user
+    //     //     CurrentUser.currentUser = existingUser;
+    //     //     CurrentUser.newUser = false;
+    //     // }
+    //     // else
+    //     // {
+    //     //     Debug.Log("New user");
+    //     //     // Create a new user profile and set it as the current user
+    //     //     var newUser = new SaveData.User { userProfileName = currentUserProfileName };
+    //     //     CurrentUser.currentUser = newUser;
+    //     //     UserProfileManager.Instance.AddUserProfile(currentUserProfileName);
+    //     //     CurrentUser.newUser = true;
+    //     // }
 
-        // // Assuming there is a method to save the current user's data
-        // UserProfileManager.Instance.SaveCurrentUserData();
+    //     // // Assuming there is a method to save the current user's data
+    //     // UserProfileManager.Instance.SaveCurrentUserData();
 
-        // Logic to start training, like loading a new scene or starting a new activity
-        StartTrainingActivity();
-    }
+    //     // Logic to start training, like loading a new scene or starting a new activity
+    //     StartTrainingActivity();
+    // }
 
-    private void StartTrainingActivity()
-    {
-        Debug.Log("Starting training activity – not implemented yet");
-        // Load the next scene or start the training activity
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
+    // private void StartTrainingActivity()
+    // {
+    //     Debug.Log("Starting training activity – not implemented yet");
+    //     // Load the next scene or start the training activity
+    //     // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    // }
 }
