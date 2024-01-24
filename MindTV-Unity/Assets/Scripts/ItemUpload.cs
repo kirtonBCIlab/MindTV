@@ -3,7 +3,7 @@ using UnityEditor;
 using System.IO;
 using UnityEngine.UI;
 using System;
-using static SimpleFileBrowser.FileBrowser;
+using static SimpleFileBrowser.FileBrowserSFB;
 using UnityEngine.Networking;
 using System.Collections;
 
