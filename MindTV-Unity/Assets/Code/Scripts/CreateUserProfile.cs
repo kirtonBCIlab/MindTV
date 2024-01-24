@@ -45,8 +45,12 @@ public class CreateUserProfile : MonoBehaviour
             if (isUnique)
             {
                 // Add the profile name to the UserProfileManager
+                Debug.Log("Creating new profile: " + profileInputField.text);
                 UserProfileManager.Instance.AddUserProfile(profileInputField.text);
                 usernameValidityMessage.text = "";
+
+                // Start Training for this User
+                UserProfileManager.Instance.StartTraining(profileInputField.text);
             }
             else
             {
