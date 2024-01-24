@@ -13,7 +13,23 @@ public class SaveData
         public Color backgroundColor;
     }
 
-    //This is the data controls the cell (SPO) object settings
+    [System.Serializable]
+    public struct MIPrefs
+    {
+        public float windowLength;
+        public float interWindowInterval;
+        public bool setupRequired;
+        public int numberTrainingSelections;
+        public int numberTrainingWindows;
+        public bool persistantTrainTarget;
+        public float pauseTimeBeforeTraining;
+        public float trainBreakTime;
+        public int numberSelectionsBeforeTraining;
+        public int numberSelectionsBetweenTrianing;
+        public bool shamFeedback;
+
+    }
+
     [System.Serializable]
     public struct BciCellPrefs
     {
@@ -32,7 +48,7 @@ public class SaveData
     [System.Serializable]
     public struct PageObjectPrefs
     {
-        
+
     }
 
     [System.Serializable]
@@ -56,13 +72,7 @@ public class SaveData
     [System.Serializable]
     public struct ActivitySettings
     {
-        public string activityName;
-        public string activityDescription;
-        public string activityType;
-        public string activityID;
-        public string activityPath;
-        public string activityIconPath;
-        public string activityIconName;
+        //This is where Activity Setting data will go.
 
     }
 
