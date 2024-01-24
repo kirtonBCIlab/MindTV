@@ -38,23 +38,24 @@ public class UserProfileManager : MonoBehaviour
         SaveProfiles();
     }
 
-    // public void SaveCurrentUserData()
-    // {
-    //     // Update the current user data in the list
-    //     var existingUser = userProfiles.FirstOrDefault(u => u.userProfileName == currentUser.userProfileName);
-    //     if (existingUser != null)
-    //     {
-    //         // Update existing user data
-    //         userProfiles[userProfiles.IndexOf(existingUser)] = currentUser;
-    //     }
-    //     else
-    //     {
-    //         // Add new user data if it doesn't exist
-    //         userProfiles.Add(currentUser);
-    //     }
-    //     // Save the updated list of profiles to file
-    //     SaveProfiles();
-    // }
+    public void SaveCurrentUserData()
+    {
+        Debug.Log("SaveCurrentUserData method not implemented yet");
+        // // Update the current user data in the list
+        // var existingUser = userProfiles.FirstOrDefault(u => u.userProfileName == currentUser.userProfileName);
+        // if (existingUser != null)
+        // {
+        //     // Update existing user data
+        //     userProfiles[userProfiles.IndexOf(existingUser)] = currentUser;
+        // }
+        // else
+        // {
+        //     // Add new user data if it doesn't exist
+        //     userProfiles.Add(currentUser);
+        // }
+        // // Save the updated list of profiles to file
+        // SaveProfiles();
+    }
 
     private void SaveProfiles()
     {
@@ -75,6 +76,39 @@ public class UserProfileManager : MonoBehaviour
             // Initialize an empty list if no data is found
             userProfiles = new List<SaveData.User>();
         }
+    }
+
+    public void StartTraining(string profileName)
+    {
+        Debug.Log("Starting training for user: " + profileName);
+        SetCurrentUser(profileName);
+        SaveCurrentUserData();
+        StartTrainingActivity();
+    }
+
+    private void SetCurrentUser(string profileName)
+    {
+        Debug.Log("SetCurrentUser method not implemented yet");
+        // var existingUser = userProfiles.FirstOrDefault(user => user.userProfileName == profileName);
+        // if (existingUser != default(SaveData.User))
+        // {
+        //     // Existing user
+        //     currentUser = existingUser;
+        // }
+        // else
+        // {
+        //     // New user
+        //     currentUser = new SaveData.User { userProfileName = profileName };
+        //     userProfiles.Add(currentUser);
+        // }
+    }
+
+    private void StartTrainingActivity()
+    {
+        Debug.Log("StartingTrainingActivity not implemented yet");
+        // Logic to start training, like loading a new scene or starting a new activity
+        // Debug.Log("Starting training activity for user: " + currentUser.userProfileName);
+        // SceneManager.LoadScene("TrainingScene"); // Example scene name
     }
 
     // Additional methods to manipulate user profiles can be added here
