@@ -5,15 +5,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 
-public class CreateuserProfile : MonoBehaviour
+public class CreateUserProfile : MonoBehaviour
 {
     TMP_InputField profileInputField;
-    [SerializeField] LoadManageUserProfiles userProfileMenu;
     TMP_Text usernameValidityMessage;
 
-    public void SendProfile()
+    public void CreateProfile()
     {
-        bool isUnique = true;
         string validUsernamePattern = @"^[a-zA-Z0-9_ –—]+$"; // Regex pattern
 
         // Get the input field with the profile name
@@ -29,26 +27,26 @@ public class CreateuserProfile : MonoBehaviour
             if (!Regex.IsMatch(profileInputField.text, validUsernamePattern))
             {
                 Debug.Log("Invalid characters used");
-                usernameValidityMessage.text = "Invalid characters used. Only upper and lower case letters, numbers, spaces, underscores (_), en dash hyphen (-), and em dash hyphen (–) are allowed.";
+                usernameValidityMessage.text = "Invalid characters used.\n\nOnly upper and lower case letters, numbers, spaces, underscores (_), en dash hyphen (-), and em dash hyphen (–) are allowed.";
                 return; // Stop further processing
             }
 
-            // foreach (TMP_Dropdown.OptionData userProfile in userProfileMenu.GetComponentInChildren<TMP_Dropdown>().options)
-            // {
-            //     // if (userProfile.text == profileInputField.text)
-            //     // {
-            //     //     isUnique = false;
-            //     //     break;
-            //     // }
-            // }
+            // Check if the username is unique
+            bool isUnique = true;
+            foreach (SaveData.User user in UserProfileManager.Instance.userProfiles)
+            {
+                if (user.userProfileName == profileInputField.text)
+                {
+                    isUnique = false;
+                    break;
+                }
+            }
 
             if (isUnique)
             {
-                // Add the profile name to the dropdown and start training
+                // Add the profile name to the UserProfileManager
+                UserProfileManager.Instance.AddUserProfile(profileInputField.text);
                 usernameValidityMessage.text = "";
-                userProfileMenu.AddProfile(profileInputField.text);
-                // userProfileMenu.RemoveTitle();
-                // userProfileMenu.StartTraining();
             }
             else
             {

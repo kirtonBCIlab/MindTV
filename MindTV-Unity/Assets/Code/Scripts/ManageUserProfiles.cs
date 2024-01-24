@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
-public class UserProfileMenu : MonoBehaviour, ISaveable
+public class LoadManageUserProfiles : MonoBehaviour, ISaveable
 {
     [SerializeField] TMP_Dropdown.OptionData title;
 
@@ -81,50 +81,50 @@ public class UserProfileMenu : MonoBehaviour, ISaveable
     {
         TMP_Dropdown.OptionData newProfile = new TMP_Dropdown.OptionData();
         newProfile.text = profileName;
-        dropdown.options.Add(newProfile);
+        // dropdown.options.Add(newProfile);
 
-        dropdown.value = dropdown.options.IndexOf(newProfile);
+        // dropdown.value = dropdown.options.IndexOf(newProfile);
     }
 
-    public void StartTraining()
-    {
-        CurrentUser.newUser = true;
+    // public void StartTraining()
+    // {
+    //     CurrentUser.newUser = true;
 
-        // Assign current user to selected user profile
-        foreach (SaveData.User user in userProfiles)
-        {
-            Debug.Log(user.userProfileName);
-            if (user.userProfileName == dropdown.options[dropdown.value].text)
-            {
-                Debug.Log("User profile found");
-                CurrentUser.currentUser = user;
-                CurrentUser.newUser = false;
-            }
-        }
+    //     // Assign current user to selected user profile
+    //     foreach (SaveData.User user in userProfiles)
+    //     {
+    //         Debug.Log(user.userProfileName);
+    //         if (user.userProfileName == dropdown.options[dropdown.value].text)
+    //         {
+    //             Debug.Log("User profile found");
+    //             CurrentUser.currentUser = user;
+    //             CurrentUser.newUser = false;
+    //         }
+    //     }
 
-        if (CurrentUser.newUser == true)
-        {
-            Debug.Log("New user");
-            SaveData.User user = new SaveData.User();
-            user.userProfileName = dropdown.options[dropdown.value].text;
-            CurrentUser.currentUser = user;
-            userProfiles.Add(user);
-        }
+    //     if (CurrentUser.newUser == true)
+    //     {
+    //         Debug.Log("New user");
+    //         SaveData.User user = new SaveData.User();
+    //         user.userProfileName = dropdown.options[dropdown.value].text;
+    //         CurrentUser.currentUser = user;
+    //         userProfiles.Add(user);
+    //     }
 
-        SaveJsonData(this);
+    //     SaveJsonData(this);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
+    //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    // }
 
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
-    private static void SaveJsonData(UserProfileMenu a_userProfileMenu)
+    private static void SaveJsonData(LoadManageUserProfiles a_loadManageUserProfiles)
     {
         SaveData sd = new SaveData();
-        a_userProfileMenu.PopulateSaveData(sd);
+        a_loadManageUserProfiles.PopulateSaveData(sd);
 
         if (FileManager.WriteToFile("UserData.dat", sd.ToJson()))
         {
@@ -132,14 +132,14 @@ public class UserProfileMenu : MonoBehaviour, ISaveable
         }
     }
 
-    private static void LoadJsonData(UserProfileMenu a_userProfileMenu)
+    private static void LoadJsonData(LoadManageUserProfiles a_loadManageUserProfiles)
     {
         if (FileManager.LoadFromFile("UserData.dat", out var json))
         {
             SaveData sd = new SaveData();
             sd.LoadFromJson(json);
 
-            a_userProfileMenu.LoadFromSaveData(sd);
+            a_loadManageUserProfiles.LoadFromSaveData(sd);
             Debug.Log("Load complete");
         }
     }
