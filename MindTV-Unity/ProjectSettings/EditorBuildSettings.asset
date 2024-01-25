@@ -17,4 +17,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Additive_ConnectivityMenu.unity
     guid: 0d1d52c7a0a2f475ea0d4f42e776e13f
+  - enabled: 1
+    path: Assets/Scenes/SelectLabel.unity
+    guid: 1d6f9ab034c73c7468be07c33605e322
+  - enabled: 1
+    path: Assets/Scenes/Training_Additive.unity
+    guid: 811bedcba7358784eadf4f77d658833f
+  - enabled: 1
+    path: Assets/Scenes/TrainingScene.unity
+    guid: 260c9e28fa7afdb47bcc52e79bb7b773
   m_configObjects: {}
