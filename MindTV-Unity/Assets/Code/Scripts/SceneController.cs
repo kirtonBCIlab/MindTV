@@ -15,7 +15,7 @@ public class SceneController : MonoBehaviour
     }
 
     // This method toggles the additive scene based on the one requested.
-    public void ToggleScene(string sceneName)
+    public void ToggleAdditiveScene(string sceneName)
     {
         // If the current scene is the one requested, unload it.
         if (currentAdditiveScene == sceneName)
@@ -38,7 +38,7 @@ public class SceneController : MonoBehaviour
     }
 
     // Switch Scenes completely based on the Scene Name
-    public void SwitchScene(string sceneName)
+    public void LoadNewScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
