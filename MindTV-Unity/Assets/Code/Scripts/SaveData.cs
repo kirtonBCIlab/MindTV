@@ -10,6 +10,7 @@ public class SaveData
         public float volume;
         public int resolution; // The index of the dropdown
         public bool isFullscreen;
+        public Color backgroundColor;
     }
 
     [System.Serializable]
@@ -21,16 +22,10 @@ public class SaveData
         public Vector3 position;
         public bool baseSizeOn;
         public float baseSize;
-        public bool greyscaleOn;
         public bool outlineOn;
         public int outlineIndex;
         public Color outlineColor;
-        public bool flashColorOn;
-        public int flashColorIndex;
-        public Color flashColor;
-        public bool textureOn;
-        public bool zoomOn;
-        public float zoomValue;
+
     }
 
     [System.Serializable]
@@ -49,6 +44,20 @@ public class SaveData
 
     public List<Label> labelDataList;
     public List<User> userProfiles;
+
+    //Saving data from the activity
+    [System.Serializable]
+    public struct ActivitySettings
+    {
+        public string activityName;
+        public string activityDescription;
+        public string activityType;
+        public string activityID;
+        public string activityPath;
+        public string activityIconPath;
+        public string activityIconName;
+
+    }
 
 
     // Convert class to Json string

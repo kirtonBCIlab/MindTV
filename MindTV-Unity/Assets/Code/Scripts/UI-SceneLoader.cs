@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIMainMenu : MonoBehaviour
+public class SceneLoader : MonoBehaviour
 {
     // Track the currently loaded additive scene
     private string currentAdditiveScene = "";
 
     // This method toggles the additive scene based on the one requested.
-    public void ToggleScene(string sceneName)
+    public void ToggleAdditiveScene(string sceneName)
     {
         // If the current scene is the one requested, unload it.
         if (currentAdditiveScene == sceneName)
@@ -29,5 +29,11 @@ public class UIMainMenu : MonoBehaviour
             // Update the current scene tracker.
             currentAdditiveScene = sceneName;
         }
+    }
+
+    // This method loads a scene based on the name provided.
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }
