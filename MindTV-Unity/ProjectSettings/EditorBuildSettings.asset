@@ -29,4 +29,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UserProfiles_Additive-ManageProfiles.unity
     guid: 4d3475d9e2ba14941a069cc446fb8c74
+  - enabled: 1
+    path: Assets/Scenes/TrainingScene.unity
+    guid: 260c9e28fa7afdb47bcc52e79bb7b773
+  - enabled: 1
+    path: Assets/Scenes/TrainingScene_Additive.unity
+    guid: 811bedcba7358784eadf4f77d658833f
+  - enabled: 1
+    path: Assets/Scenes/SelectLabel.unity
+    guid: 1d6f9ab034c73c7468be07c33605e322
   m_configObjects: {}
