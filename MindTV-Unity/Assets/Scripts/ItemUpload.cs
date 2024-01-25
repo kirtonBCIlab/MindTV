@@ -3,9 +3,9 @@ using UnityEditor;
 using System.IO;
 using UnityEngine.UI;
 using System;
-using static SimpleFileBrowser.FileBrowser;
 using UnityEngine.Networking;
 using System.Collections;
+using SimpleFileBrowser;
 
 //handles uploading image by the user
 public class ItemUpload : MonoBehaviour
@@ -40,13 +40,13 @@ public class ItemUpload : MonoBehaviour
     public void OpenImagePathPanel()
     {
         //on success go to OnPhotoDialogSaved
-        OnSuccess ls = OnPhotoDialogSaved;
+        FileBrowser.OnSuccess ls = OnPhotoDialogSaved;
         //on cancellation go to OnDialogCanceled
-        OnCancel lc = OnDialogCanceled;
+        FileBrowser.OnCancel lc = OnDialogCanceled;
         //only .png is acceptable
-        SetFilters(false, new string[] { ".png" });
+        FileBrowser.SetFilters(false, new string[] { ".png" });
         //opens the loading dialog for user to choose desired image to upload
-        ShowLoadDialog(ls, lc, PickMode.Files);
+        FileBrowser.ShowLoadDialog(ls, lc, FileBrowser.PickMode.Files);
     }
 
     //creates a new image for training object selection
