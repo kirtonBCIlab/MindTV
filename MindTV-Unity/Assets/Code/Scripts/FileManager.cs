@@ -7,6 +7,8 @@ public static class FileManager
 {
     public static bool WriteToFile(string a_FileName, string a_FileContents)
     {
+        Debug.Log("Persistent Data Path: " + Application.persistentDataPath);
+
         var fullPath = Path.Combine(Application.persistentDataPath, a_FileName);
 
         try
