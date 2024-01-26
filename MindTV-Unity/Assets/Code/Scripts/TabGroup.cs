@@ -12,6 +12,7 @@ public class TabGroup : MonoBehaviour
     public Sprite tabHover;
     public Color tabHoverColor;
     public Sprite tabSelected;
+    public Color tabSelectedColor;
     public Tab selectedTab;
 
     public List<GameObject> objectsToSwap;
@@ -55,7 +56,7 @@ public class TabGroup : MonoBehaviour
 
         ResetTabs();
         tab.background.sprite = tabSelected;
-        tab.background.color = tabIdleColor;
+        tab.background.color = tabSelectedColor;
         int index = tab.transform.GetSiblingIndex();
         for(int i=0; i<objectsToSwap.Count;i++)
         {

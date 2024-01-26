@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/Scenes/TrainingScene.unity
     guid: 260c9e28fa7afdb47bcc52e79bb7b773
   - enabled: 1
-    path: Assets/Scenes/TrainingScene_Additive.unity
+    path: Assets/Scenes/TrainingScene.unity
     guid: 811bedcba7358784eadf4f77d658833f
   - enabled: 1
     path: Assets/Scenes/SelectLabel.unity
