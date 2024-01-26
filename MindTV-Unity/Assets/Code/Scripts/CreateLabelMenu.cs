@@ -33,7 +33,7 @@ public class CreateLabelMenu : MonoBehaviour
             
             if (isUnique)
             {
-                // Add the profile name to the dropdown and start training
+                // Add the label name to the dropdown and start training
                 labelValidityMessage.text = "";
                 labelMenu.AddLabel(labelInputField.text);
                 labelMenu.RemoveTitle();
