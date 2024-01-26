@@ -1,7 +1,9 @@
-from bci_essentials.io.lsl_sources import LslEegSource, LslMarkerSource
+from bci_essentials.io.lsl_sources import LslMarkerSource
 from bci_essentials.io.lsl_messenger import LslMessenger
 from bci_essentials.eeg_data import EegData
 from bci_essentials.classification.mi_classifier import MiClassifier
+
+from MindTV.EmotivEegSource import EmotivEegSource
 
 from bci_essentials.utils.logger import Logger
 
@@ -13,7 +15,7 @@ logger.setLevel(Logger.DEBUG)  # Changed from defualt of INFO
 # create LSL sources, these will block until the outlets are present
 logger.info("Creating LSL sources")
 logger.debug("These will block until the outlets are present")
-eeg_source = LslEegSource()
+eeg_source = EmotivEegSource()
 marker_source = LslMarkerSource()
 messenger = LslMessenger()
 
