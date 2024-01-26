@@ -18,8 +18,10 @@ public class StimulusManager : MonoBehaviour
 
     private MIControllerBehavior controllerBehaviour;
     private LTDescr currentTween;
-    private float originalScale = 50.0f;
+    private float originalScale = 100.0f;
+    private float currentScale;
     private Vector3 originalPosition;
+    public Slider baseSizeSlider;
     private bool isCurrentAnimationCountdown;
     private bool isCurrentAnimationCountdownEnabled;
 
@@ -28,6 +30,10 @@ public class StimulusManager : MonoBehaviour
     {
         trainingController = transform.Find("TrainingMenu").GetComponent<TrainingMenuController>();
         originalPosition = _SPO.transform.position;
+
+        currentScale = originalScale;
+        _SPO.transform.localScale = new Vector3(currentScale, currentScale, currentScale);
+        baseSizeSlider.value = currentScale;
     }
 
     //called when user clicks train in ActiveTraining tab
@@ -90,7 +96,7 @@ public class StimulusManager : MonoBehaviour
     void ResetSPO()
     {
         _SPO.transform.position = originalPosition;
-        _SPO.transform.localScale = new Vector3(originalScale, originalScale, originalScale);
+        // ResetBaseSize();
     }
 
     //handles the training animation according to current training action
@@ -146,6 +152,28 @@ public class StimulusManager : MonoBehaviour
     //changes the training object image property
     public void SetTrainingObject(Sprite sprite)
     {
+        ResetSPO();
         _SPO.GetComponent<SpriteRenderer>().sprite = sprite;
+    }
+
+    private void SetBaseSize(float size)
+    {
+        _SPO.transform.localScale = new Vector3(size, size, size);
+    }
+
+    //changes the training object base size
+    public void ModifyBaseSizeWithSlider()
+    {
+        currentScale = baseSizeSlider.value;
+        //Debug.Log("Base size changed to " + currentScale);
+        SetBaseSize(currentScale);
+    }
+
+    public void ResetBaseSize()
+    //resets the base size
+    {
+        currentScale = originalScale;
+        baseSizeSlider.value = currentScale;
+        SetBaseSize(currentScale);
     }
 }
