@@ -25,7 +25,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2162015845286550810}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -55,8 +55,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tabs: []
   tabIdle: {fileID: 21300000, guid: 11c40768957e7774c97d5530ea5aec19, type: 3}
+  tabIdleColor: {r: 1, g: 1, b: 1, a: 1}
   tabHover: {fileID: 21300000, guid: b4a13d39272bee74d84c113af9daed2a, type: 3}
-  tabSelected: {fileID: 21300000, guid: b69251df59ee3394d991c2a8024a8ba1, type: 3}
+  tabHoverColor: {r: 0.32156864, g: 0.21960786, b: 0.56078434, a: 1}
+  tabSelected: {fileID: 21300000, guid: 3e9b45fdd1b84c54992b9837a8b738c4, type: 3}
   selectedTab: {fileID: 0}
   objectsToSwap: []
 --- !u!114 &5360550704394116444
@@ -499,6 +501,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tab
       objectReference: {fileID: 0}
+    - target: {fileID: 7567310628373256538, guid: f66ee0126bccf0e47ae51556de38f6b9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4c885603fd217b740a6dbbcaa1d11448, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
