@@ -18,8 +18,11 @@ public class StimulusManager : MonoBehaviour
 
     private MIControllerBehavior controllerBehaviour;
     private LTDescr currentTween;
-    private float originalScale = 50.0f;
+    private float originalBaseSize = 100.0f;
+    private float currentBaseSize;
+    private float targetImageResolution = 512f;
     private Vector3 originalPosition;
+    public Slider baseSizeSlider;
     private bool isCurrentAnimationCountdown;
     private bool isCurrentAnimationCountdownEnabled;
 
@@ -28,6 +31,10 @@ public class StimulusManager : MonoBehaviour
     {
         trainingController = transform.Find("TrainingMenu").GetComponent<TrainingMenuController>();
         originalPosition = _SPO.transform.position;
+
+        currentBaseSize = originalBaseSize;
+        _SPO.transform.localScale = new Vector3(currentBaseSize, currentBaseSize, currentBaseSize);
+        baseSizeSlider.value = currentBaseSize;
     }
 
     //called when user clicks train in ActiveTraining tab
@@ -90,7 +97,7 @@ public class StimulusManager : MonoBehaviour
     void ResetSPO()
     {
         _SPO.transform.position = originalPosition;
-        _SPO.transform.localScale = new Vector3(originalScale, originalScale, originalScale);
+        // ResetBaseSize();
     }
 
     //handles the training animation according to current training action
@@ -144,8 +151,50 @@ public class StimulusManager : MonoBehaviour
     }
 
     //changes the training object image property
-    public void SetTrainingObject(Sprite sprite)
+    public void SetTrainingObject(Sprite image_sprite)
     {
-        _SPO.GetComponent<SpriteRenderer>().sprite = sprite;
+        ResetSPO();
+        _SPO.GetComponent<SpriteRenderer>().sprite = image_sprite;
+
+        // If we want the newly set image to be reset to the original size, use this: (uncomment the line below)
+        // ResetBaseSize();
+
+        // If we want the newly set image to retain the same scaled size as the previous image, use this: (uncomment the line below)
+        ModifyBaseSizeWithSlider();
+    }
+
+    private float UniformImageSizeScaleFactor(SpriteRenderer spriteRenderer)
+    // Calculate the scale factor needed to resize the longest dimension to targetImageResolution (512x512)
+    {
+        float width = spriteRenderer.sprite.texture.width;
+        float height = spriteRenderer.sprite.texture.height;
+        float maxDimension = Mathf.Max(width, height);
+        float scaleFactor = targetImageResolution / maxDimension;
+        return scaleFactor;
+    }
+
+    private void SetBaseSize(float size)
+    // Sets the base size of the training object
+    {
+        SpriteRenderer spriteRenderer = _SPO.GetComponent<SpriteRenderer>();
+        float uniformScaleFactor = UniformImageSizeScaleFactor(spriteRenderer);
+        float scaledSize = size * uniformScaleFactor;
+        _SPO.transform.localScale = new Vector3(scaledSize, scaledSize, scaledSize);
+    }
+
+    public void ModifyBaseSizeWithSlider()
+    //changes the training object base size
+    {
+        currentBaseSize = baseSizeSlider.value;
+        //Debug.Log("Base size changed to " + currentBaseSize);
+        SetBaseSize(currentBaseSize);
+    }
+
+    public void ResetBaseSize()
+    //resets the base size
+    {
+        currentBaseSize = originalBaseSize;
+        baseSizeSlider.value = currentBaseSize;
+        SetBaseSize(currentBaseSize);
     }
 }
