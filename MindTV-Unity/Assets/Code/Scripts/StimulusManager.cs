@@ -22,7 +22,7 @@ public class StimulusManager : MonoBehaviour
     //Exposing this so that we can change the base size of the training object
     public float originalBaseSize = 10.0f;
     private float currentBaseSize;
-    private float targetImageResolution = 256f;
+    public float targetImageResolution = 512f;
     private Vector3 originalPosition;
     public Slider baseSizeSlider;
     private bool isCurrentAnimationCountdown;
