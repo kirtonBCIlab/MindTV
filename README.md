@@ -1,6 +1,6 @@
 # Mind TV
 
-## Python setup
+## Python development
 
 Use a conda environment to set up development tooling:
 ```
@@ -14,7 +14,12 @@ Install dependencies with pip, use -e for development (local changes picked up w
 pip install -e .
 ```
 
-To start back end:
+Start EEG stream using EmotivPro application.  Use headset sim script if a dummy headset is needed:
+```
+python ./headset_sim.py
+```
+
+To start back end manually:
 ```
 <start streaming eeg over LSL>
 python ./main.py
@@ -25,7 +30,6 @@ If backend won't exit properly, kill the job
 (ctrl + Z)
 kill %1
 ```
-
 
 
 

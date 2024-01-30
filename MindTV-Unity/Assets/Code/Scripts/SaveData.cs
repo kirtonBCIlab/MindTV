@@ -14,7 +14,24 @@ public class SaveData
     }
 
     [System.Serializable]
-    public struct BCIStimulusPrefs
+    public struct MIPrefs
+    {
+        public float windowLength;
+        public float interWindowInterval;
+        public bool setupRequired;
+        public int numberTrainingSelections;
+        public int numberTrainingWindows;
+        public bool persistantTrainTarget;
+        public float pauseTimeBeforeTraining;
+        public float trainBreakTime;
+        public int numberSelectionsBeforeTraining;
+        public int numberSelectionsBetweenTrianing;
+        public bool shamFeedback;
+
+    }
+
+    [System.Serializable]
+    public struct BciCellPrefs
     {
         public string itemID;
         public bool isVisible;
@@ -25,6 +42,12 @@ public class SaveData
         public bool outlineOn;
         public int outlineIndex;
         public Color outlineColor;
+        public Color backgroundColor;
+    }
+
+    [System.Serializable]
+    public struct PageObjectPrefs
+    {
 
     }
 
@@ -33,7 +56,7 @@ public class SaveData
     {
         public string userProfileName;
         public GeneralSettingsPrefs generalSettingsPrefs;
-        public List<BCIStimulusPrefs> bciStimulusPrefs;
+        public List<BciCellPrefs> bciCellPrefs;
     }
 
     [System.Serializable]
@@ -49,13 +72,7 @@ public class SaveData
     [System.Serializable]
     public struct ActivitySettings
     {
-        public string activityName;
-        public string activityDescription;
-        public string activityType;
-        public string activityID;
-        public string activityPath;
-        public string activityIconPath;
-        public string activityIconName;
+        //This is where Activity Setting data will go.
 
     }
 

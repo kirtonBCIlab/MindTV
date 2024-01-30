@@ -1,11 +1,11 @@
 [project]
-name = "MindTV-Python"
+name = "MindTV"
 version = "0.0.1"
 description = "Python back end for MindTV"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-	"bci-essentials",
+	"bci-essentials>=0.1.1",
 	"pylsl",
 ]
 
