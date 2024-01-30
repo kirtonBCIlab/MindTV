@@ -137,18 +137,18 @@ public class StimulusManager : MonoBehaviour
     }
 
     //stops the training animation when user clicks stop, resets training object
-    public void InterruptAnimation()
-    {
-        if (isCurrentAnimationCountdown)
-        {
-            isCurrentAnimationCountdownEnabled = false;
-        } else
-        {
-            currentTween?.pause();
-            ResetSPO();
-        }
-        trainingController.InterruptTraining();
-    }
+    // public void InterruptAnimation()
+    // {
+    //     if (isCurrentAnimationCountdown)
+    //     {
+    //         isCurrentAnimationCountdownEnabled = false;
+    //     } else
+    //     {
+    //         currentTween?.pause();
+    //         ResetSPO();
+    //     }
+    //     trainingController.InterruptTraining();
+    // }
 
     //changes the training object image property
     public void SetTrainingObject(Sprite image_sprite)
