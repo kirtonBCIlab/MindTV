@@ -7,17 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour, ISaveable
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     public void PopulateSaveData(SaveData saveData)
     {
@@ -28,5 +18,6 @@ public class GameController : MonoBehaviour, ISaveable
     {
         
     }
+
 
 }

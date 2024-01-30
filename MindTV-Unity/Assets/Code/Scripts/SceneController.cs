@@ -43,5 +43,19 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    public void ToggleCanvasItem(GameObject canvasItem)
+    {
+        canvasItem.SetActive(!canvasItem.activeSelf);
+    }
+
+    public void SetCanvasItemOff(GameObject canvasItem)
+    {
+        canvasItem.SetActive(false);
+    }
+
+    public void SetCanvasItemOn(GameObject canvasItem)
+    {
+        canvasItem.SetActive(true);
+    }
 
 }
