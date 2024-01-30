@@ -249,7 +249,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a1a250b00d81ed49baa0903e81a5a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bciControllerGO: {fileID: 0}
+  _controllerManager: {fileID: 0}
+  _enableHotKeys: 1
   bci: {fileID: 0}
 --- !u!4 &1051524052
 Transform:
@@ -550,7 +551,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 405784984828431236, guid: bf8ac7aac01af45fe9fc967ea2600b13, type: 3}
       propertyPath: m_IsOn
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 405784984828431236, guid: bf8ac7aac01af45fe9fc967ea2600b13, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
@@ -570,7 +571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 405784984828431236, guid: bf8ac7aac01af45fe9fc967ea2600b13, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpdateBCI
+      value: OnToggleSelected
       objectReference: {fileID: 0}
     - target: {fileID: 405784984828431236, guid: bf8ac7aac01af45fe9fc967ea2600b13, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
