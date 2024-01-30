@@ -5,22 +5,33 @@ using BCIEssentials.Controllers;
 
 public class OptionsMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject _bciControllerGO;
-
+    [SerializeField] private GameObject _controllerManager;
+    public bool _enableHotKeys = true;
     public BCIController bci;
     void Start()
     {
-        _bciControllerGO = GameObject.FindWithTag("BCIController");
-        bci = _bciControllerGO.GetComponent<BCIController>();
-
+        _controllerManager = GameObject.FindWithTag("BCIController");
+        bci = _controllerManager.GetComponent<BCIController>();
     }
 
-    
+    public void OnToggleSelected()
+    {
+        if (_enableHotKeys == true)
+        {
+            _enableHotKeys = false;
+        }
+        else
+        {
+            _enableHotKeys = true;
+        }
+        UpdateBCI();
+    }
+
     public void UpdateBCI()
     {
-        if (bci._readyToStart == true)
-            bci._readyToStart = false;
+        if (_enableHotKeys == true)
+            BCIController.EnableDisableHotkeys(true);
         else 
-            bci._readyToStart = true;
+            BCIController.EnableDisableHotkeys(false);
     }
 }
