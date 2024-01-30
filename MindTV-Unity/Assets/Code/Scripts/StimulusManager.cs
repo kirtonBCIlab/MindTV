@@ -15,6 +15,9 @@ public class StimulusManager : MonoBehaviour
     [SerializeField] private TrainingMenuController trainingController;
     [SerializeField] private TMP_Text countDownText;
     [SerializeField] private GameObject _SPO;
+    public TMP_Dropdown colorDropdown;
+
+    private GameObject canvas;
 
     private MIControllerBehavior controllerBehaviour;
     private LTDescr currentTween;
@@ -35,6 +38,8 @@ public class StimulusManager : MonoBehaviour
         currentBaseSize = originalBaseSize;
         _SPO.transform.localScale = new Vector3(currentBaseSize, currentBaseSize, currentBaseSize);
         baseSizeSlider.value = currentBaseSize;
+
+        canvas = GameObject.Find("ActiveTraining");
     }
 
     //called when user clicks train in ActiveTraining tab
@@ -197,4 +202,13 @@ public class StimulusManager : MonoBehaviour
         baseSizeSlider.value = currentBaseSize;
         SetBaseSize(currentBaseSize);
     }
+    public void ChangeBackgroundColor()
+    {
+        Image imageComponent = canvas.GetComponent<Image>();
+        string colorText = colorDropdown.options[colorDropdown.value].text;
+        Color color = ColorByName.colors[colorText];
+        imageComponent.color = color;
+    }
+
+
 }
