@@ -31,7 +31,7 @@ public class StimulusManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        trainingController = transform.Find("TrainingMenu").GetComponent<TrainingMenuController>();
+        trainingController = GameObject.FindGameObjectWithTag("TrainingPanel").GetComponent<TrainingMenuController>();
         originalPosition = _SPO.transform.position;
 
         currentBaseSize = originalBaseSize;
