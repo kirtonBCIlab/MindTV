@@ -17,7 +17,7 @@ public class StimulusManager : MonoBehaviour
     [SerializeField] private GameObject _SPO;
     public TMP_Dropdown colorDropdown;
 
-    private GameObject canvas;
+    private GameObject activeTrainingCanvas;
 
     private MIControllerBehavior controllerBehaviour;
     private LTDescr currentTween;
@@ -41,7 +41,7 @@ public class StimulusManager : MonoBehaviour
         _SPO.transform.localScale = new Vector3(currentBaseSize, currentBaseSize, currentBaseSize);
         baseSizeSlider.value = currentBaseSize;
 
-        canvas = GameObject.Find("ActiveTraining");
+        activeTrainingCanvas = GameObject.Find("ActiveTraining");
     }
 
     //called when user clicks train in ActiveTraining tab
@@ -206,7 +206,7 @@ public class StimulusManager : MonoBehaviour
     }
     public void ChangeBackgroundColor()
     {
-        Image imageComponent = canvas.GetComponent<Image>();
+        Image imageComponent =activeTrainingCanvas.GetComponent<Image>();
         string colorText = colorDropdown.options[colorDropdown.value].text;
         Color color = ColorByName.colors[colorText];
         imageComponent.color = color;
