@@ -15,6 +15,8 @@ public class StartTraining : MonoBehaviour
     [SerializeField] private AudioClip startBeepFile; // Assign in the Inspector
     private float countdownBeepVolume = 1f; // Example volume level for quiet beep
     private float startBeepVolume = 1f; // Example volume level for loud beep
+    private int count = 3; // Number of seconds to countdown from
+    private string startTrainingString = "Go!"; // Text to display when training starts
 
     private void Awake()
     {
@@ -29,7 +31,7 @@ public class StartTraining : MonoBehaviour
     public void StartTrainingCountdown()
     {
         displayStartTrainingButton.SetActive(false);  // Hide the start training button
-        StartCoroutine(Countdown(3));
+        StartCoroutine(Countdown(count));
     }
 
     IEnumerator Countdown(int seconds)
@@ -46,7 +48,7 @@ public class StartTraining : MonoBehaviour
             count--;
         }
 
-        countdownText.text = "Go!";
+        countdownText.text = startTrainingString;
         PlayBeep(startBeepFile, startBeepVolume);
         bciController.ActiveBehavior.StartTraining(BCITrainingType.Iterative); // Start the actual training
 
