@@ -34,7 +34,7 @@ public class StartTraining : MonoBehaviour
 
     IEnumerator Countdown(int seconds)
     {
-        yield return new WaitForSeconds(0.25f); // Wait a bit before starting the countdown
+        yield return new WaitForSeconds(0.5f); // Wait a bit before starting the countdown
 
         int count = seconds;
 
