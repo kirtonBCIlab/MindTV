@@ -819,7 +819,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 927915684750193732, guid: 96edad70f4c14ed499e383a68b40df9c, type: 3}
       propertyPath: _headsetCheckDelay
-      value: 8
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 927915684750193732, guid: 96edad70f4c14ed499e383a68b40df9c, type: 3}
       propertyPath: _headsetStatusText
@@ -1615,6 +1615,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1280730859432139966, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280730859432139966, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280730859432139966, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 985110823}
+    - target: {fileID: 1280730859432139966, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280730859432139966, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdateButtonHeadsetConnection
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280730859432139966, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HeadsetConnectManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280730859432139966, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3587482332833661932, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1629,7 +1657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4030936653785308657, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1646,6 +1674,10 @@ PrefabInstance:
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: UpdateButtonHeadsetConnection
+      objectReference: {fileID: 0}
+    - target: {fileID: 6746055731719183002, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_Name
+      value: RefreshStatus
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
