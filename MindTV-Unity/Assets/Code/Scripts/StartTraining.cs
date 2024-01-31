@@ -26,7 +26,7 @@ public class StartTraining : MonoBehaviour
         }
     }
 
-    public void StartAutoTraining()
+    public void StartTrainingCountdown()
     {
         displayStartTrainingButton.SetActive(false);  // Hide the start training button
         StartCoroutine(Countdown(3));
