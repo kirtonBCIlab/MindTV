@@ -6,6 +6,9 @@ TagManager:
   tags:
   - BCI
   - BCIController
+  - InventorySlot
+  - ControllerManager
+  - TrainingPanel
   layers:
   - Default
   - TransparentFX

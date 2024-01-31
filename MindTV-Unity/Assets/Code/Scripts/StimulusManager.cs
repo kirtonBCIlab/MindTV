@@ -18,9 +18,11 @@ public class StimulusManager : MonoBehaviour
 
     private MIControllerBehavior controllerBehaviour;
     private LTDescr currentTween;
-    private float originalBaseSize = 100.0f;
+
+    //Exposing this so that we can change the base size of the training object
+    public float originalBaseSize = 10.0f;
     private float currentBaseSize;
-    private float targetImageResolution = 512f;
+    public float targetImageResolution = 512f;
     private Vector3 originalPosition;
     public Slider baseSizeSlider;
     private bool isCurrentAnimationCountdown;
@@ -29,7 +31,7 @@ public class StimulusManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        trainingController = transform.Find("TrainingMenu").GetComponent<TrainingMenuController>();
+        trainingController = GameObject.FindGameObjectWithTag("TrainingPanel").GetComponent<TrainingMenuController>();
         originalPosition = _SPO.transform.position;
 
         currentBaseSize = originalBaseSize;
@@ -137,18 +139,18 @@ public class StimulusManager : MonoBehaviour
     }
 
     //stops the training animation when user clicks stop, resets training object
-    public void InterruptAnimation()
-    {
-        if (isCurrentAnimationCountdown)
-        {
-            isCurrentAnimationCountdownEnabled = false;
-        } else
-        {
-            currentTween?.pause();
-            ResetSPO();
-        }
-        trainingController.InterruptTraining();
-    }
+    // public void InterruptAnimation()
+    // {
+    //     if (isCurrentAnimationCountdown)
+    //     {
+    //         isCurrentAnimationCountdownEnabled = false;
+    //     } else
+    //     {
+    //         currentTween?.pause();
+    //         ResetSPO();
+    //     }
+    //     trainingController.InterruptTraining();
+    // }
 
     //changes the training object image property
     public void SetTrainingObject(Sprite image_sprite)
@@ -157,10 +159,10 @@ public class StimulusManager : MonoBehaviour
         _SPO.GetComponent<SpriteRenderer>().sprite = image_sprite;
 
         // If we want the newly set image to be reset to the original size, use this: (uncomment the line below)
-        // ResetBaseSize();
+        ResetBaseSize();
 
         // If we want the newly set image to retain the same scaled size as the previous image, use this: (uncomment the line below)
-        ModifyBaseSizeWithSlider();
+        // ModifyBaseSizeWithSlider();
     }
 
     private float UniformImageSizeScaleFactor(SpriteRenderer spriteRenderer)
