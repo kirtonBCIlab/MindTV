@@ -18,7 +18,7 @@ public class StimulusManager : MonoBehaviour
     public TMP_Dropdown colorDropdown;
 
     private GameObject activeTrainingCanvas;
-
+    private GameObject tabGroup;
     private MIControllerBehavior controllerBehaviour;
     private LTDescr currentTween;
 
@@ -42,6 +42,8 @@ public class StimulusManager : MonoBehaviour
         baseSizeSlider.value = currentBaseSize;
 
         activeTrainingCanvas = GameObject.Find("ActiveTraining");
+
+        tabGroup = GameObject.Find("TabArea");
     }
 
     //called when user clicks train in ActiveTraining tab
@@ -206,11 +208,12 @@ public class StimulusManager : MonoBehaviour
     }
     public void ChangeBackgroundColor()
     {
-        Image imageComponent =activeTrainingCanvas.GetComponent<Image>();
+        Image imageComponent = activeTrainingCanvas.GetComponent<Image>();
         string colorText = colorDropdown.options[colorDropdown.value].text;
         Color color = ColorByName.colors[colorText];
         imageComponent.color = color;
+
+        TabGroup tab = tabGroup.GetComponent<TabGroup>();
+        tab.tabSelectedColor = color;
     }
-
-
 }
