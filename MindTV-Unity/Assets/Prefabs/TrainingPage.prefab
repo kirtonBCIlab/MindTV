@@ -339,6 +339,8 @@ MonoBehaviour:
   audioSource: {fileID: 4840625657399549792}
   countdownBeepFile: {fileID: 8300000, guid: ddcd871d37bfa47f196ee943171b3c28, type: 3}
   startBeepFile: {fileID: 8300000, guid: 2ddee1a54c78d4dfc890876d4ebbacfc, type: 3}
+  numberOfCountdownSeconds: 3
+  startTrainingMessage: Go!
 --- !u!1 &7017384404677538513
 GameObject:
   m_ObjectHideFlags: 0
@@ -2221,19 +2223,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3888124603898891935, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
       propertyPath: m_margin.w
-      value: -19.601387
+      value: 0.27700812
       objectReference: {fileID: 0}
     - target: {fileID: 3888124603898891935, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
       propertyPath: m_margin.x
-      value: 300.15402
+      value: -1.4355621
       objectReference: {fileID: 0}
     - target: {fileID: 3888124603898891935, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
       propertyPath: m_margin.y
-      value: -55.53711
+      value: -0.45415115
       objectReference: {fileID: 0}
     - target: {fileID: 3888124603898891935, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
       propertyPath: m_margin.z
-      value: 313.62137
+      value: 0.04125973
       objectReference: {fileID: 0}
     - target: {fileID: 3888124603898891935, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
       propertyPath: m_fontStyle
@@ -2245,7 +2247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3888124603898891935, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
       propertyPath: m_VerticalAlignment
-      value: 512
+      value: 1024
       objectReference: {fileID: 0}
     - target: {fileID: 3888124603898891935, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -2277,11 +2279,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8504948679883275487, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 960
+      value: 2650
       objectReference: {fileID: 0}
     - target: {fileID: 8504948679883275487, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 120
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 8504948679883275487, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2317,7 +2319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8504948679883275487, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -750
+      value: -740
       objectReference: {fileID: 0}
     - target: {fileID: 8504948679883275487, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
