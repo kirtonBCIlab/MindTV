@@ -15,18 +15,24 @@ public class StimulusManager : MonoBehaviour
     [SerializeField] private TrainingMenuController trainingController;
     [SerializeField] private TMP_Text countDownText;
     [SerializeField] private GameObject _SPO;
+    public TMP_Dropdown colorDropdown;
 
+    private GameObject activeTraining;
+    
     private MIControllerBehavior controllerBehaviour;
     private LTDescr currentTween;
 
     //Exposing this so that we can change the base size of the training object
-    public float originalBaseSize = 10.0f;
+    public float originalBaseSize = 100.0f;
     private float currentBaseSize;
     public float targetImageResolution = 512f;
     private Vector3 originalPosition;
     public Slider baseSizeSlider;
-    private bool isCurrentAnimationCountdown;
-    private bool isCurrentAnimationCountdownEnabled;
+    // private bool isCurrentAnimationCountdown;
+    // private bool isCurrentAnimationCountdownEnabled;
+
+    // Scriptable Object space
+    [SerializeField] private TrainingPageSO trainingPageSO;
 
     // Start is called before the first frame update
     void Start()
@@ -39,61 +45,61 @@ public class StimulusManager : MonoBehaviour
         baseSizeSlider.value = currentBaseSize;
     }
 
-    //called when user clicks train in ActiveTraining tab
-    //carried out simultaneously with marker generation
-    public void StartAnimation()
-    {
-        StartCoroutine(StartCountDownAnimation());
-    }
+    // //called when user clicks train in ActiveTraining tab
+    // //carried out simultaneously with marker generation
+    // public void StartAnimation()
+    // {
+    //     StartCoroutine(StartCountDownAnimation());
+    // }
 
-    //coroutine that shows 3 second countdown animation
-    //countDownText is changed, shown, and hidden for animation
-    IEnumerator StartCountDownAnimation()
-    {
-        isCurrentAnimationCountdown = true;
-        isCurrentAnimationCountdownEnabled = true;
+    // //coroutine that shows 3 second countdown animation
+    // //countDownText is changed, shown, and hidden for animation
+    // IEnumerator StartCountDownAnimation()
+    // {
+    //     isCurrentAnimationCountdown = true;
+    //     isCurrentAnimationCountdownEnabled = true;
 
-        countDownText.text = "3";
-        yield return CountdownUpdate(1.0f);
-        //section below is used for pausing animation when user clicks stop
-        if (!isCurrentAnimationCountdownEnabled) {
-            countDownText.text = "";
-            yield break;
-        }
+    //     countDownText.text = "3";
+    //     yield return CountdownUpdate(1.0f);
+    //     //section below is used for pausing animation when user clicks stop
+    //     if (!isCurrentAnimationCountdownEnabled) {
+    //         countDownText.text = "";
+    //         yield break;
+    //     }
 
-        countDownText.text = "2";
-        yield return CountdownUpdate(1.0f);
-        if (!isCurrentAnimationCountdownEnabled)
-        {
-            countDownText.text = "";
-            yield break;
-        }
+    //     countDownText.text = "2";
+    //     yield return CountdownUpdate(1.0f);
+    //     if (!isCurrentAnimationCountdownEnabled)
+    //     {
+    //         countDownText.text = "";
+    //         yield break;
+    //     }
 
-        countDownText.text = "1";
-        yield return CountdownUpdate(1.0f);
-        if (!isCurrentAnimationCountdownEnabled)
-        {
-            countDownText.text = "";
-            yield break;
-        }
+    //     countDownText.text = "1";
+    //     yield return CountdownUpdate(1.0f);
+    //     if (!isCurrentAnimationCountdownEnabled)
+    //     {
+    //         countDownText.text = "";
+    //         yield break;
+    //     }
 
-        //when countdown animation completes, training animation is activated with current training action
-        countDownText.text = "";
-        Debug.Log("Countdown completed!");
-        StartActionAnimation(trainingController.currentAction);
-    }
+    //     //when countdown animation completes, training animation is activated with current training action
+    //     countDownText.text = "";
+    //     Debug.Log("Countdown completed!");
+    //     StartActionAnimation(trainingController.currentAction);
+    // }
 
-    //used to keep track of countdown elapsed time
-    IEnumerator CountdownUpdate(float duration)
-    {
-        float elapsedTime = 0.0f;
+    // //used to keep track of countdown elapsed time
+    // IEnumerator CountdownUpdate(float duration)
+    // {
+    //     float elapsedTime = 0.0f;
 
-        while (elapsedTime < duration)
-        {
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-    }
+    //     while (elapsedTime < duration)
+    //     {
+    //         elapsedTime += Time.deltaTime;
+    //         yield return null;
+    //     }
+    // }
 
     //resets the position and scale of the traning object
     void ResetSPO()
@@ -102,41 +108,41 @@ public class StimulusManager : MonoBehaviour
         // ResetBaseSize();
     }
 
-    //handles the training animation according to current training action
-    public void StartActionAnimation(string action)
-    {
-        isCurrentAnimationCountdown = false;
-        //animation time = training session duration (input by user in TrainingListOptions) - countdown time
-        float animationTime = trainingController.currentTrainingSessionTime - 3;
+    // //handles the training animation according to current training action
+    // public void StartActionAnimation(string action)
+    // {
+    //     isCurrentAnimationCountdown = false;
+    //     //animation time = training session duration (input by user in TrainingListOptions) - countdown time
+    //     float animationTime = trainingController.currentTrainingSessionTime - 3;
 
-        currentTween?.pause();
+    //     currentTween?.pause();
 
-        //specific animation for each training action
-        switch (action)
-        {
-            //performs the animation using LeanTween
-            //on complete reset the training object to original position and scale
-            case "Push":
-                currentTween = LeanTween.scale(_SPO, new Vector3(25f, 25f, 25f), animationTime)
-                    .setOnComplete(ResetSPO);
-                break;
-            case "Pull":
-                currentTween = LeanTween.scale(_SPO, new Vector3(100f, 100f, 100f), animationTime)
-                    .setOnComplete(ResetSPO);
-                break;
-            case "Lift":
-                currentTween = LeanTween.moveY(_SPO, transform.position.y + 20.0f, animationTime)
-                    .setOnComplete(ResetSPO);
-                break;
-            case "Drop":
-                currentTween = LeanTween.moveY(_SPO, transform.position.y - 20.0f, animationTime)
-                    .setOnComplete(ResetSPO);
-                break;
-            default:
-                Debug.Log(action);
-                break;
-        }
-    }
+    //     //specific animation for each training action
+    //     switch (action)
+    //     {
+    //         //performs the animation using LeanTween
+    //         //on complete reset the training object to original position and scale
+    //         case "Push":
+    //             currentTween = LeanTween.scale(_SPO, new Vector3(25f, 25f, 25f), animationTime)
+    //                 .setOnComplete(ResetSPO);
+    //             break;
+    //         case "Pull":
+    //             currentTween = LeanTween.scale(_SPO, new Vector3(100f, 100f, 100f), animationTime)
+    //                 .setOnComplete(ResetSPO);
+    //             break;
+    //         case "Lift":
+    //             currentTween = LeanTween.moveY(_SPO, transform.position.y + 20.0f, animationTime)
+    //                 .setOnComplete(ResetSPO);
+    //             break;
+    //         case "Drop":
+    //             currentTween = LeanTween.moveY(_SPO, transform.position.y - 20.0f, animationTime)
+    //                 .setOnComplete(ResetSPO);
+    //             break;
+    //         default:
+    //             Debug.Log(action);
+    //             break;
+    //     }
+    // }
 
     //stops the training animation when user clicks stop, resets training object
     // public void InterruptAnimation()
@@ -198,5 +204,17 @@ public class StimulusManager : MonoBehaviour
         currentBaseSize = originalBaseSize;
         baseSizeSlider.value = currentBaseSize;
         SetBaseSize(currentBaseSize);
+    }
+    public void ChangeBackgroundColor()
+    {
+        // //Emily's way
+        // get the first transform game object in child
+        activeTraining = transform.GetChild(0).gameObject;
+        Image imageComponent = activeTraining.GetComponent<Image>();
+        string colorText = colorDropdown.options[colorDropdown.value].text;
+        Color color = ColorByName.colors[colorText];
+        //Alternative way to get the color name without needing a static ref, but using a scriptable object. Could be good for persisting changes.
+        //Color color = trainingPageSO.colors[colorText];
+        imageComponent.color = color;
     }
 }

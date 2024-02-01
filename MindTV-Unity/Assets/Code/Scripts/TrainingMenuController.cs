@@ -21,7 +21,7 @@ public class TrainingMenuController : MonoBehaviour
     [SerializeField] GameObject backButton;
     [SerializeField] GameObject MIController;
     [SerializeField] GameObject inventoryFrame;
-
+    [SerializeField] GameObject displayStartTrainingButton;
     public string currentAction = "Neutral";
     public float currentTrainingSessionTime;
 
@@ -147,5 +147,6 @@ public class TrainingMenuController : MonoBehaviour
     public void ToggleInventoryVisibility()
     {
         inventoryFrame.SetActive(!inventoryFrame.activeSelf);
+        displayStartTrainingButton.SetActive(!displayStartTrainingButton.activeSelf);
     }
 }

@@ -244,6 +244,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 668789164}
     m_Modifications:
+    - target: {fileID: 3596128242776431347, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: m_IsOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596128242776431347, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596128242776431347, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596128242776431347, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 389994427}
+    - target: {fileID: 3596128242776431347, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596128242776431347, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnToggleSelected
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596128242776431347, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OptionsMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596128242776431347, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4081894865989510521, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -324,6 +356,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4327842273838486288, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: m_text
+      value: Enable BCI Hotkeys
+      objectReference: {fileID: 0}
     - target: {fileID: 5780234401198511780, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
       propertyPath: m_Name
       value: Page 2 - OptionsMenuExample
@@ -351,6 +387,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4081894865989510521, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
   m_PrefabInstance: {fileID: 389994424}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &389994427 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4008501562255705380, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+  m_PrefabInstance: {fileID: 389994424}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389994425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a1a250b00d81ed49baa0903e81a5a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &525982903
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,6 +756,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2155155897668901325, guid: 9aac2126a83a8e8428deaa9ae0d123e8, type: 3}
+      propertyPath: _readyToStart
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6414791617228411143, guid: 9aac2126a83a8e8428deaa9ae0d123e8, type: 3}
       propertyPath: m_Name
       value: BciControllerManager
@@ -768,7 +819,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 927915684750193732, guid: 96edad70f4c14ed499e383a68b40df9c, type: 3}
       propertyPath: _headsetCheckDelay
-      value: 8
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 927915684750193732, guid: 96edad70f4c14ed499e383a68b40df9c, type: 3}
       propertyPath: _headsetStatusText
@@ -827,6 +878,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96edad70f4c14ed499e383a68b40df9c, type: 3}
+--- !u!114 &985110823 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 927915684750193732, guid: 96edad70f4c14ed499e383a68b40df9c, type: 3}
+  m_PrefabInstance: {fileID: 985110822}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 622532c85905044948e9539261e93fb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1025973862
 GameObject:
   m_ObjectHideFlags: 0
@@ -1553,6 +1615,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1280730859432139966, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280730859432139966, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280730859432139966, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 985110823}
+    - target: {fileID: 1280730859432139966, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280730859432139966, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdateButtonHeadsetConnection
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280730859432139966, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HeadsetConnectManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280730859432139966, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3587482332833661932, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 985110823}
+    - target: {fileID: 3587482332833661932, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdateButtonHeadsetConnection
+      objectReference: {fileID: 0}
     - target: {fileID: 4030936653785308657, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_Name
       value: Page 1 - ConnectGroup
@@ -1560,6 +1658,26 @@ PrefabInstance:
     - target: {fileID: 4030936653785308657, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 9036006834010551405, guid: 96edad70f4c14ed499e383a68b40df9c, type: 3}
+    - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 927915684750193732, guid: 96edad70f4c14ed499e383a68b40df9c, type: 3}
+    - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LaunchExecutable
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: UpdateButtonHeadsetConnection
+      objectReference: {fileID: 0}
+    - target: {fileID: 6746055731719183002, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_Name
+      value: RefreshStatus
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
