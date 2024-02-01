@@ -5,36 +5,21 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 608a90b6d8e2e4f1b8e568e68a9272b1
   - enabled: 1
-    path: Assets/Scenes/Old_and_unused/Old_MainMenu_Additive-OptionsMenu.unity
-    guid: aa0384621145e45d9896bed76e046426
-  - enabled: 1
-    path: Assets/Scenes/Old_and_unused/Old_MainMenu_Additive-ConnectivityMenu.unity
-    guid: 0d1d52c7a0a2f475ea0d4f42e776e13f
-  - enabled: 1
-    path: Assets/Scenes/UserProfiles.unity
-    guid: 4cbba476e9f794897b4f829025e94d59
-  - enabled: 1
-    path: Assets/Scenes/Old_and_unused/UserProfiles_Additive-LoadProfile.unity
-    guid: f7e829aade0b24061aa9796b5cd002b2
-  - enabled: 1
-    path: Assets/Scenes/Old_and_unused/UserProfiles_Additive-CreateProfile.unity
-    guid: ad760a55aaf0747e287ec8f76427ee4e
-  - enabled: 1
-    path: Assets/Scenes/Old_and_unused/UserProfiles_Additive-ManageProfiles.unity
-    guid: 4d3475d9e2ba14941a069cc446fb8c74
-  - enabled: 1
-    path: Assets/Scenes/TrainingScene.unity
-    guid: 260c9e28fa7afdb47bcc52e79bb7b773
+    path: Assets/Scenes/VideoPages.unity
+    guid: e9d2271370a2c9d44b94861a7f5b6a05
   - enabled: 1
     path: Assets/Scenes/TrainingScene.unity
     guid: 811bedcba7358784eadf4f77d658833f
+  - enabled: 1
+    path: Assets/Scenes/TrainingScene.unity
+    guid: 811bedcba7358784eadf4f77d658833f
+  - enabled: 1
+    path: Assets/Scenes/UserProfiles.unity
+    guid: 4cbba476e9f794897b4f829025e94d59
   - enabled: 1
     path: Assets/Scenes/SelectLabel.unity
     guid: 1d6f9ab034c73c7468be07c33605e322

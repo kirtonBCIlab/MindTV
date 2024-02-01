@@ -14,8 +14,10 @@ public class TabGroup : MonoBehaviour
     public Sprite tabSelected;
     public Color tabSelectedColor;
     public Tab selectedTab;
-
     public List<GameObject> objectsToSwap;
+
+    //Match the tab color to the page color if this is true
+    public bool matchPageColor;
 
     public void Subscribe(Tab tab)
     {
@@ -25,6 +27,8 @@ public class TabGroup : MonoBehaviour
         }
 
         tabs.Add(tab);
+        // //hardcoded to select first tab (what the scene opens to) as the selected tab
+        // selectedTab = tabs[0];
     }
 
     public void OnTabEnter(Tab tab)
@@ -53,10 +57,7 @@ public class TabGroup : MonoBehaviour
         selectedTab = tab;
 
         selectedTab.Select();
-
         ResetTabs();
-        tab.background.sprite = tabSelected;
-        tab.background.color = tabSelectedColor;
         int index = tab.transform.GetSiblingIndex();
         for(int i=0; i<objectsToSwap.Count;i++)
         {
@@ -69,6 +70,26 @@ public class TabGroup : MonoBehaviour
                 objectsToSwap[i].SetActive(false);
             }
         }
+
+        if (!matchPageColor)
+        {
+            tab.background.sprite = tabSelected;
+            tab.background.color = tabSelectedColor;
+        }
+        else
+        {
+            //Hardcoding this right now to the first child, and getting that image
+            tab.background.sprite = tabSelected;
+            for(int i=0; i<objectsToSwap.Count;i++)
+            {
+                if(i==index)
+                {
+                    Color newTabcolor = objectsToSwap[i].GetComponentInChildren<Image>().color;
+                    tab.background.color = newTabcolor;
+                }
+            }
+        }
+
     }
 
     public void ResetTabs()
@@ -81,6 +102,20 @@ public class TabGroup : MonoBehaviour
         }
     }
 
-    
-
+    public void UpdateTabColor()
+    {
+        foreach(Tab singleTab in tabs)
+        {
+            if (singleTab == selectedTab)
+            {
+                singleTab.background.sprite = tabSelected;
+                singleTab.background.color = tabSelectedColor;
+            }
+            else
+            {
+                singleTab.background.sprite = tabIdle;
+                singleTab.background.color = tabIdleColor;
+            }
+        }
+    }
 }
