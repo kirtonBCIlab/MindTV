@@ -263,7 +263,11 @@ MonoBehaviour:
   trainingController: {fileID: 2550445795018128584}
   countDownText: {fileID: 0}
   _SPO: {fileID: 6724854233455219447}
+  colorDropdown: {fileID: 0}
+  originalBaseSize: 10
+  targetImageResolution: 512
   baseSizeSlider: {fileID: 0}
+  trainingPageSO: {fileID: 0}
 --- !u!1001 &3616209460497892957
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -462,7 +466,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1554826530263030738, guid: ed1b57bd12373de4999fc0c3184bdc38, type: 3}
       propertyPath: m_Size
-      value: 0.99999994
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1554826530263030738, guid: ed1b57bd12373de4999fc0c3184bdc38, type: 3}
       propertyPath: m_Value

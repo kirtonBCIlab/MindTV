@@ -187,6 +187,7 @@ MonoBehaviour:
   originalBaseSize: 10
   targetImageResolution: 512
   baseSizeSlider: {fileID: 7884532054514808890}
+  trainingPageSO: {fileID: 11400000, guid: bd32bcfc64f3a4746a5207e462a67522, type: 2}
 --- !u!1 &7017384404677538513
 GameObject:
   m_ObjectHideFlags: 0

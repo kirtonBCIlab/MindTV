@@ -24,8 +24,8 @@ public class TabGroup : MonoBehaviour
         }
 
         tabs.Add(tab);
-        //hardcoded to select first tab (what the scene opens to) as the selected tab
-        selectedTab = tabs[2];
+        // //hardcoded to select first tab (what the scene opens to) as the selected tab
+        // selectedTab = tabs[0];
     }
 
     public void OnTabEnter(Tab tab)
