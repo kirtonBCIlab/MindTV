@@ -3779,11 +3779,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8682650307272609117, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: startTrainingMessage
-      value: Danger Explosion! AAAHH!!
+      value: Go!
       objectReference: {fileID: 0}
     - target: {fileID: 8682650307272609117, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: numberOfCountdownSeconds
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9061179662154215886, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_AnchorMax.y
