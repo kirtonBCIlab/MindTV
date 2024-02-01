@@ -317,6 +317,7 @@ MonoBehaviour:
   trainingController: {fileID: 7761890224479621231}
   countDownText: {fileID: 0}
   _SPO: {fileID: 6961159752734704938}
+  colorDropdown: {fileID: 1692768629864977372}
   originalBaseSize: 100
   targetImageResolution: 512
   baseSizeSlider: {fileID: 7884532054514808890}
@@ -341,6 +342,7 @@ MonoBehaviour:
   startBeepFile: {fileID: 8300000, guid: 2ddee1a54c78d4dfc890876d4ebbacfc, type: 3}
   numberOfCountdownSeconds: 3
   startTrainingMessage: Go!
+  trainingPageSO: {fileID: 11400000, guid: bd32bcfc64f3a4746a5207e462a67522, type: 2}
 --- !u!1 &7017384404677538513
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,6 +692,34 @@ PrefabInstance:
       propertyPath: m_Value
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1565890796465771936, guid: ed1b57bd12373de4999fc0c3184bdc38, type: 3}
+      propertyPath: m_Options.m_Options.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1565890796465771936, guid: ed1b57bd12373de4999fc0c3184bdc38, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[0].m_Text
+      value: Blue (Theme)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1565890796465771936, guid: ed1b57bd12373de4999fc0c3184bdc38, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[9].m_Text
+      value: Black
+      objectReference: {fileID: 0}
+    - target: {fileID: 1565890796465771936, guid: ed1b57bd12373de4999fc0c3184bdc38, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[10].m_Text
+      value: Green (Theme)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1565890796465771936, guid: ed1b57bd12373de4999fc0c3184bdc38, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[11].m_Text
+      value: Purple (Theme)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1565890796465771936, guid: ed1b57bd12373de4999fc0c3184bdc38, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6503138398961979532}
+    - target: {fileID: 1565890796465771936, guid: ed1b57bd12373de4999fc0c3184bdc38, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeBackgroundColor
+      objectReference: {fileID: 0}
     - target: {fileID: 1678462432166968145, guid: ed1b57bd12373de4999fc0c3184bdc38, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -998,6 +1028,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6558942803146781720, guid: ed1b57bd12373de4999fc0c3184bdc38, type: 3}
+      propertyPath: m_text
+      value: Blue (Theme)
+      objectReference: {fileID: 0}
     - target: {fileID: 6560203402770046818, guid: ed1b57bd12373de4999fc0c3184bdc38, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1215,6 +1249,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 551325276200383763, guid: ed1b57bd12373de4999fc0c3184bdc38, type: 3}
   m_PrefabInstance: {fileID: 200064368461973116}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1692768629864977372 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1565890796465771936, guid: ed1b57bd12373de4999fc0c3184bdc38, type: 3}
+  m_PrefabInstance: {fileID: 200064368461973116}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9198812608739404160 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9038295845084622844, guid: ed1b57bd12373de4999fc0c3184bdc38, type: 3}

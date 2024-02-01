@@ -15,6 +15,10 @@ public class StimulusManager : MonoBehaviour
     [SerializeField] private TrainingMenuController trainingController;
     [SerializeField] private TMP_Text countDownText;
     [SerializeField] private GameObject _SPO;
+    public TMP_Dropdown colorDropdown;
+
+    private GameObject activeTraining;
+    
     private MIControllerBehavior controllerBehaviour;
     private LTDescr currentTween;
 
@@ -26,6 +30,9 @@ public class StimulusManager : MonoBehaviour
     public Slider baseSizeSlider;
     // private bool isCurrentAnimationCountdown;
     // private bool isCurrentAnimationCountdownEnabled;
+
+    // Scriptable Object space
+    [SerializeField] private TrainingPageSO trainingPageSO;
 
     // Start is called before the first frame update
     void Start()
@@ -197,5 +204,17 @@ public class StimulusManager : MonoBehaviour
         currentBaseSize = originalBaseSize;
         baseSizeSlider.value = currentBaseSize;
         SetBaseSize(currentBaseSize);
+    }
+    public void ChangeBackgroundColor()
+    {
+        // //Emily's way
+        // get the first transform game object in child
+        activeTraining = transform.GetChild(0).gameObject;
+        Image imageComponent = activeTraining.GetComponent<Image>();
+        string colorText = colorDropdown.options[colorDropdown.value].text;
+        Color color = ColorByName.colors[colorText];
+        //Alternative way to get the color name without needing a static ref, but using a scriptable object. Could be good for persisting changes.
+        //Color color = trainingPageSO.colors[colorText];
+        imageComponent.color = color;
     }
 }
