@@ -531,7 +531,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4555672018710232410, guid: 96355fbc96968fe46be5e0398c9ca211, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5209213119408855442, guid: 96355fbc96968fe46be5e0398c9ca211, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -1722,6 +1722,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ResetBaseSize
       objectReference: {fileID: 0}
+    - target: {fileID: 3485238604869302851, guid: e330e8fea00b74975a6a7cab0cfa7390, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4225892881998093377, guid: e330e8fea00b74975a6a7cab0cfa7390, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1967,6 +1971,7 @@ MonoBehaviour:
   backButton: {fileID: 0}
   MIController: {fileID: 0}
   inventoryFrame: {fileID: 0}
+  displayStartTrainingButton: {fileID: 0}
   currentAction: Neutral
   currentTrainingSessionTime: 0
 --- !u!1 &651562818 stripped
@@ -4184,6 +4189,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1255451215716904422, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_Options.m_Options.Array.size
       value: 12
@@ -4263,10 +4272,6 @@ PrefabInstance:
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1255451215716904422, guid: a7c49757987f03047883032ca83726c7, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1995742055274348902, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4816,14 +4821,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8682650307272609117, guid: a7c49757987f03047883032ca83726c7, type: 3}
-      propertyPath: startTrainingMessage
-      value: Go!
-      objectReference: {fileID: 0}
-    - target: {fileID: 8682650307272609117, guid: a7c49757987f03047883032ca83726c7, type: 3}
-      propertyPath: numberOfCountdownSeconds
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 8459759194923159030, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_SizeDelta.x
       value: 195.174
@@ -4839,6 +4836,14 @@ PrefabInstance:
     - target: {fileID: 8459759194923159030, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 263
+      objectReference: {fileID: 0}
+    - target: {fileID: 8682650307272609117, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: startTrainingMessage
+      value: Go!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8682650307272609117, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: numberOfCountdownSeconds
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9061179662154215886, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_AnchorMax.y
