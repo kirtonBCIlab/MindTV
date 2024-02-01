@@ -1974,11 +1974,6 @@ MonoBehaviour:
   displayStartTrainingButton: {fileID: 0}
   currentAction: Neutral
   currentTrainingSessionTime: 0
---- !u!1 &651562818 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 439125805200747299, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-  m_PrefabInstance: {fileID: 717299220}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &678812716
 GameObject:
   m_ObjectHideFlags: 0
@@ -2167,116 +2162,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1001 &717299220
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1649985292535673238, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649985292535673238, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649985292535673238, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649985292535673238, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649985292535673238, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649985292535673238, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649985292535673238, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649985292535673238, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649985292535673238, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649985292535673238, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649985292535673238, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649985292535673242, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: m_Name
-      value: ControllerManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649985292535673242, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: m_TagString
-      value: ControllerManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 6644194211345973513, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: windowLength
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6644194211345973513, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: setupRequired
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6644194211345973513, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: numTrainWindows
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6644194211345973513, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: pauseBeforeTraining
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6644194211345973513, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: _selfRegisterAsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6644194211345973513, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: numTrainingSelections
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6644194211345973513, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: trainTargetPersistent
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6644194211345973513, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: _selectableSPOs.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6644194211345973513, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: trainTargetPresentationTime
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6644194211345973513, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-      propertyPath: _selectableSPOs.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
---- !u!1 &741009035 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1649985292535673242, guid: 42ce536088f800e4d94b8a8c92ae7277, type: 3}
-  m_PrefabInstance: {fileID: 717299220}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &809475023
 GameObject:
   m_ObjectHideFlags: 0
@@ -2624,7 +2509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a42300296ddc27459cae616a625f948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controllerManager: {fileID: 741009035}
+  controllerManager: {fileID: 0}
   displayStartTrainingButton: {fileID: 0}
   bciController: {fileID: 0}
   countdownText: {fileID: 0}
@@ -3662,7 +3547,7 @@ PrefabInstance:
     - target: {fileID: 7761890224479621231, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: MIController
       value: 
-      objectReference: {fileID: 651562818}
+      objectReference: {fileID: 0}
     - target: {fileID: 7908982877127242617, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -3916,7 +3801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a42300296ddc27459cae616a625f948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controllerManager: {fileID: 741009035}
+  controllerManager: {fileID: 0}
   displayStartTrainingButton: {fileID: 0}
   bciController: {fileID: 0}
   countdownText: {fileID: 0}
@@ -4772,7 +4657,7 @@ PrefabInstance:
     - target: {fileID: 7761890224479621231, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: MIController
       value: 
-      objectReference: {fileID: 651562818}
+      objectReference: {fileID: 0}
     - target: {fileID: 7908982877127242617, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4911,6 +4796,5 @@ SceneRoots:
   - {fileID: 336871255}
   - {fileID: 635879816}
   - {fileID: 678812719}
-  - {fileID: 717299220}
   - {fileID: 690614465}
   - {fileID: 455124039}
