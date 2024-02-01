@@ -56,12 +56,8 @@ public class TabGroup : MonoBehaviour
 
         selectedTab = tab;
 
-        //We are going to use this for selecting the same background color for the tab as the page it is swaped to.
         selectedTab.Select();
-
         ResetTabs();
-        tab.background.sprite = tabSelected;
-        tab.background.color = tabSelectedColor;
         int index = tab.transform.GetSiblingIndex();
         for(int i=0; i<objectsToSwap.Count;i++)
         {
@@ -74,6 +70,26 @@ public class TabGroup : MonoBehaviour
                 objectsToSwap[i].SetActive(false);
             }
         }
+
+        if (!matchPageColor)
+        {
+            tab.background.sprite = tabSelected;
+            tab.background.color = tabSelectedColor;
+        }
+        else
+        {
+            //Hardcoding this right now to the first child, and getting that image
+            tab.background.sprite = tabSelected;
+            for(int i=0; i<objectsToSwap.Count;i++)
+            {
+                if(i==index)
+                {
+                    Color newTabcolor = objectsToSwap[i].GetComponentInChildren<Image>().color;
+                    tab.background.color = newTabcolor;
+                }
+            }
+        }
+
     }
 
     public void ResetTabs()

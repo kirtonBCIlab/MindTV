@@ -225,8 +225,8 @@ public class StimulusManager : MonoBehaviour
         // Debug.Log(tabGO.name);
         // tabGO.GetComponent<Image>().color = color;
 
-        TabGroup tab = tabGroup.GetComponent<TabGroup>();
-        tab.tabSelectedColor = color;
+        // TabGroup tab = tabGroup.GetComponent<TabGroup>();
+        // tab.tabSelectedColor = color;
     
     }
 }
