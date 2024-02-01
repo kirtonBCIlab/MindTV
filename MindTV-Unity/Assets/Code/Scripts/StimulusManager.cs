@@ -18,7 +18,7 @@ public class StimulusManager : MonoBehaviour
     public TMP_Dropdown colorDropdown;
 
     private GameObject activeTraining;
-    private GameObject tabGroup;
+    
     private MIControllerBehavior controllerBehaviour;
     private LTDescr currentTween;
 
@@ -43,7 +43,6 @@ public class StimulusManager : MonoBehaviour
         currentBaseSize = originalBaseSize;
         _SPO.transform.localScale = new Vector3(currentBaseSize, currentBaseSize, currentBaseSize);
         baseSizeSlider.value = currentBaseSize;
-        tabGroup = GameObject.Find("TabArea");
     }
 
     //called when user clicks train in ActiveTraining tab
@@ -217,16 +216,5 @@ public class StimulusManager : MonoBehaviour
         //Alternative way to get the color name without needing a static ref, but using a scriptable object. Could be good for persisting changes.
         //Color color = trainingPageSO.colors[colorText];
         imageComponent.color = color;
-
-        // My attempt to get it working with just using index and selected tab, but it doesn't work
-        // int pageIndex = transform.GetSiblingIndex();
-        // Debug.Log("Page index: " + pageIndex);    
-        // GameObject tabGO = tabGroup.transform.GetChild(pageIndex).gameObject;
-        // Debug.Log(tabGO.name);
-        // tabGO.GetComponent<Image>().color = color;
-
-        // TabGroup tab = tabGroup.GetComponent<TabGroup>();
-        // tab.tabSelectedColor = color;
-    
     }
 }
