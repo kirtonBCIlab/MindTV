@@ -16,6 +16,9 @@ public class TabGroup : MonoBehaviour
     public Tab selectedTab;
     public List<GameObject> objectsToSwap;
 
+    //Match the tab color to the page color if this is true
+    public bool matchPageColor;
+
     public void Subscribe(Tab tab)
     {
         if(tabs == null)
@@ -53,6 +56,7 @@ public class TabGroup : MonoBehaviour
 
         selectedTab = tab;
 
+        //We are going to use this for selecting the same background color for the tab as the page it is swaped to.
         selectedTab.Select();
 
         ResetTabs();
