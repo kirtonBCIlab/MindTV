@@ -1947,7 +1947,7 @@ MonoBehaviour:
   colorDropdown: {fileID: 1318323855}
   originalBaseSize: 10
   targetImageResolution: 512
-  baseSizeSlider: {fileID: 0}
+  baseSizeSlider: {fileID: 2082260499}
   trainingPageSO: {fileID: 0}
 --- !u!114 &635879819
 MonoBehaviour:
