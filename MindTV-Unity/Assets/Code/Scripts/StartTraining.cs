@@ -50,7 +50,7 @@ public class StartTraining : MonoBehaviour
 
         countdownText.text = startTrainingMessage;
         PlayBeep(startBeepFile, startBeepVolume);
-        bciController.ActiveBehavior.StartTraining(BCITrainingType.Iterative); // Start the actual training
+        // bciController.ActiveBehavior.StartTraining(BCITrainingType.Iterative); // Start the actual training
 
         // Wait a bit before removing the countdown text
         yield return new WaitForSeconds(1);
@@ -71,6 +71,6 @@ public class StartTraining : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         Debug.Log("Going to assign the value now to bciController for Start Training Button");
-        bciController = controllerManager.GetComponent<BCIController>();
+        // bciController = controllerManager.GetComponent<BCIController>();
     }
 }
