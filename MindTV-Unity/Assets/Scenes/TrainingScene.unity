@@ -1724,7 +1724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3485238604869302851, guid: e330e8fea00b74975a6a7cab0cfa7390, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4225892881998093377, guid: e330e8fea00b74975a6a7cab0cfa7390, type: 3}
       propertyPath: m_Enabled
@@ -2510,14 +2510,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controllerManager: {fileID: 0}
-  displayStartTrainingButton: {fileID: 0}
   bciController: {fileID: 0}
-  countdownText: {fileID: 0}
+  startTrainingButton: {fileID: 0}
+  cancelCountdownButton: {fileID: 0}
   audioSource: {fileID: 0}
   countdownBeepFile: {fileID: 0}
   startBeepFile: {fileID: 0}
+  countdownText: {fileID: 0}
   numberOfCountdownSeconds: 3
   startTrainingMessage: Go!
+  trainTimeText: {fileID: 0}
+  trainingLengthSeconds: 8
 --- !u!114 &1287725914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3802,14 +3805,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controllerManager: {fileID: 0}
-  displayStartTrainingButton: {fileID: 0}
   bciController: {fileID: 0}
-  countdownText: {fileID: 0}
+  startTrainingButton: {fileID: 0}
+  cancelCountdownButton: {fileID: 0}
   audioSource: {fileID: 0}
   countdownBeepFile: {fileID: 0}
   startBeepFile: {fileID: 0}
+  countdownText: {fileID: 0}
   numberOfCountdownSeconds: 3
   startTrainingMessage: Go!
+  trainTimeText: {fileID: 0}
+  trainingLengthSeconds: 8
 --- !u!114 &2130922588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4241,6 +4247,10 @@ PrefabInstance:
     - target: {fileID: 2433413592030439896, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2499205575824820451, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3072392738356227081, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_AnchorMax.y
