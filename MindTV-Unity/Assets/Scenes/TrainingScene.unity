@@ -3877,15 +3877,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4063046458597277130, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: duration
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4063046458597277130, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: easeType
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4063046458597277130, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: wiggleSpeed
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063046458597277130, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: animationTypes
-      value: 7
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063046458597277130, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: wiggleRotAngle
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063046458597277130, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: tweenXTranslation
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4970520860199746956, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_AnchorMax.y
