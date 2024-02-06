@@ -1943,7 +1943,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7206448854755415433, guid: a71387d5c65990349ba83bda43ab3b39, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4063046458597277130}
   m_SourcePrefab: {fileID: 100100000, guid: a71387d5c65990349ba83bda43ab3b39, type: 3}
 --- !u!224 &6961159752734704935 stripped
 RectTransform:
@@ -1955,6 +1958,39 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7206448854755415433, guid: a71387d5c65990349ba83bda43ab3b39, type: 3}
   m_PrefabInstance: {fileID: 331422373343924387}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4063046458597277130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6961159752734704938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23cafa84b15459e4d8aac0d7c6e83a11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToAnimate: {fileID: 0}
+  animationTypes: 0
+  easeType: 0
+  duration: 1
+  delay: 0
+  loop: 0
+  pingPong: 0
+  startPositionOffset: 0
+  fromPosition: {x: 0, y: 0, z: 0}
+  toPosition: {x: 0, y: 0, z: 0}
+  startScaleOffset: 0
+  fromScale: {x: 0, y: 0, z: 0}
+  toScale: {x: 0, y: 0, z: 0}
+  startRotationOffset: 0
+  fromRotation: {x: 0, y: 0, z: 0}
+  toRotation: {x: 0, y: 0, z: 0}
+  startAlphaOffset: 0
+  fromAlpha: 0
+  toAlpha: 0
+  showOnEnable: 0
+  showOnDisable: 0
 --- !u!1001 &1510785026526365310
 PrefabInstance:
   m_ObjectHideFlags: 0

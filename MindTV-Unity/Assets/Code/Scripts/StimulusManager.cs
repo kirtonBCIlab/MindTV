@@ -217,4 +217,9 @@ public class StimulusManager : MonoBehaviour
         //Color color = trainingPageSO.colors[colorText];
         imageComponent.color = color;
     }
+
+    public void SetAnimationOnSelection()
+    {
+        activeTraining.GetComponent<UITweener>().HandleTween();
+    }
 }
