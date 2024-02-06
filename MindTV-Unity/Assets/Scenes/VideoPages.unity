@@ -576,7 +576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2561962483954333181, guid: abe5feca6c2564929ab0c2f46c40cfc3, type: 3}
       propertyPath: m_Name
-      value: VideoPanel (2)
+      value: VideoPanel3
       objectReference: {fileID: 0}
     - target: {fileID: 2561962483954333181, guid: abe5feca6c2564929ab0c2f46c40cfc3, type: 3}
       propertyPath: m_IsActive
@@ -766,7 +766,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2561962483954333181, guid: abe5feca6c2564929ab0c2f46c40cfc3, type: 3}
       propertyPath: m_Name
-      value: VideoPanel (1)
+      value: VideoPanel2
       objectReference: {fileID: 0}
     - target: {fileID: 2561962483954333181, guid: abe5feca6c2564929ab0c2f46c40cfc3, type: 3}
       propertyPath: m_IsActive
@@ -1567,11 +1567,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2561962483954333181, guid: abe5feca6c2564929ab0c2f46c40cfc3, type: 3}
       propertyPath: m_Name
-      value: VideoPanel
+      value: VideoPanel1
       objectReference: {fileID: 0}
     - target: {fileID: 2561962483954333181, guid: abe5feca6c2564929ab0c2f46c40cfc3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6495667311285284690, guid: abe5feca6c2564929ab0c2f46c40cfc3, type: 3}
       propertyPath: m_Pivot.x
