@@ -27,10 +27,10 @@ public class LoadUserProfile : MonoBehaviour
         dropdown.ClearOptions();
 
         // Fetch the user profiles from the UserProfileManager
-        var profiles = UserProfileManager.Instance.userProfiles;
-        foreach (var profile in profiles)
+        var profileNames = UserProfileManager.Instance.GetUserProfileNames();
+        foreach (var name in profileNames)
         {
-            TMP_Dropdown.OptionData newOption = new TMP_Dropdown.OptionData(profile.userProfileName);
+            TMP_Dropdown.OptionData newOption = new TMP_Dropdown.OptionData(name);
             dropdown.options.Add(newOption);
         }
 
@@ -59,7 +59,7 @@ public class LoadUserProfile : MonoBehaviour
     public void LoadSelectedUserForTraining()
     {
         string selectedProfileName = dropdown.options[dropdown.value].text;
-        UserProfileManager.Instance.StartTraining(selectedProfileName);
+        Debug.Log("Not implemented, what do I do with profile " + selectedProfileName + "?");
     }
 
 }

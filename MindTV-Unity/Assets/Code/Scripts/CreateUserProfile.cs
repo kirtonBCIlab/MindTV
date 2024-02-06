@@ -32,25 +32,13 @@ public class CreateUserProfile : MonoBehaviour
             }
 
             // Check if the username is unique
-            bool isUnique = true;
-            foreach (UserProfiles.User user in UserProfileManager.Instance.userProfiles)
-            {
-                if (user.userProfileName == profileInputField.text)
-                {
-                    isUnique = false;
-                    break;
-                }
-            }
-
-            if (isUnique)
+            string newProfileName = profileInputField.text;
+            if (UserProfileManager.Instance.UserProfileExists(newProfileName) != true)
             {
                 // Add the profile name to the UserProfileManager
                 Debug.Log("Creating new profile: " + profileInputField.text);
                 UserProfileManager.Instance.AddUserProfile(profileInputField.text);
                 usernameValidityMessage.text = "";
-
-                // Start Training for this User
-                UserProfileManager.Instance.StartTraining(profileInputField.text);
             }
             else
             {

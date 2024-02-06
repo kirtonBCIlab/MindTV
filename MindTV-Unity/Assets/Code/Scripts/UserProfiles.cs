@@ -49,7 +49,7 @@ public class UserProfiles
 
 
     // Set of user profiles
-    public List<User> userProfiles;
+    public List<User> users = new List<User>();
 
 
     // Convert class to Json string
