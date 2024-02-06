@@ -50,7 +50,4 @@ public class ActivityCell : MonoBehaviour
     {
         Debug.Log("Stop video");
     }
-
-
-
 }
