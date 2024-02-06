@@ -2039,11 +2039,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78013eaa65f7e844080cad822df5ef68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tweenDuration: 3
-  tweenXScale: 2
-  tweenYScale: 2
-  tweenZScale: 2
-  easeType: 37
+  tweenDuration: 1
+  tweenXScale: 1.5
+  tweenYScale: 0.8
+  tweenZScale: 0.8
+  easeType: 33
 --- !u!1 &880640809 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7228899840725144329, guid: a7c49757987f03047883032ca83726c7, type: 3}
