@@ -89,9 +89,3 @@ public class SaveData
         JsonUtility.FromJsonOverwrite(a_Json, this);
     }
 }
-
-public interface ISaveable
-{
-    void PopulateSaveData(SaveData a_SaveData);
-    void LoadFromSaveData(SaveData a_SaveData);
-}

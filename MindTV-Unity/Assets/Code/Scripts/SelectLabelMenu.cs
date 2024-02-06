@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
-public class SelectLabelMenu : MonoBehaviour, ISaveable
+public class SelectLabelMenu : MonoBehaviour
 {
     [SerializeField] TMP_Dropdown.OptionData title;
 
@@ -19,9 +19,7 @@ public class SelectLabelMenu : MonoBehaviour, ISaveable
 
     void Start()
     {
-        dropdown = GetComponentInChildren<TMP_Dropdown>();
-        LoadJsonData(this);
-        
+        dropdown = GetComponentInChildren<TMP_Dropdown>();        
         createnew = GameObject.Find("CreateLabelMenu");
         createnew.SetActive(false);
 
@@ -61,7 +59,6 @@ public class SelectLabelMenu : MonoBehaviour, ISaveable
             {
                 Debug.Log("Label found. Deleting user");
                 labelData.Remove(label);
-                SaveJsonData(this);
                 break;
             }
         }
@@ -103,47 +100,5 @@ public class SelectLabelMenu : MonoBehaviour, ISaveable
     public void ToTrainingMenu()
     {
         SceneManager.LoadScene("TrainingScene");
-    }
-
-    
-    private static void SaveJsonData(SelectLabelMenu a_SelectLabelMenu)
-    {
-        SaveData sd = new SaveData();
-        a_SelectLabelMenu.PopulateSaveData(sd);
-
-        if (FileManager.WriteToFile("LabelData.dat", sd.ToJson()))
-        {
-            Debug.Log("Save successful");
-        }
-    }
-
-    private static void LoadJsonData(SelectLabelMenu a_SelectLabelMenu)
-    {
-        if (FileManager.LoadFromFile("LabelData.dat", out var json))
-        {
-            SaveData sd = new SaveData();
-            sd.LoadFromJson(json);
-
-            a_SelectLabelMenu.LoadFromSaveData(sd);
-            Debug.Log("Load complete");
-        }
-    }
-
-    public void PopulateSaveData(SaveData a_SaveData)
-    {
-        a_SaveData.labelDataList = labelData;
-    }
-
-    public void LoadFromSaveData(SaveData a_SaveData)
-    {
-        labelData = a_SaveData.labelDataList;
-
-        dropdown.ClearOptions();
-        foreach (SaveData.Label label in a_SaveData.labelDataList)
-        {
-            TMP_Dropdown.OptionData option = new TMP_Dropdown.OptionData();
-            option.text = label.labelData;
-            dropdown.options.Add(option);
-        }
     }
 }
