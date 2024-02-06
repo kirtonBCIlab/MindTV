@@ -16,10 +16,10 @@ public class CreateUserProfile : MonoBehaviour
 
         // Get the input field with the profile name
         profileInputField = transform.Find("UserProfileNameInputField").GetComponent<TMP_InputField>();
-        
+
         // Get the text box to display the user profile name validity message
         usernameValidityMessage = transform.Find("usernameValidityMessage").GetComponent<TMP_Text>();
-        
+
         // Check if the field is empty
         if (!string.IsNullOrEmpty(profileInputField.text))
         {
@@ -33,7 +33,7 @@ public class CreateUserProfile : MonoBehaviour
 
             // Check if the username is unique
             bool isUnique = true;
-            foreach (SaveData.User user in UserProfileManager.Instance.userProfiles)
+            foreach (UserProfiles.User user in UserProfileManager.Instance.userProfiles)
             {
                 if (user.userProfileName == profileInputField.text)
                 {

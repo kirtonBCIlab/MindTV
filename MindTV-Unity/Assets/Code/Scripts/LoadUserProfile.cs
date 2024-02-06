@@ -20,8 +20,6 @@ public class LoadUserProfile : MonoBehaviour
             dropdown.options.Insert(0, title);
             dropdown.RefreshShownValue();
         }
-        // dropdown.options.Insert(dropdown.value, title);
-        // dropdown.RefreshShownValue();
     }
 
     private void PopulateDropdownWithProfiles()
@@ -64,41 +62,4 @@ public class LoadUserProfile : MonoBehaviour
         UserProfileManager.Instance.StartTraining(selectedProfileName);
     }
 
-    // public void StartTraining()
-    // {
-    //     // var currentUserProfileName = dropdown.options[dropdown.value].text;
-
-    //     // // Check if the current user is a new user or an existing one
-    //     // var existingUser = UserProfileManager.Instance.userProfiles.Find(user => user.userProfileName == currentUserProfileName);
-        
-    //     // if (existingUser != null)
-    //     // {
-    //     //     Debug.Log("User profile found");
-    //     //     // Set the current user as the existing user
-    //     //     CurrentUser.currentUser = existingUser;
-    //     //     CurrentUser.newUser = false;
-    //     // }
-    //     // else
-    //     // {
-    //     //     Debug.Log("New user");
-    //     //     // Create a new user profile and set it as the current user
-    //     //     var newUser = new SaveData.User { userProfileName = currentUserProfileName };
-    //     //     CurrentUser.currentUser = newUser;
-    //     //     UserProfileManager.Instance.AddUserProfile(currentUserProfileName);
-    //     //     CurrentUser.newUser = true;
-    //     // }
-
-    //     // // Assuming there is a method to save the current user's data
-    //     // UserProfileManager.Instance.SaveCurrentUserData();
-
-    //     // Logic to start training, like loading a new scene or starting a new activity
-    //     StartTrainingActivity();
-    // }
-
-    // private void StartTrainingActivity()
-    // {
-    //     Debug.Log("Starting training activity – not implemented yet");
-    //     // Load the next scene or start the training activity
-    //     // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    // }
 }

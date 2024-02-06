@@ -6,8 +6,8 @@ public class UserProfileManager : MonoBehaviour
 {
     public static UserProfileManager Instance { get; private set; }
 
-    public List<SaveData.User> userProfiles;
-    public SaveData.User currentUser; // Current active user
+    public List<UserProfiles.User> userProfiles;
+    public UserProfiles.User currentUser; // Current active user
 
     private void Awake()
     {
@@ -30,7 +30,7 @@ public class UserProfileManager : MonoBehaviour
     public void AddUserProfile(string profileName)
     {
         // Add new user profile
-        SaveData.User newUser = new SaveData.User() { userProfileName = profileName };
+        UserProfiles.User newUser = new UserProfiles.User() { userProfileName = profileName };
         userProfiles.Add(newUser);
         // Set the new user as the current user
         currentUser = newUser;
@@ -59,22 +59,22 @@ public class UserProfileManager : MonoBehaviour
 
     private void SaveProfiles()
     {
-        SaveData saveData = new SaveData() { userProfiles = userProfiles };
-        FileManager.WriteToFile("UserData.dat", saveData.ToJson());
+        UserProfiles profile = new UserProfiles() { userProfiles = userProfiles };
+        FileManager.WriteToFile("UserData.dat", profile.ToJson());
     }
 
     private void LoadProfiles()
     {
         if (FileManager.LoadFromFile("UserData.dat", out var json))
         {
-            SaveData saveData = new SaveData();
-            saveData.LoadFromJson(json);
-            userProfiles = saveData.userProfiles;
+            UserProfiles profile = new UserProfiles();
+            profile.LoadFromJson(json);
+            userProfiles = profile.userProfiles;
         }
         else
         {
             // Initialize an empty list if no data is found
-            userProfiles = new List<SaveData.User>();
+            userProfiles = new List<UserProfiles.User>();
         }
     }
 
@@ -90,7 +90,7 @@ public class UserProfileManager : MonoBehaviour
     {
         Debug.Log("SetCurrentUser method not implemented yet");
         // var existingUser = userProfiles.FirstOrDefault(user => user.userProfileName == profileName);
-        // if (existingUser != default(SaveData.User))
+        // if (existingUser != default(UserProfiles.User))
         // {
         //     // Existing user
         //     currentUser = existingUser;
@@ -98,7 +98,7 @@ public class UserProfileManager : MonoBehaviour
         // else
         // {
         //     // New user
-        //     currentUser = new SaveData.User { userProfileName = profileName };
+        //     currentUser = new UserProfiles.User { userProfileName = profileName };
         //     userProfiles.Add(currentUser);
         // }
     }
@@ -110,7 +110,4 @@ public class UserProfileManager : MonoBehaviour
         // Debug.Log("Starting training activity for user: " + currentUser.userProfileName);
         // SceneManager.LoadScene("TrainingScene"); // Example scene name
     }
-
-    // Additional methods to manipulate user profiles can be added here
-    // Example: RemoveUserProfile, UpdateUserProfile, etc.
 }

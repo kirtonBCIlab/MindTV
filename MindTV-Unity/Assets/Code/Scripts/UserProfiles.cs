@@ -1,11 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// UserProfiles is a collection of user settings
+/// The settings can be converted to/from Json using ToJson() and LoadFromJson()
+/// </summary>
 [System.Serializable]
-public class SaveData
+public class UserProfiles
 {
     [System.Serializable]
-    public struct GeneralSettingsPrefs
+    public struct General
     {
         public float volume;
         public int resolution; // The index of the dropdown
@@ -14,24 +18,7 @@ public class SaveData
     }
 
     [System.Serializable]
-    public struct MIPrefs
-    {
-        public float windowLength;
-        public float interWindowInterval;
-        public bool setupRequired;
-        public int numberTrainingSelections;
-        public int numberTrainingWindows;
-        public bool persistantTrainTarget;
-        public float pauseTimeBeforeTraining;
-        public float trainBreakTime;
-        public int numberSelectionsBeforeTraining;
-        public int numberSelectionsBetweenTrianing;
-        public bool shamFeedback;
-
-    }
-
-    [System.Serializable]
-    public struct BciCellPrefs
+    public struct BciCell
     {
         public string itemID;
         public bool isVisible;
@@ -46,35 +33,23 @@ public class SaveData
     }
 
     [System.Serializable]
-    public struct PageObjectPrefs
+    public struct Label
     {
-
+        public string name;
     }
 
     [System.Serializable]
     public struct User
     {
         public string userProfileName;
-        public GeneralSettingsPrefs generalSettingsPrefs;
-        public List<BciCellPrefs> bciCellPrefs;
+        public General generalSettingsPrefs;
+        public List<BciCell> bciCellPrefs;
+        public List<Label> lables;
     }
 
-    [System.Serializable]
-    public struct Label
-    {
-        public string labelData;
-    }
 
-    public List<Label> labelDataList;
+    // Set of user profiles
     public List<User> userProfiles;
-
-    //Saving data from the activity
-    [System.Serializable]
-    public struct ActivitySettings
-    {
-        //This is where Activity Setting data will go.
-
-    }
 
 
     // Convert class to Json string

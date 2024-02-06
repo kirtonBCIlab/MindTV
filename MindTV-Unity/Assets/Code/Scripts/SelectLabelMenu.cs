@@ -14,12 +14,12 @@ public class SelectLabelMenu : MonoBehaviour
     private TMP_Dropdown dropdown;
 
     public GameObject createnew;
-    private List<SaveData.Label> labelData = new List<SaveData.Label>();
+    private List<UserProfiles.Label> labels = new List<UserProfiles.Label>();
 
 
     void Start()
     {
-        dropdown = GetComponentInChildren<TMP_Dropdown>();        
+        dropdown = GetComponentInChildren<TMP_Dropdown>();
         createnew = GameObject.Find("CreateLabelMenu");
         createnew.SetActive(false);
 
@@ -53,12 +53,12 @@ public class SelectLabelMenu : MonoBehaviour
         int currentOptionIndex = dropdown.value;
 
         // Remove the label from the save data
-        foreach (SaveData.Label label in labelData)
+        foreach (UserProfiles.Label label in labels)
         {
-            if (label.labelData == dropdown.options[currentOptionIndex].text)
+            if (label.name == dropdown.options[currentOptionIndex].text)
             {
                 Debug.Log("Label found. Deleting user");
-                labelData.Remove(label);
+                labels.Remove(label);
                 break;
             }
         }
@@ -89,7 +89,7 @@ public class SelectLabelMenu : MonoBehaviour
 
     public void OnCreateNewLabel()
     {
-      createnew.SetActive(true);
+        createnew.SetActive(true);
     }
 
     public void OnCancel()
