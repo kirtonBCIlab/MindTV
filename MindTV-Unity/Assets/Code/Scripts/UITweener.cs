@@ -178,20 +178,20 @@ public class UITweener : MonoBehaviour
 
     public void ShakeAnim()
     {
-            _tweenObject = LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x + shakeDistance, shakeSpeed).setLoopCount(numShakes).setLoopPingPong();
-            ResetObjectToOriginal();
+            _tweenObject = LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x + shakeDistance, shakeSpeed).setLoopCount(numShakes).setLoopPingPong().setOnComplete(ResetObjectToOriginal);
     }
 
+    //There is a bug here that causes the object to only wiggle to one side or the other, can't figure out best way to handle this other than doing a punch animation
     public void WiggleAnim()
     {
-        _tweenObject = LeanTween.rotateZ(objectToAnimate, objectToAnimate.transform.rotation.z + wiggleRotAngle, wiggleSpeed).setLoopCount(numWiggles).setLoopPingPong();
-        ResetObjectToOriginal();
+        _tweenObject = LeanTween.rotateZ(objectToAnimate, objectToAnimate.transform.rotation.z + wiggleRotAngle, wiggleSpeed).setLoopCount(numWiggles).setLoopPingPong().setOnComplete(ResetObjectToOriginal);
     }
 
 
-    //There is a bug here that causes the object to grow in size significantly when it shouldn't
+    //This isn't being called, and I'm not sure why. 
     public void ResetObjectToOriginal()
     {
+        Debug.Log("Resetting object to original position");
         objectToAnimate.transform.SetPositionAndRotation(_origTransform.position, _origTransform.rotation);
     }
 
