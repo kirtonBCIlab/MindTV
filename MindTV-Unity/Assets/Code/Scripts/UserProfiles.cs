@@ -18,6 +18,23 @@ public class UserProfiles
     }
 
     [System.Serializable]
+    public struct MIPrefs
+    {
+        public float windowLength;
+        public float interWindowInterval;
+        public bool setupRequired;
+        public int numberTrainingSelections;
+        public int numberTrainingWindows;
+        public bool persistantTrainTarget;
+        public float pauseTimeBeforeTraining;
+        public float trainBreakTime;
+        public int numberSelectionsBeforeTraining;
+        public int numberSelectionsBetweenTrianing;
+        public bool shamFeedback;
+
+    }
+
+    [System.Serializable]
     public struct BciCell
     {
         public string itemID;
