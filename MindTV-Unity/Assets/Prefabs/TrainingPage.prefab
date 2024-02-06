@@ -717,7 +717,6 @@ MonoBehaviour:
   originalBaseSize: 100
   targetImageResolution: 512
   baseSizeSlider: {fileID: 7884532054514808890}
-  trainingPageSO: {fileID: 0}
 --- !u!114 &8682650307272609117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1975,20 +1974,13 @@ MonoBehaviour:
   easeType: 0
   duration: 1
   delay: 0
+  tweenXScale: 1.7
+  tweenYScale: 1.7
+  tweenZScale: 1.7
+  tweenRotation: 360
+  tweenNegScale: 0.2
   loop: 0
   pingPong: 0
-  startPositionOffset: 0
-  fromPosition: {x: 0, y: 0, z: 0}
-  toPosition: {x: 0, y: 0, z: 0}
-  startScaleOffset: 0
-  fromScale: {x: 0, y: 0, z: 0}
-  toScale: {x: 0, y: 0, z: 0}
-  startRotationOffset: 0
-  fromRotation: {x: 0, y: 0, z: 0}
-  toRotation: {x: 0, y: 0, z: 0}
-  startAlphaOffset: 0
-  fromAlpha: 0
-  toAlpha: 0
   showOnEnable: 0
   showOnDisable: 0
 --- !u!1001 &1510785026526365310

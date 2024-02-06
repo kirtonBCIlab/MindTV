@@ -31,9 +31,6 @@ public class StimulusManager : MonoBehaviour
     // private bool isCurrentAnimationCountdown;
     // private bool isCurrentAnimationCountdownEnabled;
 
-    // Scriptable Object space
-    [SerializeField] private TrainingPageSO trainingPageSO;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -204,6 +201,8 @@ public class StimulusManager : MonoBehaviour
         currentBaseSize = originalBaseSize;
         baseSizeSlider.value = currentBaseSize;
         SetBaseSize(currentBaseSize);
+        //Also going to reset the position of the training object
+        ResetSPO();
     }
     public void ChangeBackgroundColor()
     {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,7 +34,12 @@ public class UITweener : MonoBehaviour
     public float tweenYScale = 1.7f;
     public float tweenZScale = 1.7f;
     public float tweenRotation = 360f;
+    public bool tweenClockwiseRotation = true;
     public float tweenNegScale = 0.2f;
+
+    public float tweenXTranslation = 100f;
+    public float tweenYTranslation = 100f;
+    public float tweenZTranslation = 100f;
 
     public bool loop;
     public bool pingPong;
@@ -68,6 +74,13 @@ public class UITweener : MonoBehaviour
         HandleTween();
     }
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            HandleTween();
+        }
+    }
 
     public void HandleTween()
     {
@@ -80,13 +93,16 @@ public class UITweener : MonoBehaviour
         switch (animationTypes)
         {
             case UIAnimationTypes.Move:
-                LeanTween.move(objectToAnimate, new Vector3(objectToAnimate.transform.position.x + tweenXScale, objectToAnimate.transform.position.y, objectToAnimate.transform.position.z), duration).setEase(easeType);
+                LeanTween.move(objectToAnimate, new Vector3(objectToAnimate.transform.position.x + tweenXTranslation, objectToAnimate.transform.position.y + tweenYTranslation, objectToAnimate.transform.position.z+tweenZTranslation), duration).setEase(easeType);
                 break;
             case UIAnimationTypes.Scale:
                 LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * tweenXScale, objectToAnimate.transform.localScale.y * tweenYScale, objectToAnimate.transform.localScale.z * tweenYScale), duration).setEase(easeType);
                 break;
             case UIAnimationTypes.Rotate:
-                LeanTween.rotateAround(objectToAnimate, Vector3.forward, -tweenRotation, duration);
+                if (tweenClockwiseRotation)
+                    LeanTween.rotateAround(objectToAnimate, Vector3.forward, -tweenRotation, duration).setEase(easeType);
+                else
+                    LeanTween.rotateAround(objectToAnimate, Vector3.forward, tweenRotation, duration).setEase(easeType);
                 break;
             case UIAnimationTypes.ScaleX:
                 LeanTween.scaleX(objectToAnimate, objectToAnimate.transform.localScale.x * tweenXScale, duration).setEase(easeType);
@@ -95,18 +111,19 @@ public class UITweener : MonoBehaviour
                 LeanTween.scaleY(objectToAnimate, objectToAnimate.transform.localScale.y * tweenYScale, duration).setEase(easeType);
                 break;
             case UIAnimationTypes.Shake:
-                LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x + tweenXScale, duration).setEase(easeType);
+                LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x + tweenXTranslation, duration).setEase(easeType);
+                LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x -tweenXTranslation, duration).setEase(easeType);
                 break;
             case UIAnimationTypes.Bounce:
                 LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * tweenXScale, objectToAnimate.transform.localScale.y * tweenYScale, objectToAnimate.transform.localScale.z * tweenZScale), duration).setEase(easeType);
                 break;
             case UIAnimationTypes.Grow:
                 LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * tweenXScale, objectToAnimate.transform.localScale.y * tweenYScale, objectToAnimate.transform.localScale.z * tweenZScale), duration).setEase(easeType);
-                LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x + tweenXScale, duration).setEase(easeType);
+                LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x + tweenXTranslation, duration).setEase(easeType);
                 break;
             case UIAnimationTypes.Wiggle:
-                LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x + tweenXScale, duration).setEase(easeType);
-                LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x - tweenXScale, duration).setEase(easeType);
+                LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x + tweenXTranslation, duration).setEase(easeType);
+                LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x - tweenXTranslation, duration).setEase(easeType);
                 break;
             case UIAnimationTypes.Pulse:
                 LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * tweenXScale, objectToAnimate.transform.localScale.y * tweenYScale, objectToAnimate.transform.localScale.z * tweenZScale), duration).setEase(easeType);
