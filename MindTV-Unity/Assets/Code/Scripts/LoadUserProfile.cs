@@ -58,8 +58,8 @@ public class LoadUserProfile : MonoBehaviour
 
     public void LoadSelectedUserForTraining()
     {
-        string selectedProfileName = dropdown.options[dropdown.value].text;
-        Debug.Log("Not implemented, what do I do with profile " + selectedProfileName + "?");
+        string name = dropdown.options[dropdown.value].text;
+        UserProfileManager.Instance.ActivateUserProfile(name);
     }
 
 }
