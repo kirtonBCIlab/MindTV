@@ -23,7 +23,8 @@ public class UITweener : MonoBehaviour
 
     public GameObject objectToAnimate;
 
-    public UIAnimationTypes animationTypes;
+   // public UIAnimationTypes animationTypes;
+    public UIAnimationTypes selectedType;
 
     public LeanTweenType easeType;
 
@@ -54,7 +55,7 @@ public class UITweener : MonoBehaviour
     {
         if (showOnEnable)
         {
-            Show();
+           Show();
         }
     }
 
@@ -63,7 +64,30 @@ public class UITweener : MonoBehaviour
         HandleTween();
     }
 
-
+    public void SetTypeFromString(string input)
+    {
+        if (input == "Move")
+            selectedType = UIAnimationTypes.Move;
+        else if (input == "Scale")
+            selectedType = UIAnimationTypes.Scale;
+        else if (input == "Rotate")
+            selectedType = UIAnimationTypes.Rotate;
+        else if (input == "ScaleX")
+            selectedType = UIAnimationTypes.ScaleX;
+        else if (input == "ScaleY")
+            selectedType = UIAnimationTypes.ScaleY;
+        else if (input == "Shake")
+            selectedType = UIAnimationTypes.Shake;
+        else if (input == "Bounce")
+            selectedType = UIAnimationTypes.Bounce;
+        else if (input == "Grow")
+            selectedType = UIAnimationTypes.Grow;
+        else if (input == "Wiggle")
+            selectedType = UIAnimationTypes.Wiggle;
+        else if (input == "Pulse")
+            selectedType = UIAnimationTypes.Pulse;
+    }
+    
     public void HandleTween()
     {
 
@@ -72,42 +96,34 @@ public class UITweener : MonoBehaviour
             objectToAnimate = gameObject;
         }
 
-        switch (animationTypes)
+        if(selectedType == UIAnimationTypes.Move)
+            LeanTween.move(objectToAnimate, new Vector3(objectToAnimate.transform.position.x + 1f, objectToAnimate.transform.position.y, objectToAnimate.transform.position.z), duration).setEase(LeanTweenType.linear);
+        else if (selectedType == UIAnimationTypes.Scale)
+            LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * 1.7f, objectToAnimate.transform.localScale.y * 1.7f, objectToAnimate.transform.localScale.z * 1.7f), duration).setEase(easeType);
+        else if(selectedType == UIAnimationTypes.Rotate)
+            LeanTween.rotateAround(objectToAnimate, Vector3.forward, -360f, duration);
+        else if(selectedType == UIAnimationTypes.ScaleX)
+            LeanTween.scaleX(objectToAnimate, objectToAnimate.transform.localScale.x * 1.7f, duration).setEase(easeType);
+        else if (selectedType == UIAnimationTypes.ScaleY)
+            LeanTween.scaleY(objectToAnimate, objectToAnimate.transform.localScale.y * 1.7f, duration).setEase(easeType);
+        else if (selectedType == UIAnimationTypes.Shake)
+            LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x + 1f, duration).setEase(easeType);
+        else if (selectedType == UIAnimationTypes.Bounce)
+            LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * 1.7f, objectToAnimate.transform.localScale.y * 1.7f, objectToAnimate.transform.localScale.z * 1.7f), duration).setEase(LeanTweenType.easeOutBounce);
+        else if (selectedType == UIAnimationTypes.Grow)
         {
-            case UIAnimationTypes.Move:
-                LeanTween.move(objectToAnimate, new Vector3(objectToAnimate.transform.position.x + 1f, objectToAnimate.transform.position.y, objectToAnimate.transform.position.z), duration).setEase(LeanTweenType.linear);
-                break;
-            case UIAnimationTypes.Scale:
-                LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * 1.7f, objectToAnimate.transform.localScale.y * 1.7f, objectToAnimate.transform.localScale.z * 1.7f), duration).setEase(easeType);
-                break;
-            case UIAnimationTypes.Rotate:
-                LeanTween.rotateAround(objectToAnimate, Vector3.forward, -360f, duration);
-                break;
-            case UIAnimationTypes.ScaleX:
-                LeanTween.scaleX(objectToAnimate, objectToAnimate.transform.localScale.x * 1.7f, duration).setEase(easeType);
-                break;
-            case UIAnimationTypes.ScaleY:
-                LeanTween.scaleY(objectToAnimate, objectToAnimate.transform.localScale.y * 1.7f, duration).setEase(easeType);
-                break;
-            case UIAnimationTypes.Shake:
-                LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x + 1f, duration).setEase(easeType);
-                break;
-            case UIAnimationTypes.Bounce:
-                LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * 1.7f, objectToAnimate.transform.localScale.y * 1.7f, objectToAnimate.transform.localScale.z * 1.7f), duration).setEase(LeanTweenType.easeOutBounce);
-                break;
-            case UIAnimationTypes.Grow:
-                LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * 1.7f, objectToAnimate.transform.localScale.y * 1.7f, objectToAnimate.transform.localScale.z * 1.7f), duration).setEase(LeanTweenType.easeOutBounce);
-                LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x + 1f, duration).setEase(LeanTweenType.easeOutBounce);
-                break;
-            case UIAnimationTypes.Wiggle:
-                LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x + 1f, duration).setEase(LeanTweenType.easeOutBounce);
-                LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x - 1f, duration).setEase(LeanTweenType.easeOutBounce);
-                break;
-            case UIAnimationTypes.Pulse:
-                LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * 1.7f, objectToAnimate.transform.localScale.y * 1.7f, objectToAnimate.transform.localScale.z * 1.7f), duration).setEase(LeanTweenType.easeOutBounce);
-                LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * 0.2f, objectToAnimate.transform.localScale.y * 0.2f, objectToAnimate.transform.localScale.z * 0.2f), duration).setEase(LeanTweenType.easeOutBounce);
-                break;
-            
+            LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * 1.7f, objectToAnimate.transform.localScale.y * 1.7f, objectToAnimate.transform.localScale.z * 1.7f), duration).setEase(LeanTweenType.easeOutBounce);
+            LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x + 1f, duration).setEase(LeanTweenType.easeOutBounce);
+        }
+        else if (selectedType == UIAnimationTypes.Wiggle)
+        {
+            LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x + 1f, duration).setEase(LeanTweenType.easeOutBounce);
+            LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x - 1f, duration).setEase(LeanTweenType.easeOutBounce);
+        }
+        else if (selectedType == UIAnimationTypes.Pulse)
+        {
+            LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * 1.7f, objectToAnimate.transform.localScale.y * 1.7f, objectToAnimate.transform.localScale.z * 1.7f), duration).setEase(LeanTweenType.easeOutBounce);
+            LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * 0.2f, objectToAnimate.transform.localScale.y * 0.2f, objectToAnimate.transform.localScale.z * 0.2f), duration).setEase(LeanTweenType.easeOutBounce);
         }
 
         if(loop)
@@ -136,35 +152,6 @@ public class UITweener : MonoBehaviour
         }
 
 
-    }
-
-    public void Move()
-    {
-        LeanTween.move(objectToAnimate, new Vector3(objectToAnimate.transform.position.x + 1f, objectToAnimate.transform.position.y, objectToAnimate.transform.position.z), duration).setEase(LeanTweenType.linear);
-    }
-
-    public void Scale()
-    {
-        LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * 1.7f, objectToAnimate.transform.localScale.y * 1.7f, objectToAnimate.transform.localScale.z * 1.7f), duration).setEase(easeType);
-    }   
-
-    public void Rotate()
-    {
-        LeanTween.rotateAround(objectToAnimate, Vector3.forward, -360f, duration);
-    }
-
-    public void Fade()
-    {
-        if(gameObject.GetComponent<CanvasGroup>() == null)
-        {
-            gameObject.AddComponent<CanvasGroup>();
-        }
-
-        if(startPositionOffset)
-        {
-            objectToAnimate.GetComponent<CanvasGroup>().alpha = fromPosition.x;
-        }
-        _tweenObject = LeanTween.alphaCanvas(objectToAnimate.GetComponent<CanvasGroup>(), toPosition.x, duration);
     }
 
 

@@ -1495,6 +1495,8 @@ MonoBehaviour:
   countDownText: {fileID: 0}
   _SPO: {fileID: 383308071}
   colorDropdown: {fileID: 1318323855}
+  animationDropdown: {fileID: 0}
+  tweener: {fileID: 0}
   originalBaseSize: 10
   targetImageResolution: 512
   baseSizeSlider: {fileID: 0}
@@ -2022,28 +2024,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 809475023}
   m_CullTransparentMesh: 1
---- !u!1 &870344883 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6961159752734704938, guid: a7c49757987f03047883032ca83726c7, type: 3}
-  m_PrefabInstance: {fileID: 8306696215255211384}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &870344887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 870344883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78013eaa65f7e844080cad822df5ef68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tweenDuration: 1
-  tweenXScale: 1.5
-  tweenYScale: 0.8
-  tweenZScale: 0.8
-  easeType: 33
 --- !u!1 &880640809 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7228899840725144329, guid: a7c49757987f03047883032ca83726c7, type: 3}
@@ -3923,6 +3903,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2499205575824820451, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3072392738356227081, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4213,10 +4197,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6961159752734704933, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: StopStimulusEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961159752734704933, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: StartStimulusEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6961159752734704933, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: StopStimulusEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961159752734704933, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: StartStimulusEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6961159752734704935, guid: a7c49757987f03047883032ca83726c7, type: 3}
@@ -4474,10 +4466,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6961159752734704938, guid: a7c49757987f03047883032ca83726c7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 870344887}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7c49757987f03047883032ca83726c7, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

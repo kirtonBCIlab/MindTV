@@ -16,10 +16,12 @@ public class StimulusManager : MonoBehaviour
     [SerializeField] private TMP_Text countDownText;
     [SerializeField] private GameObject _SPO;
     public TMP_Dropdown colorDropdown;
+    public TMP_Dropdown animationDropdown;
 
     private GameObject activeTraining;
     
     private MIControllerBehavior controllerBehaviour;
+    public UITweener tweener;
     private LTDescr currentTween;
 
     //Exposing this so that we can change the base size of the training object
@@ -216,5 +218,15 @@ public class StimulusManager : MonoBehaviour
         //Alternative way to get the color name without needing a static ref, but using a scriptable object. Could be good for persisting changes.
         //Color color = trainingPageSO.colors[colorText];
         imageComponent.color = color;
+    }
+    
+    public void SetAnimationType()
+    {
+        activeTraining = transform.GetChild(0).gameObject;
+        Image imageComponent = activeTraining.GetComponent<Image>();
+        string animationText = animationDropdown.options[animationDropdown.value].text;
+
+        tweener.SetTypeFromString(animationText);
+        Debug.Log("end of set anim in stim manager");
     }
 }
