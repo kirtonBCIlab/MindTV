@@ -8,12 +8,12 @@ using UnityEngine.UI;
 public enum UIAnimationTypes
 {
     Move,
-    Scale,
     Rotate,
     ScaleX,
     ScaleY,
     Shake,
     Bounce,
+    BouncePingPong,
     Grow,
     Wiggle,
     Pulse,
@@ -41,7 +41,15 @@ public class UITweener : MonoBehaviour
     public float tweenYTranslation = 100f;
     public float tweenZTranslation = 100f;
 
-    public bool loop;
+    [SerializeField] private int numShakes = 8;
+    [SerializeField] private float shakeSpeed = 0.05f;
+    [SerializeField] private float shakeDistance = 3f;
+
+    [SerializeField] private int numWiggles = 4;
+    [SerializeField] private float wiggleSpeed = 0.1f;
+    [SerializeField] private float wiggleRotAngle = 45f;
+
+    // public bool loop;
     public bool pingPong;
 
     // public bool startPositionOffset;
@@ -57,22 +65,6 @@ public class UITweener : MonoBehaviour
     // public float fromAlpha;
     // public float toAlpha;
     private LTDescr _tweenObject;
-
-    public bool showOnEnable = false;
-    public bool showOnDisable = false;
-
-    public void OnEnable()
-    {
-        if (showOnEnable)
-        {
-            Show();
-        }
-    }
-
-    public void Show()
-    {
-        HandleTween();
-    }
 
     public void Update()
     {
@@ -95,7 +87,7 @@ public class UITweener : MonoBehaviour
             case UIAnimationTypes.Move:
                 LeanTween.move(objectToAnimate, new Vector3(objectToAnimate.transform.position.x + tweenXTranslation, objectToAnimate.transform.position.y + tweenYTranslation, objectToAnimate.transform.position.z+tweenZTranslation), duration).setEase(easeType);
                 break;
-            case UIAnimationTypes.Scale:
+            case UIAnimationTypes.Grow:
                 LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * tweenXScale, objectToAnimate.transform.localScale.y * tweenYScale, objectToAnimate.transform.localScale.z * tweenYScale), duration).setEase(easeType);
                 break;
             case UIAnimationTypes.Rotate:
@@ -111,19 +103,16 @@ public class UITweener : MonoBehaviour
                 LeanTween.scaleY(objectToAnimate, objectToAnimate.transform.localScale.y * tweenYScale, duration).setEase(easeType);
                 break;
             case UIAnimationTypes.Shake:
-                LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x + tweenXTranslation, duration).setEase(easeType);
-                LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x -tweenXTranslation, duration).setEase(easeType);
+                ShakeAnim();
                 break;
             case UIAnimationTypes.Bounce:
-                LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * tweenXScale, objectToAnimate.transform.localScale.y * tweenYScale, objectToAnimate.transform.localScale.z * tweenZScale), duration).setEase(easeType);
+                BounceAnim();
                 break;
-            case UIAnimationTypes.Grow:
-                LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * tweenXScale, objectToAnimate.transform.localScale.y * tweenYScale, objectToAnimate.transform.localScale.z * tweenZScale), duration).setEase(easeType);
-                LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x + tweenXTranslation, duration).setEase(easeType);
+            case UIAnimationTypes.BouncePingPong:
+                BouncePingPong();
                 break;
             case UIAnimationTypes.Wiggle:
-                LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x + tweenXTranslation, duration).setEase(easeType);
-                LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x - tweenXTranslation, duration).setEase(easeType);
+                WiggleAnim();
                 break;
             case UIAnimationTypes.Pulse:
                 LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * tweenXScale, objectToAnimate.transform.localScale.y * tweenYScale, objectToAnimate.transform.localScale.z * tweenZScale), duration).setEase(easeType);
@@ -132,33 +121,65 @@ public class UITweener : MonoBehaviour
             
         }
 
-        if(loop)
-        {
-            _tweenObject.loopCount = int.MaxValue;
-        }
-
-        if(pingPong)
-        {
-            _tweenObject.setLoopPingPong();
-        }
-
-        // if (startPositionOffset)
+        // //These don't seem to work!
+        // if(loop)
         // {
-        //     objectToAnimate.transform.position = fromPosition;
+        //     _tweenObject.loopCount = int.MaxValue;
         // }
 
-        // if (startScaleOffset)
+        // if(pingPong)
         // {
-        //     objectToAnimate.transform.localScale = fromScale;
-        // }
-
-        // if (startRotationOffset)
-        // {
-        //     objectToAnimate.transform.eulerAngles = fromRotation;
+        //     _tweenObject.setLoopPingPong();
         // }
 
 
     }
 
+    // public void MoveAbsolute()
+    // {
+    //     objectToAnimate.GetComponent<RectTransform>().anchoredPosition = fromPosition;
+    //     _tweenObject = LeanTween.move(objectToAnimate.GetComponent<RectTransform>(), toPosition, duration).setEase(easeType);
+    // }
+    public void BounceAnim()
+    {
+        _tweenObject = LeanTween.moveLocalY(objectToAnimate, objectToAnimate.transform.position.y + tweenYTranslation, duration).setEase(LeanTweenType.punch);
+    }
+
+    public void BouncePingPong()
+    {
+        _tweenObject = LeanTween.moveLocalY(objectToAnimate, objectToAnimate.transform.position.y + tweenYTranslation, duration).setLoopPingPong();
+
+    }
+
+    public void GrowAnim()
+    {
+        if(pingPong)
+        {
+            _tweenObject = LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * tweenXScale, objectToAnimate.transform.localScale.y * tweenYScale, objectToAnimate.transform.localScale.z * tweenYScale), duration).setLoopPingPong();
+        }
+        else
+        {
+            _tweenObject = LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * tweenXScale, objectToAnimate.transform.localScale.y * tweenYScale, objectToAnimate.transform.localScale.z * tweenYScale), duration).setEase(easeType);
+        }
+
+    }
+
+    public void ShakeAnim()
+    {
+            _tweenObject = LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x + shakeDistance, shakeSpeed).setLoopCount(numShakes).setLoopPingPong();
+            ResetObjectToOriginal();
+    }
+
+    public void WiggleAnim()
+    {
+        _tweenObject = LeanTween.rotateZ(objectToAnimate, objectToAnimate.transform.rotation.z + wiggleRotAngle, wiggleSpeed).setLoopCount(numWiggles).setLoopPingPong();
+        ResetObjectToOriginal();
+    }
+
+
+    public void ResetObjectToOriginal()
+    {
+        objectToAnimate.transform.SetPositionAndRotation(new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+    }
 
 }

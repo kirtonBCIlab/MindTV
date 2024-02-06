@@ -1499,7 +1499,6 @@ MonoBehaviour:
   originalBaseSize: 10
   targetImageResolution: 512
   baseSizeSlider: {fileID: 2082260499}
-  trainingPageSO: {fileID: 0}
 --- !u!114 &635879819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1904,6 +1903,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 809475023}
   m_CullTransparentMesh: 1
+--- !u!1 &870344883 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6961159752734704938, guid: a7c49757987f03047883032ca83726c7, type: 3}
+  m_PrefabInstance: {fileID: 8306696215255211384}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &880640809 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7228899840725144329, guid: a7c49757987f03047883032ca83726c7, type: 3}
@@ -3873,15 +3877,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4063046458597277130, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: duration
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4063046458597277130, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: easeType
-      value: 34
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4063046458597277130, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: animationTypes
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4970520860199746956, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4055,6 +4059,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6503138398961979532, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: _SPO
+      value: 
+      objectReference: {fileID: 870344883}
     - target: {fileID: 6503138398961979532, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: colorDropdown
       value: 
