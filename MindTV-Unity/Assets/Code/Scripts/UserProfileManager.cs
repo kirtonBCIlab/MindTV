@@ -33,7 +33,7 @@ public class UserProfileManager : MonoBehaviour
 
     public bool UserProfileExists(string name)
     {
-        return profiles.users.Any(user => user.userProfileName == name);
+        return profiles.users.Exists(user => user.userProfileName == name);
     }
 
     public void AddUserProfile(string name)
