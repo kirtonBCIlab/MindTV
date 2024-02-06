@@ -49,6 +49,8 @@ public class UITweener : MonoBehaviour
     [SerializeField] private float wiggleSpeed = 0.1f;
     [SerializeField] private float wiggleRotAngle = 45f;
 
+    private Transform _origTransform;
+
     // public bool loop;
     public bool pingPong;
 
@@ -65,6 +67,16 @@ public class UITweener : MonoBehaviour
     // public float fromAlpha;
     // public float toAlpha;
     private LTDescr _tweenObject;
+
+    private void Start()
+    {
+        if (objectToAnimate == null)
+        {
+            objectToAnimate = gameObject;
+        }
+
+        _origTransform = objectToAnimate.transform;
+    }
 
     public void Update()
     {
@@ -177,9 +189,10 @@ public class UITweener : MonoBehaviour
     }
 
 
+    //There is a bug here that causes the object to grow in size significantly when it shouldn't
     public void ResetObjectToOriginal()
     {
-        objectToAnimate.transform.SetPositionAndRotation(new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+        objectToAnimate.transform.SetPositionAndRotation(_origTransform.position, _origTransform.rotation);
     }
 
 }
