@@ -25,10 +25,7 @@ public class TabGroup : MonoBehaviour
         {
             tabs = new List<Tab>();
         }
-
         tabs.Add(tab);
-        // //hardcoded to select first tab (what the scene opens to) as the selected tab
-        // selectedTab = tabs[0];
     }
 
     public void OnTabEnter(Tab tab)

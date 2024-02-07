@@ -246,6 +246,7 @@ MonoBehaviour:
   backButton: {fileID: 0}
   MIController: {fileID: 0}
   inventoryFrame: {fileID: 5710882599133129121}
+  displayStartTrainingButton: {fileID: 0}
   currentAction: Neutral
   currentTrainingSessionTime: 0
 --- !u!114 &8284478685013724498
@@ -1090,6 +1091,14 @@ PrefabInstance:
     - target: {fileID: 7206448854755415428, guid: a71387d5c65990349ba83bda43ab3b39, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7206448854755415431, guid: a71387d5c65990349ba83bda43ab3b39, type: 3}
+      propertyPath: m_Size.x
+      value: 5.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7206448854755415431, guid: a71387d5c65990349ba83bda43ab3b39, type: 3}
+      propertyPath: m_Size.y
+      value: 5.12
       objectReference: {fileID: 0}
     - target: {fileID: 7206448854755415431, guid: a71387d5c65990349ba83bda43ab3b39, type: 3}
       propertyPath: m_SortingLayer
