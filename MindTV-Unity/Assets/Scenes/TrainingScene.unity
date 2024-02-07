@@ -1492,7 +1492,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 635879812}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd9db78eaa559c24a9e39da14f80383f, type: 3}
   m_Name: 
@@ -1501,10 +1501,10 @@ MonoBehaviour:
   countDownText: {fileID: 0}
   _SPO: {fileID: 0}
   colorDropdown: {fileID: 1318323855}
+  animDropdown: {fileID: 0}
   originalBaseSize: 10
   targetImageResolution: 512
   baseSizeSlider: {fileID: 2082260499}
-  trainingPageSO: {fileID: 0}
 --- !u!114 &635879819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1910,6 +1910,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 809475023}
   m_CullTransparentMesh: 1
+--- !u!1 &870344883 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6961159752734704938, guid: a7c49757987f03047883032ca83726c7, type: 3}
+  m_PrefabInstance: {fileID: 8306696215255211384}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &880640809 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7228899840725144329, guid: a7c49757987f03047883032ca83726c7, type: 3}
@@ -2012,6 +2017,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd9db78eaa559c24a9e39da14f80383f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1277963782 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+  m_PrefabInstance: {fileID: 8306696215255211384}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1287725911
@@ -3526,6 +3542,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1874068026563440165}
     m_Modifications:
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6557805468214364905}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetAnimationOnSelection
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: StimulusManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 194544099643256162, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3886,6 +3930,34 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4063046458597277130, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: duration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063046458597277130, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: easeType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063046458597277130, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: wiggleSpeed
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063046458597277130, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: animationTypes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063046458597277130, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: wiggleRotAngle
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063046458597277130, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: objectToAnimate
+      value: 
+      objectReference: {fileID: 870344883}
+    - target: {fileID: 4063046458597277130, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: tweenXTranslation
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4970520860199746956, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4059,6 +4131,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6503138398961979532, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: _SPO
+      value: 
+      objectReference: {fileID: 870344883}
+    - target: {fileID: 6503138398961979532, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: animDropdown
+      value: 
+      objectReference: {fileID: 1277963782}
+    - target: {fileID: 6503138398961979532, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: colorDropdown
       value: 
       objectReference: {fileID: 1318323855}
@@ -4105,6 +4185,14 @@ PrefabInstance:
     - target: {fileID: 6961159752734704932, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961159752734704933, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: StopStimulusEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961159752734704933, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: StopStimulusEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6961159752734704935, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_Pivot.x
