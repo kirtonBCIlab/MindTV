@@ -13,6 +13,7 @@ public class ItemUpload : MonoBehaviour
     public Image imagePlaceholder;
     public GameObject inventorySlotPrefab;
     public GameObject inventory;
+    public GameObject inventory2;
     public GameObject addItemDialog;
 
     private byte[] lastUploadedBytes;
@@ -54,13 +55,15 @@ public class ItemUpload : MonoBehaviour
     {
         if (lastUploadedBytes != null)
         {
-            CreateItem();
+            CreateItem(inventory);
+            CreateItem(inventory2);
+
             addItemDialog.SetActive(false);
         }
     }
 
     //creates new item for training object based on user selected image
-    private void CreateItem()
+    private void CreateItem(GameObject inventory)
     {
         GameObject newItem = Instantiate(inventorySlotPrefab);
         newItem.transform.SetParent(inventory.transform);

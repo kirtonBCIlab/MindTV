@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1158,6 +1158,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 25}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &436695048 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6961159752734704938, guid: a7c49757987f03047883032ca83726c7, type: 3}
+  m_PrefabInstance: {fileID: 1912845159}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &455124039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1628,6 +1633,7 @@ MonoBehaviour:
   imagePlaceholder: {fileID: 370530616}
   inventorySlotPrefab: {fileID: 8487583619025502550, guid: 04511ab155f0ee4449fe83104b1aaeee, type: 3}
   inventory: {fileID: 880640809}
+  inventory2: {fileID: 1634676872}
   addItemDialog: {fileID: 690614460}
 --- !u!114 &690614462
 MonoBehaviour:
@@ -2403,6 +2409,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1581399125}
   m_CullTransparentMesh: 1
+--- !u!1 &1634676872 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7228899840725144329, guid: a7c49757987f03047883032ca83726c7, type: 3}
+  m_PrefabInstance: {fileID: 1912845159}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1675979281
 GameObject:
   m_ObjectHideFlags: 0
@@ -2965,6 +2976,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6503138398961979532, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: _SPO2
+      value: 
+      objectReference: {fileID: 436695048}
     - target: {fileID: 6503138398961979532, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: originalBaseSize
       value: 100

@@ -15,6 +15,9 @@ public class StimulusManager : MonoBehaviour
     [SerializeField] private TrainingMenuController trainingController;
     [SerializeField] private TMP_Text countDownText;
     [SerializeField] private GameObject _SPO;
+
+
+
     public TMP_Dropdown colorDropdown;
 
     private GameObject activeTraining;
