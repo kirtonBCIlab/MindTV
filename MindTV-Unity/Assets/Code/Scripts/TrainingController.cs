@@ -3,12 +3,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using BCIEssentials.Controllers;
+using BCIEssentials.StimulusObjects;
 
 public class TrainingController : MonoBehaviour
 {
-    [SerializeField] private GameObject controllerManager;
-    [SerializeField] private BCIController bciController; // Assign in the Inspector -- Needs to be updated?
-    [SerializeField] private GameObject trainingObjectSPO; // Assign in the Inspector
+    [SerializeField] private SPO trainingObjectSPO; // Assign in the Inspector
     [SerializeField] TMP_InputField trainingLabelInputField; // Assign in the Inspector
     [SerializeField] private GameObject startTrainingButton; // Assign in the Inspector
     [SerializeField] private GameObject cancelCountdownButton; // Assign in the Inspector
@@ -28,15 +27,17 @@ public class TrainingController : MonoBehaviour
 
     private void Awake()
     {
-        if (bciController == null)
-        {
-            controllerManager = GameObject.FindGameObjectWithTag("ControllerManager");
-            Debug.Log("No BCI Controller Found. Assigning one now.");
-            StartCoroutine(InitCoroutine());
+        // if (bciController == null)
+        // {
+        //     bciController = GameObject.FindGameObjectWithTag("BCIController");
+        //     // //Get the proper behaviour
+        //     // bciController.GetComponent<BCIController>().ChangeBehavior(MI);
 
-            // FOR BRIAN: Number of trainings done set to 0
-            numberOfTrainingsText.text = numberOfTrainingsDone.ToString();
-        }
+        //     // FOR BRIAN: Number of trainings done set to 0
+        //     numberOfTrainingsText.text = numberOfTrainingsDone.ToString();
+        // }
+
+        BCIController.ChangeBehavior(BCIBehaviorType.MI);
     }
 
     public void StartCountdown()
@@ -74,7 +75,7 @@ public class TrainingController : MonoBehaviour
         // bciController.ActiveBehavior.StartTraining(BCITrainingType.Iterative); // Start the actual training
 
         // StartCoroutine(TrainingTimer(trainingLengthSeconds));
-        StartTraining(); // Start the actual training
+        StartCoroutine(StartTraining()); // Start the actual training
 
         // // Wait a bit before removing the countdown text
         yield return new WaitForSeconds(1);
@@ -86,12 +87,12 @@ public class TrainingController : MonoBehaviour
         audioSource.PlayOneShot(clip, volume);
     }
 
-    private void StartTraining()
+    IEnumerator StartTraining()
     {
         trainingLabel = trainingLabelInputField.text;
         if (string.IsNullOrEmpty(trainingLabel))
         {
-            trainingLabel = "unassigned";
+            trainingLabel = "Unknown";
         }
         Debug.Log("Starting training on label: " + trainingLabel);
 
@@ -100,7 +101,12 @@ public class TrainingController : MonoBehaviour
         // Start the timer for the training
         StartCoroutine(TrainingTimer(trainingLengthSeconds));
 
-        // Start the actual training
+        float windowLength = 5.0f; // Needs to be updated
+        int windowCount = 1; // Needs to be updated
+
+        // Do the actual training
+        BCIController.WhileDoSingleTraining(trainingObjectSPO, windowLength, windowCount);
+
         // Needs to be updated
         // bciController.ActiveBehavior.SetLabel(userInput); // Needs to be updated
         // bciController.ActiveBehavior.StartTraining(BCITrainingType.Iterative); // Needs to be updated
@@ -108,6 +114,8 @@ public class TrainingController : MonoBehaviour
         // FOR BRIAN: TEMPORARY CODE TO SHOW NUMBER OF TRAININGS COUNTER IS UPDATED
         numberOfTrainingsDone++;
         numberOfTrainingsText.text = numberOfTrainingsDone.ToString();
+
+        yield return null;
     }
 
     IEnumerator TrainingTimer(int trainingSeconds)
@@ -133,6 +141,6 @@ public class TrainingController : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         Debug.Log("Going to assign the value now to bciController for Start Training Button");
-        // bciController = controllerManager.GetComponent<BCIController>(); // Needs to be updated
+        // bciController = bciController.GetComponent<BCIController>(); // Needs to be updated
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1972,6 +1972,7 @@ MonoBehaviour:
   MIController: {fileID: 0}
   inventoryFrame: {fileID: 0}
   displayStartTrainingButton: {fileID: 0}
+  displayNumberOfTimesTrained: {fileID: 0}
   currentAction: Neutral
   currentTrainingSessionTime: 0
 --- !u!1 &678812716
@@ -2457,6 +2458,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9db78eaa559c24a9e39da14f80383f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1063718933 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6961159752734704933, guid: a7c49757987f03047883032ca83726c7, type: 3}
+  m_PrefabInstance: {fileID: 8306696215255211384}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58dafbcfd2f661d438f57f8ab612995a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1287725911
 GameObject:
   m_ObjectHideFlags: 0
@@ -2509,8 +2521,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a42300296ddc27459cae616a625f948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controllerManager: {fileID: 0}
-  bciController: {fileID: 0}
+  trainingObjectSPO: {fileID: 0}
+  trainingLabelInputField: {fileID: 0}
   startTrainingButton: {fileID: 0}
   cancelCountdownButton: {fileID: 0}
   audioSource: {fileID: 0}
@@ -2519,8 +2531,9 @@ MonoBehaviour:
   countdownText: {fileID: 0}
   numberOfCountdownSeconds: 3
   startTrainingMessage: Go!
-  trainTimeText: {fileID: 0}
+  trainRemainingTimeText: {fileID: 0}
   trainingLengthSeconds: 8
+  numberOfTrainingsText: {fileID: 0}
 --- !u!114 &1287725914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3463,6 +3476,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -130
       objectReference: {fileID: 0}
+    - target: {fileID: 6961159752734704933, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: SelectablePoolIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7037956195757781067, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.27272728
@@ -3599,6 +3616,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -130
       objectReference: {fileID: 0}
+    - target: {fileID: 8682650307272609117, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: trainingObjectSPO
+      value: 
+      objectReference: {fileID: 1912845160}
     - target: {fileID: 9061179662154215886, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -3628,6 +3649,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7c49757987f03047883032ca83726c7, type: 3}
+--- !u!114 &1912845160 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6961159752734704933, guid: a7c49757987f03047883032ca83726c7, type: 3}
+  m_PrefabInstance: {fileID: 1912845159}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58dafbcfd2f661d438f57f8ab612995a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2003526857 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5855769975984288315, guid: 8c9001b4d98662b42bf49dddba8cc997, type: 3}
@@ -3804,8 +3836,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a42300296ddc27459cae616a625f948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controllerManager: {fileID: 0}
-  bciController: {fileID: 0}
+  trainingObjectSPO: {fileID: 0}
+  trainingLabelInputField: {fileID: 0}
   startTrainingButton: {fileID: 0}
   cancelCountdownButton: {fileID: 0}
   audioSource: {fileID: 0}
@@ -3814,8 +3846,9 @@ MonoBehaviour:
   countdownText: {fileID: 0}
   numberOfCountdownSeconds: 3
   startTrainingMessage: Go!
-  trainTimeText: {fileID: 0}
+  trainRemainingTimeText: {fileID: 0}
   trainingLengthSeconds: 8
+  numberOfTrainingsText: {fileID: 0}
 --- !u!114 &2130922588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4732,6 +4765,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 263
       objectReference: {fileID: 0}
+    - target: {fileID: 8682650307272609117, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: trainingObjectSPO
+      value: 
+      objectReference: {fileID: 1063718933}
     - target: {fileID: 8682650307272609117, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: startTrainingMessage
       value: Go!
