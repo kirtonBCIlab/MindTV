@@ -47,8 +47,9 @@ public class UserProfileManager : MonoBehaviour
 
     public void ActivateUserProfile(string name)
     {
-        // UserProfiles.User is a struct which means List.Find() will return a default User if name
-        // doesn't exist (instead of null).  To avoid this, check existence first.  This is dumb.
+        // UserProfiles.User is a struct, which is meant to be a value type.  This means it can't be null. 
+        // That means List.Find() will return a default User if name doesn't exist (instead of null).
+        // To avoid this, check existence first.  This is kinda dumb, but how C# works.
         if (UserProfileExists(name))
         {
             currentUser = profiles.users.Find(user => user.userProfileName == name);
