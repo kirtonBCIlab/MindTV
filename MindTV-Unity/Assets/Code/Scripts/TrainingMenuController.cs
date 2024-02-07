@@ -22,6 +22,7 @@ public class TrainingMenuController : MonoBehaviour
     [SerializeField] GameObject MIController;
     [SerializeField] GameObject inventoryFrame;
     [SerializeField] GameObject displayStartTrainingButton;
+    [SerializeField] GameObject displayNumberOfTimesTrained;
     public string currentAction = "Neutral";
     public float currentTrainingSessionTime;
 
@@ -148,5 +149,6 @@ public class TrainingMenuController : MonoBehaviour
     {
         inventoryFrame.SetActive(!inventoryFrame.activeSelf);
         displayStartTrainingButton.SetActive(!displayStartTrainingButton.activeSelf);
+        displayNumberOfTimesTrained.SetActive(!displayNumberOfTimesTrained.activeSelf);
     }
 }

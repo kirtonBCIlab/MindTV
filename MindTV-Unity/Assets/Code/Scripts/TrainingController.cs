@@ -7,7 +7,9 @@ using BCIEssentials.Controllers;
 public class TrainingController : MonoBehaviour
 {
     [SerializeField] private GameObject controllerManager;
-    [SerializeField] private BCIController bciController;
+    [SerializeField] private BCIController bciController; // Assign in the Inspector -- Needs to be updated?
+    [SerializeField] private GameObject trainingObjectSPO; // Assign in the Inspector
+    [SerializeField] TMP_InputField trainingLabelInputField; // Assign in the Inspector
     [SerializeField] private GameObject startTrainingButton; // Assign in the Inspector
     [SerializeField] private GameObject cancelCountdownButton; // Assign in the Inspector
     [SerializeField] private AudioSource audioSource; // Assign in the Inspector
@@ -15,11 +17,14 @@ public class TrainingController : MonoBehaviour
     [SerializeField] private AudioClip startBeepFile; // Assign in the Inspector
     private float countdownBeepVolume = 1f; // Example volume level for quiet beep
     private float startBeepVolume = 1f; // Example volume level for loud beep
-    [SerializeField] private TMP_Text countdownText; // Assign in the Inspector
+    [SerializeField] private TMP_Text countdownText; // UI element to show number of seconds remaining in countdown before training starts
     [SerializeField] private int numberOfCountdownSeconds = 3; // Number of seconds to countdown from
     [SerializeField] private string startTrainingMessage = "Go!"; // Text to display when training starts
-    [SerializeField] private TMP_Text trainTimeText; // Assign in the Inspector
+    [SerializeField] private TMP_Text trainRemainingTimeText; // UI element to indicate the number of seconds remaining in training
     [SerializeField] private int trainingLengthSeconds = 8; // Number of seconds to do training
+    [SerializeField] private TMP_Text numberOfTrainingsText; // UI element to indicate number of trainings done
+    private string trainingLabel;
+    private int numberOfTrainingsDone = 0; // Number of trainings done
 
     private void Awake()
     {
@@ -28,6 +33,9 @@ public class TrainingController : MonoBehaviour
             controllerManager = GameObject.FindGameObjectWithTag("ControllerManager");
             Debug.Log("No BCI Controller Found. Assigning one now.");
             StartCoroutine(InitCoroutine());
+
+            // FOR BRIAN: Number of trainings done set to 0
+            numberOfTrainingsText.text = numberOfTrainingsDone.ToString();
         }
     }
 
@@ -35,6 +43,7 @@ public class TrainingController : MonoBehaviour
     {
         startTrainingButton.SetActive(false);  // Hide the start training button
         cancelCountdownButton.SetActive(true); // Show the cancel countdown button
+
         StartCoroutine(Countdown(numberOfCountdownSeconds));
     }
 
@@ -72,19 +81,33 @@ public class TrainingController : MonoBehaviour
         countdownText.text = ""; // Clear the countdown text
     }
 
-    void PlayBeep(AudioClip clip, float volume)
+    private void PlayBeep(AudioClip clip, float volume)
     {
         audioSource.PlayOneShot(clip, volume);
     }
 
     private void StartTraining()
     {
+        trainingLabel = trainingLabelInputField.text;
+        if (string.IsNullOrEmpty(trainingLabel))
+        {
+            trainingLabel = "unassigned";
+        }
+        Debug.Log("Starting training on label: " + trainingLabel);
+
+        Debug.Log("SPO is " + trainingObjectSPO);
+
         // Start the timer for the training
         StartCoroutine(TrainingTimer(trainingLengthSeconds));
 
         // Start the actual training
         // Needs to be updated
-        // bciController.ActiveBehavior.StartTraining(BCITrainingType.Iterative);
+        // bciController.ActiveBehavior.SetLabel(userInput); // Needs to be updated
+        // bciController.ActiveBehavior.StartTraining(BCITrainingType.Iterative); // Needs to be updated
+
+        // FOR BRIAN: TEMPORARY CODE TO SHOW NUMBER OF TRAININGS COUNTER IS UPDATED
+        numberOfTrainingsDone++;
+        numberOfTrainingsText.text = numberOfTrainingsDone.ToString();
     }
 
     IEnumerator TrainingTimer(int trainingSeconds)
@@ -92,16 +115,16 @@ public class TrainingController : MonoBehaviour
         int timeLeft = trainingSeconds;
         while (timeLeft > 0)
         {
-            trainTimeText.text = timeLeft.ToString(); // Show the remaining training time
+            trainRemainingTimeText.text = timeLeft.ToString(); // Show the remaining training time
             yield return new WaitForSeconds(1);
             timeLeft--;
         }
 
-        trainTimeText.text = "0"; // Indicate that the training is complete
+        trainRemainingTimeText.text = "0"; // Indicate that the training is complete
 
         // Wait a bit before clearing the training time text and re-showing the start button
         yield return new WaitForSeconds(0.5f);
-        trainTimeText.text = ""; // Clear the training time text
+        trainRemainingTimeText.text = ""; // Clear the training time text
 
         startTrainingButton.SetActive(true); // Re-show the start button
     }
@@ -110,6 +133,6 @@ public class TrainingController : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         Debug.Log("Going to assign the value now to bciController for Start Training Button");
-        // bciController = controllerManager.GetComponent<BCIController>();
+        // bciController = controllerManager.GetComponent<BCIController>(); // Needs to be updated
     }
 }
