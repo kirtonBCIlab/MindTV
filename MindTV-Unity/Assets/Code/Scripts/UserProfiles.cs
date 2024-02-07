@@ -8,6 +8,7 @@ using UnityEngine;
 [System.Serializable]
 public class UserProfiles
 {
+    // These are just placeholders, update as needed
     [System.Serializable]
     public struct General
     {
@@ -17,6 +18,7 @@ public class UserProfiles
         public Color backgroundColor;
     }
 
+    // These are just placeholders, update as needed
     [System.Serializable]
     public struct MIPrefs
     {
@@ -34,6 +36,7 @@ public class UserProfiles
 
     }
 
+    // These are just placeholders, update as needed
     [System.Serializable]
     public struct BciCell
     {
@@ -59,9 +62,11 @@ public class UserProfiles
     public struct User
     {
         public string userProfileName;
+        public List<Label> labels;
+
+        // These are just placeholders, update as needed
         public General generalSettingsPrefs;
         public List<BciCell> bciCellPrefs;
-        public List<Label> lables;
     }
 
 
