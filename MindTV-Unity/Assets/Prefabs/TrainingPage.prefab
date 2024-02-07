@@ -2010,7 +2010,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToAnimate: {fileID: 0}
   animationTypes: 0
-  duration: 1.5
+  duration: 1
   tweenXScale: 1.7
   tweenYScale: 1.7
   tweenZScale: 1.7

@@ -3519,34 +3519,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9db78eaa559c24a9e39da14f80383f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6557805468214364908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5007696569482095296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23cafa84b15459e4d8aac0d7c6e83a11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToAnimate: {fileID: 870344883}
-  animationTypes: 0
-  duration: 1
-  tweenXScale: 1.7
-  tweenYScale: 1.7
-  tweenZScale: 1.7
-  tweenRotation: 360
-  tweenClockwiseRotation: 1
-  bounceHeight: 100
-  numShakes: 8
-  shakeSpeed: 0.05
-  shakeDistance: 3
-  numWiggles: 4
-  wiggleSpeed: 0.1
-  wiggleRotAngle: 45
-  pingPong: 0
 --- !u!1001 &8306696215255211384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4462,10 +4434,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6781297655782877062, guid: a7c49757987f03047883032ca83726c7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6557805468214364908}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7c49757987f03047883032ca83726c7, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

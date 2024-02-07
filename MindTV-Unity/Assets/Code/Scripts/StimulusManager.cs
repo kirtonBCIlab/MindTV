@@ -221,7 +221,7 @@ public class StimulusManager : MonoBehaviour
     public void SetAnimationOnSelection()
     {
         string animText = animDropdown.options[animDropdown.value].text;
-        tweener = this.GetComponent<UITweener>();
+        tweener = _SPO.GetComponent<UITweener>();
         
        // string[] values = {};
         //values  = new string[7];
