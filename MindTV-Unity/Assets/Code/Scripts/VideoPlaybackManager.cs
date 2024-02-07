@@ -5,18 +5,18 @@ using UnityEngine.Video;
 
 public class VideoPlaybackManager : MonoBehaviour
 {
-    public VideoPlayer videoPlayer;
-    public Button playButton, pauseButton, stopButton;
+    public VideoPlayer videoPlayer;  // Reference to the VideoPlayer game object
+    public GameObject videoSelectionPanel;  // Reference to the panel that contains the video selection UI
+    public GameObject videoPlaybackPanel;  // Reference to the panel that contains the video playback UI
+    public Button playButton, pauseButton, stopButton, chooseVideoButton;
 
     private void Awake()
     {
-        // Set the video to the first frame
-        ResetVideoToFirstFrame();
-
         // Setup button listeners
         playButton.onClick.AddListener(PlayVideo);
         pauseButton.onClick.AddListener(PauseVideo);
         stopButton.onClick.AddListener(StopVideo);
+        chooseVideoButton.onClick.AddListener(GoToVideoSelectionPanel);
     }
 
     private void ResetVideoToFirstFrame()
@@ -28,7 +28,7 @@ public class VideoPlaybackManager : MonoBehaviour
         videoPlayer.frame = 0;
     }
 
-    public void PlayVideo()
+    private void PlayVideo()
     {
         if (!videoPlayer.isPlaying)
         {
@@ -36,7 +36,7 @@ public class VideoPlaybackManager : MonoBehaviour
         }
     }
 
-    public void PauseVideo()
+    private void PauseVideo()
     {
         if (videoPlayer.isPlaying)
         {
@@ -44,19 +44,27 @@ public class VideoPlaybackManager : MonoBehaviour
         }
     }
 
-    public void StopVideo()
+    private void StopVideo()
     {
-        if (videoPlayer.isPlaying || videoPlayer.isPaused)
-        {
-            videoPlayer.Stop();
-            ResetVideoToFirstFrame();
-            // videoPlayer.frame = 0;
-            // // Optionally, seek to the start to immediately show the first frame
-            // videoPlayer.Play();
-            // videoPlayer.Pause();
-            // videoPlayer.frame = 0;
-        }
+        videoPlayer.Stop();
+        ResetVideoToFirstFrame();
+        // if (videoPlayer.isPlaying || videoPlayer.isPaused)
+        // {
+        //     videoPlayer.Stop();
+        //     ResetVideoToFirstFrame();
+
+        // }
     }
+
+    private void GoToVideoSelectionPanel()
+    {
+        StopVideo();
+        videoPlaybackPanel.SetActive(false);
+        videoSelectionPanel.SetActive(true);
+
+    }
+
+
 
     
 }
