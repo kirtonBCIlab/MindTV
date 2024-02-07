@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public enum UIAnimationTypes
 {
+    None,
     Rotate,
     Shake,
     Bounce,
@@ -87,6 +88,8 @@ public class UITweener : MonoBehaviour
 
         switch (animationTypes)
         {
+            case UIAnimationTypes.None:
+                break;
             case UIAnimationTypes.Grow:
                 GrowAnim();
                 break;
