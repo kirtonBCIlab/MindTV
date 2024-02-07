@@ -18,7 +18,7 @@ signal.signal(signal.SIGINT, stop_simulator)
 
 # This is what comes from an Emotiv EPOC+ headset LSL streamed via EmotivPro
 # Using a lower rate to be nice to network, the sim just sends dummy data so this shouldn't matter
-fsample = 10
+fsample = 128.0
 psample = 1.0 / fsample
 channel_names = [
     "Timestamp",

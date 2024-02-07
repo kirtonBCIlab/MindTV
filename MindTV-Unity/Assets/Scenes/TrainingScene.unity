@@ -2532,8 +2532,9 @@ MonoBehaviour:
   numberOfCountdownSeconds: 3
   startTrainingMessage: Go!
   trainRemainingTimeText: {fileID: 0}
-  trainingLengthSeconds: 8
   numberOfTrainingsText: {fileID: 0}
+  windowLength: 5
+  windowCount: 1
 --- !u!114 &1287725914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3617,6 +3618,14 @@ PrefabInstance:
       value: -130
       objectReference: {fileID: 0}
     - target: {fileID: 8682650307272609117, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: windowCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8682650307272609117, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: windowLength
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8682650307272609117, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: trainingObjectSPO
       value: 
       objectReference: {fileID: 1912845160}
@@ -3847,8 +3856,9 @@ MonoBehaviour:
   numberOfCountdownSeconds: 3
   startTrainingMessage: Go!
   trainRemainingTimeText: {fileID: 0}
-  trainingLengthSeconds: 8
   numberOfTrainingsText: {fileID: 0}
+  windowLength: 5
+  windowCount: 1
 --- !u!114 &2130922588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4764,6 +4774,14 @@ PrefabInstance:
     - target: {fileID: 8459759194923159030, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 263
+      objectReference: {fileID: 0}
+    - target: {fileID: 8682650307272609117, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: windowCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8682650307272609117, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: windowLength
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8682650307272609117, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: trainingObjectSPO
