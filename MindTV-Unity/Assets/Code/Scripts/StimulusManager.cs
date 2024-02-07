@@ -16,11 +16,12 @@ public class StimulusManager : MonoBehaviour
     [SerializeField] private TMP_Text countDownText;
     [SerializeField] private GameObject _SPO;
     public TMP_Dropdown colorDropdown;
+    public TMP_Dropdown animDropdown;
+    private UITweener tweener;
 
     private GameObject activeTraining;
     
     private MIControllerBehavior controllerBehaviour;
-    private LTDescr currentTween;
 
     //Exposing this so that we can change the base size of the training object
     public float originalBaseSize = 100.0f;
@@ -219,6 +220,23 @@ public class StimulusManager : MonoBehaviour
 
     public void SetAnimationOnSelection()
     {
-        activeTraining.GetComponent<UITweener>().HandleTween();
+        string animText = animDropdown.options[animDropdown.value].text;
+        tweener = this.GetComponent<UITweener>();
+        
+       // string[] values = {};
+        //values  = new string[7];
+        //int n = 0;
+        //foreach (var value in Enum.GetValues(typeof(UIAnimationTypes)))
+       // {
+        //    values[n] = value.ToString();
+        //    n++;
+        //}
+
+        //foreach (string val in values)
+        //{
+        //    if (animText == val)
+        tweener.SetTweenFromString(animText);
+        //}
+        Debug.Log("end of method in stim manager");
     }
 }

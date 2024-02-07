@@ -87,6 +87,7 @@ public class UITweener : MonoBehaviour
         switch (animationTypes)
         {
             case UIAnimationTypes.None:
+                Debug.Log("none selected");
                 break;
             case UIAnimationTypes.Grow:
                 GrowAnim();
@@ -107,7 +108,7 @@ public class UITweener : MonoBehaviour
                 RotatePunchAnim();
                 break;
         }
-
+        Debug.Log("end of handle");
     }
 
     // public void MoveAbsolute()
@@ -173,5 +174,24 @@ public class UITweener : MonoBehaviour
     {
         _tweenObject?.pause();
     }
+
+    public void SetTweenFromString(string selected)
+    {
+        if (selected == "Shake")
+            animationTypes = UIAnimationTypes.Shake;
+        else if (selected == "Grow")
+            animationTypes = UIAnimationTypes.Grow;
+        else if (selected == "Bounce")
+            animationTypes = UIAnimationTypes.Bounce;
+        else if (selected == "Wiggle")
+            animationTypes = UIAnimationTypes.Wiggle;
+        else if (selected == "Rotate")
+            animationTypes = UIAnimationTypes.Rotate;
+        else if (selected == "RotatePunch")
+            animationTypes = UIAnimationTypes.RotatePunch;
+        else if (selected == "None")
+            animationTypes = UIAnimationTypes.None;
+    }
+
 
 }
