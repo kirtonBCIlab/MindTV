@@ -752,6 +752,7 @@ MonoBehaviour:
   countDownText: {fileID: 0}
   _SPO: {fileID: 6961159752734704938}
   colorDropdown: {fileID: 1692768629864977372}
+  animDropdown: {fileID: 0}
   originalBaseSize: 100
   targetImageResolution: 512
   baseSizeSlider: {fileID: 7884532054514808890}
@@ -2009,7 +2010,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToAnimate: {fileID: 0}
   animationTypes: 0
-  duration: 1
+  duration: 1.5
   tweenXScale: 1.7
   tweenYScale: 1.7
   tweenZScale: 1.7
@@ -2329,6 +2330,14 @@ PrefabInstance:
     - target: {fileID: 93485988531031658, guid: 3006f798617c344d4925678409effa07, type: 3}
       propertyPath: m_text
       value: None
+      objectReference: {fileID: 0}
+    - target: {fileID: 93485988531031658, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_fontSize
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 93485988531031658, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 2248192279300007672, guid: 3006f798617c344d4925678409effa07, type: 3}
       propertyPath: m_Name
