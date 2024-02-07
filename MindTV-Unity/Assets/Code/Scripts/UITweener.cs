@@ -168,4 +168,10 @@ public class UITweener : MonoBehaviour
         objectToAnimate.transform.SetPositionAndRotation(_origTransform.position, _origTransform.rotation);
     }
 
+
+    public void StopTween()
+    {
+        _tweenObject?.pause();
+    }
+
 }
