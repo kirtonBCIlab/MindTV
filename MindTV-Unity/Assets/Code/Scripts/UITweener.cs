@@ -8,12 +8,12 @@ using UnityEngine.UI;
 public enum UIAnimationTypes
 {
     None,
-    Rotate,
     Shake,
     Bounce,
     Grow,
     Wiggle,
-    Pulse,
+    Rotate,
+    RotatePunch
 }
 
 public class UITweener : MonoBehaviour
@@ -22,8 +22,6 @@ public class UITweener : MonoBehaviour
     public GameObject objectToAnimate;
 
     public UIAnimationTypes animationTypes;
-
-    public LeanTweenType easeType;
 
     public float duration = 1f;
     public float tweenXScale = 1.7f;
@@ -93,9 +91,6 @@ public class UITweener : MonoBehaviour
             case UIAnimationTypes.Grow:
                 GrowAnim();
                 break;
-            case UIAnimationTypes.Rotate:
-                RotateAnim();
-                break;
             case UIAnimationTypes.Shake:
                 ShakeAnim();
                 break;
@@ -105,7 +100,12 @@ public class UITweener : MonoBehaviour
             case UIAnimationTypes.Wiggle:
                 WiggleAnim();
                 break;
-            
+            case UIAnimationTypes.Rotate:
+                RotateAnim();
+                break;
+            case UIAnimationTypes.RotatePunch:
+                RotatePunchAnim();
+                break;
         }
 
     }
@@ -123,9 +123,17 @@ public class UITweener : MonoBehaviour
     public void RotateAnim()
     {
         if (tweenClockwiseRotation)
-            LeanTween.rotateAround(objectToAnimate, Vector3.forward, -tweenRotation, duration).setEase(easeType);
+            LeanTween.rotateAround(objectToAnimate, Vector3.forward, -tweenRotation, duration);
         else
-            LeanTween.rotateAround(objectToAnimate, Vector3.forward, tweenRotation, duration).setEase(easeType);
+            LeanTween.rotateAround(objectToAnimate, Vector3.forward, tweenRotation, duration);
+    }
+
+    public void RotatePunchAnim()
+    {
+        if (tweenClockwiseRotation)
+            LeanTween.rotateAround(objectToAnimate, Vector3.forward, -tweenRotation, duration).setEase(LeanTweenType.punch);
+        else
+            LeanTween.rotateAround(objectToAnimate, Vector3.forward, tweenRotation, duration).setEase(LeanTweenType.punch);
     }
 
     public void GrowAnim()
