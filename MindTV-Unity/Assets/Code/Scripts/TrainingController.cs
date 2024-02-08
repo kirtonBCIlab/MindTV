@@ -106,7 +106,9 @@ public class TrainingController : MonoBehaviour
         StartCoroutine(TrainingTimer(trainingLengthSecondsInt));
 
         // Do the actual training
-        BCIController.WhileDoSingleTraining(trainingObjectSPO, windowLength, windowCount);
+        // Anup: I turned this off to get around package issues
+        Debug.Log("BCIController: Do Single Training (Currently off)");
+        // BCIController.WhileDoSingleTraining(trainingObjectSPO, windowLength, windowCount);
 
         // Wait to finish the training
         yield return new WaitForSeconds(trainingLengthSeconds);
@@ -115,25 +117,34 @@ public class TrainingController : MonoBehaviour
         // bciController.ActiveBehavior.SetLabel(userInput); // Needs to be updated
         // bciController.ActiveBehavior.StartTraining(BCITrainingType.Iterative); // Needs to be updated
 
-        // FOR BRIAN: TEMPORARY CODE TO SHOW NUMBER OF TRAININGS COUNTER IS UPDATED
-        numberOfTrainingsDone += windowCount;
-        numberOfTrainingsText.text = numberOfTrainingsDone.ToString();
+        // Update the number of trainings done with the windowCount
+        UpdateTrainingWindowCount(windowCount);
 
-        if (numberOfTrainingsDone >= 5) // Needs to be updated
-        {
-            UpdateTheClassifier();
-        }
+        // Anup: I turned this off to get around package issues
+        // if (numberOfTrainingsDone >= 5) // Needs to be updated
+        // {
+        //     UpdateTheClassifier();
+        // }
 
         yield return null;
     }
 
-    private void UpdateTheClassifier()
+    private void UpdateTrainingWindowCount(int newWindowCount)
     {
-        // Ensure that this can't be done, until there is atleast 2 windows from each class that is being trained
-        // and that there are atleast 2 classes.
-        // Send a training complete marker
+        numberOfTrainingsDone += newWindowCount;
+        numberOfTrainingsText.text = numberOfTrainingsDone.ToString();
 
-        BCIController.UpdateClassifier();
+        // Find the BessyTrainClassifier script in the parent and call CheckTotalTrainingWindows
+        // This will show the Finish Training button if the conditions are met
+        BessyTrainClassifier parentScript = GetComponentInParent<BessyTrainClassifier>();
+        if (parentScript != null)
+        {
+            parentScript.CheckTotalTrainingWindows();
+        }
+        else
+        {
+            Debug.LogError("BessyTrainClassifier script not found on parent!");
+        }
     }
 
     IEnumerator TrainingTimer(int trainingSeconds)
