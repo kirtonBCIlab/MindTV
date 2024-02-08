@@ -23,6 +23,8 @@ public class TrainingController : MonoBehaviour
     [SerializeField] private TMP_Text numberOfTrainingsText; // UI element to indicate number of trainings done
     [SerializeField] private float windowLength = 5.0f; // Window length in seconds
     [SerializeField] int windowCount = 1; // Number of windows per training
+    [SerializeField] TMP_Dropdown windowLengthDropdown; // Assign in the Inspector
+    [SerializeField] TMP_Dropdown windowCountDropdown; // Assign in the Inspector
     private string trainingLabel;
     private int numberOfTrainingsDone = 0; // Number of trainings done
 
@@ -171,5 +173,27 @@ public class TrainingController : MonoBehaviour
         yield return new WaitForEndOfFrame();
         Debug.Log("Going to assign the value now to bciController for Start Training Button");
         // bciController = bciController.GetComponent<BCIController>(); // Needs to be updated
+    }
+
+    public void ChangeWindowLength()
+    {
+        // Get the string label of the TMP dropdown and convert it to a float
+        string newWindowLength = windowLengthDropdown.options[windowLengthDropdown.value].text;
+        print("newWindowLength: " + newWindowLength);
+        char windowLengthChar = newWindowLength[0];
+        print("windowLengthChar: " + windowLengthChar);
+
+        windowLength = (float)windowLengthChar - 48.0f;
+    }
+
+    public void ChangeWindowCount()
+    {
+        // Get the string label of the TMP dropdown and convert it to an int
+        string newWindowCount = windowCountDropdown.options[windowCountDropdown.value].text;
+        print("newWindowCount: " + newWindowCount);
+        char windowCountChar = newWindowCount[0];
+        print("windowCountChar: " + windowCountChar);
+
+        windowCount = (int)windowCountChar - 48;
     }
 }
