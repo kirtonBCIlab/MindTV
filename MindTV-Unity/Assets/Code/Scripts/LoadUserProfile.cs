@@ -27,7 +27,7 @@ public class LoadUserProfile : MonoBehaviour
         dropdown.ClearOptions();
 
         // Fetch the user profiles from the UserProfileManager
-        var profileNames = UserProfileManager.Instance.GetUserProfileNames();
+        var profileNames = SettingsManager.Instance.GetUserProfileNames();
         foreach (var name in profileNames)
         {
             TMP_Dropdown.OptionData newOption = new TMP_Dropdown.OptionData(name);
@@ -59,7 +59,7 @@ public class LoadUserProfile : MonoBehaviour
     public void LoadSelectedUserForTraining()
     {
         string name = dropdown.options[dropdown.value].text;
-        UserProfileManager.Instance.ActivateUserProfile(name);
+        SettingsManager.Instance.ActivateUserProfile(name);
     }
 
 }

@@ -33,11 +33,11 @@ public class CreateUserProfile : MonoBehaviour
 
             // Check if the username is unique
             string newProfileName = profileInputField.text;
-            if (UserProfileManager.Instance.UserProfileExists(newProfileName) != true)
+            if (SettingsManager.Instance.UserProfileExists(newProfileName) != true)
             {
                 // Add the profile name to the UserProfileManager
                 Debug.Log("Creating new profile: " + profileInputField.text);
-                UserProfileManager.Instance.AddUserProfile(profileInputField.text);
+                SettingsManager.Instance.AddUserProfile(profileInputField.text);
                 usernameValidityMessage.text = "";
             }
             else

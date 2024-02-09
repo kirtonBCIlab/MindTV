@@ -1,29 +1,41 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Linq;
-using Unity.VisualScripting; // For using LINQ queries
+using Unity.VisualScripting;
+using System; // For using LINQ queries
 
-public class UserProfileManager : MonoBehaviour
+
+/// <summary>
+/// SettingsManager is responsible for loading settings from disk and pushing out to
+/// the application.  It is also responsible for gathering changed settings from the application
+/// and writing to disk.
+/// </summary>
+public class SettingsManager : MonoBehaviour
 {
-    public static UserProfileManager Instance { get; private set; }
+    public static SettingsManager Instance { get; private set; }
 
-    public UserProfiles.User currentUser; // Current active user settings
+    // Current active user settings
+    public Settings.User currentUser;
 
     private void Awake()
     {
-        // Set up a singleton (static instance) of UserProfileManager
-        if (Instance == null)
+        // Set up a singleton (static instance) of SettingsManager
+        if (Instance != null && Instance != this)
         {
-            profiles = new UserProfiles();
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            LoadProfiles();
+            Destroy(this);
+            return;
         }
-        else if (Instance != this)
-        {
-            // If a different instance exists, destroy this one
-            Destroy(gameObject);
-        }
+
+        Debug.Log("SettingsManager: initializing");
+
+        profiles = new Settings();
+        currentUser = new Settings.User();  // make a default user        
+        Instance = this;
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        DontDestroyOnLoad(gameObject);
+        LoadSettings();
     }
 
     public List<string> GetUserProfileNames()
@@ -39,10 +51,10 @@ public class UserProfileManager : MonoBehaviour
     public void AddUserProfile(string name)
     {
         // Add new user profile and make it the current user
-        UserProfiles.User user = new UserProfiles.User() { userProfileName = name };
+        Settings.User user = new Settings.User() { userProfileName = name };
         profiles.users.Add(user);
         currentUser = user;
-        SaveProfiles();
+        SaveSettings();
     }
 
     public void ActivateUserProfile(string name)
@@ -62,12 +74,12 @@ public class UserProfileManager : MonoBehaviour
     }
 
 
-    public void SaveProfiles()
+    public void SaveSettings()
     {
         FileManager.WriteToFile("UserData.dat", profiles.ToJson());
     }
 
-    public void LoadProfiles()
+    public void LoadSettings()
     {
         if (FileManager.LoadFromFile("UserData.dat", out var json))
         {
@@ -75,6 +87,12 @@ public class UserProfileManager : MonoBehaviour
         }
     }
 
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Debug.Log("SettingsManager: training prefs are" + currentUser.trainingPrefs);
+    }
+
+
     // set of user profiles
-    private UserProfiles profiles;
+    private Settings profiles;
 }
