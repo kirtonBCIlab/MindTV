@@ -123,6 +123,41 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &117401370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 117401371}
+  m_Layer: 0
+  m_Name: BessyOnOffSwitch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &117401371
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117401370}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 635879816}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &223401244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -906,6 +941,7 @@ RectTransform:
   - {fileID: 359321690}
   - {fileID: 223401245}
   - {fileID: 2059184433}
+  - {fileID: 117401371}
   - {fileID: 4316965649178549720}
   - {fileID: 1874068026563440165}
   m_Father: {fileID: 0}
@@ -1394,6 +1430,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 635879816}
     m_Modifications:
+    - target: {fileID: 269298437535791356, guid: 640c2b6eb000c406289fe10e6fa6e3b5, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 269298437535791356, guid: 640c2b6eb000c406289fe10e6fa6e3b5, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 269298437535791356, guid: 640c2b6eb000c406289fe10e6fa6e3b5, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1349846526874836253, guid: 640c2b6eb000c406289fe10e6fa6e3b5, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1477,6 +1525,26 @@ PrefabInstance:
     - target: {fileID: 3237603418397403619, guid: 640c2b6eb000c406289fe10e6fa6e3b5, type: 3}
       propertyPath: m_Name
       value: VideoPage
+      objectReference: {fileID: 0}
+    - target: {fileID: 3386406063022127806, guid: 640c2b6eb000c406289fe10e6fa6e3b5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6594596519244295979, guid: 640c2b6eb000c406289fe10e6fa6e3b5, type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6594596519244295979, guid: 640c2b6eb000c406289fe10e6fa6e3b5, type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6594596519244295979, guid: 640c2b6eb000c406289fe10e6fa6e3b5, type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181193015972260276, guid: 640c2b6eb000c406289fe10e6fa6e3b5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

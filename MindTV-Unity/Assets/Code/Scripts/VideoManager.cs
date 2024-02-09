@@ -19,6 +19,8 @@ public class VideoManager : MonoBehaviour
     {
         // Hide the video playback raw image component to prevent displaying the video before it's selected
         HideVideo();
+        videoSelectionPanel.SetActive(true);
+        videoPlaybackPanel.SetActive(false);
 
         // Setup button listeners
         playButton.onClick.AddListener(PlayVideo);
