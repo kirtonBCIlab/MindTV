@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 608a90b6d8e2e4f1b8e568e68a9272b1
   - enabled: 1
-    path: Assets/Scenes/VideoPages.unity
+    path: Assets/Scenes/OutdatedVideoPages.unity
     guid: e9d2271370a2c9d44b94861a7f5b6a05
   - enabled: 1
     path: Assets/Scenes/TrainingScene.unity
