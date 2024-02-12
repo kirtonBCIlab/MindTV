@@ -5,19 +5,8 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameController : MonoBehaviour, ISaveable
+public class GameController : MonoBehaviour
 {
-    
-
-    public void PopulateSaveData(SaveData saveData)
-    {
-        
-    }
-
-    public void LoadFromSaveData(SaveData saveData)
-    {
-        
-    }
 
 
 }
