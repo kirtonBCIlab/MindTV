@@ -76,6 +76,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: StopButtonArea
       objectReference: {fileID: 0}
+    - target: {fileID: 2720107801977915111, guid: db2c78400cafe4ffdacc105b9acf7b3d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2720107801977915111, guid: db2c78400cafe4ffdacc105b9acf7b3d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 3021251981638137783, guid: db2c78400cafe4ffdacc105b9acf7b3d, type: 3}
       propertyPath: m_Name
       value: StopButton
