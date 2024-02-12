@@ -224,6 +224,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1699952338769864366, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1699952338769864366, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 2001030541296343038, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
       propertyPath: m_Name
       value: StopButton
