@@ -154,9 +154,6 @@ public class VideoManager : MonoBehaviour
 
     public void LoadSelectedVideo(int index)
     {
-        // Inspector takes in int values of 1-4, but we need to convert to 0-3
-        index--;
-
         if (videoClips == null || videoClips.Length == 0)
         {
             Debug.LogError("No video clips assigned.");
