@@ -16,7 +16,9 @@ public class StimulusManager : MonoBehaviour
     [SerializeField] private TMP_Text countDownText;
     [SerializeField] private GameObject _SPO;
 
+    // This identifies which training tab
     public int labelNumber;
+
     public TMP_InputField trainingLabelEntry;
     public TMP_Dropdown colorDropdown;
     public TMP_Dropdown animDropdown;
@@ -120,7 +122,7 @@ public class StimulusManager : MonoBehaviour
 
     public void SetTrainingLabel(string labelText)
     {
-        // Persis the setting
+        // Persist the setting
         if (SettingsManager.Instance != null)
         {
             Settings.User user = SettingsManager.Instance.currentUser;

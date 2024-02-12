@@ -15,6 +15,8 @@ public class Settings
     {
         public int labelNumber;
         public string labelText;
+        public string animationText;
+        public Color backgroundColor;
     }
 
     [System.Serializable]
@@ -22,6 +24,8 @@ public class Settings
     {
         public string userProfileName = "";
 
+        // This could be handled with a getter that allocates new TrainingPrefs, want to 
+        // avoid cluttering each view with add/remove logic.
         public List<TrainingPrefs> trainingPrefs = new List<TrainingPrefs>()
         {
             new TrainingPrefs() { labelNumber = 0 },
