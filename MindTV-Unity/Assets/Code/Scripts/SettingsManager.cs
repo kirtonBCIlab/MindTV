@@ -18,81 +18,79 @@ public class SettingsManager : MonoBehaviour
     // Current active user settings
     public Settings.User currentUser;
 
-    private void Awake()
+
+    public void Awake()
     {
         // Set up a singleton (static instance) of SettingsManager
         if (Instance != null && Instance != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
             return;
         }
 
         Debug.Log("SettingsManager: initializing");
 
-        profiles = new Settings();
-        currentUser = new Settings.User();  // make a default user        
+        settings = new Settings();
+        currentUser = new Settings.User();  // make a dummy user (not saved)
         Instance = this;
 
-        SceneManager.sceneLoaded += OnSceneLoaded;
         DontDestroyOnLoad(gameObject);
         LoadSettings();
     }
 
+    public void OnApplicationQuit()
+    {
+        SaveSettings();
+    }
+
+
     public List<string> GetUserProfileNames()
     {
-        return profiles.users.Select(user => user.userProfileName).ToList();
+        return settings.users.Select(user => user.userProfileName).ToList();
     }
 
     public bool UserProfileExists(string name)
     {
-        return profiles.users.Exists(user => user.userProfileName == name);
+        return settings.users.Exists(user => user.userProfileName == name);
     }
 
     public void AddUserProfile(string name)
     {
-        // Add new user profile and make it the current user
+        // Add new User and make it current
         Settings.User user = new Settings.User() { userProfileName = name };
-        profiles.users.Add(user);
+        settings.users.Add(user);
         currentUser = user;
         SaveSettings();
     }
 
     public void ActivateUserProfile(string name)
     {
-        // UserProfiles.User is a struct, which is meant to be a value type.  This means it can't be null. 
-        // That means List.Find() will return a default User if name doesn't exist (instead of null).
-        // To avoid this, check existence first.  This is kinda dumb, but how C# works.
         if (UserProfileExists(name))
         {
-            currentUser = profiles.users.Find(user => user.userProfileName == name);
-            Debug.Log("UserProfileManager: activated user profile " + currentUser.userProfileName);
+            currentUser = settings.users.Find(user => user.userProfileName == name);
+            Debug.Log("SettingsManager: activated user " + currentUser.userProfileName);
         }
         else
         {
-            Debug.Log("UserProfileManager: user profile " + name + " not found");
+            Debug.Log("SettingsManager: user " + name + " not found");
         }
     }
 
 
     public void SaveSettings()
     {
-        FileManager.WriteToFile("UserData.dat", profiles.ToJson());
+        Debug.Log("SettingsManager: saving settings");
+        FileManager.WriteToFile("UserData.dat", settings.ToJson());
     }
 
     public void LoadSettings()
     {
         if (FileManager.LoadFromFile("UserData.dat", out var json))
         {
-            profiles.LoadFromJson(json);
+            Debug.Log("SettingsManager: loading settings");
+            settings.LoadFromJson(json);
         }
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // Debug.Log("SettingsManager: training prefs are" + currentUser.trainingPrefs);
-    }
-
-
-    // set of user profiles
-    private Settings profiles;
+    private Settings settings;
 }
