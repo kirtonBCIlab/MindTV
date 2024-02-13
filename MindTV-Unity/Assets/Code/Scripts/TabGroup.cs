@@ -34,7 +34,9 @@ public class TabGroup : MonoBehaviour
         if (selectedTab == null || tab !=selectedTab)
         {
             tab.background.sprite = tabHover;
-            tab.background.color = tabHoverColor;
+            Color tempColor = tab.background.color;
+            tempColor.a = 0.6f;
+            tab.background.color = tempColor;
         }
     }
 
@@ -95,7 +97,10 @@ public class TabGroup : MonoBehaviour
         {
             if(selectedTab!=null && singleTab == selectedTab) {continue;}
             singleTab.background.sprite = tabIdle;
-            singleTab.background.color = tabIdleColor;
+            Color tempColor = singleTab.background.color;
+            tempColor.a = 1f;
+            singleTab.background.color = tempColor;
+            //singleTab.background.color = tabIdleColor;
         }
     }
 
@@ -106,12 +111,18 @@ public class TabGroup : MonoBehaviour
             if (singleTab == selectedTab)
             {
                 singleTab.background.sprite = tabSelected;
-                singleTab.background.color = tabSelectedColor;
+                //singleTab.background.color = tabSelectedColor;
+                Color tempColor = singleTab.background.color;
+                tempColor.a = 1f;
+                singleTab.background.color = tempColor;
             }
             else
             {
                 singleTab.background.sprite = tabIdle;
-                singleTab.background.color = tabIdleColor;
+                Color tempColor = singleTab.background.color;
+                tempColor.a = 1f;
+                singleTab.background.color = tempColor;
+                //singleTab.background.color = tabIdleColor;
             }
         }
     }
