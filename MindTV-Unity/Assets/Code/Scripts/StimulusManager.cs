@@ -168,6 +168,10 @@ public class StimulusManager : MonoBehaviour
         //Alternative way to get the color name without needing a static ref, but using a scriptable object. Could be good for persisting changes.
         //Color color = trainingPageSO.colors[colorText];
         imageComponent.color = color;
+        //This is the lazy bad way to do it
+        // Set current tab's label to training label
+        TabGroup tabGroup = GameObject.Find("TabArea").GetComponent<TabGroup>();
+        tabGroup.MatchPageColor();
     }
 
     public void SetAnimationOnSelection()

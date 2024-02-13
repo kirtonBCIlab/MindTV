@@ -79,17 +79,34 @@ public class TabGroup : MonoBehaviour
         {
             //Hardcoding this right now to the first child, and getting that image
             tab.background.sprite = tabSelected;
-            for(int i=0; i<objectsToSwap.Count;i++)
-            {
-                if(i==index)
-                {
-                    Color newTabcolor = objectsToSwap[i].GetComponentInChildren<Image>().color;
-                    tab.background.color = newTabcolor;
-                }
-            }
+            // for(int i=0; i<objectsToSwap.Count;i++)
+            // {
+            //     if(i==index)
+            //     {
+            //         Color newTabcolor = objectsToSwap[i].GetComponentInChildren<Image>().color;
+            //         tab.background.color = newTabcolor;
+            //     }
+            // }
+            MatchPageColor();
         }
 
     }
+
+    public void MatchPageColor()
+    {
+        if(selectedTab!=null)
+        {
+            for(int i=0; i<objectsToSwap.Count;i++)
+            {
+                if(i==selectedTab.transform.GetSiblingIndex())
+                {
+                    Color newTabcolor = objectsToSwap[i].GetComponentInChildren<Image>().color;
+                    selectedTab.background.color = newTabcolor;
+                }
+            }
+        }
+    }
+
 
     public void ResetTabs()
     {
