@@ -35,7 +35,7 @@ public class StimulusManager : MonoBehaviour
     private Vector3 originalPosition;
     public Slider baseSizeSlider;
 
-    void Start()
+    private void Start()
     {
         trainingController = GameObject.FindGameObjectWithTag("TrainingPanel").GetComponent<TrainingMenuController>();
         originalPosition = _SPO.transform.position;
@@ -44,34 +44,47 @@ public class StimulusManager : MonoBehaviour
         _SPO.transform.localScale = new Vector3(currentBaseSize, currentBaseSize, currentBaseSize);
         baseSizeSlider.value = currentBaseSize;
 
+        //Initialize the listners for saving
         InitializeListeners();
+
+        //Initialize the views
         InitializeViews();
     }
 
-    void InitializeListeners()
+    // This is called to initialize listners for saving
+    private void InitializeListeners()
     {
-        trainingLabelEntry.onEndEdit.AddListener(SetTrainingLabel);
+        trainingLabelEntry.onEndEdit.AddListener(SetSaveTrainingLabel);
+        colorDropdown.onValueChanged.AddListener(SetSaveTrainingPageColor);
     }
 
-    void InitializeViews()
+    // This is called to initialize the views for updating objects in the training page from saved settings
+    private void InitializeViews()
     {
         // Look up our training preferences and apply to the view
-        if (SettingsManager.Instance != null)
-        {
-            Settings.User user = SettingsManager.Instance.currentUser;
-            Settings.TrainingPrefs prefs = user.trainingPrefs[labelNumber];
+        // if (SettingsManager.Instance != null)
+        // {
+        //     Settings.User user = SettingsManager.Instance.currentUser;
+        //     Settings.TrainingPrefs prefs = user.trainingPrefs[labelNumber];
 
-            SetTrainingLabel(prefs.labelText);
-        }
-        else
-        {
-            Debug.LogWarning("SettingsManager not found");
-        }
+        //     SetTrainingLabel(prefs.labelText);
+        // }
+        // else
+        // {
+        //     Debug.LogWarning("SettingsManager not found");
+        // }
+
+        //Look up our training preferences and apply to the view
+        Settings.TrainingPrefs prefs = SettingsManager.Instance.currentUser.trainingPrefs[labelNumber];
+        PresentTrainingLabel(prefs.labelText); // Do we need to pass in the label text here?
+
+        // Set the color dropdown to the color of the training page
+        // SetTrainingPageColor(prefs.backgroundColor);
     }
 
 
     //resets the position and scale of the traning object
-    void ResetSPO()
+    public void ResetSPO()
     {
         _SPO.transform.position = originalPosition;
     }
@@ -124,7 +137,7 @@ public class StimulusManager : MonoBehaviour
         ResetSPO();
     }
 
-    public void SetTrainingLabel(string labelText)
+    public void SetSaveTrainingLabel(string labelText)
     {
         // Persist the setting
         if (SettingsManager.Instance != null)
@@ -137,10 +150,30 @@ public class StimulusManager : MonoBehaviour
         // Initialize the input field
         trainingLabelEntry.text = labelText;
 
+        // // Set current tab's label to training label
+        // TabGroup tabGroup = GameObject.Find("TabArea").GetComponent<TabGroup>();
+        
+        // //This is repeated code, and we should put it at the top of the method probably.
+        // if (SettingsManager.Instance != null && tabGroup != null)
+        // {
+        //     Settings.User user = SettingsManager.Instance.currentUser;
+        //     // Set the label for each tab under tab group based on their index
+        //     foreach (Tab tab in tabGroup.tabs)
+        //     {
+        //         tab.GetComponentInChildren<TextMeshProUGUI>().text = user.trainingPrefs[tab.transform.GetSiblingIndex()].labelText;
+        //     }
+        // }
+        // else
+        // {
+        //     Debug.LogWarning("SettingsManager and tabGroup not found");
+        // }
+
+    }
+
+    public void SetTrainingTabLabel(string labelText)
+    {
         // Set current tab's label to training label
         TabGroup tabGroup = GameObject.Find("TabArea").GetComponent<TabGroup>();
-        
-        //This is repeated code, and we should put it at the top of the method probably.
         if (SettingsManager.Instance != null && tabGroup != null)
         {
             Settings.User user = SettingsManager.Instance.currentUser;
@@ -154,7 +187,40 @@ public class StimulusManager : MonoBehaviour
         {
             Debug.LogWarning("SettingsManager and tabGroup not found");
         }
+    }
 
+    public void PresentTrainingLabel(string labelText)
+    {
+        TabGroup tabGroup = GameObject.Find("TabArea").GetComponent<TabGroup>();
+        if(tabGroup != null)
+        {
+            // Set the label for each tab under tab group based on their index
+            foreach (Tab tab in tabGroup.tabs)
+            {
+                tab.GetComponentInChildren<TextMeshProUGUI>().text = SettingsManager.Instance.currentUser.trainingPrefs[tab.transform.GetSiblingIndex()].labelText;
+            }
+        }
+        else
+        {
+            Debug.LogWarning("TabGroup not found");
+        }
+    }
+
+
+    public void SetSaveTrainingPageColor(int colorIndex)
+    {
+        // Persist the setting for color
+        if (SettingsManager.Instance != null)
+        {
+            Settings.User user = SettingsManager.Instance.currentUser;
+            string colorText = colorDropdown.options[colorIndex].text;
+            user.trainingPrefs[labelNumber].backgroundColor = ColorByName.colors[colorText];
+        }
+        else
+        {
+            Debug.LogWarning("SettingsManager not found");
+        }
+ 
     }
 
     public void ChangeBackgroundColor()
