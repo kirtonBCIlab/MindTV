@@ -9,7 +9,7 @@ public class LoadUserProfile : MonoBehaviour
     private bool firstSelection = true;
     private TMP_Dropdown dropdown;
 
-    void Start()
+    void OnEnable()
     {
         dropdown = GetComponentInChildren<TMP_Dropdown>();
         PopulateDropdownWithProfiles();
