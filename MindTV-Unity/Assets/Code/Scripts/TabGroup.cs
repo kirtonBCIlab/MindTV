@@ -8,11 +8,14 @@ public class TabGroup : MonoBehaviour
 {
     public List<Tab> tabs;
     public Sprite tabIdle;
-    public Color tabIdleColor;
+    //public Color tabIdleColor;
+    public float tabIdleAlpha;
     public Sprite tabHover;
-    public Color tabHoverColor;
+    //public Color tabHoverColor;
+    public float tabHoverAlpha;
     public Sprite tabSelected;
-    public Color tabSelectedColor;
+    //public Color tabSelectedColor;
+    public float tabSelectedAlpha;
     public Tab selectedTab;
     public List<GameObject> objectsToSwap;
 
@@ -35,7 +38,7 @@ public class TabGroup : MonoBehaviour
         {
             tab.background.sprite = tabHover;
             Color tempColor = tab.background.color;
-            tempColor.a = 0.6f;
+            tempColor.a = tabHoverAlpha;
             tab.background.color = tempColor;
         }
     }
@@ -73,20 +76,15 @@ public class TabGroup : MonoBehaviour
         if (!matchPageColor)
         {
             tab.background.sprite = tabSelected;
-            tab.background.color = tabSelectedColor;
+            Color tempColor = tab.background.color;
+            tempColor.a = tabSelectedAlpha;
+            tab.background.color = tempColor;
+            //tab.background.color = tabSelectedColor;
         }
         else
         {
-            //Hardcoding this right now to the first child, and getting that image
+            
             tab.background.sprite = tabSelected;
-            // for(int i=0; i<objectsToSwap.Count;i++)
-            // {
-            //     if(i==index)
-            //     {
-            //         Color newTabcolor = objectsToSwap[i].GetComponentInChildren<Image>().color;
-            //         tab.background.color = newTabcolor;
-            //     }
-            // }
             MatchPageColor();
         }
 
@@ -100,6 +98,7 @@ public class TabGroup : MonoBehaviour
             {
                 if(i==selectedTab.transform.GetSiblingIndex())
                 {
+                    //Hardcoding this right now to the first child, and getting that image
                     Color newTabcolor = objectsToSwap[i].GetComponentInChildren<Image>().color;
                     selectedTab.background.color = newTabcolor;
                 }
@@ -115,7 +114,7 @@ public class TabGroup : MonoBehaviour
             if(selectedTab!=null && singleTab == selectedTab) {continue;}
             singleTab.background.sprite = tabIdle;
             Color tempColor = singleTab.background.color;
-            tempColor.a = 1f;
+            tempColor.a = tabIdleAlpha;
             singleTab.background.color = tempColor;
             //singleTab.background.color = tabIdleColor;
         }
@@ -130,14 +129,14 @@ public class TabGroup : MonoBehaviour
                 singleTab.background.sprite = tabSelected;
                 //singleTab.background.color = tabSelectedColor;
                 Color tempColor = singleTab.background.color;
-                tempColor.a = 1f;
+                tempColor.a = tabSelectedAlpha;
                 singleTab.background.color = tempColor;
             }
             else
             {
                 singleTab.background.sprite = tabIdle;
                 Color tempColor = singleTab.background.color;
-                tempColor.a = 1f;
+                tempColor.a = tabIdleAlpha;
                 singleTab.background.color = tempColor;
                 //singleTab.background.color = tabIdleColor;
             }
