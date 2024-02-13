@@ -760,6 +760,14 @@ PrefabInstance:
       propertyPath: _readyToStart
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4794845253237946278, guid: 9aac2126a83a8e8428deaa9ae0d123e8, type: 3}
+      propertyPath: _hotkeysEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592909787069271490, guid: 9aac2126a83a8e8428deaa9ae0d123e8, type: 3}
+      propertyPath: _hotkeysEnabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6414791617228411143, guid: 9aac2126a83a8e8428deaa9ae0d123e8, type: 3}
       propertyPath: m_Name
       value: BciControllerManager
@@ -802,6 +810,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7997871047805037400, guid: 9aac2126a83a8e8428deaa9ae0d123e8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9114702551254449703, guid: 9aac2126a83a8e8428deaa9ae0d123e8, type: 3}
+      propertyPath: _hotkeysEnabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

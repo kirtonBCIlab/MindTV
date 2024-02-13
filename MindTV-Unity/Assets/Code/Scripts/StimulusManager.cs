@@ -63,6 +63,10 @@ public class StimulusManager : MonoBehaviour
 
             SetTrainingLabel(prefs.labelText);
         }
+        else
+        {
+            Debug.LogWarning("SettingsManager not found");
+        }
     }
 
 
@@ -127,6 +131,7 @@ public class StimulusManager : MonoBehaviour
         {
             Settings.User user = SettingsManager.Instance.currentUser;
             user.trainingPrefs[labelNumber].labelText = labelText;
+            Debug.Log("These are my training labels: " + user.trainingPrefs[labelNumber].labelText);
         }
 
         // Initialize the input field
@@ -134,10 +139,22 @@ public class StimulusManager : MonoBehaviour
 
         // Set current tab's label to training label
         TabGroup tabGroup = GameObject.Find("TabArea").GetComponent<TabGroup>();
-        if (tabGroup.selectedTab != null)
+        
+        //This is repeated code, and we should put it at the top of the method probably.
+        if (SettingsManager.Instance != null && tabGroup != null)
         {
-            tabGroup.selectedTab.GetComponentInChildren<TextMeshProUGUI>().text = labelText;
+            Settings.User user = SettingsManager.Instance.currentUser;
+            // Set the label for each tab under tab group based on their index
+            foreach (Tab tab in tabGroup.tabs)
+            {
+                tab.GetComponentInChildren<TextMeshProUGUI>().text = user.trainingPrefs[tab.transform.GetSiblingIndex()].labelText;
+            }
         }
+        else
+        {
+            Debug.LogWarning("SettingsManager and tabGroup not found");
+        }
+
     }
 
     public void ChangeBackgroundColor()

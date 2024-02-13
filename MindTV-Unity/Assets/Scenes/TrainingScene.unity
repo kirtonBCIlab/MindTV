@@ -422,11 +422,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1630358221294823827, guid: 8c9001b4d98662b42bf49dddba8cc997, type: 3}
       propertyPath: m_text
-      value: 
+      value: Tab 1
       objectReference: {fileID: 0}
     - target: {fileID: 1630358221294823827, guid: 8c9001b4d98662b42bf49dddba8cc997, type: 3}
       propertyPath: m_fontSize
-      value: 70
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 1630358221294823827, guid: 8c9001b4d98662b42bf49dddba8cc997, type: 3}
       propertyPath: m_fontColor.b
@@ -550,11 +550,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3325258092172080010, guid: 8c9001b4d98662b42bf49dddba8cc997, type: 3}
       propertyPath: m_text
-      value: 
+      value: Tab 2
       objectReference: {fileID: 0}
     - target: {fileID: 3325258092172080010, guid: 8c9001b4d98662b42bf49dddba8cc997, type: 3}
       propertyPath: m_fontSize
-      value: 70
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 3325258092172080010, guid: 8c9001b4d98662b42bf49dddba8cc997, type: 3}
       propertyPath: m_fontColor.b
@@ -2106,11 +2106,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8014557345564916994, guid: f66ee0126bccf0e47ae51556de38f6b9, type: 3}
       propertyPath: m_text
-      value: 
+      value: Tab 4
       objectReference: {fileID: 0}
     - target: {fileID: 8014557345564916994, guid: f66ee0126bccf0e47ae51556de38f6b9, type: 3}
       propertyPath: m_fontSize
-      value: 70
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 8014557345564916994, guid: f66ee0126bccf0e47ae51556de38f6b9, type: 3}
       propertyPath: m_fontColor.b
@@ -2553,11 +2553,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8014557345564916994, guid: f66ee0126bccf0e47ae51556de38f6b9, type: 3}
       propertyPath: m_text
-      value: 
+      value: Tab 3
       objectReference: {fileID: 0}
     - target: {fileID: 8014557345564916994, guid: f66ee0126bccf0e47ae51556de38f6b9, type: 3}
       propertyPath: m_fontSize
-      value: 70
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 8014557345564916994, guid: f66ee0126bccf0e47ae51556de38f6b9, type: 3}
       propertyPath: m_fontColor.b
