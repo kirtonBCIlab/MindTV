@@ -13,13 +13,13 @@ public class VideoPageOptionsController : MonoBehaviour
     public GameObject videoCellBackground;
     public TMP_Text videoTitleText;
     public TMP_InputField videoTitleInputField;
+   
     
     void Start()
     {
         
     }
 
-    //this is currently getting the selected color but not updating it
     public void ChangeCellColor()
     {
         Image background = videoCellBackground.GetComponent<Image>();
@@ -29,7 +29,6 @@ public class VideoPageOptionsController : MonoBehaviour
         Debug.Log(colorText);
     }
 
-    //this is currently getting the dropdown option but not updating it
     public void ChangeMentalCommand()
     {
         string mentalCommand = mentalCommandDropdown.options[mentalCommandDropdown.value].text;
@@ -39,10 +38,10 @@ public class VideoPageOptionsController : MonoBehaviour
 
     public void ChangeVideoTitle()
     {
-
+        videoTitleText.text = videoTitleInputField.text;
     }
 
-    public void ChangeCellLayout()
+    public void ToggleImageOn()
     {
         
     }
