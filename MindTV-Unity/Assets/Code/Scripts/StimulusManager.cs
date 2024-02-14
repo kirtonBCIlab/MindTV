@@ -54,32 +54,24 @@ public class StimulusManager : MonoBehaviour
     // This is called to initialize listners for saving
     private void InitializeListeners()
     {
+        //Save label
         trainingLabelEntry.onEndEdit.AddListener(SetSaveTrainingLabel);
+        //Update tab label
+        trainingLabelEntry.onEndEdit.AddListener(delegate { UpdateTrainingTabLabel(trainingLabelEntry.text); });
+        //Save color
         colorDropdown.onValueChanged.AddListener(SetSaveTrainingPageColor);
     }
 
     // This is called to initialize the views for updating objects in the training page from saved settings
     private void InitializeViews()
     {
-        // Look up our training preferences and apply to the view
-        // if (SettingsManager.Instance != null)
-        // {
-        //     Settings.User user = SettingsManager.Instance.currentUser;
-        //     Settings.TrainingPrefs prefs = user.trainingPrefs[labelNumber];
-
-        //     SetTrainingLabel(prefs.labelText);
-        // }
-        // else
-        // {
-        //     Debug.LogWarning("SettingsManager not found");
-        // }
-
         //Look up our training preferences and apply to the view
         Settings.TrainingPrefs prefs = SettingsManager.Instance.currentUser.trainingPrefs[labelNumber];
         PresentTrainingLabel(prefs.labelText); // Do we need to pass in the label text here?
 
         // Set the color dropdown to the color of the training page
         // SetTrainingPageColor(prefs.backgroundColor);
+        PresentTrainingPageColor();
     }
 
 
@@ -149,50 +141,28 @@ public class StimulusManager : MonoBehaviour
 
         // Initialize the input field
         trainingLabelEntry.text = labelText;
-
-        // // Set current tab's label to training label
-        // TabGroup tabGroup = GameObject.Find("TabArea").GetComponent<TabGroup>();
-        
-        // //This is repeated code, and we should put it at the top of the method probably.
-        // if (SettingsManager.Instance != null && tabGroup != null)
-        // {
-        //     Settings.User user = SettingsManager.Instance.currentUser;
-        //     // Set the label for each tab under tab group based on their index
-        //     foreach (Tab tab in tabGroup.tabs)
-        //     {
-        //         tab.GetComponentInChildren<TextMeshProUGUI>().text = user.trainingPrefs[tab.transform.GetSiblingIndex()].labelText;
-        //     }
-        // }
-        // else
-        // {
-        //     Debug.LogWarning("SettingsManager and tabGroup not found");
-        // }
-
     }
 
-    public void SetTrainingTabLabel(string labelText)
+    //This should be a dumb function, that just updates the UI look. It should not be responsible for saving the data.
+    public void UpdateTrainingTabLabel(string labelText)
     {
         // Set current tab's label to training label
         TabGroup tabGroup = GameObject.Find("TabArea").GetComponent<TabGroup>();
-        if (SettingsManager.Instance != null && tabGroup != null)
+
+        if(tabGroup.selectedTab != null)
         {
-            Settings.User user = SettingsManager.Instance.currentUser;
-            // Set the label for each tab under tab group based on their index
-            foreach (Tab tab in tabGroup.tabs)
-            {
-                tab.GetComponentInChildren<TextMeshProUGUI>().text = user.trainingPrefs[tab.transform.GetSiblingIndex()].labelText;
-            }
+            tabGroup.selectedTab.GetComponentInChildren<TextMeshProUGUI>().text = labelText;
         }
         else
         {
-            Debug.LogWarning("SettingsManager and tabGroup not found");
+            Debug.Log("No tab selected");
         }
     }
 
+    //This should only be run when initializing the scene, pulling from the saved data
     public void PresentTrainingLabel(string labelText)
     {
-        TabGroup tabGroup = GameObject.Find("TabArea").GetComponent<TabGroup>();
-        if(tabGroup != null)
+        if(GameObject.Find("TabArea").TryGetComponent<TabGroup>(out var tabGroup))
         {
             // Set the label for each tab under tab group based on their index
             foreach (Tab tab in tabGroup.tabs)
@@ -221,6 +191,22 @@ public class StimulusManager : MonoBehaviour
             Debug.LogWarning("SettingsManager not found");
         }
  
+    }
+
+    public void PresentTrainingPageColor()
+    {
+        
+        // //Set Color of Tabs
+        // foreach (Tab tab in GameObject.Find("TabArea").GetComponent<TabGroup>().tabs)
+        // {
+        //     // Look up our training preferences and apply to the view
+        //     Settings.TrainingPrefs prefs = SettingsManager.Instance.currentUser.trainingPrefs[tab.transform.GetSiblingIndex()];
+        //     tab.GetComponent<Image>().color = prefs.backgroundColor;
+        // }
+        // //Set color of Training Page
+        // Debug.Log("This is my sibling index: " + transform.GetSiblingIndex());
+        //transform.GetChild(0).gameObject.GetComponent<Image>().color = prefs.backgroundColor;
+
     }
 
     public void ChangeBackgroundColor()
