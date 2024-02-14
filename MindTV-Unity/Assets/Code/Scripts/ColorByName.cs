@@ -18,7 +18,8 @@ public static class ColorByName
         {"Cyan", Color.cyan},
         {"Blue (Theme)", new Color(0.34117647f, 0.72156863f, 1.0f, 1.0f)},
         {"Green (Theme)", new Color(0.26277451f, 0.6666667f, 0.54509804f, 1.0f)},
-        {"Purple (Theme)", new Color(0.3254902f, 0.21960784f, 0.57254902f, 1.0f)}
+        {"Purple (Theme)", new Color(0.3254902f, 0.21960784f, 0.57254902f, 1.0f)},
+        {"Default", new Color(0.3254902f, 0.21960784f, 0.57254902f, 1.0f) }
     };
 
 }
