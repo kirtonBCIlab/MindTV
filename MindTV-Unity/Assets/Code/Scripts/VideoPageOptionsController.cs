@@ -41,9 +41,4 @@ public class VideoPageOptionsController : MonoBehaviour
         videoTitleText.text = videoTitleInputField.text;
     }
 
-    public void ToggleImageOn()
-    {
-        
-    }
-
 }
