@@ -21,10 +21,12 @@ public class TrainingController : MonoBehaviour
     [SerializeField] private string startTrainingMessage = "Go!"; // Text to display when training starts
     [SerializeField] private TMP_Text trainRemainingTimeText; // UI element to indicate the number of seconds remaining in training
     [SerializeField] private TMP_Text numberOfTrainingsText; // UI element to indicate number of trainings done
-    [SerializeField] private float windowLength = 5.0f; // Window length in seconds
-    [SerializeField] int windowCount = 1; // Number of windows per training
-    [SerializeField] TMP_Dropdown windowLengthDropdown; // Assign in the Inspector
-    [SerializeField] TMP_Dropdown windowCountDropdown; // Assign in the Inspector
+    private float windowLength = 2.0f; // Window length in seconds
+    int windowCount = 3; // Number of windows per training
+    private float trainingLengthSeconds = 0.0f; // Total length of the training in seconds
+    // [SerializeField] TMP_Dropdown windowLengthDropdown; // Assign in the Inspector
+    // [SerializeField] TMP_Dropdown windowCountDropdown; // Assign in the Inspector
+    [SerializeField] TMP_Dropdown trainingTrialLengthDropdown; // Assign in the Inspector
     private string trainingLabel;
     private int numberOfTrainingsDone = 0; // Number of trainings done
 
@@ -40,7 +42,7 @@ public class TrainingController : MonoBehaviour
         //     numberOfTrainingsText.text = numberOfTrainingsDone.ToString();
         // }
 
-        BCIController.ChangeBehavior(BCIBehaviorType.MI);
+        // BCIController.ChangeBehavior(BCIBehaviorType.MI);
     }
 
     public void StartCountdown()
@@ -175,25 +177,38 @@ public class TrainingController : MonoBehaviour
         // bciController = bciController.GetComponent<BCIController>(); // Needs to be updated
     }
 
-    public void ChangeWindowLength()
+    // public void ChangeWindowLength()
+    // {
+    //     // Get the string label of the TMP dropdown and convert it to a float
+    //     string newWindowLength = windowLengthDropdown.options[windowLengthDropdown.value].text;
+    //     Debug.Log("newWindowLength: " + newWindowLength);
+    //     char windowLengthChar = newWindowLength[0];
+    //     Debug.Log("windowLengthChar: " + windowLengthChar);
+
+    //     windowLength = (float)windowLengthChar - 48.0f;
+    // }
+
+    // public void ChangeWindowCount()
+    // {
+    //     // Get the string label of the TMP dropdown and convert it to an int
+    //     string newWindowCount = windowCountDropdown.options[windowCountDropdown.value].text;
+    //     Debug.Log("newWindowCount: " + newWindowCount);
+    //     char windowCountChar = newWindowCount[0];
+    //     Debug.Log("windowCountChar: " + windowCountChar);
+
+    //     windowCount = (int)windowCountChar - 48;
+    // }
+
+    public void ChangeTrainingTrialLength()
     {
         // Get the string label of the TMP dropdown and convert it to a float
-        string newWindowLength = windowLengthDropdown.options[windowLengthDropdown.value].text;
-        print("newWindowLength: " + newWindowLength);
-        char windowLengthChar = newWindowLength[0];
-        print("windowLengthChar: " + windowLengthChar);
+        string newTargetTrialLength = trainingTrialLengthDropdown.options[trainingTrialLengthDropdown.value].text;
+        print("newTargetTrialLength: " + newTargetTrialLength);
+        char targetTrialLengthChar = newTargetTrialLength[0];
+        // int targetWindowCount = 
+        print("targetTrialLengthChar: " + targetTrialLengthChar);
 
-        windowLength = (float)windowLengthChar - 48.0f;
-    }
-
-    public void ChangeWindowCount()
-    {
-        // Get the string label of the TMP dropdown and convert it to an int
-        string newWindowCount = windowCountDropdown.options[windowCountDropdown.value].text;
-        print("newWindowCount: " + newWindowCount);
-        char windowCountChar = newWindowCount[0];
-        print("windowCountChar: " + windowCountChar);
-
-        windowCount = (int)windowCountChar - 48;
+        trainingLengthSeconds = (float)targetTrialLengthChar - 48.0f;
+        print("trainingLengthSeconds: " + trainingLengthSeconds);
     }
 }

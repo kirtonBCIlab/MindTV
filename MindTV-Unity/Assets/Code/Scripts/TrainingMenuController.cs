@@ -20,7 +20,7 @@ public class TrainingMenuController : MonoBehaviour
     [SerializeField] Transform timer;
     [SerializeField] GameObject backButton;
     [SerializeField] GameObject MIController;
-    [SerializeField] GameObject inventoryFrame;
+    [SerializeField] GameObject trainingOptionsFrame;
     [SerializeField] GameObject displayStartTrainingButton;
     [SerializeField] GameObject displayNumberOfTimesTrained;
     public string currentAction = "Neutral";
@@ -147,7 +147,7 @@ public class TrainingMenuController : MonoBehaviour
     //shows/hides the inventory as user clicks inventory icon
     public void ToggleInventoryVisibility()
     {
-        inventoryFrame.SetActive(!inventoryFrame.activeSelf);
+        trainingOptionsFrame.SetActive(!trainingOptionsFrame.activeSelf);
         displayStartTrainingButton.SetActive(!displayStartTrainingButton.activeSelf);
         displayNumberOfTimesTrained.SetActive(!displayNumberOfTimesTrained.activeSelf);
     }
