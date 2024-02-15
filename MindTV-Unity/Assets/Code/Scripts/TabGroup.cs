@@ -51,10 +51,8 @@ public class TabGroup : MonoBehaviour
         ResetTabs();
         if (selectedTab == null || tab != selectedTab)
         {
-            tab.background.sprite = tabHover;
-            Color tempColor = tab.background.color;
-            tempColor.a = tabHoverAlpha;
-            tab.background.color = tempColor;
+            tab.SetSprite(tabHover);
+            tab.SetColorAlpha(tabHoverAlpha);
         }
     }
 
@@ -88,21 +86,17 @@ public class TabGroup : MonoBehaviour
             }
         }
 
-        tab.background.sprite = tabSelected;
-        Color tempColor = tab.background.color;
-        tempColor.a = tabSelectedAlpha;
-        tab.background.color = tempColor;
+        tab.SetSprite(tabSelected);
+        tab.SetColorAlpha(tabSelectedAlpha);
     }
 
     public void ResetTabs()
     {
-        foreach(Tab singleTab in tabs)
+        foreach(Tab tab in tabs)
         {
-            if(selectedTab!=null && singleTab == selectedTab) {continue;}
-            singleTab.background.sprite = tabIdle;
-            Color tempColor = singleTab.background.color;
-            tempColor.a = tabIdleAlpha;
-            singleTab.background.color = tempColor;
+            if(selectedTab!=null && tab == selectedTab) {continue;}
+            tab.SetSprite(tabIdle);
+            tab.SetColorAlpha(tabIdleAlpha);
         }
     }
 }

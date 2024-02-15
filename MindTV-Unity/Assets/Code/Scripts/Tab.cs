@@ -26,6 +26,7 @@ public class Tab : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,IPo
         tabGroup.Subscribe(this);
     }
 
+
     public void SetLabel(string label)
     {
         GetComponentInChildren<TextMeshProUGUI>().text = label;
@@ -33,8 +34,21 @@ public class Tab : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,IPo
 
     public void SetColor(Color color)
     {
-        GetComponentInChildren<Image>().color = color;
+        background.color = color;
     }
+
+    public void SetColorAlpha(float alpha)
+    {
+        Color color = background.color;
+        color.a = alpha;
+        background.color = color;
+    }
+
+    public void SetSprite(Sprite sprite)
+    {
+        background.sprite = sprite;
+    }
+
 
     public void OnPointerClick(PointerEventData eventData)
     {
