@@ -921,6 +921,7 @@ GameObject:
   - component: {fileID: 7761890224479621231}
   - component: {fileID: 6503138398961979532}
   - component: {fileID: 8682650307272609117}
+  - component: {fileID: 1731345736438831165}
   m_Layer: 0
   m_Name: TrainingPage
   m_TagString: TrainingPanel
@@ -1001,7 +1002,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6781297655782877062}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a42300296ddc27459cae616a625f948, type: 3}
   m_Name: 
@@ -1020,6 +1021,27 @@ MonoBehaviour:
   numberOfTrainingsText: {fileID: 6547105054661640683}
   trainingTrialLengthDropdown: {fileID: 723961265265226902}
   tabNumber: 1
+--- !u!114 &1731345736438831165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6781297655782877062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f138fa4d47fecba408dfa64487c62eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerManager: {fileID: 0}
+  displayStartTrainingButton: {fileID: 7811218328463198375}
+  bciController: {fileID: 0}
+  countdownText: {fileID: 5261772732111196803}
+  audioSource: {fileID: 4840625657399549792}
+  countdownBeepFile: {fileID: 8300000, guid: ddcd871d37bfa47f196ee943171b3c28, type: 3}
+  startBeepFile: {fileID: 8300000, guid: 2ddee1a54c78d4dfc890876d4ebbacfc, type: 3}
+  numberOfCountdownSeconds: 3
+  startTrainingMessage: Go!
 --- !u!1 &7017384404677538513
 GameObject:
   m_ObjectHideFlags: 0
