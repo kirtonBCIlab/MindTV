@@ -918,7 +918,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5237582260207059104}
-  - component: {fileID: 7761890224479621231}
   - component: {fileID: 6503138398961979532}
   - component: {fileID: 8682650307272609117}
   - component: {fileID: 1731345736438831165}
@@ -949,32 +948,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -85}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7761890224479621231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6781297655782877062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 071e55a4e206ae0419e51a9b48784131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  neutral: {fileID: 0}
-  push: {fileID: 0}
-  pull: {fileID: 0}
-  lift: {fileID: 0}
-  drop: {fileID: 0}
-  actionText: {fileID: 0}
-  timer: {fileID: 0}
-  backButton: {fileID: 0}
-  MIController: {fileID: 0}
-  trainingOptionsFrame: {fileID: 2427269888656803534}
-  displayStartTrainingButton: {fileID: 7811218328463198375}
-  displayNumberOfTimesTrained: {fileID: 99085124579267812}
-  currentAction: Neutral
-  currentTrainingSessionTime: 0
 --- !u!114 &6503138398961979532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -995,6 +968,9 @@ MonoBehaviour:
   originalBaseSize: 100
   targetImageResolution: 512
   baseSizeSlider: {fileID: 7884532054514808890}
+  trainingOptionsFrame: {fileID: 2427269888656803534}
+  displayStartTrainingButton: {fileID: 7811218328463198375}
+  displayNumberOfTimesTrained: {fileID: 99085124579267812}
 --- !u!114 &8682650307272609117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2582,7 +2558,15 @@ PrefabInstance:
     - target: {fileID: 3605857118779427208, guid: 58fa52f6ed94bc9489174c81e35a7df5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7761890224479621231}
+      objectReference: {fileID: 6503138398961979532}
+    - target: {fileID: 3605857118779427208, guid: 58fa52f6ed94bc9489174c81e35a7df5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleInventoryVisibility
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605857118779427208, guid: 58fa52f6ed94bc9489174c81e35a7df5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TrainingPageManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4746054316194926086, guid: 58fa52f6ed94bc9489174c81e35a7df5, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

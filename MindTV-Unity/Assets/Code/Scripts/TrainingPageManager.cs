@@ -32,6 +32,10 @@ public class TrainingPageManager : MonoBehaviour
     public float originalBaseSize = 100.0f;
     public float targetImageResolution = 512f;
     public Slider baseSizeSlider;
+
+    [SerializeField] private GameObject trainingOptionsFrame;
+    [SerializeField] private GameObject displayStartTrainingButton;
+    [SerializeField] private GameObject displayNumberOfTimesTrained;
     private float currentBaseSize;
     private Vector3 originalPosition;
 
@@ -172,5 +176,28 @@ public class TrainingPageManager : MonoBehaviour
         tweener = _SPO.GetComponent<UITweener>();
         tweener.SetTweenFromString(animText);
         Debug.Log("end of method in stim manager");
+    }
+
+    //This is brought over from TrainingMenuController as one of 2 things I think I can see that is being used
+     public void HighlightSelectedSprite(GameObject inventorySlot)
+    {
+        GameObject[] inventory = GameObject.FindGameObjectsWithTag("InventorySlot");
+
+        foreach (GameObject slot in inventory)
+        {
+            GameObject frame = slot.transform.Find("Frame").gameObject;
+            frame.SetActive(false);
+        }
+
+        GameObject selectedFrame = inventorySlot.transform.Find("Frame").gameObject;
+        selectedFrame.SetActive(true);
+    }
+
+    //This is brought over from TrainingMenuController as one of 2 things I think I can see that is being used
+        public void ToggleInventoryVisibility()
+    {
+        trainingOptionsFrame.SetActive(!trainingOptionsFrame.activeSelf);
+        displayStartTrainingButton.SetActive(!displayStartTrainingButton.activeSelf);
+        displayNumberOfTimesTrained.SetActive(!displayNumberOfTimesTrained.activeSelf);
     }
 }
