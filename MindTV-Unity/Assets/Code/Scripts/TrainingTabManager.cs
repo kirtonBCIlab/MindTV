@@ -23,13 +23,13 @@ public class TrainingTabManager : MonoBehaviour
         MatchTabsToTrainingPages();
     }
 
-    public void OnDisable()
+    private void OnDisable()
     {
         // Remove listener to avoid dangling references (event is static and persists between scenes)
         TrainingPageManager.TrainingPrefsChanged -= MatchTabsToTrainingPages;
     }
 
-    public void MatchTabsToTrainingPages()
+    private void MatchTabsToTrainingPages()
     {
         Settings.User user = SettingsManager.Instance?.currentUser ?? new Settings.User();
         TabGroup tabGroup = GetComponent<TabGroup>() ?? new TabGroup();
