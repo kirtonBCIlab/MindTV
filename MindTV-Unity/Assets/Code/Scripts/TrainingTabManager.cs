@@ -14,7 +14,7 @@ using UnityEngine;
 /// </summary>
 public class TrainingTabManager : MonoBehaviour
 {
-    void Start()
+    private void Start()
     {
         // Subscribe to training pref changes
         TrainingPageManager.TrainingPrefsChanged += MatchTabsToTrainingPages;
@@ -23,13 +23,13 @@ public class TrainingTabManager : MonoBehaviour
         MatchTabsToTrainingPages();
     }
 
-    void OnDisable()
+    public void OnDisable()
     {
         // Remove listener to avoid dangling references (event is static and persists between scenes)
         TrainingPageManager.TrainingPrefsChanged -= MatchTabsToTrainingPages;
     }
 
-    void MatchTabsToTrainingPages()
+    public void MatchTabsToTrainingPages()
     {
         Settings.User user = SettingsManager.Instance?.currentUser ?? new Settings.User();
         TabGroup tabGroup = GetComponent<TabGroup>() ?? new TabGroup();
