@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Setup Videos
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e92290f643e5f274e9347f0aac42f26c, type: 2}
   m_sharedMaterial: {fileID: -6549346952791216184, guid: e92290f643e5f274e9347f0aac42f26c, type: 2}
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 70
   m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 1

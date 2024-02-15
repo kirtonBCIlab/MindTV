@@ -9,7 +9,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler,IPointerEnterHa
 
     [SerializeField] GameObject myTrainPanel;
 
-    [SerializeField] private StimulusManager stimulusManager;
+    [SerializeField] private TrainingPageManager stimulusManager;
     [SerializeField] private TrainingMenuController trainingMenuController;
     [SerializeField] private CursorManager cursor;
 
@@ -21,7 +21,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler,IPointerEnterHa
     {
         // canvas = transform.root.GetComponent<Canvas>();
         myTrainPanel = GameObject.FindGameObjectWithTag("TrainingPanel");
-        stimulusManager = myTrainPanel.GetComponent<StimulusManager>();
+        stimulusManager = myTrainPanel.GetComponent<TrainingPageManager>();
         trainingMenuController = myTrainPanel.GetComponent<TrainingMenuController>();
         trainingItem = this.GetComponentInChildren<TrainingItem>();
 
