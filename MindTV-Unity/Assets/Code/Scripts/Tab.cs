@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using TMPro;
 
 [RequireComponent(typeof(Image))]
 public class Tab : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,IPointerExitHandler
@@ -20,6 +21,11 @@ public class Tab : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,IPo
     {
         background = GetComponent<Image>();
         tabGroup.Subscribe(this);
+    }
+
+    public void SetLabel(string label)
+    {
+        GetComponentInChildren<TextMeshProUGUI>().text = label;
     }
 
     public void OnPointerClick(PointerEventData eventData)
