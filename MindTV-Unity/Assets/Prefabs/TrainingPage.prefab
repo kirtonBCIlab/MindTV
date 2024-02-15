@@ -741,6 +741,7 @@ MonoBehaviour:
   trainingLabelEntry: {fileID: 4196277328712209236}
   colorDropdown: {fileID: 1692768629864977372}
   animDropdown: {fileID: 49937838688829347}
+  activeTraining: {fileID: 7387829084505497599}
   originalBaseSize: 100
   targetImageResolution: 512
   baseSizeSlider: {fileID: 7884532054514808890}

@@ -16,7 +16,7 @@ public class Settings
         public int labelNumber;
         public string labelText;
         public string animationText;
-        public Color backgroundColor;
+        public Color backgroundColor = new Color(0.34117647f, 0.72156863f, 1.0f, 1.0f);
     }
 
     [System.Serializable]

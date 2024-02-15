@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
-/// TrainingTabManager is an egregious hack to update the training tabs to current settings
+/// TrainingTabManager is a hack to update the training tabs to current settings
 /// 
 /// This is necessary because TrainingPage and Tab objects are not in the same hierarchy, and
 /// creation order of the objects is hard to manage reliably.  There's probably a better way, but
@@ -19,13 +19,16 @@ public class TrainingTabManager : MonoBehaviour
         user = SettingsManager.Instance?.currentUser ?? new Settings.User();
     }
 
+    // TODO - this could be changed to a value change event of some kind, ex: currentUser changes
     void Update()
     {
         foreach (Tab tab in GameObject.Find("TabArea").GetComponent<TabGroup>().tabs)
         {
             // use tab index to look up correct training preference set
             Settings.TrainingPrefs prefs = user.trainingPrefs[tab.transform.GetSiblingIndex()];
+
             tab.SetLabel(prefs.labelText);
+            tab.SetColor(prefs.backgroundColor);
         }
     }
 

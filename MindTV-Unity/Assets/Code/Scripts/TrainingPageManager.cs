@@ -24,10 +24,7 @@ public class TrainingPageManager : MonoBehaviour
     public TMP_InputField trainingLabelEntry;
     public TMP_Dropdown colorDropdown;
     public TMP_Dropdown animDropdown;
-
-    private UITweener tweener;
-    private GameObject activeTraining;
-    private MIControllerBehavior controllerBehaviour;
+    public GameObject activeTraining;
 
     // Reference to training settings
     private Settings.TrainingPrefs trainingPrefs;
@@ -39,11 +36,15 @@ public class TrainingPageManager : MonoBehaviour
     private Vector3 originalPosition;
     public Slider baseSizeSlider;
 
+    private UITweener tweener;
+    private MIControllerBehavior controllerBehaviour;
+
+
     private void Start()
     {
         InitializeSettings();
-        InitializeListeners();
         InitializeViews();
+        InitializeListeners();
 
         // TODO - move this to a helper
         trainingController = GameObject.FindGameObjectWithTag("TrainingPanel").GetComponent<TrainingMenuController>();
@@ -54,103 +55,62 @@ public class TrainingPageManager : MonoBehaviour
         baseSizeSlider.value = currentBaseSize;
     }
 
+
     private void InitializeSettings()
     {
         // Use a dummy training preferences if the SettingsManager isn't available
         trainingPrefs = SettingsManager.Instance.currentUser.trainingPrefs[labelNumber] ?? new Settings.TrainingPrefs();
     }
 
-    private void InitializeListeners()
-    {
-        trainingLabelEntry.onEndEdit.AddListener(TrainingLabelChanged);
-
-        colorDropdown.onValueChanged.AddListener(SetSaveTrainingPageColor);
-    }
-
     private void InitializeViews()
     {
-        PresentTrainingLabel();
+        UpdateTrainingLabel();
+        UpdateTrainingPageColor();
+    }
 
-        // Set the color dropdown to the color of the training page
-        // SetTrainingPageColor(prefs.backgroundColor);
-
-        PresentTrainingPageColor();
+    private void InitializeListeners()
+    {
+        trainingLabelEntry.onEndEdit.AddListener(LabelChanged);
+        colorDropdown.onValueChanged.AddListener(ColorChanged);
     }
 
 
-    public void PresentTrainingLabel()
+
+    public void UpdateTrainingLabel()
     {
-        Debug.Log("updating training text");
         trainingLabelEntry.text = trainingPrefs.labelText;
     }
 
-    public void TrainingLabelChanged(string labelText)
+    public void LabelChanged(string labelText)
     {
         trainingPrefs.labelText = labelText;
-
-        // update the tabs also
     }
 
 
-    public void SetSaveTrainingPageColor(int colorIndex)
+    public void UpdateTrainingPageColor()
     {
-        // Persist the setting for color
-        if (SettingsManager.Instance != null)
-        {
-            Settings.User user = SettingsManager.Instance.currentUser;
-            string colorText = colorDropdown.options[colorIndex].text;
-            user.trainingPrefs[labelNumber].backgroundColor = ColorByName.colors[colorText];
-        }
-        else
-        {
-            Debug.LogWarning("SettingsManager not found");
-        }
-
-    }
-
-    public void PresentTrainingPageColor()
-    {
-
-        // //Set Color of Tabs
-        // foreach (Tab tab in GameObject.Find("TabArea").GetComponent<TabGroup>().tabs)
-        // {
-        //     // Look up our training preferences and apply to the view
-        //     Settings.TrainingPrefs prefs = SettingsManager.Instance.currentUser.trainingPrefs[tab.transform.GetSiblingIndex()];
-        //     tab.GetComponent<Image>().color = prefs.backgroundColor;
-        // }
-        // //Set color of Training Page
-        // Debug.Log("This is my sibling index: " + transform.GetSiblingIndex());
-        //transform.GetChild(0).gameObject.GetComponent<Image>().color = prefs.backgroundColor;
-
-    }
-
-    public void ChangeBackgroundColor()
-    {
-        // //Emily's way
-        // get the first transform game object in child
-        activeTraining = transform.GetChild(0).gameObject;
         Image imageComponent = activeTraining.GetComponent<Image>();
-        string colorText = colorDropdown.options[colorDropdown.value].text;
+        imageComponent.color = trainingPrefs.backgroundColor;
+    }
+
+    public void ColorChanged(int colorIndex)
+    {
+        // translate drop down text into a color and persist
+        string colorText = colorDropdown.options[colorIndex].text;
         Color color = ColorByName.colors[colorText];
-        //Alternative way to get the color name without needing a static ref, but using a scriptable object. Could be good for persisting changes.
-        //Color color = trainingPageSO.colors[colorText];
-        imageComponent.color = color;
-        //This is the lazy bad way to do it
-        // Set current tab's label to training label
-        TabGroup tabGroup = GameObject.Find("TabArea").GetComponent<TabGroup>();
-        tabGroup.MatchPageColor();
+        trainingPrefs.backgroundColor = color;
+
+        UpdateTrainingPageColor();
     }
 
 
-
-
-    //resets the position and scale of the traning object
+    // resets the position and scale of the traning object
     public void ResetSPO()
     {
         _SPO.transform.position = originalPosition;
     }
 
-    //changes the training object image property
+    // changes the training object image property
     public void SetTrainingObject(Sprite image_sprite)
     {
         ResetSPO();
@@ -180,7 +140,7 @@ public class TrainingPageManager : MonoBehaviour
         _SPO.transform.localScale = new Vector3(scaledSize, scaledSize, scaledSize);
     }
 
-    //changes the training object base size
+    // changes the training object base size
     public void ModifyBaseSizeWithSlider()
     {
         currentBaseSize = baseSizeSlider.value;
@@ -188,7 +148,7 @@ public class TrainingPageManager : MonoBehaviour
         SetBaseSize(currentBaseSize);
     }
 
-    //resets the base size
+    // resets the base size
     public void ResetBaseSize()
     {
         currentBaseSize = originalBaseSize;

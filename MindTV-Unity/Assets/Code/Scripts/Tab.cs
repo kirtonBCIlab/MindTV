@@ -28,6 +28,11 @@ public class Tab : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,IPo
         GetComponentInChildren<TextMeshProUGUI>().text = label;
     }
 
+    public void SetColor(Color color)
+    {
+        GetComponentInChildren<Image>().color = color;
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         tabGroup.OnTabSelected(this);
