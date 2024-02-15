@@ -85,6 +85,11 @@ public class TrainingPageManager : MonoBehaviour
     {
         Image imageComponent = activeTraining.GetComponent<Image>();
         imageComponent.color = trainingPrefs.backgroundColor;
+
+        // TODO - this should be a function offered by the dropdown
+        string colorName = ColorByName.NameForColor(trainingPrefs.backgroundColor);
+        int colorIndex = colorDropdown.options.FindIndex(name => name.text == colorName);
+        colorDropdown.value = colorIndex;
     }
 
     public void ColorChanged(int colorIndex)
@@ -105,6 +110,8 @@ public class TrainingPageManager : MonoBehaviour
     }
 
     // changes the training object image property
+    // TODO - this is coupled to InventorySlot, consider replacing an image changed event
+    // Then TrainingPageManager can decide what to do when the event happens.
     public void SetTrainingObject(Sprite image_sprite)
     {
         ResetSPO();

@@ -1769,17 +1769,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6781297655782877062, guid: a7c49757987f03047883032ca83726c7, type: 3}
   m_PrefabInstance: {fileID: 1818693749}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &750409891 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6503138398961979532, guid: a7c49757987f03047883032ca83726c7, type: 3}
-  m_PrefabInstance: {fileID: 1818693749}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 750409889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd9db78eaa559c24a9e39da14f80383f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &750409893 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5237582260207059104, guid: a7c49757987f03047883032ca83726c7, type: 3}
@@ -2229,33 +2218,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5237582260207059104, guid: a7c49757987f03047883032ca83726c7, type: 3}
   m_PrefabInstance: {fileID: 1912845159}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1053703545 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6503138398961979532, guid: a7c49757987f03047883032ca83726c7, type: 3}
-  m_PrefabInstance: {fileID: 1912845159}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1053703543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd9db78eaa559c24a9e39da14f80383f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1249314244 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6781297655782877062, guid: a7c49757987f03047883032ca83726c7, type: 3}
   m_PrefabInstance: {fileID: 1918996321}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1249314246 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6503138398961979532, guid: a7c49757987f03047883032ca83726c7, type: 3}
-  m_PrefabInstance: {fileID: 1918996321}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1249314244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd9db78eaa559c24a9e39da14f80383f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1249314248 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5237582260207059104, guid: a7c49757987f03047883032ca83726c7, type: 3}
@@ -3022,7 +2989,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -3035,7 +3006,7 @@ PrefabInstance:
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 750409891}
+      objectReference: {fileID: 2003526857}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -3044,6 +3015,10 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 2003526857}
+    - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -3054,7 +3029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeBackgroundColor
+      value: UpdateTabColor
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -3065,12 +3040,20 @@ PrefabInstance:
       value: ResetTabs
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TabGroup, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: TabGroup, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: TabGroup, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -3711,7 +3694,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -3724,7 +3711,7 @@ PrefabInstance:
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1053703545}
+      objectReference: {fileID: 2003526857}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -3733,6 +3720,10 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 2003526857}
+    - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -3743,7 +3734,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeBackgroundColor
+      value: UpdateTabColor
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -3754,12 +3745,20 @@ PrefabInstance:
       value: ResetTabs
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TabGroup, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: TabGroup, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: TabGroup, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -4400,7 +4399,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -4413,7 +4416,7 @@ PrefabInstance:
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1249314246}
+      objectReference: {fileID: 2003526857}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -4422,6 +4425,10 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 2003526857}
+    - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -4432,7 +4439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeBackgroundColor
+      value: UpdateTabColor
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -4443,12 +4450,20 @@ PrefabInstance:
       value: ResetTabs
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TabGroup, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: TabGroup, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: TabGroup, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -5480,7 +5495,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -5493,7 +5512,7 @@ PrefabInstance:
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 6557805468214364905}
+      objectReference: {fileID: 2003526857}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -5502,6 +5521,10 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 2003526857}
+    - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -5512,7 +5535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeBackgroundColor
+      value: UpdateTabColor
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -5523,12 +5546,20 @@ PrefabInstance:
       value: ResetTabs
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TabGroup, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: TabGroup, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: TabGroup, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1692768629864977372, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
