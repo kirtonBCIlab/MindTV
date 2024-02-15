@@ -12,6 +12,7 @@ public class Tab : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,IPo
     public TabGroup tabGroup;
 
     public Image background;
+    public int number;
     
     public UnityEvent onTabSelected;
     public UnityEvent onTabDeselected;
@@ -19,6 +20,7 @@ public class Tab : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,IPo
 
     void Start()
     {
+        number = transform.GetSiblingIndex();
         background = GetComponent<Image>();
         tabGroup.Subscribe(this);
     }

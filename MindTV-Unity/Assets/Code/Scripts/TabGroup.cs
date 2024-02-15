@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -30,6 +31,18 @@ public class TabGroup : MonoBehaviour
             tabs = new List<Tab>();
         }
         tabs.Add(tab);
+    }
+
+    public void SetTabAppearance(int number, string label, Color color)
+    {
+        if (tabs.Count > number)
+        {
+            // The tabs list may reflect the order shows in the hierarchy
+            // Find the correct tab by searching for tab number insead.
+            Tab tab = tabs.Find(tab => tab.number == number);
+            tab.SetLabel(label);
+            tab.SetColor(color);
+        }
     }
 
     public void OnTabEnter(Tab tab)
