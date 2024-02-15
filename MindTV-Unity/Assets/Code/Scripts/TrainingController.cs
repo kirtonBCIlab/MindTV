@@ -1,5 +1,6 @@
 using TMPro;
 using System.Collections;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 using BCIEssentials.Controllers;
@@ -21,9 +22,9 @@ public class TrainingController : MonoBehaviour
     [SerializeField] private string startTrainingMessage = "Go!"; // Text to display when training starts
     [SerializeField] private TMP_Text trainRemainingTimeText; // UI element to indicate the number of seconds remaining in training
     [SerializeField] private TMP_Text numberOfTrainingsText; // UI element to indicate number of trainings done
-    private float windowLength = 2.0f; // Window length in seconds
+    private float windowLength = 2.0f; // Window length in seconds for training. Set to 2 seconds. THIS IS WHERE YOU CHANGE WINDOW LENGTH IF NEEDED
     int windowCount = 3; // Number of windows per training
-    private float trainingLengthSeconds = 0.0f; // Total length of the training in seconds
+    private float trainingLengthSeconds; // Total length of the training in seconds
     // [SerializeField] TMP_Dropdown windowLengthDropdown; // Assign in the Inspector
     // [SerializeField] TMP_Dropdown windowCountDropdown; // Assign in the Inspector
     [SerializeField] TMP_Dropdown trainingTrialLengthDropdown; // Assign in the Inspector
@@ -42,7 +43,7 @@ public class TrainingController : MonoBehaviour
         //     numberOfTrainingsText.text = numberOfTrainingsDone.ToString();
         // }
 
-        // BCIController.ChangeBehavior(BCIBehaviorType.MI);
+        BCIController.ChangeBehavior(BCIBehaviorType.MI);
     }
 
     public void StartCountdown()
@@ -112,7 +113,7 @@ public class TrainingController : MonoBehaviour
         // Do the actual training
         // Anup: I turned this off to get around package issues
         Debug.Log("BCIController: Do Single Training (Currently off)");
-        // BCIController.WhileDoSingleTraining(trainingObjectSPO, windowLength, windowCount);
+        BCIController.WhileDoSingleTraining(trainingObjectSPO, windowLength, windowCount);
 
         // Wait to finish the training
         yield return new WaitForSeconds(trainingLengthSeconds);
@@ -125,10 +126,10 @@ public class TrainingController : MonoBehaviour
         UpdateTrainingWindowCount(windowCount);
 
         // Anup: I turned this off to get around package issues
-        // if (numberOfTrainingsDone >= 5) // Needs to be updated
-        // {
-        //     UpdateTheClassifier();
-        // }
+        if (numberOfTrainingsDone >= 5) // Needs to be updated
+        {
+            UpdateTheClassifier();
+        }
 
         yield return null;
     }
@@ -177,6 +178,36 @@ public class TrainingController : MonoBehaviour
         // bciController = bciController.GetComponent<BCIController>(); // Needs to be updated
     }
 
+    public void ChangeTrainingTrialLength()
+    {
+        // Get the string label of the TMP dropdown and convert it to a float
+        float targetTrialLengthSeconds = 0.0f;
+        string targetTrialLengthString = trainingTrialLengthDropdown.options[trainingTrialLengthDropdown.value].text;
+
+        // Use regex to find numbers followed by " s" in the string
+        Match match = Regex.Match(targetTrialLengthString, @"(\d+)\s*s");
+        if (match.Success)
+        {
+            // Convert the matched value to float
+            targetTrialLengthSeconds = float.Parse(match.Groups[1].Value);
+
+            // Use targetTrialLength as needed
+            Debug.Log("Extracted float value for Training Trial Length: " + targetTrialLengthSeconds);
+        }
+        else
+        {
+            Debug.Log("No matching numbers found in the string.");
+        }
+
+        // Calculate windowCount by dividing trainingLengthSeconds by windowLength, rounding the result, and converting to int
+        windowCount = Mathf.RoundToInt(targetTrialLengthSeconds / windowLength);
+
+        Debug.Log("windowCount is: " + windowCount + " for targetTrialLengthSeconds: " + targetTrialLengthSeconds + " using windowLength: " + windowLength);
+    }
+
+    // // Oudated code for changing window length and count – kept for reference.
+    // // Update with regex approach for retrieving values in dropdown strings in ChangeTrainingTrialLength()
+    // // Also requires uncommenting the TMP_Dropdown fields for WindowLength and WindowCount above and assigning them in the Inspector
     // public void ChangeWindowLength()
     // {
     //     // Get the string label of the TMP dropdown and convert it to a float
@@ -198,17 +229,4 @@ public class TrainingController : MonoBehaviour
 
     //     windowCount = (int)windowCountChar - 48;
     // }
-
-    public void ChangeTrainingTrialLength()
-    {
-        // Get the string label of the TMP dropdown and convert it to a float
-        string newTargetTrialLength = trainingTrialLengthDropdown.options[trainingTrialLengthDropdown.value].text;
-        print("newTargetTrialLength: " + newTargetTrialLength);
-        char targetTrialLengthChar = newTargetTrialLength[0];
-        // int targetWindowCount = 
-        print("targetTrialLengthChar: " + targetTrialLengthChar);
-
-        trainingLengthSeconds = (float)targetTrialLengthChar - 48.0f;
-        print("trainingLengthSeconds: " + trainingLengthSeconds);
-    }
 }
