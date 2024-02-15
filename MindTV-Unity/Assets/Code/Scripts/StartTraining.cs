@@ -7,7 +7,8 @@ using BCIEssentials.Controllers;
 public class StartTraining : MonoBehaviour
 {
     [SerializeField] private GameObject controllerManager;
-    [SerializeField] GameObject displayStartTrainingButton;
+    [SerializeField] private GameObject displayStartTrainingButton;
+    [SerializeField] private GameObject cancelCountdownButton;
     [SerializeField] private BCIController bciController;
     [SerializeField] private TMP_Text countdownText; // Assign in the Inspector
     [SerializeField] private AudioSource audioSource; // Assign in the Inspector
@@ -30,6 +31,7 @@ public class StartTraining : MonoBehaviour
     public void StartTrainingCountdown()
     {
         displayStartTrainingButton.SetActive(false);  // Hide the start training button
+        cancelCountdownButton.SetActive(true); // Show the cancel countdown button
         StartCoroutine(Countdown(numberOfCountdownSeconds));
     }
 

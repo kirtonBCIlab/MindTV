@@ -56,6 +56,37 @@ public class TrainingPageManager : MonoBehaviour
         baseSizeSlider.value = currentBaseSize;
     }
 
+    //SPO Toybox stuff
+    private void OnEnable()
+    {
+        SPOToyBox spoToyBox = FindObjectOfType<SPOToyBox>(); //We should set this up better, as there should only ever be one toybox.
+         // Check if there is an SPO in the SPOToyBox with the same ID as TabNumber
+        if (spoToyBox != null)
+        {
+            // Get the label number from the TrainingPage sibling index, same as what we use to save data
+            int labelNumber = transform.GetSiblingIndex();
+            if (spoToyBox.GetSPO(labelNumber) == null)
+            {
+                Debug.Log("SPO with ID " + labelNumber + " not found in SPOToyBox!");
+                // trainingObjectSPO = spoToyBox.GetSPO(tabNumber);
+            }
+            else
+            {
+                Destroy(_SPO); // Destroy the current SPO (if any)
+                _SPO = spoToyBox.GetSPO(labelNumber);
+            }
+            // {
+            //     // Destroy(trainingObjectSPO); // Destroy the current SPO (if any)
+            //     trainingObjectSPO = spoToyBox.GetSPO(tabNumber);
+            // }
+            // catch
+            // {
+            //     Debug.LogError("SPO with ID " + tabNumber + " not found in SPOToyBox!");
+            // }
+        }
+    }
+
+
     private void InitializeSettings()
     {
         // Use the TrainingPage sibling index as the "label number".  This is needed to choose the correct
