@@ -20,15 +20,20 @@ public class TrainingPageManager : MonoBehaviour
     public GameObject activeTraining;
     public GameObject _SPO;
 
+    // Event to signal when preferences have been changed
+    // TODO - this could be replaced with a scriptable object event where
+    // the settings then tell others when they have been changed.
+    public static event Action TrainingPrefsChanged;
+
     // Reference to training settings
     private Settings.TrainingPrefs trainingPrefs;
 
     //Exposing this so that we can change the base size of the training object
     public float originalBaseSize = 100.0f;
-    private float currentBaseSize;
     public float targetImageResolution = 512f;
-    private Vector3 originalPosition;
     public Slider baseSizeSlider;
+    private float currentBaseSize;
+    private Vector3 originalPosition;
 
     private UITweener tweener;
 
@@ -46,7 +51,6 @@ public class TrainingPageManager : MonoBehaviour
         _SPO.transform.localScale = new Vector3(currentBaseSize, currentBaseSize, currentBaseSize);
         baseSizeSlider.value = currentBaseSize;
     }
-
 
     private void InitializeSettings()
     {
@@ -78,6 +82,7 @@ public class TrainingPageManager : MonoBehaviour
     public void LabelChanged(string labelText)
     {
         trainingPrefs.labelText = labelText;
+        TrainingPrefsChanged();
     }
 
 
@@ -99,6 +104,7 @@ public class TrainingPageManager : MonoBehaviour
         Color color = ColorByName.colors[colorText];
         trainingPrefs.backgroundColor = color;
 
+        TrainingPrefsChanged();
         UpdateTrainingPageColor();
     }
 

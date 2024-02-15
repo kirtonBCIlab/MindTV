@@ -9,20 +9,19 @@ using UnityEngine.UI;
 public class TabGroup : MonoBehaviour
 {
     public List<Tab> tabs;
-    public Sprite tabIdle;
-    //public Color tabIdleColor;
-    public float tabIdleAlpha;
-    public Sprite tabHover;
-    //public Color tabHoverColor;
-    public float tabHoverAlpha;
-    public Sprite tabSelected;
-    //public Color tabSelectedColor;
-    public float tabSelectedAlpha;
-    public Tab selectedTab;
     public List<GameObject> objectsToSwap;
 
-    //Match the tab color to the page color if this is true
-    public bool matchPageColor;
+    public Tab selectedTab;
+
+    public Sprite tabIdle;
+    public float tabIdleAlpha;
+
+    public Sprite tabHover;
+    public float tabHoverAlpha;
+
+    public Sprite tabSelected;
+    public float tabSelectedAlpha;
+
 
     public void Subscribe(Tab tab)
     {
@@ -37,9 +36,10 @@ public class TabGroup : MonoBehaviour
     {
         if (tabs.Count > number)
         {
-            // The tabs list may reflect the order shows in the hierarchy
+            // The tabs list may not match the order shown in the hierarchy
             // Find the correct tab by searching for tab number insead.
             Tab tab = tabs.Find(tab => tab.number == number);
+
             tab.SetLabel(label);
             tab.SetColor(color);
         }
@@ -48,7 +48,7 @@ public class TabGroup : MonoBehaviour
     public void OnTabEnter(Tab tab)
     {
         ResetTabs();
-        if (selectedTab == null || tab !=selectedTab)
+        if (selectedTab == null || tab != selectedTab)
         {
             tab.background.sprite = tabHover;
             Color tempColor = tab.background.color;
@@ -87,39 +87,11 @@ public class TabGroup : MonoBehaviour
             }
         }
 
-        if (!matchPageColor)
-        {
-            tab.background.sprite = tabSelected;
-            Color tempColor = tab.background.color;
-            tempColor.a = tabSelectedAlpha;
-            tab.background.color = tempColor;
-            //tab.background.color = tabSelectedColor;
-        }
-        else
-        {
-            
-            tab.background.sprite = tabSelected;
-            MatchPageColor();
-        }
-
+        tab.background.sprite = tabSelected;
+        Color tempColor = tab.background.color;
+        tempColor.a = tabSelectedAlpha;
+        tab.background.color = tempColor;
     }
-
-    public void MatchPageColor()
-    {
-        if(selectedTab!=null)
-        {
-            for(int i=0; i<objectsToSwap.Count;i++)
-            {
-                if(i==selectedTab.transform.GetSiblingIndex())
-                {
-                    //Hardcoding this right now to the first child, and getting that image
-                    Color newTabcolor = objectsToSwap[i].GetComponentInChildren<Image>().color;
-                    selectedTab.background.color = newTabcolor;
-                }
-            }
-        }
-    }
-
 
     public void ResetTabs()
     {
@@ -130,30 +102,6 @@ public class TabGroup : MonoBehaviour
             Color tempColor = singleTab.background.color;
             tempColor.a = tabIdleAlpha;
             singleTab.background.color = tempColor;
-            //singleTab.background.color = tabIdleColor;
-        }
-    }
-
-    public void UpdateTabColor()
-    {
-        foreach(Tab singleTab in tabs)
-        {
-            if (singleTab == selectedTab)
-            {
-                singleTab.background.sprite = tabSelected;
-                //singleTab.background.color = tabSelectedColor;
-                Color tempColor = singleTab.background.color;
-                tempColor.a = tabSelectedAlpha;
-                singleTab.background.color = tempColor;
-            }
-            else
-            {
-                singleTab.background.sprite = tabIdle;
-                Color tempColor = singleTab.background.color;
-                tempColor.a = tabIdleAlpha;
-                singleTab.background.color = tempColor;
-                //singleTab.background.color = tabIdleColor;
-            }
         }
     }
 }

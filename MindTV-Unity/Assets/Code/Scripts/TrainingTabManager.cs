@@ -16,25 +16,27 @@ public class TrainingTabManager : MonoBehaviour
 {
     void Start()
     {
-        tabGroup = GetComponent<TabGroup>() ?? new TabGroup();
-        user = SettingsManager.Instance?.currentUser ?? new Settings.User();
+        // Subscribe to training pref changes
+        TrainingPageManager.TrainingPrefsChanged += MatchTabsToTrainingPages;
+
+        // Initial update to sync tabs to settings
+        MatchTabsToTrainingPages();
     }
 
-    // TODO - it would be more efficient to trigger this from an event, ex: Settings value change.
-    void Update()
+    void OnDisable()
     {
-        MatchTabsToTrainingPages();
+        // Remove listener to avoid dangling references (event is static and persists between scenes)
+        TrainingPageManager.TrainingPrefsChanged -= MatchTabsToTrainingPages;
     }
 
     void MatchTabsToTrainingPages()
     {
+        Settings.User user = SettingsManager.Instance?.currentUser ?? new Settings.User();
+        TabGroup tabGroup = GetComponent<TabGroup>() ?? new TabGroup();
+
         foreach (Settings.TrainingPrefs pref in user.trainingPrefs)
         {
             tabGroup.SetTabAppearance(pref.labelNumber, pref.labelText, pref.backgroundColor);
         }
     }
-
-    private Settings.User user;
-    private TabGroup tabGroup;
-
 }

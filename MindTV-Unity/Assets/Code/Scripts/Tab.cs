@@ -22,6 +22,7 @@ public class Tab : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,IPo
     {
         number = transform.GetSiblingIndex();
         background = GetComponent<Image>();
+
         tabGroup.Subscribe(this);
     }
 
