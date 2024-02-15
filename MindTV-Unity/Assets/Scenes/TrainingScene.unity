@@ -5702,7 +5702,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3079825590124124350, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 527
+      value: 1093.4
       objectReference: {fileID: 0}
     - target: {fileID: 3187574965659499038, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_AnchorMax.y
@@ -5984,6 +5984,14 @@ PrefabInstance:
       propertyPath: originalBaseSize
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 6584990047292338741, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_fontSize
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584990047292338741, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 6781297655782877062, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_Name
       value: TrainingPage
@@ -6130,7 +6138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7429747983885941564, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 500.15445
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7632372911726932335, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_AnchorMax.y
@@ -6222,7 +6230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8459759194923159030, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 263
+      value: 940.3
       objectReference: {fileID: 0}
     - target: {fileID: 8682650307272609117, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_Enabled
