@@ -31,15 +31,12 @@ public class TrainingController : MonoBehaviour
     private string trainingLabel;
     private int numberOfTrainingsDone = 0; // Number of trainings done
     private float uiUpdateDelay = 0.5f; // Delay for updating UI elements
+    [SerializeField] private int tabNumber = 1; // Assign in the Inspector
 
     private void Awake()
     {
         // if (bciController == null)
         // {
-        //     bciController = GameObject.FindGameObjectWithTag("BCIController");
-        //     // //Get the proper behaviour
-        //     // bciController.GetComponent<BCIController>().ChangeBehavior(MI);
-
         //     // FOR BRIAN: Number of trainings done set to 0
         //     numberOfTrainingsText.text = numberOfTrainingsDone.ToString();
         // }
@@ -48,16 +45,34 @@ public class TrainingController : MonoBehaviour
         ChangeTrainingTrialLength();  // Initialize the Training Trial Length to the default (first value in dropdown) – also sets animation duration
     }
 
-    // private void Start()
-    // {
-    //     // Initialize the uiTweener reference
-    //     uiTweener = trainingObjectSPO.GetComponent<UITweener>();
-    //     Debug.Log("UITweener: " + uiTweener);
-    //     if (uiTweener == null)
-    //     {
-    //         Debug.LogError("UITweener component not found on the trainingObjectSPO");
-    //     }
-    // }
+    private void OnEnable()
+    {
+        // Find the SPOToyBox object in the scene
+        SPOToyBox spoToyBox = FindObjectOfType<SPOToyBox>();
+
+        // Check if there is an SPO in the SPOToyBox with the same ID as TabNumber
+        if (spoToyBox != null)
+        {
+            if (spoToyBox.GetSPO(tabNumber) == null)
+            {
+                Debug.Log("SPO with ID " + tabNumber + " not found in SPOToyBox!");
+                // trainingObjectSPO = spoToyBox.GetSPO(tabNumber);
+            }
+            else
+            {
+                Destroy(trainingObjectSPO); // Destroy the current SPO (if any)
+                trainingObjectSPO = spoToyBox.GetSPO(tabNumber);
+            }
+            // {
+            //     // Destroy(trainingObjectSPO); // Destroy the current SPO (if any)
+            //     trainingObjectSPO = spoToyBox.GetSPO(tabNumber);
+            // }
+            // catch
+            // {
+            //     Debug.LogError("SPO with ID " + tabNumber + " not found in SPOToyBox!");
+            // }
+        }
+    }
 
     public void StartCountdown()
     {
@@ -108,11 +123,19 @@ public class TrainingController : MonoBehaviour
 
     IEnumerator StartTraining()
     {
+        // Find the SPOToyBox object in the scene
+        SPOToyBox spoToyBox = FindObjectOfType<SPOToyBox>();
+
         trainingLabel = trainingLabelInputField.text;
         if (string.IsNullOrEmpty(trainingLabel))
         {
             trainingLabel = "Unknown";
         }
+
+        // Assign the SPO object ID to be the same as the page number
+        // trainingObjectSPO.ObjectID = tabNumber;
+        spoToyBox.SetSPO(tabNumber, trainingObjectSPO, trainingLabel);
+
 
         Debug.Log("Starting training on label: " + trainingLabel);
 

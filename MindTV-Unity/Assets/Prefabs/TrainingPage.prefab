@@ -1033,6 +1033,7 @@ MonoBehaviour:
   trainRemainingTimeText: {fileID: 5822325519174262078}
   numberOfTrainingsText: {fileID: 6547105054661640683}
   trainingTrialLengthDropdown: {fileID: 723961265265226902}
+  tabNumber: 1
 --- !u!1 &7017384404677538513
 GameObject:
   m_ObjectHideFlags: 0
@@ -2349,7 +2350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23cafa84b15459e4d8aac0d7c6e83a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToAnimate: {fileID: 0}
+  objectToAnimate: {fileID: 6961159752734704938}
   animationTypes: 0
   duration: 1
   tweenXScale: 1.7
