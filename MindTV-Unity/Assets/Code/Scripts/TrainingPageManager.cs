@@ -59,7 +59,7 @@ public class TrainingPageManager : MonoBehaviour
     private void InitializeSettings()
     {
         // Use a dummy training preferences if the SettingsManager isn't available
-        trainingPrefs = SettingsManager.Instance.currentUser.trainingPrefs[labelNumber] ?? new Settings.TrainingPrefs();
+        trainingPrefs = SettingsManager.Instance?.currentUser.trainingPrefs[labelNumber] ?? new Settings.TrainingPrefs();
     }
 
     private void InitializeViews()
