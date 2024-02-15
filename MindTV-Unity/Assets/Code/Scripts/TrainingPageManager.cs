@@ -13,18 +13,12 @@ using UnityEngine.UI;
 
 public class TrainingPageManager : MonoBehaviour
 {
-    [SerializeField] private TrainingMenuController trainingController;
-    [SerializeField] private TMP_Text countDownText;
-    [SerializeField] private GameObject _SPO;
-
-    // This identifies which training tab
-    public int labelNumber;
-
     // UI elements within the TrainingPage prefab
     public TMP_InputField trainingLabelEntry;
     public TMP_Dropdown colorDropdown;
     public TMP_Dropdown animDropdown;
     public GameObject activeTraining;
+    public GameObject _SPO;
 
     // Reference to training settings
     private Settings.TrainingPrefs trainingPrefs;
@@ -37,7 +31,6 @@ public class TrainingPageManager : MonoBehaviour
     public Slider baseSizeSlider;
 
     private UITweener tweener;
-    private MIControllerBehavior controllerBehaviour;
 
 
     private void Start()
@@ -47,7 +40,6 @@ public class TrainingPageManager : MonoBehaviour
         InitializeListeners();
 
         // TODO - move this to a helper
-        trainingController = GameObject.FindGameObjectWithTag("TrainingPanel").GetComponent<TrainingMenuController>();
         originalPosition = _SPO.transform.position;
 
         currentBaseSize = originalBaseSize;
@@ -58,7 +50,9 @@ public class TrainingPageManager : MonoBehaviour
 
     private void InitializeSettings()
     {
-        // Use a dummy training preferences if the SettingsManager isn't available
+        // Use the TrainingPage sibling index as the "label number".  This is needed to choose the correct
+        // TrainingPrefs object from the data model.  Use a dummy TrainingPrefs if one is not found.
+        int labelNumber = transform.GetSiblingIndex();
         trainingPrefs = SettingsManager.Instance?.currentUser.trainingPrefs[labelNumber] ?? new Settings.TrainingPrefs();
     }
 
