@@ -444,8 +444,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7888363950616234549}
   m_HandleRect: {fileID: 6560203402770046818}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1546,6 +1546,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8230524269548771561, guid: 04511ab155f0ee4449fe83104b1aaeee, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230524269548771561, guid: 04511ab155f0ee4449fe83104b1aaeee, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
@@ -1741,7 +1745,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5760389634866556882, guid: 3006f798617c344d4925678409effa07, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5760389634866556882, guid: 3006f798617c344d4925678409effa07, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -1971,6 +1975,10 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 20eca70ee05352546b7062229f630b24, type: 3}
     - target: {fileID: 8230524269548771561, guid: 04511ab155f0ee4449fe83104b1aaeee, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230524269548771561, guid: 04511ab155f0ee4449fe83104b1aaeee, type: 3}
+      propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8230524269548771561, guid: 04511ab155f0ee4449fe83104b1aaeee, type: 3}
@@ -3025,6 +3033,10 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 4faa99d2f272b3b45bb7466de27b6217, type: 3}
     - target: {fileID: 8230524269548771561, guid: 04511ab155f0ee4449fe83104b1aaeee, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8230524269548771561, guid: 04511ab155f0ee4449fe83104b1aaeee, type: 3}
+      propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8230524269548771561, guid: 04511ab155f0ee4449fe83104b1aaeee, type: 3}

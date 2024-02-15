@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class OpenNewTrainingPage : MonoBehaviour,IPointerClickHandler,ISaveable
+public class OpenNewTrainingPage : MonoBehaviour, IPointerClickHandler
 {
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -29,16 +29,4 @@ public class OpenNewTrainingPage : MonoBehaviour,IPointerClickHandler,ISaveable
         newPage.transform.SetSiblingIndex(currentIndex);
 
     }
-
-    public void PopulateSaveData(SaveData saveData)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void LoadFromSaveData(SaveData saveData)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    
 }
