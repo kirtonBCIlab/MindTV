@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8557735629834088411}
   - component: {fileID: 2435490249206990059}
   - component: {fileID: 4196277328712209236}
-  - component: {fileID: 4531280665887381796}
   m_Layer: 0
   m_Name: LabelInputField
   m_TagString: Untagged
@@ -176,19 +175,6 @@ MonoBehaviour:
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
---- !u!114 &4531280665887381796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1382867503151639633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de3a52a311d55a946abf0000a44986d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tabGroup: {fileID: 0}
 --- !u!1 &2425419272025753464
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,11 +734,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9db78eaa559c24a9e39da14f80383f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainingController: {fileID: 7761890224479621231}
-  countDownText: {fileID: 0}
-  _SPO: {fileID: 6961159752734704938}
+  trainingLabelEntry: {fileID: 4196277328712209236}
   colorDropdown: {fileID: 1692768629864977372}
   animDropdown: {fileID: 49937838688829347}
+  activeTraining: {fileID: 7387829084505497599}
+  _SPO: {fileID: 6961159752734704938}
   originalBaseSize: 100
   targetImageResolution: 512
   baseSizeSlider: {fileID: 7884532054514808890}
@@ -1282,6 +1268,10 @@ PrefabInstance:
       value: Purple (Theme)
       objectReference: {fileID: 0}
     - target: {fileID: 1565890796465771936, guid: ed1b57bd12373de4999fc0c3184bdc38, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1565890796465771936, guid: ed1b57bd12373de4999fc0c3184bdc38, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6503138398961979532}
@@ -1360,6 +1350,10 @@ PrefabInstance:
     - target: {fileID: 2332163404655000908, guid: ed1b57bd12373de4999fc0c3184bdc38, type: 3}
       propertyPath: m_SortingLayer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2335172763101515423, guid: ed1b57bd12373de4999fc0c3184bdc38, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2368651828027505526, guid: ed1b57bd12373de4999fc0c3184bdc38, type: 3}
       propertyPath: m_ChildAlignment

@@ -23,7 +23,6 @@ public class StartTraining : MonoBehaviour
         if (bciController == null)
         {
             controllerManager = GameObject.FindGameObjectWithTag("ControllerManager");
-            Debug.Log("No BCI Controller Found. Assigning one now.");
             StartCoroutine(InitCoroutine());
         }
     }
@@ -70,7 +69,6 @@ public class StartTraining : MonoBehaviour
     private IEnumerator InitCoroutine()
     {
         yield return new WaitForEndOfFrame();
-        Debug.Log("Going to assign the value now to bciController for Start Training Button");
         // bciController = controllerManager.GetComponent<BCIController>();
     }
 }

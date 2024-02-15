@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class ColorByName
@@ -21,4 +22,13 @@ public static class ColorByName
         {"Purple (Theme)", new Color(0.3254902f, 0.21960784f, 0.57254902f, 1.0f)}
     };
 
+    public static string NameForColor(Color color)
+    {
+        string name = "Unknown";
+        if (ColorByName.colors.ContainsValue(color))
+        {
+            name = ColorByName.colors.FirstOrDefault(item => item.Value == color).Key;
+        }
+        return name;
+    }
 }
