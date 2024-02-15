@@ -23,14 +23,13 @@ public class UITweener : MonoBehaviour
 
     public UIAnimationTypes animationTypes;
 
-    public float duration = 1f;
+    public float duration = 2f;
     public float tweenXScale = 1.7f;
     public float tweenYScale = 1.7f;
     public float tweenZScale = 1.7f;
     public float tweenRotation = 360f;
     public bool tweenClockwiseRotation = true;
     public float bounceHeight = 100f;
-
     [SerializeField] private int numShakes = 8;
     [SerializeField] private float shakeSpeed = 0.05f;
     [SerializeField] private float shakeDistance = 3f;

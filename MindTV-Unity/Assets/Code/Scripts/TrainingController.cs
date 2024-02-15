@@ -30,6 +30,7 @@ public class TrainingController : MonoBehaviour
     [SerializeField] TMP_Dropdown trainingTrialLengthDropdown; // Assign in the Inspector
     private string trainingLabel;
     private int numberOfTrainingsDone = 0; // Number of trainings done
+    private float uiUpdateDelay = 0.5f; // Delay for updating UI elements
 
     private void Awake()
     {
@@ -43,8 +44,20 @@ public class TrainingController : MonoBehaviour
         //     numberOfTrainingsText.text = numberOfTrainingsDone.ToString();
         // }
 
-        BCIController.ChangeBehavior(BCIBehaviorType.MI);
+        // BCIController.ChangeBehavior(BCIBehaviorType.MI);
+        ChangeTrainingTrialLength();  // Initialize the Training Trial Length to the default (first value in dropdown) – also sets animation duration
     }
+
+    // private void Start()
+    // {
+    //     // Initialize the uiTweener reference
+    //     uiTweener = trainingObjectSPO.GetComponent<UITweener>();
+    //     Debug.Log("UITweener: " + uiTweener);
+    //     if (uiTweener == null)
+    //     {
+    //         Debug.LogError("UITweener component not found on the trainingObjectSPO");
+    //     }
+    // }
 
     public void StartCountdown()
     {
@@ -64,7 +77,7 @@ public class TrainingController : MonoBehaviour
 
     IEnumerator Countdown(int seconds)
     {
-        yield return new WaitForSeconds(0.5f); // Wait a bit before starting the countdown
+        yield return new WaitForSeconds(uiUpdateDelay); // Wait a bit before starting the countdown
 
         int count = seconds;
         while (count > 0)
@@ -84,7 +97,7 @@ public class TrainingController : MonoBehaviour
         StartCoroutine(StartTraining()); // Start the actual training
 
         // // Wait a bit before removing the countdown text
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1);  // Wait 1 second before removing the Countdown text (Length matches the startBeepFile length)
         countdownText.text = ""; // Clear the countdown text
     }
 
@@ -100,20 +113,35 @@ public class TrainingController : MonoBehaviour
         {
             trainingLabel = "Unknown";
         }
+
         Debug.Log("Starting training on label: " + trainingLabel);
 
         Debug.Log("SPO is " + trainingObjectSPO);
 
         float trainingLengthSeconds = windowCount * windowLength;
-        int trainingLengthSecondsInt = (int)trainingLengthSeconds;
+        // int trainingLengthSecondsInt = (int)trainingLengthSeconds;
 
-        // Start the timer for the training
-        StartCoroutine(TrainingTimer(trainingLengthSecondsInt));
+        // Update the length of the animation duration
+        Debug.Log("trainingObjectSPO.UITweener: Setting animation duration to " + trainingLengthSeconds);
+        // uiTweener.duration = trainingLengthSeconds;
+
 
         // Do the actual training
         // Anup: I turned this off to get around package issues
         Debug.Log("BCIController: Do Single Training (Currently off)");
-        BCIController.WhileDoSingleTraining(trainingObjectSPO, windowLength, windowCount);
+        // BCIController.WhileDoSingleTraining(trainingObjectSPO, windowLength, windowCount);
+
+        // Start the animation
+        UITweener uiTweener = trainingObjectSPO.GetComponent<UITweener>();
+        if (uiTweener != null)
+        {
+            uiTweener.HandleTween(); // Call the tween handling method for animation
+            Debug.Log("Calling trainingObjectSPO.UITweener.HandleTween() to start animation");
+        }
+
+        // Start the timer for the training
+        // StartCoroutine(TrainingTimer(trainingLengthSecondsInt));
+        StartCoroutine(TrainingTimer((int)trainingLengthSeconds));
 
         // Wait to finish the training
         yield return new WaitForSeconds(trainingLengthSeconds);
@@ -123,12 +151,14 @@ public class TrainingController : MonoBehaviour
         // bciController.ActiveBehavior.StartTraining(BCITrainingType.Iterative); // Needs to be updated
 
         // Update the number of trainings done with the windowCount
+        yield return new WaitForSeconds(uiUpdateDelay);
         UpdateTrainingWindowCount(windowCount);
 
         // Anup: I turned this off to get around package issues
         if (numberOfTrainingsDone >= 5) // Needs to be updated
         {
-            UpdateTheClassifier();
+            // UpdateTheClassifier();
+            Debug.Log("BCIController: Update Classifier (Currently off)");
         }
 
         yield return null;
@@ -165,7 +195,7 @@ public class TrainingController : MonoBehaviour
         trainRemainingTimeText.text = "0"; // Indicate that the training is complete
 
         // Wait a bit before clearing the training time text and re-showing the start button
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(uiUpdateDelay);
         trainRemainingTimeText.text = ""; // Clear the training time text
 
         startTrainingButton.SetActive(true); // Re-show the start button
@@ -203,6 +233,15 @@ public class TrainingController : MonoBehaviour
         windowCount = Mathf.RoundToInt(targetTrialLengthSeconds / windowLength);
 
         Debug.Log("windowCount is: " + windowCount + " for targetTrialLengthSeconds: " + targetTrialLengthSeconds + " using windowLength: " + windowLength);
+
+        // Update the length of the animation duration
+        // Access the UITweener script attached to the TrainingObjectSPO
+        UITweener uiTweener = trainingObjectSPO.GetComponent<UITweener>();
+        if (uiTweener != null)
+        {
+            uiTweener.duration = targetTrialLengthSeconds; // Update duration
+            Debug.Log("trainingObjectSPO.UITweener: Setting animation duration to " + targetTrialLengthSeconds);
+        }
     }
 
     // // Oudated code for changing window length and count – kept for reference.
