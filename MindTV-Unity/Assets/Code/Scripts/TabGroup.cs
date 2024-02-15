@@ -43,6 +43,7 @@ public class TabGroup : MonoBehaviour
             tab.SetLabel(label);
             tab.SetColor(color);
         }
+        ResetTabs();
     }
 
     public void OnTabEnter(Tab tab)
