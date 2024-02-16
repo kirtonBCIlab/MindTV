@@ -326,14 +326,14 @@ public class TrainingPageManager : MonoBehaviour
                     uiTweener.duration = targetTrialLengthSeconds; // Update duration
                     break;
                 case "Shake":
-                    uiTweener.duration = targetTrialLengthSeconds; // Update duration
-                    uiTweener.shakeSpeed = 1/(targetTrialLengthSeconds*4);
-                    uiTweener.numShakes = (int)targetTrialLengthSeconds*4;
+                    uiTweener.duration = (int)targetTrialLengthSeconds; // Update duration
+                    uiTweener.shakeSpeed = 0.25f; // This shake speed will do 8 shakes per 2 second window
+                    uiTweener.numShakes = (int)Math.Round(uiTweener.duration / uiTweener.shakeSpeed); // Scale the number of shakes to the target trial length
                     break;
                 case "Wiggle":
-                    uiTweener.numShakes = (int)targetTrialLengthSeconds;
-                    uiTweener.numWiggles = (int)targetTrialLengthSeconds*2;
-                    uiTweener.wiggleSpeed = targetTrialLengthSeconds/2;
+                    uiTweener.duration = (int)targetTrialLengthSeconds; // Update duration
+                    uiTweener.wiggleSpeed = 0.5f; // This wiggle speed will do 4 shakes per 2 second window
+                    uiTweener.numWiggles = (int)Math.Round(uiTweener.duration / uiTweener.wiggleSpeed); // Scale the number of wiggles to the target trial length
                     break;
                 default:
                     Debug.Log("No tween animation selected.");
