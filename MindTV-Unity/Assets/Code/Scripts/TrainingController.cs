@@ -17,6 +17,7 @@ public class TrainingController : MonoBehaviour
     [SerializeField] private AudioClip startBeepFile; // Assign in the Inspector
     private float countdownBeepVolume = 1f; // Example volume level for quiet beep
     private float startBeepVolume = 1f; // Example volume level for loud beep
+
     [SerializeField] private TMP_Text countdownText; // UI element to show number of seconds remaining in countdown before training starts
     [SerializeField] private int numberOfCountdownSeconds = 3; // Number of seconds to countdown from
     [SerializeField] private string startTrainingMessage = "Go!"; // Text to display when training starts
@@ -25,27 +26,22 @@ public class TrainingController : MonoBehaviour
     private float windowLength = 2.0f; // Window length in seconds for training. Set to 2 seconds. THIS IS WHERE YOU CHANGE WINDOW LENGTH IF NEEDED
     int windowCount = 3; // Number of windows per training
     private float trainingLengthSeconds; // Total length of the training in seconds
+
     // [SerializeField] TMP_Dropdown windowLengthDropdown; // Assign in the Inspector
     // [SerializeField] TMP_Dropdown windowCountDropdown; // Assign in the Inspector
     [SerializeField] TMP_Dropdown trainingTrialLengthDropdown; // Assign in the Inspector
     private string trainingLabel;
     private int numberOfTrainingsDone = 0; // Number of trainings done
     private float uiUpdateDelay = 0.5f; // Delay for updating UI elements
+
     [SerializeField] private int tabNumber = 1; // Assign in the Inspector
 
-    private void Awake()
+    void Start()
     {
-        // if (bciController == null)
-        // {
-        //     // FOR BRIAN: Number of trainings done set to 0
-        //     numberOfTrainingsText.text = numberOfTrainingsDone.ToString();
-        // }
-
-        // BCIController.ChangeBehavior(BCIBehaviorType.MI);
         ChangeTrainingTrialLength();  // Initialize the Training Trial Length to the default (first value in dropdown) – also sets animation duration
     }
 
-    private void OnEnable()
+    void OnEnable()
     {
         // Find the SPOToyBox object in the scene
         SPOToyBox spoToyBox = FindObjectOfType<SPOToyBox>();
@@ -237,7 +233,8 @@ public class TrainingController : MonoBehaviour
     {
         // Get the string label of the TMP dropdown and convert it to a float
         float targetTrialLengthSeconds = 0.0f;
-        string targetTrialLengthString = trainingTrialLengthDropdown.options[trainingTrialLengthDropdown.value].text;
+        int index = trainingTrialLengthDropdown.value;
+        string targetTrialLengthString = trainingTrialLengthDropdown.options[index].text;
 
         // Use regex to find numbers followed by " s" in the string
         Match match = Regex.Match(targetTrialLengthString, @"(\d+)\s*s");
@@ -268,29 +265,4 @@ public class TrainingController : MonoBehaviour
             Debug.Log("trainingObjectSPO.UITweener: Setting animation duration to " + targetTrialLengthSeconds);
         }
     }
-
-    // // Oudated code for changing window length and count – kept for reference.
-    // // Update with regex approach for retrieving values in dropdown strings in ChangeTrainingTrialLength()
-    // // Also requires uncommenting the TMP_Dropdown fields for WindowLength and WindowCount above and assigning them in the Inspector
-    // public void ChangeWindowLength()
-    // {
-    //     // Get the string label of the TMP dropdown and convert it to a float
-    //     string newWindowLength = windowLengthDropdown.options[windowLengthDropdown.value].text;
-    //     Debug.Log("newWindowLength: " + newWindowLength);
-    //     char windowLengthChar = newWindowLength[0];
-    //     Debug.Log("windowLengthChar: " + windowLengthChar);
-
-    //     windowLength = (float)windowLengthChar - 48.0f;
-    // }
-
-    // public void ChangeWindowCount()
-    // {
-    //     // Get the string label of the TMP dropdown and convert it to an int
-    //     string newWindowCount = windowCountDropdown.options[windowCountDropdown.value].text;
-    //     Debug.Log("newWindowCount: " + newWindowCount);
-    //     char windowCountChar = newWindowCount[0];
-    //     Debug.Log("windowCountChar: " + windowCountChar);
-
-    //     windowCount = (int)windowCountChar - 48;
-    // }
 }
