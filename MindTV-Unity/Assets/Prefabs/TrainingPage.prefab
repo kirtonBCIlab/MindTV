@@ -971,6 +971,7 @@ MonoBehaviour:
   trainingOptionsFrame: {fileID: 2427269888656803534}
   displayStartTrainingButton: {fileID: 7811218328463198375}
   displayNumberOfTimesTrained: {fileID: 99085124579267812}
+  trainNumberText: {fileID: 6169905974648477102}
 --- !u!114 &8682650307272609117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1010,14 +1011,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controllerManager: {fileID: 0}
-  displayStartTrainingButton: {fileID: 7811218328463198375}
+  startTrainingButton: {fileID: 7811218328463198375}
+  cancelCountdownButton: {fileID: 7421034662913614685}
   bciController: {fileID: 0}
+  trainingPageManager: {fileID: 6503138398961979532}
   countdownText: {fileID: 5261772732111196803}
   audioSource: {fileID: 4840625657399549792}
   countdownBeepFile: {fileID: 8300000, guid: ddcd871d37bfa47f196ee943171b3c28, type: 3}
   startBeepFile: {fileID: 8300000, guid: 2ddee1a54c78d4dfc890876d4ebbacfc, type: 3}
   numberOfCountdownSeconds: 3
   startTrainingMessage: Go!
+  trainRemainingTimeText: {fileID: 5822325519174262078}
 --- !u!1 &7017384404677538513
 GameObject:
   m_ObjectHideFlags: 0
@@ -3761,6 +3765,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8504948679883275487, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
   m_PrefabInstance: {fileID: 6947519794239380273}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6169905974648477102 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3888124603898891935, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
+  m_PrefabInstance: {fileID: 6947519794239380273}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6999384396112238217
 PrefabInstance:
   m_ObjectHideFlags: 0

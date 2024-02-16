@@ -65,7 +65,7 @@ public class StartTraining : MonoBehaviour
         PlayBeep(startBeepFile, startBeepVolume);
         // bciController.ActiveBehavior.StartTraining(BCITrainingType.Iterative); // Start the actual training
 
-        StartCoroutine(StartTraining()); // Start the actual training
+        StartCoroutine(StartMyTraining()); // Start the actual training
 
         // Wait a bit before removing the countdown text
         yield return new WaitForSeconds(1);
@@ -86,7 +86,7 @@ public class StartTraining : MonoBehaviour
         // bciController = controllerManager.GetComponent<BCIController>();
     }
 
-     IEnumerator StartTraining()
+     IEnumerator StartMyTraining()
     {
         // Find the SPOToyBox object in the scene
         SPOToyBox spoToyBox = FindObjectOfType<SPOToyBox>();
