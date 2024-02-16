@@ -2310,7 +2310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToAnimate: {fileID: 6961159752734704938}
   animationTypes: 0
-  duration: 1
+  duration: 2
   tweenXScale: 1.7
   tweenYScale: 1.7
   tweenZScale: 1.7
@@ -2318,10 +2318,10 @@ MonoBehaviour:
   tweenClockwiseRotation: 1
   bounceHeight: 100
   numShakes: 8
-  shakeSpeed: 0.05
+  shakeSpeed: 0.25
   shakeDistance: 3
   numWiggles: 4
-  wiggleSpeed: 0.1
+  wiggleSpeed: 0.5
   wiggleRotAngle: 45
   pingPong: 0
 --- !u!1001 &1510785026526365310
