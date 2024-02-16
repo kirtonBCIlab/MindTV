@@ -79,8 +79,12 @@ public class TrainingPageManager : MonoBehaviour
             else
             {
                 //TODO: I think this is trying to do pseudo-persistence, need to fix later.
-                Destroy(_SPO); // Destroy the current SPO (if any) - I don't understand what is happening here?
-                _SPO = spoToyBox.GetSPO(labelNumber); //I think this is trying to do pseudo-persistence, need to fix later.
+                // Destroy(_SPO); // Destroy the current SPO (if any) - I don't understand what is happening here? This is super problematic.
+                // _SPO = spoToyBox.GetSPO(labelNumber); //I think this is trying to do pseudo-persistence, need to fix later.
+
+                Debug.LogWarning("SPO with ID " + labelNumber + " found in SPOToyBox!");
+                //Should try to replace it but can't right now.
+
             }
         }
     }
@@ -254,6 +258,7 @@ public void UpdateNumberOfTrainingsDone(int newWindowCount)
         numberOfTrainingsDone += newWindowCount;
         trainNumberText.text = "Number of Trainings: " + numberOfTrainingsDone;
 
+        //This lives on TrainingPageArea and I don't know why....
         BessyTrainClassifier parentScript = GetComponentInParent<BessyTrainClassifier>();
         if (parentScript != null)
         {

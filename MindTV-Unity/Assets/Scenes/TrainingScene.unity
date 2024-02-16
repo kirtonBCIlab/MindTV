@@ -5317,6 +5317,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1874068026563440165}
+  - component: {fileID: 5278306933016064804}
   m_Layer: 0
   m_Name: TrainingPageArea
   m_TagString: Untagged
@@ -5324,6 +5325,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5278306933016064804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5278306933016064803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049cde9ec7e6440f18163aec2a2b65ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberTimesLabelsTrainedCount: []
+  finishTrainingButton: {fileID: 0}
+  minWindowsPerClass: 5
+  minClasses: 2
 --- !u!224 &6557805468214364903 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5237582260207059104, guid: a7c49757987f03047883032ca83726c7, type: 3}

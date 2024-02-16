@@ -194,6 +194,8 @@ public class TrainingController : MonoBehaviour
 
         // Find the BessyTrainClassifier script in the parent and call CheckTotalTrainingWindows
         // This will show the Finish Training button if the conditions are met
+
+        //This lives on TrainingPageArea and I don't know why....
         BessyTrainClassifier parentScript = GetComponentInParent<BessyTrainClassifier>();
         if (parentScript != null)
         {
