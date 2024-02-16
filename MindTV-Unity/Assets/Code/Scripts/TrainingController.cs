@@ -61,7 +61,7 @@ public class TrainingController : MonoBehaviour
             else
             {
                 Destroy(trainingObjectSPO); // Destroy the current SPO (if any)
-                trainingObjectSPO = spoToyBox.GetSPO(tabNumber);
+                // trainingObjectSPO = spoToyBox.GetSPO(tabNumber);
             }
             // {
             //     // Destroy(trainingObjectSPO); // Destroy the current SPO (if any)
@@ -134,7 +134,7 @@ public class TrainingController : MonoBehaviour
 
         // Assign the SPO object ID to be the same as the page number
         // trainingObjectSPO.ObjectID = tabNumber;
-        spoToyBox.SetSPO(tabNumber, trainingObjectSPO, trainingLabel);
+        spoToyBox.SetSPO(tabNumber, trainingObjectSPO.GetComponentInParent<GameObject>(), trainingLabel);
 
 
         Debug.Log("Starting training on label: " + trainingLabel);

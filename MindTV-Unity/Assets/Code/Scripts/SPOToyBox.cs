@@ -7,7 +7,7 @@ using BCIEssentials.StimulusObjects;
 public class SPOToyBox : MonoBehaviour
 {
     [SerializeField]
-    private IDictionary<int, SPO> spoObjectDictionary = new Dictionary<int, SPO>();
+    private IDictionary<int, GameObject> spoObjectDictionary = new Dictionary<int, GameObject>();
     [SerializeField]
     private IDictionary<int, string> spoLabelDictionary = new Dictionary<int, string>();
     
@@ -28,7 +28,7 @@ public class SPOToyBox : MonoBehaviour
     // Each SPO has a unique ID from training and maybe a label
 
     // Add SPO - run this method when a new SPO is trained
-    public void SetSPO(int spoID, SPO spoObject, string spoLabel)
+    public void SetSPO(int spoID, GameObject spoObject, string spoLabel)
     {
         print("Setting SPO with ID " + spoID + " and label " + spoLabel);
         // if that spoID already exists, remove it
@@ -45,7 +45,7 @@ public class SPOToyBox : MonoBehaviour
     // Remove SPO - is this needed?
 
     // Get SPO 
-    public SPO GetSPO(int spoID)
+    public GameObject GetSPO(int spoID)
     {
         // if the spoID does not exist, return null
         if (!spoObjectDictionary.ContainsKey(spoID))

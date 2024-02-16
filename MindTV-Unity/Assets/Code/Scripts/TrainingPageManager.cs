@@ -41,6 +41,12 @@ public class TrainingPageManager : MonoBehaviour
 
     private UITweener tweener;
 
+    //Variables dealing with Training Window Settings
+    private int windowCount;
+    private float windowLength;
+    private int numberOfTrainingsDone;
+
+    [SerializeField] public TMP_Text trainNumberText;
 
     private void Start()
     {
@@ -68,21 +74,14 @@ public class TrainingPageManager : MonoBehaviour
             if (spoToyBox.GetSPO(labelNumber) == null)
             {
                 Debug.Log("SPO with ID " + labelNumber + " not found in SPOToyBox!");
-                // trainingObjectSPO = spoToyBox.GetSPO(tabNumber);
+                // trainingObjectSPO = spoToyBox.GetSPO(labelNumber);
             }
             else
             {
-                Destroy(_SPO); // Destroy the current SPO (if any)
-                _SPO = spoToyBox.GetSPO(labelNumber);
+                //TODO: I think this is trying to do pseudo-persistence, need to fix later.
+                Destroy(_SPO); // Destroy the current SPO (if any) - I don't understand what is happening here?
+                _SPO = spoToyBox.GetSPO(labelNumber); //I think this is trying to do pseudo-persistence, need to fix later.
             }
-            // {
-            //     // Destroy(trainingObjectSPO); // Destroy the current SPO (if any)
-            //     trainingObjectSPO = spoToyBox.GetSPO(tabNumber);
-            // }
-            // catch
-            // {
-            //     Debug.LogError("SPO with ID " + tabNumber + " not found in SPOToyBox!");
-            // }
         }
     }
 
@@ -118,6 +117,11 @@ public class TrainingPageManager : MonoBehaviour
     {
         trainingPrefs.labelText = labelText;
         TrainingPrefsChanged();
+    }
+
+    public string GetTrainingLabel()
+    {
+        return trainingPrefs.labelText;
     }
 
 
@@ -160,6 +164,12 @@ public class TrainingPageManager : MonoBehaviour
 
         // If we want the newly set image to be reset to the original size, use this: (uncomment the line below)
         ResetBaseSize();
+    }
+
+    // gets the training object
+    public GameObject GetTrainingObject()
+    {
+        return _SPO;
     }
 
 
@@ -207,6 +217,52 @@ public class TrainingPageManager : MonoBehaviour
         tweener = _SPO.GetComponent<UITweener>();
         tweener.SetTweenFromString(animText);
         Debug.Log("end of method in stim manager");
+    }
+
+    public void SetWindowCount(float count)
+    {
+        windowCount = (int)count;
+    }
+
+    public void SetWindowLength(float length)
+    {
+        windowLength = length;
+    }
+
+    public int GetWindowCount()
+    {
+        return windowCount;
+    }
+
+    public float GetWindowLength()
+    {
+        return windowLength;
+    }
+
+    public void SetNumberOfTrainingsDone(int number)
+    {
+        numberOfTrainingsDone = number;
+    }
+
+    public int GetNumberOfTrainingsDone()
+    {
+        return numberOfTrainingsDone;
+    }
+
+public void UpdateNumberOfTrainingsDone(int newWindowCount)
+    {
+        numberOfTrainingsDone += newWindowCount;
+        trainNumberText.text = "Number of Trainings: " + numberOfTrainingsDone;
+
+        BessyTrainClassifier parentScript = GetComponentInParent<BessyTrainClassifier>();
+        if (parentScript != null)
+        {
+            parentScript.CheckTotalTrainingWindows();
+        }
+        else
+        {
+            Debug.LogError("BessyTrainClassifier script not found on parent!");
+        }
     }
 
     //This is brought over from TrainingMenuController as one of 2 things I think I can see that is being used
