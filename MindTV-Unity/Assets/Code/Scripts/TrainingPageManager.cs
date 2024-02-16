@@ -4,12 +4,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
-using UnityEditor.Tilemaps;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
+using System.Text.RegularExpressions;
 
 public class TrainingPageManager : MonoBehaviour
 {
@@ -32,11 +29,25 @@ public class TrainingPageManager : MonoBehaviour
     public float originalBaseSize = 100.0f;
     public float targetImageResolution = 512f;
     public Slider baseSizeSlider;
+
+    [SerializeField] private GameObject trainingOptionsFrame;
+    [SerializeField] private GameObject displayStartTrainingButton;
+    [SerializeField] private GameObject displayNumberOfTimesTrained;
+    [SerializeField] private TMP_Dropdown trialLengthDropdown;
     private float currentBaseSize;
     private Vector3 originalPosition;
 
     private UITweener tweener;
 
+    //Variables dealing with Training Window Settings
+    [SerializeField]
+    private int windowCount = 3;
+    [SerializeField]
+    private float windowLength = 2.0f;
+    [SerializeField]
+    private int numberOfTrainingsDone;
+
+    [SerializeField] public TMP_Text trainNumberText;
 
     private void Start()
     {
@@ -50,7 +61,38 @@ public class TrainingPageManager : MonoBehaviour
         currentBaseSize = originalBaseSize;
         _SPO.transform.localScale = new Vector3(currentBaseSize, currentBaseSize, currentBaseSize);
         baseSizeSlider.value = currentBaseSize;
+
+        //This shouldn't be here - this handles changing the trial length information.
+        ChangeTrainingTrialLength();
     }
+
+    //SPO Toybox stuff
+    private void OnEnable()
+    {
+        SPOToyBox spoToyBox = FindObjectOfType<SPOToyBox>(); //We should set this up better, as there should only ever be one toybox.
+         // Check if there is an SPO in the SPOToyBox with the same ID as TabNumber
+        if (spoToyBox != null)
+        {
+            // Get the label number from the TrainingPage sibling index, same as what we use to save data
+            int labelNumber = transform.GetSiblingIndex();
+            if (spoToyBox.GetSPO(labelNumber) == null)
+            {
+                Debug.Log("SPO with ID " + labelNumber + " not found in SPOToyBox!");
+                // trainingObjectSPO = spoToyBox.GetSPO(labelNumber);
+            }
+            else
+            {
+                //TODO: I think this is trying to do pseudo-persistence, need to fix later.
+                // Destroy(_SPO); // Destroy the current SPO (if any) - I don't understand what is happening here? This is super problematic.
+                // _SPO = spoToyBox.GetSPO(labelNumber); //I think this is trying to do pseudo-persistence, need to fix later.
+
+                Debug.LogWarning("SPO with ID " + labelNumber + " found in SPOToyBox!");
+                //Should try to replace it but can't right now.
+
+            }
+        }
+    }
+
 
     private void InitializeSettings()
     {
@@ -83,6 +125,11 @@ public class TrainingPageManager : MonoBehaviour
     {
         trainingPrefs.labelText = labelText;
         TrainingPrefsChanged();
+    }
+
+    public string GetTrainingLabel()
+    {
+        return trainingPrefs.labelText;
     }
 
 
@@ -125,6 +172,12 @@ public class TrainingPageManager : MonoBehaviour
 
         // If we want the newly set image to be reset to the original size, use this: (uncomment the line below)
         ResetBaseSize();
+    }
+
+    // gets the training object
+    public GameObject GetTrainingObject()
+    {
+        return _SPO;
     }
 
 
@@ -172,5 +225,144 @@ public class TrainingPageManager : MonoBehaviour
         tweener = _SPO.GetComponent<UITweener>();
         tweener.SetTweenFromString(animText);
         Debug.Log("end of method in stim manager");
+    }
+
+    public void SetWindowCount(float count)
+    {
+        windowCount = (int)count;
+    }
+
+    public void SetWindowLength(float length)
+    {
+        windowLength = length;
+    }
+
+    public int GetWindowCount()
+    {
+        return windowCount;
+    }
+
+    public float GetWindowLength()
+    {
+        return windowLength;
+    }
+
+    public void SetNumberOfTrainingsDone(int number)
+    {
+        numberOfTrainingsDone = number;
+    }
+
+    public int GetNumberOfTrainingsDone()
+    {
+        return numberOfTrainingsDone;
+    }
+
+    public void UpdateNumberOfTrainingsDone(int newWindowCount)
+    {
+        numberOfTrainingsDone += newWindowCount;
+        Debug.Log("Current number of trainings done: " + numberOfTrainingsDone);
+        trainNumberText.text = "Number of Trainings: " + numberOfTrainingsDone;
+
+        //This lives on TrainingPageArea and I don't know why....
+        BessyTrainClassifier parentScript = GetComponentInParent<BessyTrainClassifier>();
+        if (parentScript != null)
+        {
+            parentScript.CheckTotalTrainingWindows();
+        }
+        else
+        {
+            Debug.LogError("BessyTrainClassifier script not found on parent!");
+        }
+    }
+
+    public void ChangeTrainingTrialLength()
+    {
+        // Get the string label of the TMP dropdown and convert it to a float
+        //This should be done in the SaveTrainingPrefs way
+        float targetTrialLengthSeconds = 0.0f;
+        string targetTrialLengthString = trialLengthDropdown.options[trialLengthDropdown.value].text;
+
+        // Use regex to find numbers followed by " s" in the string
+        //I don't like how this is done, but it's what we have for now
+        Match match = Regex.Match(targetTrialLengthString, @"(\d+)\s*s");
+        if (match.Success)
+        {
+            // Convert the matched value to float
+            targetTrialLengthSeconds = float.Parse(match.Groups[1].Value);
+
+            // Use targetTrialLength as needed
+            Debug.Log("Extracted float value for Training Trial Length: " + targetTrialLengthSeconds);
+        }
+        else
+        {
+            Debug.Log("No matching numbers found in the string.");
+        }
+
+        // Calculate windowCount by dividing trainingLengthSeconds by windowLength, rounding the result, and converting to int
+        windowCount = Mathf.RoundToInt(targetTrialLengthSeconds / windowLength);
+
+        Debug.Log("windowCount is: " + windowCount + " for targetTrialLengthSeconds: " + targetTrialLengthSeconds + " using windowLength: " + windowLength);
+
+        // Update the length of the animation duration
+        // Access the UITweener script attached to the TrainingObjectSPO
+        UITweener uiTweener = _SPO.GetComponent<UITweener>();
+        if (uiTweener != null)
+        {
+            string tweenAnimation = uiTweener.GetTweenAnimation();
+            Debug.Log("TrainingObjectSPO.UITweener: Tween animation is " + tweenAnimation);
+            switch (tweenAnimation)
+            {
+                case "Bounce":
+                    uiTweener.duration = targetTrialLengthSeconds; // Update duration
+                    Debug.Log("trainingObjectSPO.UITweener: Setting animation duration to " + targetTrialLengthSeconds);
+                    break;
+                case "Rotate":
+                    uiTweener.duration = targetTrialLengthSeconds; // Update duration
+                    break;
+                case "RotatePunch":
+                    uiTweener.duration = targetTrialLengthSeconds; // Update duration
+                    break;
+                case "Grow":
+                    uiTweener.duration = targetTrialLengthSeconds; // Update duration
+                    break;
+                case "Shake":
+                    uiTweener.duration = (int)targetTrialLengthSeconds; // Update duration
+                    uiTweener.shakeSpeed = 0.25f; // This shake speed will do 8 shakes per 2 second window
+                    uiTweener.numShakes = (int)Math.Round(uiTweener.duration / uiTweener.shakeSpeed); // Scale the number of shakes to the target trial length
+                    break;
+                case "Wiggle":
+                    uiTweener.duration = (int)targetTrialLengthSeconds; // Update duration
+                    uiTweener.wiggleSpeed = 0.5f; // This wiggle speed will do 4 shakes per 2 second window
+                    uiTweener.numWiggles = (int)Math.Round(uiTweener.duration / uiTweener.wiggleSpeed); // Scale the number of wiggles to the target trial length
+                    break;
+                default:
+                    Debug.Log("No tween animation selected.");
+                    break;
+            }
+        }
+    }
+
+
+    //This is brought over from TrainingMenuController as one of 2 things I think I can see that is being used
+     public void HighlightSelectedSprite(GameObject inventorySlot)
+    {
+        GameObject[] inventory = GameObject.FindGameObjectsWithTag("InventorySlot");
+
+        foreach (GameObject slot in inventory)
+        {
+            GameObject frame = slot.transform.Find("Frame").gameObject;
+            frame.SetActive(false);
+        }
+
+        GameObject selectedFrame = inventorySlot.transform.Find("Frame").gameObject;
+        selectedFrame.SetActive(true);
+    }
+
+    //This is brought over from TrainingMenuController as one of 2 things I think I can see that is being used
+        public void ToggleInventoryVisibility()
+    {
+        trainingOptionsFrame.SetActive(!trainingOptionsFrame.activeSelf);
+        displayStartTrainingButton.SetActive(!displayStartTrainingButton.activeSelf);
+        displayNumberOfTimesTrained.SetActive(!displayNumberOfTimesTrained.activeSelf);
     }
 }
