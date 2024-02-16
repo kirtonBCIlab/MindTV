@@ -106,7 +106,7 @@ public class SettingsManager : MonoBehaviour
 
     private void InitializeSettings()
     {
-        // Settings will contain any the User objects loaded from disk
+        // Settings will contain any User objects loaded from disk
         settings = new Settings();
 
         // Start with a default User (default settings)
@@ -118,12 +118,12 @@ public class SettingsManager : MonoBehaviour
         // If there isn't already an instance of the SettingsManager, then create a
         // game object with a SettingsManager component.  The game object will call 
         // SettingsManager.Awake() which completes the initialization.
-        privateInstance = FindObjectOfType<SettingsManager>();
-        if (privateInstance == null)
+        SettingsManager instance = FindObjectOfType<SettingsManager>();
+        if (instance == null)
         {
             GameObject go = new GameObject();
             go.name = "SettingsManager Singleton";
-            privateInstance = go.AddComponent<SettingsManager>();
+            go.AddComponent<SettingsManager>();
             DontDestroyOnLoad(go);
         }
     }
