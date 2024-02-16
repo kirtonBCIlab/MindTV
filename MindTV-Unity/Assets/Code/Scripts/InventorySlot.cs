@@ -9,8 +9,8 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler,IPointerEnterHa
 
     [SerializeField] GameObject myTrainPanel;
 
-    [SerializeField] private TrainingPageManager stimulusManager;
-    [SerializeField] private TrainingMenuController trainingMenuController;
+    [SerializeField] private TrainingPageManager trainingPageManager;
+
     [SerializeField] private CursorManager cursor;
 
     [SerializeField] private TrainingItem trainingItem; // Contains information about the sprite inside the selected slot
@@ -21,19 +21,18 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler,IPointerEnterHa
     {
         // canvas = transform.root.GetComponent<Canvas>();
         myTrainPanel = GameObject.FindGameObjectWithTag("TrainingPanel");
-        stimulusManager = myTrainPanel.GetComponent<TrainingPageManager>();
-        trainingMenuController = myTrainPanel.GetComponent<TrainingMenuController>();
+        trainingPageManager = myTrainPanel.GetComponent<TrainingPageManager>();
         trainingItem = this.GetComponentInChildren<TrainingItem>();
 
         // When the inventory slot is clicked the sprite of the training object is assigned to the selected sprite and the slot is highlighted
-        // slotButton.onClick.AddListener(() => stimulusManager.SetTrainingObject(trainingItem.sprite));
+        // slotButton.onClick.AddListener(() => trainingPageManager.SetTrainingObject(trainingItem.sprite));
         // slotButton.onClick.AddListener(() => trainingMenuController.HighlightSelectedSprite(gameObject));
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        stimulusManager.SetTrainingObject(trainingItem.sprite);
-        trainingMenuController.HighlightSelectedSprite(gameObject);
+        trainingPageManager.SetTrainingObject(trainingItem.sprite);
+        trainingPageManager.HighlightSelectedSprite(gameObject);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

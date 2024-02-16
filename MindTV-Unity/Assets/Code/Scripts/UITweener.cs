@@ -23,21 +23,20 @@ public class UITweener : MonoBehaviour
 
     public UIAnimationTypes animationTypes;
 
-    public float duration = 1f;
+    public float duration = 2f;
     public float tweenXScale = 1.7f;
     public float tweenYScale = 1.7f;
     public float tweenZScale = 1.7f;
     public float tweenRotation = 360f;
     public bool tweenClockwiseRotation = true;
     public float bounceHeight = 100f;
+    public int numShakes = 8;
+    public float shakeSpeed = 0.05f;
+    public float shakeDistance = 3f;
 
-    [SerializeField] private int numShakes = 8;
-    [SerializeField] private float shakeSpeed = 0.05f;
-    [SerializeField] private float shakeDistance = 3f;
-
-    [SerializeField] private int numWiggles = 4;
-    [SerializeField] private float wiggleSpeed = 0.1f;
-    [SerializeField] private float wiggleRotAngle = 45f;
+    public int numWiggles = 4;
+    public float wiggleSpeed = 0.1f;
+    public float wiggleRotAngle = 45f;
 
     private Transform _origTransform;
 
@@ -118,7 +117,7 @@ public class UITweener : MonoBehaviour
     // }
     public void BounceAnim()
     {
-        _tweenObject = LeanTween.moveLocalY(objectToAnimate, objectToAnimate.transform.position.y + bounceHeight, duration).setEase(LeanTweenType.punch);
+        _tweenObject = LeanTween.moveLocalY(objectToAnimate, objectToAnimate.transform.position.y - bounceHeight, duration).setEase(LeanTweenType.punch);
     }
 
     public void RotateAnim()
@@ -169,6 +168,10 @@ public class UITweener : MonoBehaviour
         objectToAnimate.transform.SetPositionAndRotation(_origTransform.position, _origTransform.rotation);
     }
 
+    public string GetTweenAnimation()
+    {
+        return animationTypes.ToString();
+    }
 
     public void StopTween()
     {
