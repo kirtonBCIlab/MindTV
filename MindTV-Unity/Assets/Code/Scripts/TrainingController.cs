@@ -29,17 +29,17 @@ public class TrainingController : MonoBehaviour
 
     // [SerializeField] TMP_Dropdown windowLengthDropdown; // Assign in the Inspector
     // [SerializeField] TMP_Dropdown windowCountDropdown; // Assign in the Inspector
-    [SerializeField] TMP_Dropdown trainingTrialLengthDropdown; // Assign in the Inspector
+    // [SerializeField] TMP_Dropdown trainingTrialLengthDropdown; // Assign in the Inspector
     private string trainingLabel;
     private int numberOfTrainingsDone = 0; // Number of trainings done
     private float uiUpdateDelay = 0.5f; // Delay for updating UI elements
 
     [SerializeField] private int tabNumber = 1; // Assign in the Inspector
 
-    void Start()
-    {
-        ChangeTrainingTrialLength();  // Initialize the Training Trial Length to the default (first value in dropdown) – also sets animation duration
-    }
+    // void Start()
+    // {
+    //     ChangeTrainingTrialLength();  // Initialize the Training Trial Length to the default (first value in dropdown) – also sets animation duration
+    // }
 
     void OnEnable()
     {
@@ -229,40 +229,40 @@ public class TrainingController : MonoBehaviour
         // bciController = bciController.GetComponent<BCIController>(); // Needs to be updated
     }
 
-    public void ChangeTrainingTrialLength()
-    {
-        // Get the string label of the TMP dropdown and convert it to a float
-        float targetTrialLengthSeconds = 0.0f;
-        int index = trainingTrialLengthDropdown.value;
-        string targetTrialLengthString = trainingTrialLengthDropdown.options[index].text;
+    // public void ChangeTrainingTrialLength()
+    // {
+    //     // Get the string label of the TMP dropdown and convert it to a float
+    //     float targetTrialLengthSeconds = 0.0f;
+    //     int index = trainingTrialLengthDropdown.value;
+    //     string targetTrialLengthString = trainingTrialLengthDropdown.options[index].text;
 
-        // Use regex to find numbers followed by " s" in the string
-        Match match = Regex.Match(targetTrialLengthString, @"(\d+)\s*s");
-        if (match.Success)
-        {
-            // Convert the matched value to float
-            targetTrialLengthSeconds = float.Parse(match.Groups[1].Value);
+    //     // Use regex to find numbers followed by " s" in the string
+    //     Match match = Regex.Match(targetTrialLengthString, @"(\d+)\s*s");
+    //     if (match.Success)
+    //     {
+    //         // Convert the matched value to float
+    //         targetTrialLengthSeconds = float.Parse(match.Groups[1].Value);
 
-            // Use targetTrialLength as needed
-            Debug.Log("Extracted float value for Training Trial Length: " + targetTrialLengthSeconds);
-        }
-        else
-        {
-            Debug.Log("No matching numbers found in the string.");
-        }
+    //         // Use targetTrialLength as needed
+    //         Debug.Log("Extracted float value for Training Trial Length: " + targetTrialLengthSeconds);
+    //     }
+    //     else
+    //     {
+    //         Debug.Log("No matching numbers found in the string.");
+    //     }
 
-        // Calculate windowCount by dividing trainingLengthSeconds by windowLength, rounding the result, and converting to int
-        windowCount = Mathf.RoundToInt(targetTrialLengthSeconds / windowLength);
+    //     // Calculate windowCount by dividing trainingLengthSeconds by windowLength, rounding the result, and converting to int
+    //     windowCount = Mathf.RoundToInt(targetTrialLengthSeconds / windowLength);
 
-        Debug.Log("windowCount is: " + windowCount + " for targetTrialLengthSeconds: " + targetTrialLengthSeconds + " using windowLength: " + windowLength);
+    //     Debug.Log("windowCount is: " + windowCount + " for targetTrialLengthSeconds: " + targetTrialLengthSeconds + " using windowLength: " + windowLength);
 
-        // Update the length of the animation duration
-        // Access the UITweener script attached to the TrainingObjectSPO
-        UITweener uiTweener = trainingObjectSPO.GetComponent<UITweener>();
-        if (uiTweener != null)
-        {
-            uiTweener.duration = targetTrialLengthSeconds; // Update duration
-            Debug.Log("trainingObjectSPO.UITweener: Setting animation duration to " + targetTrialLengthSeconds);
-        }
-    }
+    //     // Update the length of the animation duration
+    //     // Access the UITweener script attached to the TrainingObjectSPO
+    //     UITweener uiTweener = trainingObjectSPO.GetComponent<UITweener>();
+    //     if (uiTweener != null)
+    //     {
+    //         uiTweener.duration = targetTrialLengthSeconds; // Update duration
+    //         Debug.Log("trainingObjectSPO.UITweener: Setting animation duration to " + targetTrialLengthSeconds);
+    //     }
+    // }
 }
