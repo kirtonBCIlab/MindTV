@@ -88,6 +88,7 @@ public class StartTraining : MonoBehaviour
 
      IEnumerator StartMyTraining()
     {
+        Debug.Log("Starting training...");
         // Find the SPOToyBox object in the scene
         SPOToyBox spoToyBox = FindObjectOfType<SPOToyBox>();
         int labelNumber = transform.GetSiblingIndex();
@@ -149,47 +150,49 @@ public class StartTraining : MonoBehaviour
 
         int numberOfTrainingsDone = trainingPageManager.GetNumberOfTrainingsDone();
 
-        // Anup: I turned this off to get around package issues
-        if (numberOfTrainingsDone >= 5) // Needs to be updated
-        {
-            // UpdateTheClassifier();
-            Debug.Log("BCIController: Update Classifier (Currently off)");
-        }
+        // // Anup: I turned this off to get around package issues
+        // if (numberOfTrainingsDone >= 5) // Needs to be updated
+        // {
+        //     // UpdateTheClassifier();
+        //     Debug.Log("BCIController: Update Classifier (Currently off)");
+        // }
 
         yield return null;
     }
 
-        private void UpdateTrainingWindowCount(int newWindowCount)
-    {
-        // Get the current number of trainings done
-        int numberOfTrainingsDone = trainingPageManager.GetNumberOfTrainingsDone();
-        // Update the number of trainings done based on the new window count
-        numberOfTrainingsDone += newWindowCount;
+    //     private void UpdateTrainingWindowCount(int newWindowCount)
+    // {
+    //     // Get the current number of trainings done
+    //     int numberOfTrainingsDone = trainingPageManager.GetNumberOfTrainingsDone();
+    //     Debug.Log("Current number of trainings done: " + numberOfTrainingsDone);
+    //     // Update the number of trainings done based on the new window count
+    //     numberOfTrainingsDone += newWindowCount;
 
-        //Now set them in the training page manager
-        trainingPageManager.SetNumberOfTrainingsDone(numberOfTrainingsDone);
+    //     //Now set them in the training page manager
+    //     trainingPageManager.SetNumberOfTrainingsDone(numberOfTrainingsDone);
 
-        // Update the number of trainings done text - handle this elsewhere
-        //numberOfTrainingsText.text = numberOfTrainingsDone.ToString();
+    //     // Update the number of trainings done text - handle this elsewhere
+    //     //numberOfTrainingsText.text = numberOfTrainingsDone.ToString();
 
 
-        // Find the BessyTrainClassifier script in the parent and call CheckTotalTrainingWindows
-        // This will show the Finish Training button if the conditions are met
+    //     // Find the BessyTrainClassifier script in the parent and call CheckTotalTrainingWindows
+    //     // This will show the Finish Training button if the conditions are met
 
-        //This lives on TrainingPageArea and I don't know why....
-        BessyTrainClassifier parentScript = GetComponentInParent<BessyTrainClassifier>();
-        if (parentScript != null)
-        {
-            parentScript.CheckTotalTrainingWindows();
-        }
-        else
-        {
-            Debug.LogError("BessyTrainClassifier script not found on parent!");
-        }
-    }
+    //     //This lives on TrainingPageArea and I don't know why....
+    //     BessyTrainClassifier parentScript = GetComponentInParent<BessyTrainClassifier>();
+    //     if (parentScript != null)
+    //     {
+    //         parentScript.CheckTotalTrainingWindows();
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError("BessyTrainClassifier script not found on parent!");
+    //     }
+    // }
 
     IEnumerator TrainingTimer(int trainingSeconds)
     {
+        Debug.Log("Running TrainingTimer coroutine");
         int timeLeft = trainingSeconds;
         while (timeLeft > 0)
         {

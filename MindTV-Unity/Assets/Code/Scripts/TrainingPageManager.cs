@@ -4,12 +4,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
-using UnityEditor.Tilemaps;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
+using System.Text.RegularExpressions;
 
 public class TrainingPageManager : MonoBehaviour
 {
@@ -36,14 +33,18 @@ public class TrainingPageManager : MonoBehaviour
     [SerializeField] private GameObject trainingOptionsFrame;
     [SerializeField] private GameObject displayStartTrainingButton;
     [SerializeField] private GameObject displayNumberOfTimesTrained;
+    [SerializeField] private TMP_Dropdown trialLengthDropdown;
     private float currentBaseSize;
     private Vector3 originalPosition;
 
     private UITweener tweener;
 
     //Variables dealing with Training Window Settings
-    private int windowCount;
-    private float windowLength;
+    [SerializeField]
+    private int windowCount = 3;
+    [SerializeField]
+    private float windowLength = 2.0f;
+    [SerializeField]
     private int numberOfTrainingsDone;
 
     [SerializeField] public TMP_Text trainNumberText;
@@ -60,6 +61,9 @@ public class TrainingPageManager : MonoBehaviour
         currentBaseSize = originalBaseSize;
         _SPO.transform.localScale = new Vector3(currentBaseSize, currentBaseSize, currentBaseSize);
         baseSizeSlider.value = currentBaseSize;
+
+        //This shouldn't be here - this handles changing the trial length information.
+        ChangeTrainingTrialLength();
     }
 
     //SPO Toybox stuff
@@ -253,9 +257,10 @@ public class TrainingPageManager : MonoBehaviour
         return numberOfTrainingsDone;
     }
 
-public void UpdateNumberOfTrainingsDone(int newWindowCount)
+    public void UpdateNumberOfTrainingsDone(int newWindowCount)
     {
         numberOfTrainingsDone += newWindowCount;
+        Debug.Log("Current number of trainings done: " + numberOfTrainingsDone);
         trainNumberText.text = "Number of Trainings: " + numberOfTrainingsDone;
 
         //This lives on TrainingPageArea and I don't know why....
@@ -269,6 +274,74 @@ public void UpdateNumberOfTrainingsDone(int newWindowCount)
             Debug.LogError("BessyTrainClassifier script not found on parent!");
         }
     }
+
+    public void ChangeTrainingTrialLength()
+    {
+        // Get the string label of the TMP dropdown and convert it to a float
+        //This should be done in the SaveTrainingPrefs way
+        float targetTrialLengthSeconds = 0.0f;
+        string targetTrialLengthString = trialLengthDropdown.options[trialLengthDropdown.value].text;
+
+        // Use regex to find numbers followed by " s" in the string
+        //I don't like how this is done, but it's what we have for now
+        Match match = Regex.Match(targetTrialLengthString, @"(\d+)\s*s");
+        if (match.Success)
+        {
+            // Convert the matched value to float
+            targetTrialLengthSeconds = float.Parse(match.Groups[1].Value);
+
+            // Use targetTrialLength as needed
+            Debug.Log("Extracted float value for Training Trial Length: " + targetTrialLengthSeconds);
+        }
+        else
+        {
+            Debug.Log("No matching numbers found in the string.");
+        }
+
+        // Calculate windowCount by dividing trainingLengthSeconds by windowLength, rounding the result, and converting to int
+        windowCount = Mathf.RoundToInt(targetTrialLengthSeconds / windowLength);
+
+        Debug.Log("windowCount is: " + windowCount + " for targetTrialLengthSeconds: " + targetTrialLengthSeconds + " using windowLength: " + windowLength);
+
+        // Update the length of the animation duration
+        // Access the UITweener script attached to the TrainingObjectSPO
+        UITweener uiTweener = _SPO.GetComponent<UITweener>();
+        if (uiTweener != null)
+        {
+            string tweenAnimation = uiTweener.GetTweenAnimation();
+            Debug.Log("TrainingObjectSPO.UITweener: Tween animation is " + tweenAnimation);
+            switch (tweenAnimation)
+            {
+                case "Bounce":
+                    uiTweener.duration = targetTrialLengthSeconds; // Update duration
+                    Debug.Log("trainingObjectSPO.UITweener: Setting animation duration to " + targetTrialLengthSeconds);
+                    break;
+                case "Rotate":
+                    uiTweener.duration = targetTrialLengthSeconds; // Update duration
+                    break;
+                case "RotatePunch":
+                    uiTweener.duration = targetTrialLengthSeconds; // Update duration
+                    break;
+                case "Grow":
+                    uiTweener.duration = targetTrialLengthSeconds; // Update duration
+                    break;
+                case "Shake":
+                    uiTweener.duration = targetTrialLengthSeconds; // Update duration
+                    uiTweener.shakeSpeed = 1/(targetTrialLengthSeconds*4);
+                    uiTweener.numShakes = (int)targetTrialLengthSeconds*4;
+                    break;
+                case "Wiggle":
+                    uiTweener.numShakes = (int)targetTrialLengthSeconds;
+                    uiTweener.numWiggles = (int)targetTrialLengthSeconds*2;
+                    uiTweener.wiggleSpeed = targetTrialLengthSeconds/2;
+                    break;
+                default:
+                    Debug.Log("No tween animation selected.");
+                    break;
+            }
+        }
+    }
+
 
     //This is brought over from TrainingMenuController as one of 2 things I think I can see that is being used
      public void HighlightSelectedSprite(GameObject inventorySlot)

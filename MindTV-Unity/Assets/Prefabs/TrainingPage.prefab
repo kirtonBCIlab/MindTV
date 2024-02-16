@@ -971,6 +971,10 @@ MonoBehaviour:
   trainingOptionsFrame: {fileID: 2427269888656803534}
   displayStartTrainingButton: {fileID: 7811218328463198375}
   displayNumberOfTimesTrained: {fileID: 99085124579267812}
+  trialLengthDropdown: {fileID: 723961265265226902}
+  windowCount: 3
+  windowLength: 2
+  numberOfTrainingsDone: 0
   trainNumberText: {fileID: 6169905974648477102}
 --- !u!114 &8682650307272609117
 MonoBehaviour:

@@ -19,7 +19,7 @@ public class BessyTrainClassifier : MonoBehaviour
     // {
         
     // }
-    private void Awake()
+    private void Start()
     {
         finishTrainingButton.SetActive(false);
     }
