@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection.Emit;
 using UnityEngine;
 
@@ -13,10 +14,12 @@ public class Settings
     [System.Serializable]
     public class TrainingPrefs
     {
-        public int labelNumber;
-        public string labelText;
-        public string animationText;
-        public Color backgroundColor = new Color(0.34117647f, 0.72156863f, 1.0f, 1.0f);
+        public int labelNumber = 0;
+        public string labelText = "";
+        public string animationName = "None";
+        public Color backgroundColor = Settings.ColorForName("Blue (Theme)");
+
+        public float trialLength = 6;
     }
 
     [System.Serializable]
@@ -37,11 +40,66 @@ public class Settings
         // Add other things we need to persist for user here
     }
 
-
-
-
     // Set of user profiles
     public List<User> users = new List<User>();
+
+
+    // Convert colors to strings for dropdowns
+    public static Color ColorForName(string name)
+    {
+        return colors[name];
+    }
+
+    public static string NameForColor(Color color)
+    {
+        string name = "Unknown";
+        if (colors.ContainsValue(color))
+        {
+            name = colors.FirstOrDefault(item => item.Value == color).Key;
+        }
+        return name;
+    }
+
+    private static readonly Dictionary<string, Color> colors = new Dictionary<string, Color>
+    {
+        {"Red", Color.red },
+        {"Blue", Color.blue },
+        {"Green", Color.green },
+        {"White", Color.white },
+        {"Yellow", Color.yellow },
+        {"Black", Color.black },
+        {"Magenta", Color.magenta},
+        {"Grey", Color.grey},
+        {"Cyan", Color.cyan},
+        {"Blue (Theme)", new Color(0.34117647f, 0.72156863f, 1.0f, 1.0f)},
+        {"Green (Theme)", new Color(0.26277451f, 0.6666667f, 0.54509804f, 1.0f)},
+        {"Purple (Theme)", new Color(0.3254902f, 0.21960784f, 0.57254902f, 1.0f)}
+    };
+
+    public static float TrialLengthForName(string name)
+    {
+        return trialLength[name];
+    }
+
+    public static string NameForTrialLength(float length)
+    {
+        string name = "Unknown";
+        if (trialLength.ContainsValue(length))
+        {
+            name = trialLength.FirstOrDefault(item => item.Value == length).Key;
+        }
+        return name;
+    }
+
+    private static readonly Dictionary<string, float> trialLength = new Dictionary<string, float>
+    {
+        {"6 s (Default)", 6},
+        {"2 s", 2},
+        {"4 s", 4},
+        {"8 s", 8},
+        {"10 s", 10},
+    };
+
 
 
     // Convert class to Json string

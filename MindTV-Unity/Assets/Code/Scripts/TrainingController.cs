@@ -22,6 +22,9 @@ public class TrainingController : MonoBehaviour
     [SerializeField] private TMP_Text trainRemainingTimeText; // Assign in the Inspector
     private float uiUpdateDelay = 0.5f; // Delay for updating UI elements
 
+    // Reference to training settings
+    private Settings.TrainingPrefs trainingPrefs;
+
     private void Awake()
     {
         if (bciController == null)
@@ -30,6 +33,20 @@ public class TrainingController : MonoBehaviour
             StartCoroutine(InitCoroutine());
         }
     }
+
+    public void Start()
+    {
+        InitializeSettings();
+    }
+
+    private void InitializeSettings()
+    {
+        // Use the TrainingPage sibling index as the "label number".  This is needed to choose the correct
+        // TrainingPrefs object from the data model.  Use a dummy TrainingPrefs if one is not found.
+        int labelNumber = transform.GetSiblingIndex();
+        trainingPrefs = SettingsManager.Instance?.currentUser.trainingPrefs[labelNumber] ?? new Settings.TrainingPrefs();
+    }
+
 
     public void StartTrainingCountdown()
     {
@@ -92,9 +109,10 @@ public class TrainingController : MonoBehaviour
         // Find the SPOToyBox object in the scene
         SPOToyBox spoToyBox = FindObjectOfType<SPOToyBox>();
         int labelNumber = transform.GetSiblingIndex();
+
         //get the SPO object from the training page manager
         GameObject _SPO = trainingPageManager.GetTrainingObject();
-        string trainingLabel = trainingPageManager.GetTrainingLabel();
+        string trainingLabel = trainingPrefs.labelText;
         float windowLength = trainingPageManager.GetWindowLength();
         int windowCount = trainingPageManager.GetWindowCount();
 

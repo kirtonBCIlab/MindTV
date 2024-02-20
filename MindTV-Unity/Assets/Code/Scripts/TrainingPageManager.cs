@@ -61,16 +61,13 @@ public class TrainingPageManager : MonoBehaviour
         currentBaseSize = originalBaseSize;
         _SPO.transform.localScale = new Vector3(currentBaseSize, currentBaseSize, currentBaseSize);
         baseSizeSlider.value = currentBaseSize;
-
-        //This shouldn't be here - this handles changing the trial length information.
-        ChangeTrainingTrialLength();
     }
 
     //SPO Toybox stuff
     private void OnEnable()
     {
         SPOToyBox spoToyBox = FindObjectOfType<SPOToyBox>(); //We should set this up better, as there should only ever be one toybox.
-         // Check if there is an SPO in the SPOToyBox with the same ID as TabNumber
+                                                             // Check if there is an SPO in the SPOToyBox with the same ID as TabNumber
         if (spoToyBox != null)
         {
             // Get the label number from the TrainingPage sibling index, same as what we use to save data
@@ -106,14 +103,17 @@ public class TrainingPageManager : MonoBehaviour
     {
         UpdateTrainingLabel();
         UpdateTrainingPageColor();
+        UpdateTrialLength();
+        UpdateAnimation();
     }
 
     private void InitializeListeners()
     {
         trainingLabelEntry.onEndEdit.AddListener(LabelChanged);
         colorDropdown.onValueChanged.AddListener(ColorChanged);
+        trialLengthDropdown.onValueChanged.AddListener(TrialLengthChanged);
+        animDropdown.onValueChanged.AddListener(AnimationChanged);
     }
-
 
 
     public void UpdateTrainingLabel()
@@ -127,19 +127,15 @@ public class TrainingPageManager : MonoBehaviour
         TrainingPrefsChanged();
     }
 
-    public string GetTrainingLabel()
-    {
-        return trainingPrefs.labelText;
-    }
-
 
     public void UpdateTrainingPageColor()
     {
+        // set background color
         Image imageComponent = activeTraining.GetComponent<Image>();
         imageComponent.color = trainingPrefs.backgroundColor;
 
-        // TODO - this should be a function offered by the dropdown
-        string colorName = ColorByName.NameForColor(trainingPrefs.backgroundColor);
+        // set the dropdown to color from settings
+        string colorName = Settings.NameForColor(trainingPrefs.backgroundColor);
         int colorIndex = colorDropdown.options.FindIndex(name => name.text == colorName);
         colorDropdown.value = colorIndex;
     }
@@ -147,14 +143,155 @@ public class TrainingPageManager : MonoBehaviour
     public void ColorChanged(int colorIndex)
     {
         // translate drop down text into a color and persist
-        string colorText = colorDropdown.options[colorIndex].text;
-        Color color = ColorByName.colors[colorText];
+        string colorName = colorDropdown.options[colorIndex].text;
+        Color color = Settings.ColorForName(colorName);
         trainingPrefs.backgroundColor = color;
 
-        TrainingPrefsChanged();
         UpdateTrainingPageColor();
+        TrainingPrefsChanged();
     }
 
+
+    public void UpdateTrialLength()
+    {
+        float trialLength = trainingPrefs.trialLength;
+
+        // set the dropdown to the length from settings
+        string trialLengthName = Settings.NameForTrialLength(trialLength);
+        int index = trialLengthDropdown.options.FindIndex(name => name.text == trialLengthName);
+        trialLengthDropdown.value = index;
+
+        // Calculate windowCount by dividing trainingLengthSeconds by windowLength, rounding the result, and converting to int
+        windowCount = Mathf.RoundToInt(trialLength / windowLength);
+        Debug.Log("windowCount is: " + windowCount + " for targetTrialLengthSeconds: " + trialLength + " using windowLength: " + windowLength);
+    }
+
+    public void TrialLengthChanged(int trialLengthIndex)
+    {
+        // Get the string label of the TMP dropdown and convert it to a float
+        string trialLengthName = trialLengthDropdown.options[trialLengthIndex].text;
+        float trialLength = Settings.TrialLengthForName(trialLengthName);
+        trainingPrefs.trialLength = trialLength;
+
+        UpdateTrialLength();
+        UpdateAnimation();
+    }
+
+    public int GetWindowCount()
+    {
+        return windowCount;
+    }
+
+    public float GetWindowLength()
+    {
+        return windowLength;
+    }
+
+    public void SetNumberOfTrainingsDone(int number)
+    {
+        numberOfTrainingsDone = number;
+    }
+
+    public int GetNumberOfTrainingsDone()
+    {
+        return numberOfTrainingsDone;
+    }
+
+    public void UpdateNumberOfTrainingsDone(int newWindowCount)
+    {
+        numberOfTrainingsDone += newWindowCount;
+        Debug.Log("Current number of trainings done: " + numberOfTrainingsDone);
+        trainNumberText.text = "Number of Trainings: " + numberOfTrainingsDone;
+
+        //This lives on TrainingPageArea and I don't know why....
+        BessyTrainClassifier parentScript = GetComponentInParent<BessyTrainClassifier>();
+        if (parentScript != null)
+        {
+            parentScript.CheckTotalTrainingWindows();
+        }
+        else
+        {
+            Debug.LogError("BessyTrainClassifier script not found on parent!");
+        }
+    }
+    
+
+    public void UpdateAnimation()
+    {
+        float trialLength = trainingPrefs.trialLength;
+        string animationName = trainingPrefs.animationName;
+
+        // Set the dropdown to animation from settings
+        int index = animDropdown.options.FindIndex(name => name.text == animationName);
+        animDropdown.value = index;
+
+        // Set the animation type and length of the UITWeener
+        UITweener uiTweener = _SPO.GetComponent<UITweener>();
+        uiTweener.SetTweenFromString(animationName);
+        uiTweener.duration = trialLength;
+
+        // Additional configuration based on type and length
+        if (uiTweener != null)
+        {
+            string tweenAnimation = uiTweener.GetTweenAnimation();
+            Debug.Log("TrainingObjectSPO.UITweener: Tween animation is " + tweenAnimation);
+            switch (tweenAnimation)
+            {
+                case "Bounce":
+                    break;
+                case "Rotate":
+                    break;
+                case "RotatePunch":
+                    break;
+                case "Grow":
+                    break;
+                case "Shake":
+                    uiTweener.shakeSpeed = 0.25f; // This shake speed will do 8 shakes per 2 second window
+                    uiTweener.numShakes = (int)Math.Round(uiTweener.duration / uiTweener.shakeSpeed); // Scale the number of shakes to the target trial length
+                    break;
+                case "Wiggle":
+                    uiTweener.wiggleSpeed = 0.5f; // This wiggle speed will do 4 shakes per 2 second window
+                    uiTweener.numWiggles = (int)Math.Round(uiTweener.duration / uiTweener.wiggleSpeed); // Scale the number of wiggles to the target trial length
+                    break;
+                default:
+                    Debug.Log("No tween animation selected.");
+                    break;
+            }
+        }
+    }
+
+    public void AnimationChanged(int animationIndex)
+    {
+        string animationName = animDropdown.options[animationIndex].text;
+        trainingPrefs.animationName = animationName;
+
+        UpdateAnimation();
+    }
+
+
+
+    //This is brought over from TrainingMenuController as one of 2 things I think I can see that is being used
+    public void HighlightSelectedSprite(GameObject inventorySlot)
+    {
+        GameObject[] inventory = GameObject.FindGameObjectsWithTag("InventorySlot");
+
+        foreach (GameObject slot in inventory)
+        {
+            GameObject frame = slot.transform.Find("Frame").gameObject;
+            frame.SetActive(false);
+        }
+
+        GameObject selectedFrame = inventorySlot.transform.Find("Frame").gameObject;
+        selectedFrame.SetActive(true);
+    }
+
+    //This is brought over from TrainingMenuController as one of 2 things I think I can see that is being used
+    public void ToggleInventoryVisibility()
+    {
+        trainingOptionsFrame.SetActive(!trainingOptionsFrame.activeSelf);
+        displayStartTrainingButton.SetActive(!displayStartTrainingButton.activeSelf);
+        displayNumberOfTimesTrained.SetActive(!displayNumberOfTimesTrained.activeSelf);
+    }
 
     // resets the position and scale of the traning object
     public void ResetSPO()
@@ -218,151 +355,4 @@ public class TrainingPageManager : MonoBehaviour
         ResetSPO();
     }
 
-
-    public void SetAnimationOnSelection()
-    {
-        string animText = animDropdown.options[animDropdown.value].text;
-        tweener = _SPO.GetComponent<UITweener>();
-        tweener.SetTweenFromString(animText);
-        Debug.Log("end of method in stim manager");
-    }
-
-    public void SetWindowCount(float count)
-    {
-        windowCount = (int)count;
-    }
-
-    public void SetWindowLength(float length)
-    {
-        windowLength = length;
-    }
-
-    public int GetWindowCount()
-    {
-        return windowCount;
-    }
-
-    public float GetWindowLength()
-    {
-        return windowLength;
-    }
-
-    public void SetNumberOfTrainingsDone(int number)
-    {
-        numberOfTrainingsDone = number;
-    }
-
-    public int GetNumberOfTrainingsDone()
-    {
-        return numberOfTrainingsDone;
-    }
-
-    public void UpdateNumberOfTrainingsDone(int newWindowCount)
-    {
-        numberOfTrainingsDone += newWindowCount;
-        Debug.Log("Current number of trainings done: " + numberOfTrainingsDone);
-        trainNumberText.text = "Number of Trainings: " + numberOfTrainingsDone;
-
-        //This lives on TrainingPageArea and I don't know why....
-        BessyTrainClassifier parentScript = GetComponentInParent<BessyTrainClassifier>();
-        if (parentScript != null)
-        {
-            parentScript.CheckTotalTrainingWindows();
-        }
-        else
-        {
-            Debug.LogError("BessyTrainClassifier script not found on parent!");
-        }
-    }
-
-    public void ChangeTrainingTrialLength()
-    {
-        // Get the string label of the TMP dropdown and convert it to a float
-        //This should be done in the SaveTrainingPrefs way
-        float targetTrialLengthSeconds = 0.0f;
-        string targetTrialLengthString = trialLengthDropdown.options[trialLengthDropdown.value].text;
-
-        // Use regex to find numbers followed by " s" in the string
-        //I don't like how this is done, but it's what we have for now
-        Match match = Regex.Match(targetTrialLengthString, @"(\d+)\s*s");
-        if (match.Success)
-        {
-            // Convert the matched value to float
-            targetTrialLengthSeconds = float.Parse(match.Groups[1].Value);
-
-            // Use targetTrialLength as needed
-            Debug.Log("Extracted float value for Training Trial Length: " + targetTrialLengthSeconds);
-        }
-        else
-        {
-            Debug.Log("No matching numbers found in the string.");
-        }
-
-        // Calculate windowCount by dividing trainingLengthSeconds by windowLength, rounding the result, and converting to int
-        windowCount = Mathf.RoundToInt(targetTrialLengthSeconds / windowLength);
-
-        Debug.Log("windowCount is: " + windowCount + " for targetTrialLengthSeconds: " + targetTrialLengthSeconds + " using windowLength: " + windowLength);
-
-        // Update the length of the animation duration
-        // Access the UITweener script attached to the TrainingObjectSPO
-        UITweener uiTweener = _SPO.GetComponent<UITweener>();
-        if (uiTweener != null)
-        {
-            string tweenAnimation = uiTweener.GetTweenAnimation();
-            Debug.Log("TrainingObjectSPO.UITweener: Tween animation is " + tweenAnimation);
-            switch (tweenAnimation)
-            {
-                case "Bounce":
-                    uiTweener.duration = targetTrialLengthSeconds; // Update duration
-                    Debug.Log("trainingObjectSPO.UITweener: Setting animation duration to " + targetTrialLengthSeconds);
-                    break;
-                case "Rotate":
-                    uiTweener.duration = targetTrialLengthSeconds; // Update duration
-                    break;
-                case "RotatePunch":
-                    uiTweener.duration = targetTrialLengthSeconds; // Update duration
-                    break;
-                case "Grow":
-                    uiTweener.duration = targetTrialLengthSeconds; // Update duration
-                    break;
-                case "Shake":
-                    uiTweener.duration = (int)targetTrialLengthSeconds; // Update duration
-                    uiTweener.shakeSpeed = 0.25f; // This shake speed will do 8 shakes per 2 second window
-                    uiTweener.numShakes = (int)Math.Round(uiTweener.duration / uiTweener.shakeSpeed); // Scale the number of shakes to the target trial length
-                    break;
-                case "Wiggle":
-                    uiTweener.duration = (int)targetTrialLengthSeconds; // Update duration
-                    uiTweener.wiggleSpeed = 0.5f; // This wiggle speed will do 4 shakes per 2 second window
-                    uiTweener.numWiggles = (int)Math.Round(uiTweener.duration / uiTweener.wiggleSpeed); // Scale the number of wiggles to the target trial length
-                    break;
-                default:
-                    Debug.Log("No tween animation selected.");
-                    break;
-            }
-        }
-    }
-
-
-    //This is brought over from TrainingMenuController as one of 2 things I think I can see that is being used
-     public void HighlightSelectedSprite(GameObject inventorySlot)
-    {
-        GameObject[] inventory = GameObject.FindGameObjectsWithTag("InventorySlot");
-
-        foreach (GameObject slot in inventory)
-        {
-            GameObject frame = slot.transform.Find("Frame").gameObject;
-            frame.SetActive(false);
-        }
-
-        GameObject selectedFrame = inventorySlot.transform.Find("Frame").gameObject;
-        selectedFrame.SetActive(true);
-    }
-
-    //This is brought over from TrainingMenuController as one of 2 things I think I can see that is being used
-        public void ToggleInventoryVisibility()
-    {
-        trainingOptionsFrame.SetActive(!trainingOptionsFrame.activeSelf);
-        displayStartTrainingButton.SetActive(!displayStartTrainingButton.activeSelf);
-        displayNumberOfTimesTrained.SetActive(!displayNumberOfTimesTrained.activeSelf);
-    }
 }
