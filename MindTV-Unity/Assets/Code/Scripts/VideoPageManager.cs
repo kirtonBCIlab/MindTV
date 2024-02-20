@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
-public class VideoManager : MonoBehaviour
+public class VideoPageManager : MonoBehaviour
 {
     public VideoPlayer videoPlayer;  // Reference to the VideoPlayer game object
     public RawImage videoPlayerRawImage;  // Reference to the RawImage component that the video displays on
