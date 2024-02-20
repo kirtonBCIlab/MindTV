@@ -11,17 +11,17 @@ using System.Text.RegularExpressions;
 public class TrainingPageManager : MonoBehaviour
 {
     // UI elements within the TrainingPage prefab
-    public GameObject _SPO;
-    public TMP_InputField trainingLabelEntry;
-    public TMP_Dropdown colorDropdown;
-    public TMP_Dropdown animDropdown;
-    public Slider imageSizeSlider;
-    public Button imageSizeResetButton;
-    public GameObject activeTrainingFrame;
-    public GameObject trainingOptionsFrame;
-    public GameObject displayStartTrainingButton;
-    public GameObject displayNumberOfTimesTrained;
-    public TMP_Dropdown trialLengthDropdown;
+    [SerializeField] private GameObject _SPO;
+    [SerializeField] private TMP_InputField trainingLabelEntry;
+    [SerializeField] private TMP_Dropdown colorDropdown;
+    [SerializeField] private TMP_Dropdown animDropdown;
+    [SerializeField] private Slider imageSizeSlider;
+    [SerializeField] private Button imageSizeResetButton;
+    [SerializeField] private GameObject activeTrainingFrame;
+    [SerializeField] private GameObject trainingOptionsFrame;
+    [SerializeField] private GameObject displayStartTrainingButton;
+    [SerializeField] private GameObject displayNumberOfTimesTrained;
+    [SerializeField] private TMP_Dropdown trialLengthDropdown;
 
     // Event to signal when preferences have been changed
     public static event Action TrainingPrefsChanged;
