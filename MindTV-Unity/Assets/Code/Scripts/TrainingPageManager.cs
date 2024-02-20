@@ -11,11 +11,11 @@ using System.Text.RegularExpressions;
 public class TrainingPageManager : MonoBehaviour
 {
     // UI elements within the TrainingPage prefab
-    public TMP_InputField trainingLabelEntry;
-    public TMP_Dropdown colorDropdown;
-    public TMP_Dropdown animDropdown;
-    public GameObject activeTraining;
-    public GameObject _SPO;
+    [SerializeField] private TMP_InputField trainingLabelEntry;
+    [SerializeField] private TMP_Dropdown colorDropdown;
+    [SerializeField] private TMP_Dropdown animDropdown;
+    [SerializeField] private GameObject activeTraining;
+    [SerializeField] private GameObject _SPO;
 
     // Event to signal when preferences have been changed
     public static event Action TrainingPrefsChanged;
@@ -26,7 +26,7 @@ public class TrainingPageManager : MonoBehaviour
     //Exposing this so that we can change the base size of the training object
     public float originalBaseSize = 100.0f;
     public float targetImageResolution = 512f;
-    public Slider baseSizeSlider;
+    [SerializeField] private Slider baseSizeSlider;
 
     [SerializeField] private GameObject trainingOptionsFrame;
     [SerializeField] private GameObject displayStartTrainingButton;
@@ -37,10 +37,6 @@ public class TrainingPageManager : MonoBehaviour
 
     private UITweener tweener;
 
-    // TODO - consider moving to TrainingController
-    // Variables dealing with Training Window Settings
-    [SerializeField] private int numberOfTrainingsDone;
-    [SerializeField] public TMP_Text trainNumberText;
 
     private void Start()
     {
@@ -242,35 +238,6 @@ public class TrainingPageManager : MonoBehaviour
     public void ResetSPO()
     {
         _SPO.transform.position = originalPosition;
-    }
-
-
-    public void SetNumberOfTrainingsDone(int number)
-    {
-        numberOfTrainingsDone = number;
-    }
-
-    public int GetNumberOfTrainingsDone()
-    {
-        return numberOfTrainingsDone;
-    }
-
-    public void UpdateNumberOfTrainingsDone(int newWindowCount)
-    {
-        numberOfTrainingsDone += newWindowCount;
-        Debug.Log("Current number of trainings done: " + numberOfTrainingsDone);
-        trainNumberText.text = "Number of Trainings: " + numberOfTrainingsDone;
-
-        //This lives on TrainingPageArea and I don't know why....
-        BessyTrainClassifier parentScript = GetComponentInParent<BessyTrainClassifier>();
-        if (parentScript != null)
-        {
-            parentScript.CheckTotalTrainingWindows();
-        }
-        else
-        {
-            Debug.LogError("BessyTrainClassifier script not found on parent!");
-        }
     }
 
 
