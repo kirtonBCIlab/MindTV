@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using BCIEssentials.Controllers;
 
-public class StartTraining : MonoBehaviour
+public class TrainingController : MonoBehaviour
 {
     [SerializeField] private GameObject controllerManager;
     [SerializeField] private GameObject startTrainingButton;
@@ -22,6 +22,9 @@ public class StartTraining : MonoBehaviour
     [SerializeField] private TMP_Text trainRemainingTimeText; // Assign in the Inspector
     private float uiUpdateDelay = 0.5f; // Delay for updating UI elements
 
+    // Reference to training settings
+    private Settings.TrainingPrefs trainingPrefs;
+
     private void Awake()
     {
         if (bciController == null)
@@ -30,6 +33,20 @@ public class StartTraining : MonoBehaviour
             StartCoroutine(InitCoroutine());
         }
     }
+
+    public void Start()
+    {
+        InitializeSettings();
+    }
+
+    private void InitializeSettings()
+    {
+        // Use the TrainingPage sibling index as the "label number".  This is needed to choose the correct
+        // TrainingPrefs object from the data model.  Use a dummy TrainingPrefs if one is not found.
+        int labelNumber = transform.GetSiblingIndex();
+        trainingPrefs = SettingsManager.Instance?.currentUser.trainingPrefs[labelNumber] ?? new Settings.TrainingPrefs();
+    }
+
 
     public void StartTrainingCountdown()
     {
@@ -86,31 +103,35 @@ public class StartTraining : MonoBehaviour
         // bciController = controllerManager.GetComponent<BCIController>();
     }
 
-     IEnumerator StartMyTraining()
+    IEnumerator StartMyTraining()
     {
         Debug.Log("Starting training...");
-        // Find the SPOToyBox object in the scene
-        SPOToyBox spoToyBox = FindObjectOfType<SPOToyBox>();
-        int labelNumber = transform.GetSiblingIndex();
-        //get the SPO object from the training page manager
-        GameObject _SPO = trainingPageManager.GetTrainingObject();
-        string trainingLabel = trainingPageManager.GetTrainingLabel();
-        float windowLength = trainingPageManager.GetWindowLength();
-        int windowCount = trainingPageManager.GetWindowCount();
 
-        if (string.IsNullOrEmpty(trainingLabel))
+        // Find the SPOToyBox object in the scene get the SPO
+        SPOToyBox spoToyBox = FindObjectOfType<SPOToyBox>();
+        GameObject _SPO = trainingPageManager.GetTrainingObject();
+
+        // Get settings for the training session
+        int labelNumber = trainingPrefs.labelNumber;
+        string labelName = trainingPrefs.labelName;
+        float windowLength = trainingPrefs.windowLength;
+        float trialLength = trainingPrefs.trialLength;
+
+        // Calculate number of windows from trial length and window length
+        int windowCount = Mathf.RoundToInt(trialLength / windowLength);
+
+        if (string.IsNullOrEmpty(labelName))
         {
-            trainingLabel = "Unknown";
+            labelName = "Unknown";
         }
 
         // Assign the SPO object ID to be the same as the page number
-        // _SPO.ObjectID = labelNumber;
-        spoToyBox.SetSPO(labelNumber, _SPO, trainingLabel);
-
-
-        Debug.Log("Starting training on label: " + trainingLabel);
-
+        Debug.Log("Starting training on label: " + labelName + " (" + labelNumber + ")");
+        Debug.Log("Trial length is " + trialLength + " (" + windowCount + " windows of " + windowLength + " seconds)");
         Debug.Log("SPO is " + _SPO);
+
+        // TODO - this is a null reference if application not started from main scene
+        spoToyBox.SetSPO(labelNumber, _SPO, labelName);
 
         float trainingLengthSeconds = windowCount * windowLength;
         // int trainingLengthSecondsInt = (int)trainingLengthSeconds;

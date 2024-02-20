@@ -1155,7 +1155,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -2606,7 +2606,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 071e55a4e206ae0419e51a9b48784131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: []
 --- !u!1001 &646684436
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3135,7 +3134,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -5197,7 +5196,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -6526,7 +6525,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode

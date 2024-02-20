@@ -36,7 +36,7 @@ public class TrainingTabManager : MonoBehaviour
 
         foreach (Settings.TrainingPrefs pref in user.trainingPrefs)
         {
-            tabGroup.SetTabAppearance(pref.labelNumber, pref.labelText, pref.backgroundColor);
+            tabGroup.SetTabAppearance(pref.labelNumber, pref.labelName, pref.backgroundColor);
         }
     }
 }
