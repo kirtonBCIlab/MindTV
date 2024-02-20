@@ -7,18 +7,18 @@ using BCIEssentials.Controllers;
 public class TrainingController : MonoBehaviour
 {
     // UI elements within the TrainingPage prefab
-    [SerializeField] public GameObject startTrainingButton;
-    [SerializeField] public GameObject cancelCountdownButton;
-    [SerializeField] public GameObject _SPO;
-    [SerializeField] public TMP_Text countdownText;
-    [SerializeField] public AudioSource audioSource;
-    [SerializeField] public AudioClip countdownBeepFile;
-    [SerializeField] public AudioClip startBeepFile;
-    [SerializeField] public TMP_Text trainRemainingTimeText;
-    [SerializeField] public TMP_Text trainNumberText;
+    [SerializeField] private GameObject startTrainingButton;
+    [SerializeField] private GameObject cancelCountdownButton;
+    [SerializeField] private GameObject _SPO;
+    [SerializeField] private TMP_Text countdownText;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip countdownBeepFile;
+    [SerializeField] private AudioClip startBeepFile;
+    [SerializeField] private TMP_Text trainRemainingTimeText;
+    [SerializeField] private TMP_Text trainNumberText;
 
-    [SerializeField] public GameObject controllerManager;
-    [SerializeField] public BCIController bciController;
+    [SerializeField] private GameObject controllerManager;
+    [SerializeField] private BCIController bciController;
 
     public int numberOfCountdownSeconds = 3;
     public string startTrainingMessage = "Go!";
