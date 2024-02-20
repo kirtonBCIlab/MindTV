@@ -11,11 +11,17 @@ using System.Text.RegularExpressions;
 public class TrainingPageManager : MonoBehaviour
 {
     // UI elements within the TrainingPage prefab
+    public GameObject _SPO;
     public TMP_InputField trainingLabelEntry;
     public TMP_Dropdown colorDropdown;
     public TMP_Dropdown animDropdown;
-    public GameObject activeTraining;
-    public GameObject _SPO;
+    public Slider imageSizeSlider;
+    public Button imageSizeResetButton;
+    public GameObject activeTrainingFrame;
+    public GameObject trainingOptionsFrame;
+    public GameObject displayStartTrainingButton;
+    public GameObject displayNumberOfTimesTrained;
+    public TMP_Dropdown trialLengthDropdown;
 
     // Event to signal when preferences have been changed
     public static event Action TrainingPrefsChanged;
@@ -24,17 +30,11 @@ public class TrainingPageManager : MonoBehaviour
     private Settings.TrainingPrefs trainingPrefs;
 
     //Exposing this so that we can change the base size of the training object
-    public float originalBaseSize = 100.0f;
-    public float targetImageResolution = 512f;
-    public Slider baseSizeSlider;
-
-    [SerializeField] private GameObject trainingOptionsFrame;
-    [SerializeField] private GameObject displayStartTrainingButton;
-    [SerializeField] private GameObject displayNumberOfTimesTrained;
-    [SerializeField] private TMP_Dropdown trialLengthDropdown;
+    private float originalBaseSize = 100.0f;
+    private float targetImageResolution = 512f;
     private float currentBaseSize;
-    private Vector3 originalPosition;
 
+    private Vector3 originalPosition;
     private UITweener tweener;
 
 
@@ -47,37 +47,11 @@ public class TrainingPageManager : MonoBehaviour
         // TODO - move this to a helper
         originalPosition = _SPO.transform.position;
 
+        // TODO - move to a helper
         currentBaseSize = originalBaseSize;
         _SPO.transform.localScale = new Vector3(currentBaseSize, currentBaseSize, currentBaseSize);
-        baseSizeSlider.value = currentBaseSize;
+        imageSizeSlider.value = currentBaseSize;
     }
-
-    private void OnEnable()
-    {
-        SPOToyBox spoToyBox = FindObjectOfType<SPOToyBox>(); //We should set this up better, as there should only ever be one toybox.
-                                                             // Check if there is an SPO in the SPOToyBox with the same ID as TabNumber
-        if (spoToyBox != null)
-        {
-            // Get the label number from the TrainingPage sibling index, same as what we use to save data
-            int labelNumber = transform.GetSiblingIndex();
-            if (spoToyBox.GetSPO(labelNumber) == null)
-            {
-                Debug.Log("SPO with ID " + labelNumber + " not found in SPOToyBox!");
-                // trainingObjectSPO = spoToyBox.GetSPO(labelNumber);
-            }
-            else
-            {
-                //TODO: I think this is trying to do pseudo-persistence, need to fix later.
-                // Destroy(_SPO); // Destroy the current SPO (if any) - I don't understand what is happening here? This is super problematic.
-                // _SPO = spoToyBox.GetSPO(labelNumber); //I think this is trying to do pseudo-persistence, need to fix later.
-
-                Debug.LogWarning("SPO with ID " + labelNumber + " found in SPOToyBox!");
-                //Should try to replace it but can't right now.
-
-            }
-        }
-    }
-
 
     private void InitializeSettings()
     {
@@ -101,6 +75,9 @@ public class TrainingPageManager : MonoBehaviour
         colorDropdown.onValueChanged.AddListener(ColorChanged);
         trialLengthDropdown.onValueChanged.AddListener(TrialLengthChanged);
         animDropdown.onValueChanged.AddListener(AnimationChanged);
+
+        imageSizeSlider.onValueChanged.AddListener(ImageSizeChanged);
+        imageSizeResetButton.onClick.AddListener(ResetImageSize);
     }
 
 
@@ -119,7 +96,7 @@ public class TrainingPageManager : MonoBehaviour
     public void UpdateTrainingPageColor()
     {
         // set background color
-        Image imageComponent = activeTraining.GetComponent<Image>();
+        Image imageComponent = activeTrainingFrame.GetComponent<Image>();
         imageComponent.color = trainingPrefs.backgroundColor;
 
         // set the dropdown to color from settings
@@ -225,7 +202,7 @@ public class TrainingPageManager : MonoBehaviour
         _SPO.GetComponent<SpriteRenderer>().sprite = image_sprite;
 
         // If we want the newly set image to be reset to the original size, use this: (uncomment the line below)
-        ResetBaseSize();
+        ResetImageSize();
     }
 
     // gets the training object
@@ -285,20 +262,21 @@ public class TrainingPageManager : MonoBehaviour
     }
 
     // changes the training object base size
-    public void ModifyBaseSizeWithSlider()
+    public void ImageSizeChanged(float value)
     {
-        currentBaseSize = baseSizeSlider.value;
-        //Debug.Log("Base size changed to " + currentBaseSize);
+        currentBaseSize = value;
+        Debug.Log("Base size changed to " + currentBaseSize);
         SetBaseSize(currentBaseSize);
     }
 
     // resets the base size
-    public void ResetBaseSize()
+    public void ResetImageSize()
     {
         currentBaseSize = originalBaseSize;
-        baseSizeSlider.value = currentBaseSize;
+        imageSizeSlider.value = currentBaseSize;
         SetBaseSize(currentBaseSize);
-        //Also going to reset the position of the training object
+
+        Debug.Log("Base size changed to " + currentBaseSize);
         ResetSPO();
     }
 
