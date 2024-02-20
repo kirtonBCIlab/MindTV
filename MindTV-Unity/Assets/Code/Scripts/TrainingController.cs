@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using BCIEssentials.Controllers;
 
-public class StartTraining : MonoBehaviour
+public class TrainingController : MonoBehaviour
 {
     [SerializeField] private GameObject controllerManager;
     [SerializeField] private GameObject startTrainingButton;
