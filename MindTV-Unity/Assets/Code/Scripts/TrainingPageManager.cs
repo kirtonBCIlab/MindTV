@@ -37,9 +37,8 @@ public class TrainingPageManager : MonoBehaviour
 
     private UITweener tweener;
 
-    //Variables dealing with Training Window Settings
-    [SerializeField] private int windowCount = 3;
-    [SerializeField] private float windowLength = 2.0f;
+    // TODO - consider moving to TrainingController
+    // Variables dealing with Training Window Settings
     [SerializeField] private int numberOfTrainingsDone;
     [SerializeField] public TMP_Text trainNumberText;
 
@@ -153,10 +152,6 @@ public class TrainingPageManager : MonoBehaviour
         string trialLengthName = Settings.NameForTrialLength(trialLength);
         int index = trialLengthDropdown.options.FindIndex(name => name.text == trialLengthName);
         trialLengthDropdown.value = index;
-
-        // Calculate windowCount by dividing trainingLengthSeconds by windowLength, rounding the result, and converting to int
-        windowCount = Mathf.RoundToInt(trialLength / windowLength);
-        Debug.Log("windowCount is: " + windowCount + " for targetTrialLengthSeconds: " + trialLength + " using windowLength: " + windowLength);
     }
 
     public void TrialLengthChanged(int trialLengthIndex)
@@ -225,26 +220,6 @@ public class TrainingPageManager : MonoBehaviour
 
 
 
-    public int GetWindowCount()
-    {
-        return windowCount;
-    }
-
-    public float GetWindowLength()
-    {
-        return windowLength;
-    }
-
-    public void SetNumberOfTrainingsDone(int number)
-    {
-        numberOfTrainingsDone = number;
-    }
-
-    public int GetNumberOfTrainingsDone()
-    {
-        return numberOfTrainingsDone;
-    }
-
     // changes the training object image property
     // TODO - this is coupled to InventorySlot, consider replacing an image changed event
     // Then TrainingPageManager can decide what to do when the event happens.
@@ -261,6 +236,23 @@ public class TrainingPageManager : MonoBehaviour
     public GameObject GetTrainingObject()
     {
         return _SPO;
+    }
+
+    // resets the position and scale of the traning object
+    public void ResetSPO()
+    {
+        _SPO.transform.position = originalPosition;
+    }
+
+
+    public void SetNumberOfTrainingsDone(int number)
+    {
+        numberOfTrainingsDone = number;
+    }
+
+    public int GetNumberOfTrainingsDone()
+    {
+        return numberOfTrainingsDone;
     }
 
     public void UpdateNumberOfTrainingsDone(int newWindowCount)
@@ -280,6 +272,7 @@ public class TrainingPageManager : MonoBehaviour
             Debug.LogError("BessyTrainClassifier script not found on parent!");
         }
     }
+
 
     //This is brought over from TrainingMenuController as one of 2 things I think I can see that is being used
     public void HighlightSelectedSprite(GameObject inventorySlot)
@@ -302,12 +295,6 @@ public class TrainingPageManager : MonoBehaviour
         trainingOptionsFrame.SetActive(!trainingOptionsFrame.activeSelf);
         displayStartTrainingButton.SetActive(!displayStartTrainingButton.activeSelf);
         displayNumberOfTimesTrained.SetActive(!displayNumberOfTimesTrained.activeSelf);
-    }
-
-    // resets the position and scale of the traning object
-    public void ResetSPO()
-    {
-        _SPO.transform.position = originalPosition;
     }
 
 

@@ -114,8 +114,11 @@ public class TrainingController : MonoBehaviour
         // Get settings for the training session
         int labelNumber = trainingPrefs.labelNumber;
         string labelName = trainingPrefs.labelName;
-        float windowLength = trainingPageManager.GetWindowLength();
-        int windowCount = trainingPageManager.GetWindowCount();
+        float windowLength = trainingPrefs.windowLength;
+        float trialLength = trainingPrefs.trialLength;
+
+        // Calculate number of windows from trial length and window length
+        int windowCount = Mathf.RoundToInt(trialLength / windowLength);
 
         if (string.IsNullOrEmpty(labelName))
         {
@@ -123,8 +126,8 @@ public class TrainingController : MonoBehaviour
         }
 
         // Assign the SPO object ID to be the same as the page number
-        // _SPO.ObjectID = labelNumber;
         Debug.Log("Starting training on label: " + labelName + " (" + labelNumber + ")");
+        Debug.Log("Trial length is " + trialLength + " (" + windowCount + " windows of " + windowLength + " seconds)");
         Debug.Log("SPO is " + _SPO);
 
         // TODO - this is a null reference if application not started from main scene
