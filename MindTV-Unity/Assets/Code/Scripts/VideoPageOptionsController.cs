@@ -24,7 +24,7 @@ public class VideoPageOptionsController : MonoBehaviour
     {
         Image background = videoCellBackground.GetComponent<Image>();
         string colorText = backgroundColorDropdown.options[backgroundColorDropdown.value].text;
-        Color color = ColorByName.colors[colorText];
+        Color color = Settings.ColorForName(colorText);
         background.color = color;
         Debug.Log(colorText);
     }
