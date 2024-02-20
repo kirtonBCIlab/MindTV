@@ -11,11 +11,11 @@ using System.Text.RegularExpressions;
 public class TrainingPageManager : MonoBehaviour
 {
     // UI elements within the TrainingPage prefab
-    public TMP_InputField trainingLabelEntry;
-    public TMP_Dropdown colorDropdown;
-    public TMP_Dropdown animDropdown;
-    public GameObject activeTraining;
-    public GameObject _SPO;
+    [SerializeField] private TMP_InputField trainingLabelEntry;
+    [SerializeField] private TMP_Dropdown colorDropdown;
+    [SerializeField] private TMP_Dropdown animDropdown;
+    [SerializeField] private GameObject activeTraining;
+    [SerializeField] private GameObject _SPO;
 
     // Event to signal when preferences have been changed
     public static event Action TrainingPrefsChanged;
@@ -26,7 +26,7 @@ public class TrainingPageManager : MonoBehaviour
     //Exposing this so that we can change the base size of the training object
     public float originalBaseSize = 100.0f;
     public float targetImageResolution = 512f;
-    public Slider baseSizeSlider;
+    [SerializeField] private Slider baseSizeSlider;
 
     [SerializeField] private GameObject trainingOptionsFrame;
     [SerializeField] private GameObject displayStartTrainingButton;
