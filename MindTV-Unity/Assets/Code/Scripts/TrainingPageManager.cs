@@ -18,8 +18,6 @@ public class TrainingPageManager : MonoBehaviour
     public GameObject _SPO;
 
     // Event to signal when preferences have been changed
-    // TODO - this could be replaced with a scriptable object event where
-    // the settings then tell others when they have been changed.
     public static event Action TrainingPrefsChanged;
 
     // Reference to training settings
@@ -63,7 +61,6 @@ public class TrainingPageManager : MonoBehaviour
         baseSizeSlider.value = currentBaseSize;
     }
 
-    //SPO Toybox stuff
     private void OnEnable()
     {
         SPOToyBox spoToyBox = FindObjectOfType<SPOToyBox>(); //We should set this up better, as there should only ever be one toybox.
@@ -177,44 +174,6 @@ public class TrainingPageManager : MonoBehaviour
         UpdateAnimation();
     }
 
-    public int GetWindowCount()
-    {
-        return windowCount;
-    }
-
-    public float GetWindowLength()
-    {
-        return windowLength;
-    }
-
-    public void SetNumberOfTrainingsDone(int number)
-    {
-        numberOfTrainingsDone = number;
-    }
-
-    public int GetNumberOfTrainingsDone()
-    {
-        return numberOfTrainingsDone;
-    }
-
-    public void UpdateNumberOfTrainingsDone(int newWindowCount)
-    {
-        numberOfTrainingsDone += newWindowCount;
-        Debug.Log("Current number of trainings done: " + numberOfTrainingsDone);
-        trainNumberText.text = "Number of Trainings: " + numberOfTrainingsDone;
-
-        //This lives on TrainingPageArea and I don't know why....
-        BessyTrainClassifier parentScript = GetComponentInParent<BessyTrainClassifier>();
-        if (parentScript != null)
-        {
-            parentScript.CheckTotalTrainingWindows();
-        }
-        else
-        {
-            Debug.LogError("BessyTrainClassifier script not found on parent!");
-        }
-    }
-    
 
     public void UpdateAnimation()
     {
@@ -269,6 +228,44 @@ public class TrainingPageManager : MonoBehaviour
     }
 
 
+
+    public int GetWindowCount()
+    {
+        return windowCount;
+    }
+
+    public float GetWindowLength()
+    {
+        return windowLength;
+    }
+
+    public void SetNumberOfTrainingsDone(int number)
+    {
+        numberOfTrainingsDone = number;
+    }
+
+    public int GetNumberOfTrainingsDone()
+    {
+        return numberOfTrainingsDone;
+    }
+
+    public void UpdateNumberOfTrainingsDone(int newWindowCount)
+    {
+        numberOfTrainingsDone += newWindowCount;
+        Debug.Log("Current number of trainings done: " + numberOfTrainingsDone);
+        trainNumberText.text = "Number of Trainings: " + numberOfTrainingsDone;
+
+        //This lives on TrainingPageArea and I don't know why....
+        BessyTrainClassifier parentScript = GetComponentInParent<BessyTrainClassifier>();
+        if (parentScript != null)
+        {
+            parentScript.CheckTotalTrainingWindows();
+        }
+        else
+        {
+            Debug.LogError("BessyTrainClassifier script not found on parent!");
+        }
+    }
 
     //This is brought over from TrainingMenuController as one of 2 things I think I can see that is being used
     public void HighlightSelectedSprite(GameObject inventorySlot)
