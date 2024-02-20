@@ -38,13 +38,9 @@ public class TrainingPageManager : MonoBehaviour
     private UITweener tweener;
 
     //Variables dealing with Training Window Settings
-    [SerializeField]
-    private int windowCount = 3;
-    [SerializeField]
-    private float windowLength = 2.0f;
-    [SerializeField]
-    private int numberOfTrainingsDone;
-
+    [SerializeField] private int windowCount = 3;
+    [SerializeField] private float windowLength = 2.0f;
+    [SerializeField] private int numberOfTrainingsDone;
     [SerializeField] public TMP_Text trainNumberText;
 
     private void Start()
@@ -115,12 +111,12 @@ public class TrainingPageManager : MonoBehaviour
 
     public void UpdateTrainingLabel()
     {
-        trainingLabelEntry.text = trainingPrefs.labelText;
+        trainingLabelEntry.text = trainingPrefs.labelName;
     }
 
     public void LabelChanged(string labelText)
     {
-        trainingPrefs.labelText = labelText;
+        trainingPrefs.labelName = labelText;
         TrainingPrefsChanged();
     }
 

@@ -15,10 +15,11 @@ public class Settings
     public class TrainingPrefs
     {
         public int labelNumber = 0;
-        public string labelText = "";
+        public string labelName = "";
         public string animationName = "None";
         public Color backgroundColor = Settings.ColorForName("Blue (Theme)");
 
+        public float windowLength = 2;  // trial length must be a multiple of windowLength
         public float trialLength = 6;
     }
 

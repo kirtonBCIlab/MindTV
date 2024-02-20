@@ -106,26 +106,29 @@ public class TrainingController : MonoBehaviour
     IEnumerator StartMyTraining()
     {
         Debug.Log("Starting training...");
-        // Find the SPOToyBox object in the scene
-        SPOToyBox spoToyBox = FindObjectOfType<SPOToyBox>();
-        int labelNumber = transform.GetSiblingIndex();
 
-        //get the SPO object from the training page manager
+        // Find the SPOToyBox object in the scene get the SPO
+        SPOToyBox spoToyBox = FindObjectOfType<SPOToyBox>();
         GameObject _SPO = trainingPageManager.GetTrainingObject();
-        string trainingLabel = trainingPrefs.labelText;
+
+        // Get settings for the training session
+        int labelNumber = trainingPrefs.labelNumber;
+        string labelName = trainingPrefs.labelName;
         float windowLength = trainingPageManager.GetWindowLength();
         int windowCount = trainingPageManager.GetWindowCount();
 
-        if (string.IsNullOrEmpty(trainingLabel))
+        if (string.IsNullOrEmpty(labelName))
         {
-            trainingLabel = "Unknown";
+            labelName = "Unknown";
         }
 
         // Assign the SPO object ID to be the same as the page number
         // _SPO.ObjectID = labelNumber;
-        Debug.Log("Starting training on label: " + trainingLabel + " (" + labelNumber + ")");
+        Debug.Log("Starting training on label: " + labelName + " (" + labelNumber + ")");
         Debug.Log("SPO is " + _SPO);
-        spoToyBox.SetSPO(labelNumber, _SPO, trainingLabel);
+
+        // TODO - this is a null reference if application not started from main scene
+        spoToyBox.SetSPO(labelNumber, _SPO, labelName);
 
         float trainingLengthSeconds = windowCount * windowLength;
         // int trainingLengthSecondsInt = (int)trainingLengthSeconds;
