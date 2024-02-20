@@ -37,10 +37,6 @@ public class TrainingPageManager : MonoBehaviour
 
     private UITweener tweener;
 
-    // TODO - consider moving to TrainingController
-    // Variables dealing with Training Window Settings
-    [SerializeField] private int numberOfTrainingsDone;
-    [SerializeField] public TMP_Text trainNumberText;
 
     private void Start()
     {
@@ -242,35 +238,6 @@ public class TrainingPageManager : MonoBehaviour
     public void ResetSPO()
     {
         _SPO.transform.position = originalPosition;
-    }
-
-
-    public void SetNumberOfTrainingsDone(int number)
-    {
-        numberOfTrainingsDone = number;
-    }
-
-    public int GetNumberOfTrainingsDone()
-    {
-        return numberOfTrainingsDone;
-    }
-
-    public void UpdateNumberOfTrainingsDone(int newWindowCount)
-    {
-        numberOfTrainingsDone += newWindowCount;
-        Debug.Log("Current number of trainings done: " + numberOfTrainingsDone);
-        trainNumberText.text = "Number of Trainings: " + numberOfTrainingsDone;
-
-        //This lives on TrainingPageArea and I don't know why....
-        BessyTrainClassifier parentScript = GetComponentInParent<BessyTrainClassifier>();
-        if (parentScript != null)
-        {
-            parentScript.CheckTotalTrainingWindows();
-        }
-        else
-        {
-            Debug.LogError("BessyTrainClassifier script not found on parent!");
-        }
     }
 
 

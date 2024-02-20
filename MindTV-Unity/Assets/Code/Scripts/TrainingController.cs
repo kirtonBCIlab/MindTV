@@ -6,20 +6,26 @@ using BCIEssentials.Controllers;
 
 public class TrainingController : MonoBehaviour
 {
-    [SerializeField] private GameObject controllerManager;
-    [SerializeField] private GameObject startTrainingButton;
-    [SerializeField] private GameObject cancelCountdownButton;
-    [SerializeField] private BCIController bciController;
-    [SerializeField] private TrainingPageManager trainingPageManager;
-    [SerializeField] private TMP_Text countdownText; // Assign in the Inspector
-    [SerializeField] private AudioSource audioSource; // Assign in the Inspector
-    [SerializeField] private AudioClip countdownBeepFile; // Assign in the Inspector
-    [SerializeField] private AudioClip startBeepFile; // Assign in the Inspector
+    // UI elements within the TrainingPage prefab
+    public GameObject startTrainingButton;
+    public GameObject cancelCountdownButton;
+    public GameObject _SPO;
+    public TMP_Text countdownText;
+    public AudioSource audioSource;
+    public AudioClip countdownBeepFile;
+    public AudioClip startBeepFile;
+    public TMP_Text trainRemainingTimeText;
+    public TMP_Text trainNumberText;
+
+    public GameObject controllerManager;
+    public BCIController bciController;
+
+    public int numberOfCountdownSeconds = 3;
+    public string startTrainingMessage = "Go!";
+
+    private int numberOfTrainingsDone = 0;
     private float countdownBeepVolume = 1f; // Example volume level for quiet beep
     private float startBeepVolume = 1f; // Example volume level for loud beep
-    [SerializeField] private int numberOfCountdownSeconds = 3; // Number of seconds to countdown from
-    [SerializeField] private string startTrainingMessage = "Go!"; // Text to display when training starts
-    [SerializeField] private TMP_Text trainRemainingTimeText; // Assign in the Inspector
     private float uiUpdateDelay = 0.5f; // Delay for updating UI elements
 
     // Reference to training settings
@@ -109,7 +115,6 @@ public class TrainingController : MonoBehaviour
 
         // Find the SPOToyBox object in the scene get the SPO
         SPOToyBox spoToyBox = FindObjectOfType<SPOToyBox>();
-        GameObject _SPO = trainingPageManager.GetTrainingObject();
 
         // Get settings for the training session
         int labelNumber = trainingPrefs.labelNumber;
@@ -167,9 +172,7 @@ public class TrainingController : MonoBehaviour
 
         // Update the number of trainings done with the windowCount
         yield return new WaitForSeconds(uiUpdateDelay);
-        trainingPageManager.UpdateNumberOfTrainingsDone(windowCount);
-
-        int numberOfTrainingsDone = trainingPageManager.GetNumberOfTrainingsDone();
+        UpdateNumberOfTrainingsDone(windowCount);
 
         // // Anup: I turned this off to get around package issues
         // if (numberOfTrainingsDone >= 5) // Needs to be updated
@@ -180,36 +183,6 @@ public class TrainingController : MonoBehaviour
 
         yield return null;
     }
-
-    //     private void UpdateTrainingWindowCount(int newWindowCount)
-    // {
-    //     // Get the current number of trainings done
-    //     int numberOfTrainingsDone = trainingPageManager.GetNumberOfTrainingsDone();
-    //     Debug.Log("Current number of trainings done: " + numberOfTrainingsDone);
-    //     // Update the number of trainings done based on the new window count
-    //     numberOfTrainingsDone += newWindowCount;
-
-    //     //Now set them in the training page manager
-    //     trainingPageManager.SetNumberOfTrainingsDone(numberOfTrainingsDone);
-
-    //     // Update the number of trainings done text - handle this elsewhere
-    //     //numberOfTrainingsText.text = numberOfTrainingsDone.ToString();
-
-
-    //     // Find the BessyTrainClassifier script in the parent and call CheckTotalTrainingWindows
-    //     // This will show the Finish Training button if the conditions are met
-
-    //     //This lives on TrainingPageArea and I don't know why....
-    //     BessyTrainClassifier parentScript = GetComponentInParent<BessyTrainClassifier>();
-    //     if (parentScript != null)
-    //     {
-    //         parentScript.CheckTotalTrainingWindows();
-    //     }
-    //     else
-    //     {
-    //         Debug.LogError("BessyTrainClassifier script not found on parent!");
-    //     }
-    // }
 
     IEnumerator TrainingTimer(int trainingSeconds)
     {
@@ -230,4 +203,24 @@ public class TrainingController : MonoBehaviour
 
         startTrainingButton.SetActive(true); // Re-show the start button
     }
+
+    private void UpdateNumberOfTrainingsDone(int newWindowCount)
+    {
+        numberOfTrainingsDone += newWindowCount;
+        trainNumberText.text = "Number of Trainings: " + numberOfTrainingsDone;
+
+        // TODO - not sure what this is doing here
+        BessyTrainClassifier parentScript = GetComponentInParent<BessyTrainClassifier>();
+        if (parentScript != null)
+        {
+            parentScript.CheckTotalTrainingWindows();
+        }
+        else
+        {
+            Debug.LogError("BessyTrainClassifier script not found on parent!");
+        }
+    }
+
+
+
 }
