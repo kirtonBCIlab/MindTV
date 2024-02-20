@@ -103,7 +103,7 @@ public class TrainingController : MonoBehaviour
         // bciController = controllerManager.GetComponent<BCIController>();
     }
 
-     IEnumerator StartMyTraining()
+    IEnumerator StartMyTraining()
     {
         Debug.Log("Starting training...");
         // Find the SPOToyBox object in the scene
@@ -123,12 +123,9 @@ public class TrainingController : MonoBehaviour
 
         // Assign the SPO object ID to be the same as the page number
         // _SPO.ObjectID = labelNumber;
-        spoToyBox.SetSPO(labelNumber, _SPO, trainingLabel);
-
-
-        Debug.Log("Starting training on label: " + trainingLabel);
-
+        Debug.Log("Starting training on label: " + trainingLabel + " (" + labelNumber + ")");
         Debug.Log("SPO is " + _SPO);
+        spoToyBox.SetSPO(labelNumber, _SPO, trainingLabel);
 
         float trainingLengthSeconds = windowCount * windowLength;
         // int trainingLengthSecondsInt = (int)trainingLengthSeconds;

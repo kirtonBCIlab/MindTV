@@ -249,6 +249,24 @@ public class TrainingPageManager : MonoBehaviour
         return numberOfTrainingsDone;
     }
 
+    // changes the training object image property
+    // TODO - this is coupled to InventorySlot, consider replacing an image changed event
+    // Then TrainingPageManager can decide what to do when the event happens.
+    public void SetTrainingObject(Sprite image_sprite)
+    {
+        ResetSPO();
+        _SPO.GetComponent<SpriteRenderer>().sprite = image_sprite;
+
+        // If we want the newly set image to be reset to the original size, use this: (uncomment the line below)
+        ResetBaseSize();
+    }
+
+    // gets the training object
+    public GameObject GetTrainingObject()
+    {
+        return _SPO;
+    }
+
     public void UpdateNumberOfTrainingsDone(int newWindowCount)
     {
         numberOfTrainingsDone += newWindowCount;
@@ -294,24 +312,6 @@ public class TrainingPageManager : MonoBehaviour
     public void ResetSPO()
     {
         _SPO.transform.position = originalPosition;
-    }
-
-    // changes the training object image property
-    // TODO - this is coupled to InventorySlot, consider replacing an image changed event
-    // Then TrainingPageManager can decide what to do when the event happens.
-    public void SetTrainingObject(Sprite image_sprite)
-    {
-        ResetSPO();
-        _SPO.GetComponent<SpriteRenderer>().sprite = image_sprite;
-
-        // If we want the newly set image to be reset to the original size, use this: (uncomment the line below)
-        ResetBaseSize();
-    }
-
-    // gets the training object
-    public GameObject GetTrainingObject()
-    {
-        return _SPO;
     }
 
 
