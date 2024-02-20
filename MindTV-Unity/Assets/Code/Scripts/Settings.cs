@@ -17,7 +17,7 @@ public class Settings
         public int labelNumber = 0;
         public string labelName = "";
         public string animationName = "None";
-        public float imageSize = 100.0f;
+        public float imageBaseSize = 100.0f;
         public Color backgroundColor = Settings.ColorForName("Blue (Theme)");
 
         public float windowLength = 2.0f;  // trial length must be a multiple of windowLength

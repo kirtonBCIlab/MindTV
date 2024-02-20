@@ -7,6 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
+using Unity.VisualScripting;
 
 public class TrainingPageManager : MonoBehaviour
 {
@@ -32,7 +33,6 @@ public class TrainingPageManager : MonoBehaviour
     //Exposing this so that we can change the base size of the training object
     private float originalBaseSize = 100.0f;
     private float targetImageResolution = 512f;
-    private float currentBaseSize;
 
     private Vector3 originalPosition;
     private UITweener tweener;
@@ -48,7 +48,7 @@ public class TrainingPageManager : MonoBehaviour
         originalPosition = _SPO.transform.position;
 
         // TODO - move to a helper
-        currentBaseSize = originalBaseSize;
+        float currentBaseSize = trainingPrefs.imageBaseSize;
         _SPO.transform.localScale = new Vector3(currentBaseSize, currentBaseSize, currentBaseSize);
         imageSizeSlider.value = currentBaseSize;
     }
@@ -63,10 +63,12 @@ public class TrainingPageManager : MonoBehaviour
 
     private void InitializeViews()
     {
+        // Update the UI to match current settings
         UpdateTrainingLabel();
         UpdateTrainingPageColor();
         UpdateTrialLength();
         UpdateAnimation();
+        UpdateImageSize();
     }
 
     private void InitializeListeners()
@@ -75,9 +77,8 @@ public class TrainingPageManager : MonoBehaviour
         colorDropdown.onValueChanged.AddListener(ColorChanged);
         trialLengthDropdown.onValueChanged.AddListener(TrialLengthChanged);
         animDropdown.onValueChanged.AddListener(AnimationChanged);
-
         imageSizeSlider.onValueChanged.AddListener(ImageSizeChanged);
-        imageSizeResetButton.onClick.AddListener(ResetImageSize);
+        imageSizeResetButton.onClick.AddListener(ResetImageBaseSize);
     }
 
 
@@ -202,7 +203,7 @@ public class TrainingPageManager : MonoBehaviour
         _SPO.GetComponent<SpriteRenderer>().sprite = image_sprite;
 
         // If we want the newly set image to be reset to the original size, use this: (uncomment the line below)
-        ResetImageSize();
+        ResetImageBaseSize();
     }
 
     // gets the training object
@@ -252,32 +253,28 @@ public class TrainingPageManager : MonoBehaviour
         return scaleFactor;
     }
 
-    // Sets the base size of the training object
-    private void SetBaseSize(float size)
+
+    public void UpdateImageSize()
     {
+        float currentBaseSize = trainingPrefs.imageBaseSize;
+        imageSizeSlider.value = currentBaseSize;
+
         SpriteRenderer spriteRenderer = _SPO.GetComponent<SpriteRenderer>();
         float uniformScaleFactor = UniformImageSizeScaleFactor(spriteRenderer);
-        float scaledSize = size * uniformScaleFactor;
+        float scaledSize = currentBaseSize * uniformScaleFactor;
         _SPO.transform.localScale = new Vector3(scaledSize, scaledSize, scaledSize);
     }
 
-    // changes the training object base size
     public void ImageSizeChanged(float value)
     {
-        currentBaseSize = value;
-        Debug.Log("Base size changed to " + currentBaseSize);
-        SetBaseSize(currentBaseSize);
+        trainingPrefs.imageBaseSize = value;
+        UpdateImageSize();
     }
 
-    // resets the base size
-    public void ResetImageSize()
+    public void ResetImageBaseSize()
     {
-        currentBaseSize = originalBaseSize;
-        imageSizeSlider.value = currentBaseSize;
-        SetBaseSize(currentBaseSize);
-
-        Debug.Log("Base size changed to " + currentBaseSize);
+        trainingPrefs.imageBaseSize = originalBaseSize;
+        UpdateImageSize();
         ResetSPO();
     }
-
 }
