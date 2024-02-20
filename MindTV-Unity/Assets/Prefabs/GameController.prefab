@@ -71,15 +71,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30427dcb9311a463bbc3ffd05d94ebad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userProfiles: []
   currentUser:
     userProfileName: 
-    generalSettingsPrefs:
-      volume: 0
-      resolution: 0
-      isFullscreen: 0
-      backgroundColor: {r: 0, g: 0, b: 0, a: 0}
-    bciCellPrefs: []
+    trainingPrefs:
+    - labelNumber: 0
+      labelText: 
+      animationText: 
+      backgroundColor: {r: 0, g: 0, b: 0, a: 1}
+    - labelNumber: 1
+      labelText: 
+      animationText: 
+      backgroundColor: {r: 0, g: 0, b: 0, a: 1}
+    - labelNumber: 2
+      labelText: 
+      animationText: 
+      backgroundColor: {r: 0, g: 0, b: 0, a: 1}
+    - labelNumber: 3
+      labelText: 
+      animationText: 
+      backgroundColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &-5271898900482597233
 MonoBehaviour:
   m_ObjectHideFlags: 0

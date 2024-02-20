@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,17 +9,19 @@ using UnityEngine.UI;
 public class TabGroup : MonoBehaviour
 {
     public List<Tab> tabs;
-    public Sprite tabIdle;
-    public Color tabIdleColor;
-    public Sprite tabHover;
-    public Color tabHoverColor;
-    public Sprite tabSelected;
-    public Color tabSelectedColor;
-    public Tab selectedTab;
     public List<GameObject> objectsToSwap;
 
-    //Match the tab color to the page color if this is true
-    public bool matchPageColor;
+    public Tab selectedTab;
+
+    public Sprite tabIdle;
+    public float tabIdleAlpha;
+
+    public Sprite tabHover;
+    public float tabHoverAlpha;
+
+    public Sprite tabSelected;
+    public float tabSelectedAlpha;
+
 
     public void Subscribe(Tab tab)
     {
@@ -28,13 +32,27 @@ public class TabGroup : MonoBehaviour
         tabs.Add(tab);
     }
 
+    public void SetTabAppearance(int number, string label, Color color)
+    {
+        if (tabs.Count > number)
+        {
+            // The tabs list may not match the order shown in the hierarchy
+            // Find the correct tab by searching for tab number insead.
+            Tab tab = tabs.Find(tab => tab.number == number);
+
+            tab.SetLabel(label);
+            tab.SetColor(color);
+        }
+        ResetTabs();
+    }
+
     public void OnTabEnter(Tab tab)
     {
         ResetTabs();
-        if (selectedTab == null || tab !=selectedTab)
+        if (selectedTab == null || tab != selectedTab)
         {
-            tab.background.sprite = tabHover;
-            tab.background.color = tabHoverColor;
+            tab.SetSprite(tabHover);
+            tab.SetColorAlpha(tabHoverAlpha);
         }
     }
 
@@ -68,51 +86,17 @@ public class TabGroup : MonoBehaviour
             }
         }
 
-        if (!matchPageColor)
-        {
-            tab.background.sprite = tabSelected;
-            tab.background.color = tabSelectedColor;
-        }
-        else
-        {
-            //Hardcoding this right now to the first child, and getting that image
-            tab.background.sprite = tabSelected;
-            for(int i=0; i<objectsToSwap.Count;i++)
-            {
-                if(i==index)
-                {
-                    Color newTabcolor = objectsToSwap[i].GetComponentInChildren<Image>().color;
-                    tab.background.color = newTabcolor;
-                }
-            }
-        }
-
+        tab.SetSprite(tabSelected);
+        tab.SetColorAlpha(tabSelectedAlpha);
     }
 
     public void ResetTabs()
     {
-        foreach(Tab singleTab in tabs)
+        foreach(Tab tab in tabs)
         {
-            if(selectedTab!=null && singleTab == selectedTab) {continue;}
-            singleTab.background.sprite = tabIdle;
-            singleTab.background.color = tabIdleColor;
-        }
-    }
-
-    public void UpdateTabColor()
-    {
-        foreach(Tab singleTab in tabs)
-        {
-            if (singleTab == selectedTab)
-            {
-                singleTab.background.sprite = tabSelected;
-                singleTab.background.color = tabSelectedColor;
-            }
-            else
-            {
-                singleTab.background.sprite = tabIdle;
-                singleTab.background.color = tabIdleColor;
-            }
+            if(selectedTab!=null && tab == selectedTab) {continue;}
+            tab.SetSprite(tabIdle);
+            tab.SetColorAlpha(tabIdleAlpha);
         }
     }
 }
