@@ -7,13 +7,26 @@ using System; // For using LINQ queries
 
 
 /// <summary>
-/// SettingsManager is responsible for loading settings from disk and pushing out to
-/// the application.  It is also responsible for gathering changed settings from the application
-/// and writing to disk.
+/// SettingsManager is responsible for loading Settings from disk and making them available
+/// to the rest of the applicaiton via currentUser.  When the applicaiton shuts down the
+/// Settings object is saved to disk.
 /// </summary>
 public class SettingsManager : MonoBehaviour
 {
-    public static SettingsManager Instance { get; private set; }
+    // Singleton property to access settings: SettingsManager.Instance.currentUser...
+    // This will initialize SettingsManager if not already present, such as when
+    // starting from a scene other than MainMenu.
+    public static SettingsManager Instance
+    {
+        get
+        {
+            if (privateInstance == null)
+            {
+                InitializeInstance();
+            }
+            return privateInstance;
+        }
+    }
 
     // Current active user settings
     public Settings.User currentUser;
@@ -21,21 +34,19 @@ public class SettingsManager : MonoBehaviour
 
     public void Awake()
     {
-        // Set up a singleton (static instance) of SettingsManager
-        if (Instance != null && Instance != this)
+        // If singleton doesn't exist, then I'm the singleton
+        if (privateInstance == null)
+        {
+            Debug.Log("SettingsManager: initializing");
+            privateInstance = this;
+            DontDestroyOnLoad(this.gameObject);
+            InitializeSettings();
+            LoadSettings();
+        }
+        else
         {
             Destroy(gameObject);
-            return;
         }
-
-        Debug.Log("SettingsManager: initializing");
-
-        settings = new Settings();
-        currentUser = new Settings.User();  // make a dummy user (not saved)
-        Instance = this;
-
-        DontDestroyOnLoad(gameObject);
-        LoadSettings();
     }
 
     public void OnApplicationQuit()
@@ -92,5 +103,32 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
+
+    private void InitializeSettings()
+    {
+        // Settings will contain any User objects loaded from disk
+        settings = new Settings();
+
+        // Start with a default User (default settings)
+        currentUser = new Settings.User();
+    }
+
+    private static void InitializeInstance()
+    {
+        // If there isn't already an instance of the SettingsManager, then create a
+        // game object with a SettingsManager component.  The game object will call 
+        // SettingsManager.Awake() which completes the initialization.
+        SettingsManager instance = FindObjectOfType<SettingsManager>();
+        if (instance == null)
+        {
+            GameObject go = new GameObject();
+            go.name = "SettingsManager Singleton";
+            go.AddComponent<SettingsManager>();
+            DontDestroyOnLoad(go);
+        }
+    }
+
+
     private Settings settings;
+    private static SettingsManager privateInstance;
 }
