@@ -3,8 +3,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
-public class VideoSelectorCell : MonoBehaviour
+public class VideoCellManager : MonoBehaviour
 {
+    //Settings for the video cell
+    public Settings.VideoCell videoCell;
+
+    [SerializeField]
+    private Image backgroundCell;
+    [SerializeField]
+    
+
     public RawImage previewImage; // Assign in Inspector
     private VideoPlayer videoPlayer; // Used for loading video frames
     private int videoIndex; // Index of the video clip this cell represents
@@ -24,6 +32,9 @@ public class VideoSelectorCell : MonoBehaviour
         videoPlayer = gameObject.AddComponent<VideoPlayer>();
         videoPlayer.playOnAwake = false;
         videoPlayer.renderMode = VideoRenderMode.APIOnly; // We only need the video frame data
+
+        // Initialize Listeners
+
     }
 
     public void SetupCell(VideoClip videoClip, int index)
@@ -32,6 +43,12 @@ public class VideoSelectorCell : MonoBehaviour
         videoPlayer.clip = videoClip;
         StartCoroutine(LoadPreview());
     }
+
+    public void SetVideoCell(Settings.VideoCell cell)
+    {
+        videoCell = cell;
+    }
+
 
     IEnumerator LoadPreview()
     {
@@ -71,5 +88,9 @@ public class VideoSelectorCell : MonoBehaviour
         Debug.Log($"Video {videoIndex} selected.");
     }
 
-    // Ensure this method is connected to your UI button's onClick event
+    // Update the Background Color of the cell
+    public void UpdateBackgroundColor()
+    {
+
+    }    
 }

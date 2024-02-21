@@ -14,12 +14,6 @@ public class VideoPageOptionsController : MonoBehaviour
     public TMP_Text videoTitleText;
     public TMP_InputField videoTitleInputField;
    
-    
-    void Start()
-    {
-        
-    }
-
     public void ChangeCellColor()
     {
         Image background = videoCellBackground.GetComponent<Image>();

@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using System;
+using System.Collections.Generic;
 
 public class VideoPageManager : MonoBehaviour
 {
@@ -20,8 +21,10 @@ public class VideoPageManager : MonoBehaviour
     public static event Action VideoPrefsChanged;
 
     // Reference to training settings
-    private Settings.VideoPrefs videoPrefs;
+    private List<Settings.VideoCell> videoCells;
     private Settings.TrainingPrefs trainingPrefs;
+    [SerializeField] private GameObject videoCellPrefab;
+    [SerializeField] private Transform videoCellParent;
     private void Awake()
     {
         InitializeSettings();
@@ -40,9 +43,7 @@ public class VideoPageManager : MonoBehaviour
 
         // Hides the RawImage component of the video previewer to stop displaying the video
         // previewVideoRawImage.enabled = false;
-        // StartCoroutine(GenerateAllPreviews());
-
-        
+        // StartCoroutine(GenerateAllPreviews()); 
     }
 
     private void InitializeSettings()
@@ -51,12 +52,17 @@ public class VideoPageManager : MonoBehaviour
         // TrainingPrefs object from the data model.  Use a dummy TrainingPrefs if one is not found.
         int tileNumber = transform.GetSiblingIndex();
         
-        videoPrefs = SettingsManager.Instance?.currentUser.videoPrefs[tileNumber] ?? new Settings.VideoPrefs();
+        videoCells = SettingsManager.Instance?.currentUser.videoCells;
     }
 
     private void InitializeViews()
     {
-       
+       // Create a new video cell for each video in the user's videoCells list
+        foreach (Settings.VideoCell videoCell in videoCells)
+        {
+            GameObject newVideoCell = Instantiate(videoCellPrefab, videoCellParent, false);
+            newVideoCell.GetComponent<VideoCellManager>().SetVideoCell(videoCell);
+        }
     }
 
     private void InitializeListeners()

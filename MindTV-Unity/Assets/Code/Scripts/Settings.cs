@@ -40,17 +40,18 @@ public class Settings
         };
 
         // Add other things we need to persist for user here
-        public List<VideoPrefs> videoPrefs = new List<VideoPrefs>()
+        public List<VideoCell> videoCells = new List<VideoCell>()
         {
+            new VideoCell() { tileNumber = 0 },
         };
 
-        public int numberVideoCells = 4;
-    }
-
-    [System.Serializable]
-    public class VideoPrefs
-    {
-        public int numberVideoCells = 1;
+        // Add new cell to the videoCell list
+        public VideoCell AddVideoCell()
+        {
+            var newCell = new VideoCell() { tileNumber = videoCells.Count };
+            videoCells.Add(newCell);
+            return newCell;
+        }
 
     }
 
@@ -61,7 +62,6 @@ public class Settings
         public string videoTitle = "Video Title";
         public string videoPath = "";
         public Color backgroundColor = Settings.ColorForName("Blue (Theme)");
-        public Image videoThumbnail;
         public bool includeGraphic = false;
         public string layoutStyle = "Default";
         public string mentalCommandLabel = "None";
