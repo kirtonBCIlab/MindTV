@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -17,10 +18,14 @@ public class Settings
         public int labelNumber = 0;
         public string labelName = "";
         public string animationName = "None";
-        public float imageBaseSize = 100.0f;
         public Color backgroundColor = Settings.ColorForName("Blue (Theme)");
 
-        public float windowLength = 2.0f;  // trial length must be a multiple of windowLength
+        // can't serialize sprite, need to record where asset is (default or user provided)
+        public string imagePath = "Assets/icons/cube_primary.png";
+        public float imageBaseSize = 100.0f;
+
+        // trial length must be a multiple of windowLength
+        public float windowLength = 2.0f;
         public float trialLength = 6.0f;
     }
 

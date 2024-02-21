@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 using Unity.VisualScripting;
+using UnityEditor;
 
 public class TrainingPageManager : MonoBehaviour
 {
@@ -69,6 +70,7 @@ public class TrainingPageManager : MonoBehaviour
         UpdateTrialLength();
         UpdateAnimation();
         UpdateImageSize();
+        UpdateImage();
     }
 
     private void InitializeListeners()
@@ -78,7 +80,7 @@ public class TrainingPageManager : MonoBehaviour
         trialLengthDropdown.onValueChanged.AddListener(TrialLengthChanged);
         animDropdown.onValueChanged.AddListener(AnimationChanged);
         imageSizeSlider.onValueChanged.AddListener(ImageSizeChanged);
-        imageSizeResetButton.onClick.AddListener(ResetImageBaseSize);
+        imageSizeResetButton.onClick.AddListener(ResetImageSize);
     }
 
 
@@ -102,7 +104,7 @@ public class TrainingPageManager : MonoBehaviour
 
         // set the dropdown to color from settings
         string colorName = Settings.NameForColor(trainingPrefs.backgroundColor);
-        int colorIndex = colorDropdown.options.FindIndex(name => name.text == colorName);
+        int colorIndex = colorDropdown.options.FindIndex(option => option.text == colorName);
         colorDropdown.value = colorIndex;
     }
 
@@ -124,7 +126,7 @@ public class TrainingPageManager : MonoBehaviour
 
         // set the dropdown to the length from settings
         string trialLengthName = Settings.NameForTrialLength(trialLength);
-        int index = trialLengthDropdown.options.FindIndex(name => name.text == trialLengthName);
+        int index = trialLengthDropdown.options.FindIndex(option => option.text == trialLengthName);
         trialLengthDropdown.value = index;
     }
 
@@ -146,7 +148,7 @@ public class TrainingPageManager : MonoBehaviour
         string animationName = trainingPrefs.animationName;
 
         // Set the dropdown to animation from settings
-        int index = animDropdown.options.FindIndex(name => name.text == animationName);
+        int index = animDropdown.options.FindIndex(option => option.text == animationName);
         animDropdown.value = index;
 
         // Set the animation type and length of the UITWeener
@@ -204,61 +206,6 @@ public class TrainingPageManager : MonoBehaviour
         _SPO.transform.localScale = new Vector3(scaledSize, scaledSize, scaledSize);
     }
 
-    public void ImageSizeChanged(float value)
-    {
-        trainingPrefs.imageBaseSize = value;
-        UpdateImageSize();
-    }
-
-    public void ResetImageBaseSize()
-    {
-        trainingPrefs.imageBaseSize = originalBaseSize;
-        UpdateImageSize();
-        ResetSPO();
-    }
-
-
-    // changes the training object image property
-    // TODO - this is coupled to InventorySlot, consider replacing an image changed event
-    // Then TrainingPageManager can decide what to do when the event happens.
-    public void SetTrainingObject(Sprite image_sprite)
-    {
-        ResetSPO();
-        _SPO.GetComponent<SpriteRenderer>().sprite = image_sprite;
-
-        // If we want the newly set image to be reset to the original size, use this: (uncomment the line below)
-        ResetImageBaseSize();
-    }
-
-    // resets the position and scale of the traning object
-    private void ResetSPO()
-    {
-        _SPO.transform.position = originalPosition;
-    }
-
-    //This is brought over from TrainingMenuController as one of 2 things I think I can see that is being used
-    public void HighlightSelectedSprite(GameObject inventorySlot)
-    {
-        GameObject[] inventory = GameObject.FindGameObjectsWithTag("InventorySlot");
-
-        foreach (GameObject slot in inventory)
-        {
-            GameObject frame = slot.transform.Find("Frame").gameObject;
-            frame.SetActive(false);
-        }
-
-        GameObject selectedFrame = inventorySlot.transform.Find("Frame").gameObject;
-        selectedFrame.SetActive(true);
-    }
-
-    //This is brought over from TrainingMenuController as one of 2 things I think I can see that is being used
-    public void ToggleInventoryVisibility()
-    {
-        trainingOptionsFrame.SetActive(!trainingOptionsFrame.activeSelf);
-        displayStartTrainingButton.SetActive(!displayStartTrainingButton.activeSelf);
-        displayNumberOfTimesTrained.SetActive(!displayNumberOfTimesTrained.activeSelf);
-    }
-
     // Calculate the scale factor needed to resize the longest dimension to targetImageResolution (512x512)
     private float UniformImageSizeScaleFactor(SpriteRenderer spriteRenderer)
     {
@@ -268,4 +215,48 @@ public class TrainingPageManager : MonoBehaviour
         float scaleFactor = targetImageResolution / maxDimension;
         return scaleFactor;
     }
+
+    public void ResetImageSize()
+    {
+        trainingPrefs.imageBaseSize = originalBaseSize;
+        _SPO.transform.position = originalPosition;
+        UpdateImageSize();
+    }
+
+    public void ImageSizeChanged(float value)
+    {
+        trainingPrefs.imageBaseSize = value;
+        UpdateImageSize();
+    }
+
+
+    public void UpdateImage()
+    {
+        string path = trainingPrefs.imagePath;
+        Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+        
+        Debug.Log("sprite " + sprite);
+
+        ImageChanged(sprite);
+    }
+
+    // TODO - this is called by the individual InventorySlot objects.  Refactor to work like
+    // the other UI elements managed by TrainingPageController, ie: use an image changed event, 
+    // or have TrainingPageController attach listeners to individual InventorySlot objects.
+    public void ImageChanged(Sprite sprite)
+    {
+        trainingPrefs.imagePath = AssetDatabase.GetAssetPath(sprite);
+        _SPO.GetComponent<SpriteRenderer>().sprite = sprite;
+    }
+
+
+    //This is brought over from TrainingMenuController as one of 2 things I think I can see that is being used
+    public void ToggleInventoryVisibility()
+    {
+        trainingOptionsFrame.SetActive(!trainingOptionsFrame.activeSelf);
+        displayStartTrainingButton.SetActive(!displayStartTrainingButton.activeSelf);
+        displayNumberOfTimesTrained.SetActive(!displayNumberOfTimesTrained.activeSelf);
+    }
+
+
 }
