@@ -23,7 +23,7 @@ public class TrainingController : MonoBehaviour
     public int numberOfCountdownSeconds = 3;
     public string startTrainingMessage = "Go!";
 
-    private int numberOfTrainingsDone = 0;
+    private int numberWindowsCompleted = 0;
     private float countdownBeepVolume = 1f; // Example volume level for quiet beep
     private float startBeepVolume = 1f; // Example volume level for loud beep
     private float uiUpdateDelay = 0.5f; // Delay for updating UI elements
@@ -153,7 +153,7 @@ public class TrainingController : MonoBehaviour
 
         // Update the number of trainings done with the windowCount
         yield return new WaitForSeconds(uiUpdateDelay);
-        UpdateNumberOfTrainingsDone(windowCount);
+        UpdateNumberOfWindowsCompleted(windowCount);
 
         // // Anup: I turned this off to get around package issues
         // if (numberOfTrainingsDone >= 5) // Needs to be updated
@@ -185,12 +185,13 @@ public class TrainingController : MonoBehaviour
         startTrainingButton.SetActive(true); // Re-show the start button
     }
 
-    private void UpdateNumberOfTrainingsDone(int newWindowCount)
+    private void UpdateNumberOfWindowsCompleted(int newWindowCount)
     {
-        numberOfTrainingsDone += newWindowCount;
-        trainNumberText.text = "Number of Trainings: " + numberOfTrainingsDone;
+        numberWindowsCompleted += newWindowCount;
+        trainNumberText.text = "Number of Windows: " + numberWindowsCompleted;
 
-        // TODO - not sure what this is doing here
+        // TODO - TrainingController should have a reference instead of digging around in the
+        // parent object for something.  Or emit an event, etc.
         BessyTrainClassifier parentScript = GetComponentInParent<BessyTrainClassifier>();
         if (parentScript != null)
         {
