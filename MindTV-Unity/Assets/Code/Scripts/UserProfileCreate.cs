@@ -5,25 +5,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 
-public class CreateUserProfile : MonoBehaviour
+public class UserProfileCreate : MonoBehaviour
 {
-    TMP_InputField profileInputField;
-    TMP_Text usernameValidityMessage;
+    [SerializeField] private TMP_InputField profileInputField;
+    [SerializeField] private TMP_Text usernameValidityMessage;
+    [SerializeField] private Button createButton;
+
+    void Start()
+    {
+        createButton.onClick.AddListener(CreateProfile);
+    }
 
     public void CreateProfile()
     {
-        string validUsernamePattern = @"^[a-zA-Z0-9_ –—]+$"; // Regex pattern
-
-        // Get the input field with the profile name
-        profileInputField = transform.Find("UserProfileNameInputField").GetComponent<TMP_InputField>();
-
-        // Get the text box to display the user profile name validity message
-        usernameValidityMessage = transform.Find("usernameValidityMessage").GetComponent<TMP_Text>();
-
         // Check if the field is empty
         if (!string.IsNullOrEmpty(profileInputField.text))
         {
             // Check if the username matches the regex pattern
+            string validUsernamePattern = @"^[a-zA-Z0-9_ –—]+$"; // Regex pattern
             if (!Regex.IsMatch(profileInputField.text, validUsernamePattern))
             {
                 Debug.Log("Invalid characters used");
