@@ -93,9 +93,6 @@ public class TrainingController : MonoBehaviour
         // Wait a bit before removing the countdown text
         yield return new WaitForSeconds(1);
         countdownText.text = ""; // Clear the countdown text
-        // Wait a bit before re-showing the start button - TEMPORARY
-        yield return new WaitForSeconds(1);
-        startTrainingButton.SetActive(true); // Re-show the start button
     }
 
     void PlayBeep(AudioClip clip, float volume)
@@ -125,30 +122,15 @@ public class TrainingController : MonoBehaviour
         // Calculate number of windows from trial length and window length
         int windowCount = Mathf.RoundToInt(trialLength / windowLength);
 
-        if (string.IsNullOrEmpty(labelName))
-        {
-            labelName = "Unknown";
-        }
-
         // Assign the SPO object ID to be the same as the page number
         Debug.Log("Starting training on label: " + labelName + " (" + labelNumber + ")");
         Debug.Log("Trial length is " + trialLength + " (" + windowCount + " windows of " + windowLength + " seconds)");
-        Debug.Log("SPO is " + _SPO);
 
         // TODO - this is a null reference if application not started from main scene
         spoToyBox.SetSPO(labelNumber, _SPO, labelName);
 
-        float trainingLengthSeconds = windowCount * windowLength;
-        // int trainingLengthSecondsInt = (int)trainingLengthSeconds;
-
-        // Update the length of the animation duration
-        Debug.Log("_SPO.UITweener: Setting animation duration to " + trainingLengthSeconds);
-        // uiTweener.duration = trainingLengthSeconds;
-
-
         // Do the actual training
         // Anup: I turned this off to get around package issues
-        Debug.Log("BCIController: Do Single Training (Currently off)");
         // BCIController.WhileDoSingleTraining(_SPO, windowLength, windowCount);
 
         // Start the animation
@@ -160,11 +142,10 @@ public class TrainingController : MonoBehaviour
         }
 
         // Start the timer for the training
-        // StartCoroutine(TrainingTimer(trainingLengthSecondsInt));
-        StartCoroutine(TrainingTimer((int)trainingLengthSeconds));
+        StartCoroutine(TrainingTimer((int)trialLength));
 
         // Wait to finish the training
-        yield return new WaitForSeconds(trainingLengthSeconds);
+        yield return new WaitForSeconds(trialLength);
 
         // Needs to be updated
         // bciController.ActiveBehavior.SetLabel(userInput); // Needs to be updated
