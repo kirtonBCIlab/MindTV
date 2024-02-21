@@ -193,6 +193,30 @@ public class TrainingPageManager : MonoBehaviour
     }
 
 
+    public void UpdateImageSize()
+    {
+        float currentBaseSize = trainingPrefs.imageBaseSize;
+        imageSizeSlider.value = currentBaseSize;
+
+        SpriteRenderer spriteRenderer = _SPO.GetComponent<SpriteRenderer>();
+        float uniformScaleFactor = UniformImageSizeScaleFactor(spriteRenderer);
+        float scaledSize = currentBaseSize * uniformScaleFactor;
+        _SPO.transform.localScale = new Vector3(scaledSize, scaledSize, scaledSize);
+    }
+
+    public void ImageSizeChanged(float value)
+    {
+        trainingPrefs.imageBaseSize = value;
+        UpdateImageSize();
+    }
+
+    public void ResetImageBaseSize()
+    {
+        trainingPrefs.imageBaseSize = originalBaseSize;
+        UpdateImageSize();
+        ResetSPO();
+    }
+
 
     // changes the training object image property
     // TODO - this is coupled to InventorySlot, consider replacing an image changed event
@@ -206,18 +230,11 @@ public class TrainingPageManager : MonoBehaviour
         ResetImageBaseSize();
     }
 
-    // gets the training object
-    public GameObject GetTrainingObject()
-    {
-        return _SPO;
-    }
-
     // resets the position and scale of the traning object
-    public void ResetSPO()
+    private void ResetSPO()
     {
         _SPO.transform.position = originalPosition;
     }
-
 
     //This is brought over from TrainingMenuController as one of 2 things I think I can see that is being used
     public void HighlightSelectedSprite(GameObject inventorySlot)
@@ -242,7 +259,6 @@ public class TrainingPageManager : MonoBehaviour
         displayNumberOfTimesTrained.SetActive(!displayNumberOfTimesTrained.activeSelf);
     }
 
-
     // Calculate the scale factor needed to resize the longest dimension to targetImageResolution (512x512)
     private float UniformImageSizeScaleFactor(SpriteRenderer spriteRenderer)
     {
@@ -251,30 +267,5 @@ public class TrainingPageManager : MonoBehaviour
         float maxDimension = Mathf.Max(width, height);
         float scaleFactor = targetImageResolution / maxDimension;
         return scaleFactor;
-    }
-
-
-    public void UpdateImageSize()
-    {
-        float currentBaseSize = trainingPrefs.imageBaseSize;
-        imageSizeSlider.value = currentBaseSize;
-
-        SpriteRenderer spriteRenderer = _SPO.GetComponent<SpriteRenderer>();
-        float uniformScaleFactor = UniformImageSizeScaleFactor(spriteRenderer);
-        float scaledSize = currentBaseSize * uniformScaleFactor;
-        _SPO.transform.localScale = new Vector3(scaledSize, scaledSize, scaledSize);
-    }
-
-    public void ImageSizeChanged(float value)
-    {
-        trainingPrefs.imageBaseSize = value;
-        UpdateImageSize();
-    }
-
-    public void ResetImageBaseSize()
-    {
-        trainingPrefs.imageBaseSize = originalBaseSize;
-        UpdateImageSize();
-        ResetSPO();
     }
 }
