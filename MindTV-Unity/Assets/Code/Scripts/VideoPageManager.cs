@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using System;
 
 public class VideoPageManager : MonoBehaviour
 {
@@ -15,8 +16,17 @@ public class VideoPageManager : MonoBehaviour
     public VideoPlayer previewVideoPlayer; // Reference to the VideoPlayer game object for the video preview
     public RawImage previewVideoRawImage; // Reference to the RawImage component that the video preview displays on
 
+    // Event to signal when preferences have been changed. Think about changing this to UnityEvent instead of just Action.
+    public static event Action VideoPrefsChanged;
+
+    // Reference to training settings
+    private Settings.VideoPrefs videoPrefs;
+    private Settings.TrainingPrefs trainingPrefs;
     private void Awake()
     {
+        InitializeSettings();
+        InitializeViews();
+        InitializeListeners();
         // Hide the video playback raw image component to prevent displaying the video before it's selected
         HideVideo();
         videoSelectionPanel.SetActive(true);
@@ -30,63 +40,83 @@ public class VideoPageManager : MonoBehaviour
 
         // Hides the RawImage component of the video previewer to stop displaying the video
         // previewVideoRawImage.enabled = false;
-        StartCoroutine(GenerateAllPreviews());
+        // StartCoroutine(GenerateAllPreviews());
+
+        
     }
 
-    IEnumerator GenerateAllPreviews()
+    private void InitializeSettings()
     {
-        for (int i = 0; i < videoClips.Length; i++)
-        {
-            // yield return StartCoroutine(GeneratePreview(i));
-            Debug.Log("Generating preview for video " + i);
-            yield return GeneratePreview(i);
-        }
+        // Use the TrainingPage sibling index as the "label number".  This is needed to choose the correct
+        // TrainingPrefs object from the data model.  Use a dummy TrainingPrefs if one is not found.
+        int tileNumber = transform.GetSiblingIndex();
+        
+        videoPrefs = SettingsManager.Instance?.currentUser.videoPrefs[tileNumber] ?? new Settings.VideoPrefs();
     }
 
-    IEnumerator GeneratePreview(int index)
+    private void InitializeViews()
     {
-        if (index < 0 || index >= videoClips.Length || index >= videoThumbnails.Length)
-        {
-            Debug.LogError("Index out of range for generating video preview.");
-            yield break;
-        }
-
-        // Dispose of the previous texture to prevent memory leaks
-        if (videoThumbnails[index].texture != null)
-        {
-            Destroy(videoThumbnails[index].texture);
-        }
-
-        previewVideoPlayer.clip = videoClips[index];
-        previewVideoPlayer.frame = 0;
-        previewVideoPlayer.Play();
-        previewVideoPlayer.Pause();
-
-        // Wait until the video player has prepared the frame
-        // while (!previewVideoPlayer.isPrepared)
-        // {
-        //     yield return null;
-        // }
-
-        // Wait until the video player has prepared the frame
-        yield return new WaitUntil(() => previewVideoPlayer.isPrepared);
-
-        // Debug.Log("Video " + index + " is being clipped.");
-        // Debug.Log(previewVideoPlayer.texture.width + " " + previewVideoPlayer.texture.height);
-        // Now that the frame is ready, assign it to the corresponding RawImage
-        // videoThumbnails[index].texture = previewVideoPlayer.texture;
-
-        // Now create a new Texture2D and copy the current frame
-        Texture2D frameTexture = new Texture2D(previewVideoPlayer.texture.width, previewVideoPlayer.texture.height, TextureFormat.RGBA32, false);
-        RenderTexture.active = previewVideoPlayer.texture as RenderTexture;
-        frameTexture.ReadPixels(new Rect(0, 0, frameTexture.width, frameTexture.height), 0, 0);
-        frameTexture.Apply();
-
-        // Assign this new texture to the corresponding RawImage
-        videoThumbnails[index].texture = frameTexture;
-
-        previewVideoPlayer.Stop();
+       
     }
+
+    private void InitializeListeners()
+    {
+        
+    }
+    // IEnumerator GenerateAllPreviews()
+    // {
+    //     for (int i = 0; i < videoClips.Length; i++)
+    //     {
+    //         // yield return StartCoroutine(GeneratePreview(i));
+    //         Debug.Log("Generating preview for video " + i);
+    //         yield return GeneratePreview(i);
+    //     }
+    // }
+
+    // IEnumerator GeneratePreview(int index)
+    // {
+    //     if (index < 0 || index >= videoClips.Length || index >= videoThumbnails.Length)
+    //     {
+    //         Debug.LogError("Index out of range for generating video preview.");
+    //         yield break;
+    //     }
+
+    //     // Dispose of the previous texture to prevent memory leaks
+    //     if (videoThumbnails[index].texture != null)
+    //     {
+    //         Destroy(videoThumbnails[index].texture);
+    //     }
+
+    //     previewVideoPlayer.clip = videoClips[index];
+    //     previewVideoPlayer.frame = 0;
+    //     previewVideoPlayer.Play();
+    //     previewVideoPlayer.Pause();
+
+    //     // Wait until the video player has prepared the frame
+    //     // while (!previewVideoPlayer.isPrepared)
+    //     // {
+    //     //     yield return null;
+    //     // }
+
+    //     // Wait until the video player has prepared the frame
+    //     yield return new WaitUntil(() => previewVideoPlayer.isPrepared);
+
+    //     // Debug.Log("Video " + index + " is being clipped.");
+    //     // Debug.Log(previewVideoPlayer.texture.width + " " + previewVideoPlayer.texture.height);
+    //     // Now that the frame is ready, assign it to the corresponding RawImage
+    //     // videoThumbnails[index].texture = previewVideoPlayer.texture;
+
+    //     // Now create a new Texture2D and copy the current frame
+    //     Texture2D frameTexture = new Texture2D(previewVideoPlayer.texture.width, previewVideoPlayer.texture.height, TextureFormat.RGBA32, false);
+    //     RenderTexture.active = previewVideoPlayer.texture as RenderTexture;
+    //     frameTexture.ReadPixels(new Rect(0, 0, frameTexture.width, frameTexture.height), 0, 0);
+    //     frameTexture.Apply();
+
+    //     // Assign this new texture to the corresponding RawImage
+    //     videoThumbnails[index].texture = frameTexture;
+
+    //     previewVideoPlayer.Stop();
+    // }
 
     private void ResetVideoToFirstFrame()
     {
