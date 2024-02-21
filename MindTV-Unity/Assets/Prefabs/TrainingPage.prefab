@@ -959,6 +959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _SPO: {fileID: 6961159752734704938}
+  inventoryButton: {fileID: 1743992716758005716}
   trainingLabelEntry: {fileID: 4196277328712209236}
   colorDropdown: {fileID: 1692768629864977372}
   animDropdown: {fileID: 49937838688829347}
@@ -2515,6 +2516,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3605857118779427208, guid: 58fa52f6ed94bc9489174c81e35a7df5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605857118779427208, guid: 58fa52f6ed94bc9489174c81e35a7df5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6503138398961979532}
@@ -2611,6 +2616,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58fa52f6ed94bc9489174c81e35a7df5, type: 3}
+--- !u!114 &1743992716758005716 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3605857118779427208, guid: 58fa52f6ed94bc9489174c81e35a7df5, type: 3}
+  m_PrefabInstance: {fileID: 3042599170081029724}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7774379067961372762 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4746054316194926086, guid: 58fa52f6ed94bc9489174c81e35a7df5, type: 3}

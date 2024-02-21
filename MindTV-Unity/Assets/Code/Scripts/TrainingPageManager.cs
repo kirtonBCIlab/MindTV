@@ -14,6 +14,7 @@ public class TrainingPageManager : MonoBehaviour
 {
     // UI elements within the TrainingPage prefab
     [SerializeField] private GameObject _SPO;
+    [SerializeField] private Button inventoryButton;
     [SerializeField] private TMP_InputField trainingLabelEntry;
     [SerializeField] private TMP_Dropdown colorDropdown;
     [SerializeField] private TMP_Dropdown animDropdown;
@@ -75,12 +76,22 @@ public class TrainingPageManager : MonoBehaviour
 
     private void InitializeListeners()
     {
+        inventoryButton.onClick.AddListener(ToggleInventoryVisibility);
         trainingLabelEntry.onEndEdit.AddListener(LabelChanged);
         colorDropdown.onValueChanged.AddListener(ColorChanged);
         trialLengthDropdown.onValueChanged.AddListener(TrialLengthChanged);
         animDropdown.onValueChanged.AddListener(AnimationChanged);
         imageSizeSlider.onValueChanged.AddListener(ImageSizeChanged);
         imageSizeResetButton.onClick.AddListener(ResetImageSize);
+    }
+
+
+    public void ToggleInventoryVisibility()
+    {
+        // Hide/show UI elements for configuring the training page
+        trainingOptionsFrame.SetActive(!trainingOptionsFrame.activeSelf);
+        displayStartTrainingButton.SetActive(!displayStartTrainingButton.activeSelf);
+        displayNumberOfTimesTrained.SetActive(!displayNumberOfTimesTrained.activeSelf);
     }
 
 
@@ -234,9 +245,6 @@ public class TrainingPageManager : MonoBehaviour
     {
         string path = trainingPrefs.imagePath;
         Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(path);
-        
-        Debug.Log("sprite " + sprite);
-
         ImageChanged(sprite);
     }
 
@@ -245,18 +253,8 @@ public class TrainingPageManager : MonoBehaviour
     // or have TrainingPageController attach listeners to individual InventorySlot objects.
     public void ImageChanged(Sprite sprite)
     {
+        // This may not work with user provided assets
         trainingPrefs.imagePath = AssetDatabase.GetAssetPath(sprite);
         _SPO.GetComponent<SpriteRenderer>().sprite = sprite;
     }
-
-
-    //This is brought over from TrainingMenuController as one of 2 things I think I can see that is being used
-    public void ToggleInventoryVisibility()
-    {
-        trainingOptionsFrame.SetActive(!trainingOptionsFrame.activeSelf);
-        displayStartTrainingButton.SetActive(!displayStartTrainingButton.activeSelf);
-        displayNumberOfTimesTrained.SetActive(!displayNumberOfTimesTrained.activeSelf);
-    }
-
-
 }
