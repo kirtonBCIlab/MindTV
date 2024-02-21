@@ -263,11 +263,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2935350906108839579, guid: e00a9226579c9854dacfad3594e2c961, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -2011.608
+      value: -0.0053711
       objectReference: {fileID: 0}
     - target: {fileID: 2935350906108839579, guid: e00a9226579c9854dacfad3594e2c961, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -1064
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 2935350906108839579, guid: e00a9226579c9854dacfad3594e2c961, type: 3}
       propertyPath: m_LocalPosition.x
@@ -299,11 +299,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2935350906108839579, guid: e00a9226579c9854dacfad3594e2c961, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -248.878
+      value: -0.0024414
       objectReference: {fileID: 0}
     - target: {fileID: 2935350906108839579, guid: e00a9226579c9854dacfad3594e2c961, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -532.01
+      value: -0.005004883
       objectReference: {fileID: 0}
     - target: {fileID: 2935350906108839579, guid: e00a9226579c9854dacfad3594e2c961, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -423,15 +423,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30427dcb9311a463bbc3ffd05d94ebad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userProfiles: []
   currentUser:
     userProfileName: 
-    generalSettingsPrefs:
-      volume: 0
-      resolution: 0
-      isFullscreen: 0
-      backgroundColor: {r: 0, g: 0, b: 0, a: 0}
-    bciCellPrefs: []
+    trainingPrefs:
+    - labelNumber: 0
+      labelName: 
+      animationName: None
+      backgroundColor: {r: 0.34117648, g: 0.72156864, b: 1, a: 1}
+      windowLength: 2
+      trialLength: 6
+    - labelNumber: 1
+      labelName: 
+      animationName: None
+      backgroundColor: {r: 0.34117648, g: 0.72156864, b: 1, a: 1}
+      windowLength: 2
+      trialLength: 6
+    - labelNumber: 2
+      labelName: 
+      animationName: None
+      backgroundColor: {r: 0.34117648, g: 0.72156864, b: 1, a: 1}
+      windowLength: 2
+      trialLength: 6
+    - labelNumber: 3
+      labelName: 
+      animationName: None
+      backgroundColor: {r: 0.34117648, g: 0.72156864, b: 1, a: 1}
+      windowLength: 2
+      trialLength: 6
+    videoPrefs:
+    - tileNumber: 0
+      videoTitle: Zelda
+      videoPath: Assets/Videos/DevVideo0-Zelda.mp4
+      backgroundColor: {r: 0.34117648, g: 0.72156864, b: 1, a: 1}
+      mentalCommandGraphicIsOn: 0
+    - tileNumber: 1
+      videoTitle: PBJ Time
+      videoPath: Assets/Videos/DevVideo1-PeanutButterJelly.mp4
+      backgroundColor: {r: 0.34117648, g: 0.72156864, b: 1, a: 1}
+      mentalCommandGraphicIsOn: 0
+    - tileNumber: 2
+      videoTitle: Watermelon Meow Meow
+      videoPath: Assets/Videos/DevVideo2-WatermelonMeowMeow.mp4
+      backgroundColor: {r: 0.34117648, g: 0.72156864, b: 1, a: 1}
+      mentalCommandGraphicIsOn: 0
+    - tileNumber: 3
+      videoTitle: Kaguya Nursery Rhyme
+      videoPath: Assets/Videos/DevVideo3-KaguyaOSTNurseryRhyme.mp4
+      backgroundColor: {r: 0.34117648, g: 0.72156864, b: 1, a: 1}
+      mentalCommandGraphicIsOn: 0
+    numberVideoCells: 4
 --- !u!1 &1025973862
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
 
@@ -41,31 +42,38 @@ public class Settings
         // Add other things we need to persist for user here
         public List<VideoPrefs> videoPrefs = new List<VideoPrefs>()
         {
-            new VideoPrefs() { tileNumber = 0, videoTitle = "Zelda", videoPath = "Assets/Videos/DevVideo0-Zelda.mp4" },
-            new VideoPrefs() { tileNumber = 1, videoTitle = "PBJ Time", videoPath = "Assets/Videos/DevVideo1-PeanutButterJelly.mp4" },
-            new VideoPrefs() { tileNumber = 2, videoTitle = "Watermelon Meow Meow", videoPath = "Assets/Videos/DevVideo2-WatermelonMeowMeow.mp4" },
-            new VideoPrefs() { tileNumber = 3, videoTitle = "Kaguya Nursery Rhyme", videoPath = "Assets/Videos/DevVideo3-KaguyaOSTNurseryRhyme.mp4" },
         };
+
+        public int numberVideoCells = 4;
     }
 
     [System.Serializable]
     public class VideoPrefs
     {
-        public int tileNumber = 0;
-        public string videoTitle = "Video Title";
-        public string videoPath = "Assets/Videos/DevVideo0-Zelda.mp4";
-        public Color backgroundColor = Settings.ColorForName("Blue (Theme)");
-        public bool mentalCommandGraphicIsOn = false;
+        public int numberVideoCells = 1;
+
     }
 
-    // Set list of available videos
-    public List<VideoPrefs> videos = new List<VideoPrefs>()
+    [System.Serializable]
+    public class VideoCell
     {
-        new VideoPrefs() { videoTitle = "Zelda", videoPath = "Assets/Videos/DevVideo0-Zelda.mp4" },
-        new VideoPrefs() { videoTitle = "PBJ Time", videoPath = "Assets/Videos/DevVideo1-PeanutButterJelly.mp4" },
-        new VideoPrefs() { videoTitle = "Watermelon Meow Meow", videoPath = "Assets/Videos/DevVideo2-WatermelonMeowMeow.mp4" },
-        new VideoPrefs() { videoTitle = "Kaguya Nursery Rhyme", videoPath = "Assets/Videos/DevVideo3-KaguyaOSTNurseryRhyme.mp4" },
-    };
+        public int tileNumber = 0;
+        public string videoTitle = "Video Title";
+        public string videoPath = "";
+        public Color backgroundColor = Settings.ColorForName("Blue (Theme)");
+        public Image videoThumbnail;
+        public bool includeGraphic = false;
+        public string layoutStyle = "Default";
+        public string mentalCommandLabel = "None";
+    }
+    // Set list of available videos
+    // public List<VideoPrefs> videos = new List<VideoPrefs>()
+    // {
+    //     new VideoPrefs() { videoTitle = "Zelda", videoPath = "Assets/Videos/DevVideo0-Zelda.mp4" },
+    //     new VideoPrefs() { videoTitle = "PBJ Time", videoPath = "Assets/Videos/DevVideo1-PeanutButterJelly.mp4" },
+    //     new VideoPrefs() { videoTitle = "Watermelon Meow Meow", videoPath = "Assets/Videos/DevVideo2-WatermelonMeowMeow.mp4" },
+    //     new VideoPrefs() { videoTitle = "Kaguya Nursery Rhyme", videoPath = "Assets/Videos/DevVideo3-KaguyaOSTNurseryRhyme.mp4" },
+    // };
 
     // Set of user profiles
     public List<User> users = new List<User>();
