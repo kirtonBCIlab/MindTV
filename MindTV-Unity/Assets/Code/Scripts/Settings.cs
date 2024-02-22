@@ -69,7 +69,7 @@ public class Settings
         public int tileNumber = 0;
         public string videoTitle = "Video Title";
         public string videoPath = "";
-        public Color backgroundColor = Settings.ColorForName("Blue (Theme)");
+        public Color backgroundColor = Settings.ColorForName("Purple (Theme)");
         public bool includeGraphic = false;
         public string layoutStyle = "Default";
         public string mentalCommandLabel = "None";

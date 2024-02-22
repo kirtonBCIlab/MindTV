@@ -41,9 +41,18 @@ public class VideoCellManager : MonoBehaviour
         videoPlayer = gameObject.AddComponent<VideoPlayer>();
         videoPlayer.playOnAwake = false;
         videoPlayer.renderMode = VideoRenderMode.APIOnly; // We only need the video frame data
+        if (SettingsManager.Instance.currentUser.videoCells.Count > 0)
+        {
+            videoCell = SettingsManager.Instance.currentUser.videoCells[0];
+        }
+        else 
+        {
+            videoCell = SettingsManager.Instance.currentUser.AddVideoCell();
+        }
 
         // Initialize Listeners
         InitializeListeners();
+        // InitializeVideoCell();
 
     }
 
@@ -66,6 +75,7 @@ public class VideoCellManager : MonoBehaviour
     public void SetVideoCell(Settings.VideoCell cell)
     {
         videoCell = cell;
+        InitializeVideoCell();
     }
 
     public void InitializeVideoCell()
