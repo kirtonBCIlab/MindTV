@@ -3599,7 +3599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3888124603898891935, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
       propertyPath: m_text
-      value: 'Number of Trainings: 0'
+      value: 'Number of Windows: 0'
       objectReference: {fileID: 0}
     - target: {fileID: 3888124603898891935, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
       propertyPath: m_fontSize
