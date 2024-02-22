@@ -11,13 +11,13 @@ public class VideoCellManager : MonoBehaviour
     public Settings.VideoCell videoCell;
 
     [SerializeField]    private Image backgroundCell;
-    [SerializeField]    private Dropdown backgroundColorDropdown;
+    [SerializeField]    private TMP_Dropdown backgroundColorDropdown;
     [SerializeField]    private TMP_InputField videoTitleInputField;
     [SerializeField]    private TMP_Text videoTitleText;
     [SerializeField]    private Toggle includeImageToggle;
     [SerializeField]    private Image imageGraphic;
-    [SerializeField]    private Dropdown videoClipDropdown;
-    [SerializeField]    private Dropdown mentalCommandLabel;
+   // [SerializeField]    private TMP_Dropdown videoClipDropdown;
+    [SerializeField]    private TMP_Dropdown mentalCommandLabel;
     [SerializeField]    private TMP_Text mentalCommandName;
      
     public static event Action VideoCellChanged;
