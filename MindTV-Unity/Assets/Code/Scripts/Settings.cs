@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -19,8 +20,13 @@ public class Settings
         public string animationName = "None";
         public Color backgroundColor = Settings.ColorForName("Blue (Theme)");
 
-        public float windowLength = 2;  // trial length must be a multiple of windowLength
-        public float trialLength = 6;
+        // can't serialize sprite, need to record where asset is (default or user provided)
+        public string imagePath = "Assets/icons/cube_primary.png";
+        public float imageBaseSize = 100.0f;
+
+        // trial length must be a multiple of windowLength
+        public float windowLength = 2.0f;
+        public float trialLength = 6.0f;
     }
 
     [System.Serializable]
@@ -94,11 +100,11 @@ public class Settings
 
     private static readonly Dictionary<string, float> trialLength = new Dictionary<string, float>
     {
-        {"6 s (Default)", 6},
-        {"2 s", 2},
-        {"4 s", 4},
-        {"8 s", 8},
-        {"10 s", 10},
+        {"6 s (Default)", 6.0f},
+        {"2 s", 2.0f},
+        {"4 s", 4.0f},
+        {"8 s", 8.0f},
+        {"10 s", 10.0f},
     };
 
 

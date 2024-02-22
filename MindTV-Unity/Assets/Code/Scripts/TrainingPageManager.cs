@@ -7,15 +7,24 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
+using Unity.VisualScripting;
+using UnityEditor;
 
 public class TrainingPageManager : MonoBehaviour
 {
     // UI elements within the TrainingPage prefab
+    [SerializeField] private GameObject _SPO;
+    [SerializeField] private Button inventoryButton;
     [SerializeField] private TMP_InputField trainingLabelEntry;
     [SerializeField] private TMP_Dropdown colorDropdown;
     [SerializeField] private TMP_Dropdown animDropdown;
-    [SerializeField] private GameObject activeTraining;
-    [SerializeField] private GameObject _SPO;
+    [SerializeField] private Slider imageSizeSlider;
+    [SerializeField] private Button imageSizeResetButton;
+    [SerializeField] private GameObject activeTrainingFrame;
+    [SerializeField] private GameObject trainingOptionsFrame;
+    [SerializeField] private GameObject displayStartTrainingButton;
+    [SerializeField] private GameObject displayNumberOfTimesTrained;
+    [SerializeField] private TMP_Dropdown trialLengthDropdown;
 
     // Event to signal when preferences have been changed
     public static event Action TrainingPrefsChanged;
@@ -24,17 +33,10 @@ public class TrainingPageManager : MonoBehaviour
     private Settings.TrainingPrefs trainingPrefs;
 
     //Exposing this so that we can change the base size of the training object
-    public float originalBaseSize = 100.0f;
-    public float targetImageResolution = 512f;
-    [SerializeField] private Slider baseSizeSlider;
+    private float originalBaseSize = 100.0f;
+    private float targetImageResolution = 512f;
 
-    [SerializeField] private GameObject trainingOptionsFrame;
-    [SerializeField] private GameObject displayStartTrainingButton;
-    [SerializeField] private GameObject displayNumberOfTimesTrained;
-    [SerializeField] private TMP_Dropdown trialLengthDropdown;
-    private float currentBaseSize;
     private Vector3 originalPosition;
-
     private UITweener tweener;
 
 
@@ -47,37 +49,11 @@ public class TrainingPageManager : MonoBehaviour
         // TODO - move this to a helper
         originalPosition = _SPO.transform.position;
 
-        currentBaseSize = originalBaseSize;
+        // TODO - move to a helper
+        float currentBaseSize = trainingPrefs.imageBaseSize;
         _SPO.transform.localScale = new Vector3(currentBaseSize, currentBaseSize, currentBaseSize);
-        baseSizeSlider.value = currentBaseSize;
+        imageSizeSlider.value = currentBaseSize;
     }
-
-    private void OnEnable()
-    {
-        SPOToyBox spoToyBox = FindObjectOfType<SPOToyBox>(); //We should set this up better, as there should only ever be one toybox.
-                                                             // Check if there is an SPO in the SPOToyBox with the same ID as TabNumber
-        if (spoToyBox != null)
-        {
-            // Get the label number from the TrainingPage sibling index, same as what we use to save data
-            int labelNumber = transform.GetSiblingIndex();
-            if (spoToyBox.GetSPO(labelNumber) == null)
-            {
-                Debug.Log("SPO with ID " + labelNumber + " not found in SPOToyBox!");
-                // trainingObjectSPO = spoToyBox.GetSPO(labelNumber);
-            }
-            else
-            {
-                //TODO: I think this is trying to do pseudo-persistence, need to fix later.
-                // Destroy(_SPO); // Destroy the current SPO (if any) - I don't understand what is happening here? This is super problematic.
-                // _SPO = spoToyBox.GetSPO(labelNumber); //I think this is trying to do pseudo-persistence, need to fix later.
-
-                Debug.LogWarning("SPO with ID " + labelNumber + " found in SPOToyBox!");
-                //Should try to replace it but can't right now.
-
-            }
-        }
-    }
-
 
     private void InitializeSettings()
     {
@@ -89,18 +65,33 @@ public class TrainingPageManager : MonoBehaviour
 
     private void InitializeViews()
     {
+        // Update the UI to match current settings
         UpdateTrainingLabel();
         UpdateTrainingPageColor();
         UpdateTrialLength();
         UpdateAnimation();
+        UpdateImageSize();
+        UpdateImage();
     }
 
     private void InitializeListeners()
     {
+        inventoryButton.onClick.AddListener(ToggleInventoryVisibility);
         trainingLabelEntry.onEndEdit.AddListener(LabelChanged);
         colorDropdown.onValueChanged.AddListener(ColorChanged);
         trialLengthDropdown.onValueChanged.AddListener(TrialLengthChanged);
         animDropdown.onValueChanged.AddListener(AnimationChanged);
+        imageSizeSlider.onValueChanged.AddListener(ImageSizeChanged);
+        imageSizeResetButton.onClick.AddListener(ResetImageSize);
+    }
+
+
+    public void ToggleInventoryVisibility()
+    {
+        // Hide/show UI elements for configuring the training page
+        trainingOptionsFrame.SetActive(!trainingOptionsFrame.activeSelf);
+        displayStartTrainingButton.SetActive(!displayStartTrainingButton.activeSelf);
+        displayNumberOfTimesTrained.SetActive(!displayNumberOfTimesTrained.activeSelf);
     }
 
 
@@ -119,12 +110,12 @@ public class TrainingPageManager : MonoBehaviour
     public void UpdateTrainingPageColor()
     {
         // set background color
-        Image imageComponent = activeTraining.GetComponent<Image>();
+        Image imageComponent = activeTrainingFrame.GetComponent<Image>();
         imageComponent.color = trainingPrefs.backgroundColor;
 
         // set the dropdown to color from settings
         string colorName = Settings.NameForColor(trainingPrefs.backgroundColor);
-        int colorIndex = colorDropdown.options.FindIndex(name => name.text == colorName);
+        int colorIndex = colorDropdown.options.FindIndex(option => option.text == colorName);
         colorDropdown.value = colorIndex;
     }
 
@@ -146,7 +137,7 @@ public class TrainingPageManager : MonoBehaviour
 
         // set the dropdown to the length from settings
         string trialLengthName = Settings.NameForTrialLength(trialLength);
-        int index = trialLengthDropdown.options.FindIndex(name => name.text == trialLengthName);
+        int index = trialLengthDropdown.options.FindIndex(option => option.text == trialLengthName);
         trialLengthDropdown.value = index;
     }
 
@@ -168,7 +159,7 @@ public class TrainingPageManager : MonoBehaviour
         string animationName = trainingPrefs.animationName;
 
         // Set the dropdown to animation from settings
-        int index = animDropdown.options.FindIndex(name => name.text == animationName);
+        int index = animDropdown.options.FindIndex(option => option.text == animationName);
         animDropdown.value = index;
 
         // Set the animation type and length of the UITWeener
@@ -215,55 +206,16 @@ public class TrainingPageManager : MonoBehaviour
     }
 
 
-
-    // changes the training object image property
-    // TODO - this is coupled to InventorySlot, consider replacing an image changed event
-    // Then TrainingPageManager can decide what to do when the event happens.
-    public void SetTrainingObject(Sprite image_sprite)
+    public void UpdateImageSize()
     {
-        ResetSPO();
-        _SPO.GetComponent<SpriteRenderer>().sprite = image_sprite;
+        float currentBaseSize = trainingPrefs.imageBaseSize;
+        imageSizeSlider.value = currentBaseSize;
 
-        // If we want the newly set image to be reset to the original size, use this: (uncomment the line below)
-        ResetBaseSize();
+        SpriteRenderer spriteRenderer = _SPO.GetComponent<SpriteRenderer>();
+        float uniformScaleFactor = UniformImageSizeScaleFactor(spriteRenderer);
+        float scaledSize = currentBaseSize * uniformScaleFactor;
+        _SPO.transform.localScale = new Vector3(scaledSize, scaledSize, scaledSize);
     }
-
-    // gets the training object
-    public GameObject GetTrainingObject()
-    {
-        return _SPO;
-    }
-
-    // resets the position and scale of the traning object
-    public void ResetSPO()
-    {
-        _SPO.transform.position = originalPosition;
-    }
-
-
-    //This is brought over from TrainingMenuController as one of 2 things I think I can see that is being used
-    public void HighlightSelectedSprite(GameObject inventorySlot)
-    {
-        GameObject[] inventory = GameObject.FindGameObjectsWithTag("InventorySlot");
-
-        foreach (GameObject slot in inventory)
-        {
-            GameObject frame = slot.transform.Find("Frame").gameObject;
-            frame.SetActive(false);
-        }
-
-        GameObject selectedFrame = inventorySlot.transform.Find("Frame").gameObject;
-        selectedFrame.SetActive(true);
-    }
-
-    //This is brought over from TrainingMenuController as one of 2 things I think I can see that is being used
-    public void ToggleInventoryVisibility()
-    {
-        trainingOptionsFrame.SetActive(!trainingOptionsFrame.activeSelf);
-        displayStartTrainingButton.SetActive(!displayStartTrainingButton.activeSelf);
-        displayNumberOfTimesTrained.SetActive(!displayNumberOfTimesTrained.activeSelf);
-    }
-
 
     // Calculate the scale factor needed to resize the longest dimension to targetImageResolution (512x512)
     private float UniformImageSizeScaleFactor(SpriteRenderer spriteRenderer)
@@ -275,31 +227,34 @@ public class TrainingPageManager : MonoBehaviour
         return scaleFactor;
     }
 
-    // Sets the base size of the training object
-    private void SetBaseSize(float size)
+    public void ResetImageSize()
     {
-        SpriteRenderer spriteRenderer = _SPO.GetComponent<SpriteRenderer>();
-        float uniformScaleFactor = UniformImageSizeScaleFactor(spriteRenderer);
-        float scaledSize = size * uniformScaleFactor;
-        _SPO.transform.localScale = new Vector3(scaledSize, scaledSize, scaledSize);
+        trainingPrefs.imageBaseSize = originalBaseSize;
+        _SPO.transform.position = originalPosition;
+        UpdateImageSize();
     }
 
-    // changes the training object base size
-    public void ModifyBaseSizeWithSlider()
+    public void ImageSizeChanged(float value)
     {
-        currentBaseSize = baseSizeSlider.value;
-        //Debug.Log("Base size changed to " + currentBaseSize);
-        SetBaseSize(currentBaseSize);
+        trainingPrefs.imageBaseSize = value;
+        UpdateImageSize();
     }
 
-    // resets the base size
-    public void ResetBaseSize()
+
+    public void UpdateImage()
     {
-        currentBaseSize = originalBaseSize;
-        baseSizeSlider.value = currentBaseSize;
-        SetBaseSize(currentBaseSize);
-        //Also going to reset the position of the training object
-        ResetSPO();
+        string path = trainingPrefs.imagePath;
+        Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+        ImageChanged(sprite);
     }
 
+    // TODO - this is called by the individual InventorySlot objects.  Refactor to work like
+    // the other UI elements managed by TrainingPageController, ie: use an image changed event, 
+    // or have TrainingPageController attach listeners to individual InventorySlot objects.
+    public void ImageChanged(Sprite sprite)
+    {
+        // This may not work with user provided assets
+        trainingPrefs.imagePath = AssetDatabase.GetAssetPath(sprite);
+        _SPO.GetComponent<SpriteRenderer>().sprite = sprite;
+    }
 }
