@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using TMPro;
+using System.Collections.Generic;
 
 public class VideoCellManager : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class VideoCellManager : MonoBehaviour
     [SerializeField]    private Toggle includeImageToggle;
     [SerializeField]    private Image imageGraphic;
    // [SerializeField]    private TMP_Dropdown videoClipDropdown;
-    [SerializeField]    private TMP_Dropdown mentalCommandLabel;
+    [SerializeField]    private TMP_Dropdown mentalCommandDropdown;
     [SerializeField]    private TMP_Text mentalCommandName;
      
     public static event Action VideoCellChanged;
@@ -52,8 +53,7 @@ public class VideoCellManager : MonoBehaviour
 
         // Initialize Listeners
         InitializeListeners();
-        // InitializeVideoCell();
-
+        InitializeVideoCell();
     }
 
     public void InitializeListeners()
@@ -62,7 +62,7 @@ public class VideoCellManager : MonoBehaviour
         videoTitleInputField.onEndEdit.AddListener(delegate { UpdateVideoTitle(); });
         includeImageToggle.onValueChanged.AddListener(delegate { UpdateImage(); });
         //videoClipDropdown.onValueChanged.AddListener(delegate { ChangeVideoClip(); });
-        mentalCommandLabel.onValueChanged.AddListener(delegate { UpdateMentalCommand(); });
+        mentalCommandDropdown.onValueChanged.AddListener(delegate { UpdateMentalCommand(); });
     }
 
     public void SetupCell(VideoClip videoClip, int index)
@@ -94,9 +94,20 @@ public class VideoCellManager : MonoBehaviour
         imageGraphic.gameObject.GetComponent<Image>().enabled = videoCell.includeGraphic;
         includeImageToggle.isOn = videoCell.includeGraphic;
 
+        // populate the dropdown with mental commands (labels)
+        // Add the title placeholder to the dropdown so nothing appears selected
+        List<string> labels = SettingsManager.Instance?.currentUser.AvailableLabels();
+        mentalCommandDropdown.ClearOptions();
+        mentalCommandDropdown.options.Insert(0, new TMP_Dropdown.OptionData());
+        foreach (var label in labels)
+        {
+            TMP_Dropdown.OptionData newOption = new TMP_Dropdown.OptionData(label);
+            mentalCommandDropdown.options.Add(newOption);
+        }
+
         // Set the mental command label
         mentalCommandName.text = videoCell.mentalCommandLabel;
-        mentalCommandLabel.value = mentalCommandLabel.options.FindIndex(option => option.text == videoCell.mentalCommandLabel);
+        mentalCommandDropdown.value = mentalCommandDropdown.options.FindIndex(option => option.text == videoCell.mentalCommandLabel);
     }
 
     IEnumerator LoadPreview()
@@ -198,7 +209,7 @@ public class VideoCellManager : MonoBehaviour
     // Update the Mental Command Label of the cell
     public void UpdateMentalCommand()
     {
-        string mentalCommand = mentalCommandLabel.options[mentalCommandLabel.value].text;
+        string mentalCommand = mentalCommandDropdown.options[mentalCommandDropdown.value].text;
         mentalCommandName.text = mentalCommand;
         videoCell.mentalCommandLabel = mentalCommand;
         VideoCellChanged();

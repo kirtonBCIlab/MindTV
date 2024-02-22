@@ -5880,7 +5880,7 @@ MonoBehaviour:
   videoTitleText: {fileID: 3896646158654992200}
   includeImageToggle: {fileID: 5061217327159027676}
   imageGraphic: {fileID: 6231908152266101946}
-  mentalCommandLabel: {fileID: 1261565822008275555}
+  mentalCommandDropdown: {fileID: 1261565822008275555}
   mentalCommandName: {fileID: 3801735461155513597}
   previewImage: {fileID: 7695107428606520560}
 --- !u!1 &7363645330179824068

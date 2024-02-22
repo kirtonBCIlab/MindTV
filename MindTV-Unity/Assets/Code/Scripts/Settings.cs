@@ -61,6 +61,13 @@ public class Settings
             return newCell;
         }
 
+        public List<string> AvailableLabels()
+        {
+            // pull out labels that are not blank
+            List<string> allLabels = trainingPrefs.Select(prefs => prefs.labelName).ToList();
+            List<string> assignedLabels = allLabels.FindAll(label => label.Count() > 0);
+            return assignedLabels;
+        }
     }
 
     [System.Serializable]
