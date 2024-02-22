@@ -27,7 +27,7 @@ public class VideoCellManager : MonoBehaviour
     private int videoIndex; // Index of the video clip this cell represents
     private static int instanceCount = 0; // Keep track of instantiated VideoSelectorCells
 
-    void Awake()
+    void Start()
     {
         // Limit instance creation to prevent memory leak
         if (instanceCount >= 4)
