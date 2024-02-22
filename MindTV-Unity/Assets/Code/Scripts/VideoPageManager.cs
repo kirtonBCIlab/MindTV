@@ -67,7 +67,14 @@ public class VideoPageManager : MonoBehaviour
 
     private void InitializeListeners()
     {
-        
+        // Add listeners for the video cell buttons
+        VideoCellManager.VideoCellChanged += OnVideoCellChanged;
+    }
+
+    private void OnVideoCellChanged()
+    {
+        // Update the video cell list in the user's settings with the updated preference from the changed video cell.
+        // Not sure how to tell which one has changed?
     }
     // IEnumerator GenerateAllPreviews()
     // {

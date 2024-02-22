@@ -499,6 +499,13 @@ MonoBehaviour:
     layoutStyle: Default
     mentalCommandLabel: None
   backgroundCell: {fileID: 0}
+  backgroundColorDropdown: {fileID: 0}
+  videoTitleInputField: {fileID: 0}
+  videoTitleText: {fileID: 0}
+  includeImageToggle: {fileID: 0}
+  imageGraphic: {fileID: 0}
+  videoClipDropdown: {fileID: 0}
+  mentalCommandLabel: {fileID: 0}
   previewImage: {fileID: 2393600467914149514}
 --- !u!1 &5314897072767187044
 GameObject:
@@ -934,19 +941,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3563114479679233711, guid: e232f81633cb05a4085646d353f7056c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3563114479679233711, guid: e232f81633cb05a4085646d353f7056c, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3563114479679233711, guid: e232f81633cb05a4085646d353f7056c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 2120
       objectReference: {fileID: 0}
     - target: {fileID: 3563114479679233711, guid: e232f81633cb05a4085646d353f7056c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -113
       objectReference: {fileID: 0}
     - target: {fileID: 3575371181659761790, guid: e232f81633cb05a4085646d353f7056c, type: 3}
       propertyPath: m_Name
@@ -1018,19 +1025,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6495376256382582050, guid: e232f81633cb05a4085646d353f7056c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6495376256382582050, guid: e232f81633cb05a4085646d353f7056c, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6495376256382582050, guid: e232f81633cb05a4085646d353f7056c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 6495376256382582050, guid: e232f81633cb05a4085646d353f7056c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -112.5
       objectReference: {fileID: 0}
     - target: {fileID: 8676445643067398551, guid: e232f81633cb05a4085646d353f7056c, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1062,6 +1069,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8720556555462387734, guid: e232f81633cb05a4085646d353f7056c, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8792713209384153864, guid: e232f81633cb05a4085646d353f7056c, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8985967739603744083, guid: e232f81633cb05a4085646d353f7056c, type: 3}
