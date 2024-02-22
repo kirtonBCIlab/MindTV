@@ -29,7 +29,6 @@ public class VideoPageManager : MonoBehaviour
     {
         InitializeSettings();
         InitializeViews();
-        InitializeListeners();
         // Hide the video playback raw image component to prevent displaying the video before it's selected
         HideVideo();
         videoSelectionPanel.SetActive(true);
@@ -65,23 +64,6 @@ public class VideoPageManager : MonoBehaviour
         }
     }
 
-    private void InitializeListeners()
-    {
-        // Add listeners for the video cell buttons
-        VideoCellManager.VideoCellChanged += OnVideoCellChanged;
-    }
-
-    public void OnDisable()
-    {
-        // Remove listeners to avoid dangling references (event is static and persists between scenes)
-        VideoCellManager.VideoCellChanged -= OnVideoCellChanged;
-    }
-
-    private void OnVideoCellChanged()
-    {
-        // Update the video cell list in the user's settings with the updated preference from the changed video cell.
-        SettingsManager.Instance.currentUser.videoCells = videoCells;
-    }
     // IEnumerator GenerateAllPreviews()
     // {
     //     for (int i = 0; i < videoClips.Length; i++)

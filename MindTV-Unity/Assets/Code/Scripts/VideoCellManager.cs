@@ -21,8 +21,6 @@ public class VideoCellManager : MonoBehaviour
     [SerializeField]    private TMP_Dropdown mentalCommandDropdown;
     [SerializeField]    private TMP_Text mentalCommandName;
      
-    public static event Action VideoCellChanged;
-
     public RawImage previewImage; // Assign in Inspector
     private VideoPlayer videoPlayer; // Used for loading video frames
     private int videoIndex; // Index of the video clip this cell represents
@@ -151,32 +149,6 @@ public class VideoCellManager : MonoBehaviour
     // Update the Background Color of the cell
     public void UpdateCellColor()
     {
-        // string colorText = backgroundColorDropdown.options[backgroundColorDropdown.value].text;
-        // Color color = Settings.ColorForName(colorText);
-        // backgroundCell.color = color;
-        // videoCell.backgroundColor = color;
-        // VideoCellChanged();
-        if (backgroundColorDropdown == null)
-        {
-            Debug.LogError("backgroundColorDropdown is null");
-            return;
-        }
-        if (backgroundColorDropdown.options == null)
-        {
-            Debug.LogError("backgroundColorDropdown.options is null");
-            return;
-        }
-        if (backgroundCell == null)
-        {
-            Debug.LogError("backgroundCell is null");
-            return;
-        }
-        if (videoCell == null)
-        {
-            Debug.LogError("videoCell is null");
-            return;
-        }
-
         string colorText = backgroundColorDropdown.options[backgroundColorDropdown.value].text;
         Color color = Settings.ColorForName(colorText);
         if (color == null)
@@ -187,7 +159,6 @@ public class VideoCellManager : MonoBehaviour
 
         backgroundCell.color = color;
         videoCell.backgroundColor = color;
-        VideoCellChanged();
     }
 
     // Update the Video Title of the cell
@@ -195,7 +166,6 @@ public class VideoCellManager : MonoBehaviour
     {
         videoTitleText.text = videoTitleInputField.text;
         videoCell.videoTitle = videoTitleInputField.text;
-        VideoCellChanged();
     }
 
     // Include Image in the cell
@@ -203,7 +173,6 @@ public class VideoCellManager : MonoBehaviour
     {
         imageGraphic.gameObject.GetComponent<Image>().enabled = includeImageToggle.isOn;
         videoCell.includeGraphic = includeImageToggle.isOn;
-        VideoCellChanged();
     }
 
     // Update the Mental Command Label of the cell
@@ -212,6 +181,5 @@ public class VideoCellManager : MonoBehaviour
         string mentalCommand = mentalCommandDropdown.options[mentalCommandDropdown.value].text;
         mentalCommandName.text = mentalCommand;
         videoCell.mentalCommandLabel = mentalCommand;
-        VideoCellChanged();
     }
 }
