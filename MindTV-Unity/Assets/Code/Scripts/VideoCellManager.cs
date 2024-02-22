@@ -43,6 +43,7 @@ public class VideoCellManager : MonoBehaviour
         videoPlayer.renderMode = VideoRenderMode.APIOnly; // We only need the video frame data
 
         // Initialize Listeners
+        InitializeListeners();
 
     }
 
@@ -67,6 +68,26 @@ public class VideoCellManager : MonoBehaviour
         videoCell = cell;
     }
 
+    public void InitializeVideoCell()
+    {
+        // Set the background color
+        backgroundCell.color = videoCell.backgroundColor;
+        string colorName = Settings.NameForColor(videoCell.backgroundColor);
+        int colorIndex = backgroundColorDropdown.options.FindIndex(option => option.text == colorName);
+        backgroundColorDropdown.value = colorIndex;
+
+        // Set the video title
+        videoTitleText.text = videoCell.videoTitle;
+        videoTitleInputField.text = videoCell.videoTitle;
+
+        // Set the image
+        imageGraphic.gameObject.GetComponent<Image>().enabled = videoCell.includeGraphic;
+        includeImageToggle.isOn = videoCell.includeGraphic;
+
+        // Set the mental command label
+        mentalCommandName.text = videoCell.mentalCommandLabel;
+        mentalCommandLabel.value = mentalCommandLabel.options.FindIndex(option => option.text == videoCell.mentalCommandLabel);
+    }
 
     IEnumerator LoadPreview()
     {

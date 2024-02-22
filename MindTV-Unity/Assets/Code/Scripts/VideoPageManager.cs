@@ -74,7 +74,7 @@ public class VideoPageManager : MonoBehaviour
     private void OnVideoCellChanged()
     {
         // Update the video cell list in the user's settings with the updated preference from the changed video cell.
-        // Not sure how to tell which one has changed?
+        SettingsManager.Instance.currentUser.videoCells = videoCells;
     }
     // IEnumerator GenerateAllPreviews()
     // {

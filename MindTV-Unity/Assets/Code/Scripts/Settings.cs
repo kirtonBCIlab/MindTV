@@ -16,13 +16,15 @@ public class Settings
     [System.Serializable]
     public class TrainingPrefs
     {
+        //We should replace this with a "Mental Command" object
         public int labelNumber = 0;
         public string labelName = "";
         public string animationName = "None";
+        public string imagePath = "Assets/icons/cube_primary.png";
         public Color backgroundColor = Settings.ColorForName("Blue (Theme)");
 
         // can't serialize sprite, need to record where asset is (default or user provided)
-        public string imagePath = "Assets/icons/cube_primary.png";
+
         public float imageBaseSize = 100.0f;
 
         // trial length must be a multiple of windowLength
@@ -72,14 +74,22 @@ public class Settings
         public string layoutStyle = "Default";
         public string mentalCommandLabel = "None";
     }
-    // Set list of available videos
-    // public List<VideoPrefs> videos = new List<VideoPrefs>()
-    // {
-    //     new VideoPrefs() { videoTitle = "Zelda", videoPath = "Assets/Videos/DevVideo0-Zelda.mp4" },
-    //     new VideoPrefs() { videoTitle = "PBJ Time", videoPath = "Assets/Videos/DevVideo1-PeanutButterJelly.mp4" },
-    //     new VideoPrefs() { videoTitle = "Watermelon Meow Meow", videoPath = "Assets/Videos/DevVideo2-WatermelonMeowMeow.mp4" },
-    //     new VideoPrefs() { videoTitle = "Kaguya Nursery Rhyme", videoPath = "Assets/Videos/DevVideo3-KaguyaOSTNurseryRhyme.mp4" },
-    // };
+
+    public class MentalCommand
+    {
+        public string labelName = "";
+        public string animationName = "";
+
+        public string imagePath = "Assets/icons/cube_primary.png";
+
+        // public Sprite myImage;
+
+        // void Awake
+        // {
+        //     // Load the sprite from the asset path
+        //     myImage = Resources.Load<Sprite>(imagePath);
+        // }
+    }
 
     // Set of user profiles
     public List<User> users = new List<User>();
@@ -140,7 +150,6 @@ public class Settings
         {"8 s", 8.0f},
         {"10 s", 10.0f},
     };
-
 
 
     // Convert class to Json string
