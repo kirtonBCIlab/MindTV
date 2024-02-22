@@ -87,6 +87,20 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
+    public void DeleteUserProfile(string name)
+    {
+        if (UserProfileExists(name))
+        {
+            Settings.User user = settings.users.Find(user => user.userProfileName == name);
+            settings.users.Remove(user);
+            Debug.Log("SettingsManager: removed user " + user.userProfileName);
+        }
+        else
+        {
+            Debug.Log("SettingsManager: user " + name + " not found");
+        }
+    }
+
 
     public void SaveSettings()
     {
