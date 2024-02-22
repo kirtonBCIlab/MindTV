@@ -18,6 +18,18 @@ public class UserProfileLoad : MonoBehaviour
         PopulateDropdownWithProfiles();
     }
 
+    public void SelectionChanged(int index)
+    {
+        loadButton.gameObject.SetActive(true);
+    }
+
+    public void LoadSelectedUserProfile()
+    {
+        string name = dropdown.options[dropdown.value].text;
+        SettingsManager.Instance.ActivateUserProfile(name);
+    }
+
+    // TODO - the dropdown could be made into a profile selection prefab and reused in load / manage prefabs
     private void PopulateDropdownWithProfiles()
     {
         loadButton.gameObject.SetActive(false);
@@ -35,17 +47,6 @@ public class UserProfileLoad : MonoBehaviour
         }
 
         dropdown.RefreshShownValue();
-    }
-
-    public void SelectionChanged(int index)
-    {
-        loadButton.gameObject.SetActive(true);
-    }
-
-    public void LoadSelectedUserProfile()
-    {
-        string name = dropdown.options[dropdown.value].text;
-        SettingsManager.Instance.ActivateUserProfile(name);
     }
 
 }
