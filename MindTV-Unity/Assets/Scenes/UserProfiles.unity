@@ -284,7 +284,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4944475338558060618, guid: cff901d76773f3b40842a51f0cd20289, type: 3}
       propertyPath: m_Name
-      value: CreateUserProfile
+      value: UserProfileCreate
       objectReference: {fileID: 0}
     - target: {fileID: 4944475338558060618, guid: cff901d76773f3b40842a51f0cd20289, type: 3}
       propertyPath: m_IsActive
@@ -637,14 +637,14 @@ PrefabInstance:
     - target: {fileID: 682226772148651532, guid: c2478138b9055f1489c923e57ca21de4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1375174769}
+      objectReference: {fileID: 0}
     - target: {fileID: 682226772148651532, guid: c2478138b9055f1489c923e57ca21de4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: LoadSelectedUserForTraining
       objectReference: {fileID: 0}
     - target: {fileID: 2795498206551342202, guid: c2478138b9055f1489c923e57ca21de4, type: 3}
       propertyPath: m_Name
-      value: LoadUserProfile
+      value: UserProfileLoad
       objectReference: {fileID: 0}
     - target: {fileID: 2795498206551342202, guid: c2478138b9055f1489c923e57ca21de4, type: 3}
       propertyPath: m_IsActive
@@ -745,10 +745,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2795498206551342202, guid: c2478138b9055f1489c923e57ca21de4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1375174769}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2478138b9055f1489c923e57ca21de4, type: 3}
 --- !u!224 &783183201 stripped
 RectTransform:
@@ -803,21 +800,37 @@ MonoBehaviour:
     userProfileName: 
     trainingPrefs:
     - labelNumber: 0
-      labelText: 
-      animationText: 
+      labelName: 
+      animationName: None
       backgroundColor: {r: 0, g: 0, b: 0, a: 0}
+      imagePath: Assets/icons/cube_primary.png
+      imageBaseSize: 100
+      windowLength: 2
+      trialLength: 6
     - labelNumber: 1
-      labelText: 
-      animationText: 
+      labelName: 
+      animationName: None
       backgroundColor: {r: 0, g: 0, b: 0, a: 0}
+      imagePath: Assets/icons/cube_primary.png
+      imageBaseSize: 100
+      windowLength: 2
+      trialLength: 6
     - labelNumber: 2
-      labelText: 
-      animationText: 
+      labelName: 
+      animationName: None
       backgroundColor: {r: 0, g: 0, b: 0, a: 0}
+      imagePath: Assets/icons/cube_primary.png
+      imageBaseSize: 100
+      windowLength: 2
+      trialLength: 6
     - labelNumber: 3
-      labelText: 
-      animationText: 
+      labelName: 
+      animationName: None
       backgroundColor: {r: 0, g: 0, b: 0, a: 0}
+      imagePath: Assets/icons/cube_primary.png
+      imageBaseSize: 100
+      windowLength: 2
+      trialLength: 6
 --- !u!1 &1025973862
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,21 +1071,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2795498206551342202, guid: c2478138b9055f1489c923e57ca21de4, type: 3}
   m_PrefabInstance: {fileID: 783183200}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1375174769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1375174768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f448c962b93b74f9f8f02573557a45ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title:
-    m_Text: 
-    m_Image: {fileID: 0}
 --- !u!1001 &1627383370
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1091,7 +1089,7 @@ PrefabInstance:
       objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 464745574588186153, guid: 5645b0574aaab774bbbfb88791e52f4c, type: 3}
       propertyPath: m_Name
-      value: ManageUserProfiles
+      value: UserProfilesManage
       objectReference: {fileID: 0}
     - target: {fileID: 464745574588186153, guid: 5645b0574aaab774bbbfb88791e52f4c, type: 3}
       propertyPath: m_IsActive

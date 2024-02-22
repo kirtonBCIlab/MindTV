@@ -4,35 +4,27 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlot : MonoBehaviour, IPointerClickHandler,IPointerEnterHandler,IPointerExitHandler
+public class InventorySlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
-
-    [SerializeField] GameObject myTrainPanel;
-
     [SerializeField] private TrainingPageManager trainingPageManager;
 
     [SerializeField] private CursorManager cursor;
 
     [SerializeField] private TrainingItem trainingItem; // Contains information about the sprite inside the selected slot
-    // Start is called before the first frame update
-    
-    //I kind of hate how this is functioning.
+
     void Start()
     {
-        // canvas = transform.root.GetComponent<Canvas>();
-        myTrainPanel = GameObject.FindGameObjectWithTag("TrainingPanel");
+        // TODO - remove coupling to TrainingPageManager, ex: emit an image changed event
+        // or have manager attach listeners to InventorySlots.  This way InventorySlot 
+        // doesn't have to care about were image goes.
+        GameObject myTrainPanel = GameObject.FindGameObjectWithTag("TrainingPanel");
         trainingPageManager = myTrainPanel.GetComponent<TrainingPageManager>();
         trainingItem = this.GetComponentInChildren<TrainingItem>();
-
-        // When the inventory slot is clicked the sprite of the training object is assigned to the selected sprite and the slot is highlighted
-        // slotButton.onClick.AddListener(() => trainingPageManager.SetTrainingObject(trainingItem.sprite));
-        // slotButton.onClick.AddListener(() => trainingMenuController.HighlightSelectedSprite(gameObject));
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        trainingPageManager.SetTrainingObject(trainingItem.sprite);
-        trainingPageManager.HighlightSelectedSprite(gameObject);
+        trainingPageManager.ImageChanged(trainingItem.sprite);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -44,5 +36,4 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler,IPointerEnterHa
     {
         cursor.OnCursorExit();
     }
-
 }

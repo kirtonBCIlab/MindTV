@@ -7,23 +7,23 @@ using BCIEssentials.Controllers;
 public class TrainingController : MonoBehaviour
 {
     // UI elements within the TrainingPage prefab
-    [SerializeField] public GameObject startTrainingButton;
-    [SerializeField] public GameObject cancelCountdownButton;
-    [SerializeField] public GameObject _SPO;
-    [SerializeField] public TMP_Text countdownText;
-    [SerializeField] public AudioSource audioSource;
-    [SerializeField] public AudioClip countdownBeepFile;
-    [SerializeField] public AudioClip startBeepFile;
-    [SerializeField] public TMP_Text trainRemainingTimeText;
-    [SerializeField] public TMP_Text trainNumberText;
+    [SerializeField] private GameObject startTrainingButton;
+    [SerializeField] private GameObject cancelCountdownButton;
+    [SerializeField] private GameObject _SPO;
+    [SerializeField] private TMP_Text countdownText;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip countdownBeepFile;
+    [SerializeField] private AudioClip startBeepFile;
+    [SerializeField] private TMP_Text trainRemainingTimeText;
+    [SerializeField] private TMP_Text trainNumberText;
 
-    [SerializeField] public GameObject controllerManager;
-    [SerializeField] public BCIController bciController;
+    [SerializeField] private GameObject controllerManager;
+    [SerializeField] private BCIController bciController;
 
     public int numberOfCountdownSeconds = 3;
     public string startTrainingMessage = "Go!";
 
-    private int numberOfTrainingsDone = 0;
+    private int numberWindowsCompleted = 0;
     private float countdownBeepVolume = 1f; // Example volume level for quiet beep
     private float startBeepVolume = 1f; // Example volume level for loud beep
     private float uiUpdateDelay = 0.5f; // Delay for updating UI elements
@@ -93,9 +93,6 @@ public class TrainingController : MonoBehaviour
         // Wait a bit before removing the countdown text
         yield return new WaitForSeconds(1);
         countdownText.text = ""; // Clear the countdown text
-        // Wait a bit before re-showing the start button - TEMPORARY
-        yield return new WaitForSeconds(1);
-        startTrainingButton.SetActive(true); // Re-show the start button
     }
 
     void PlayBeep(AudioClip clip, float volume)
@@ -125,30 +122,15 @@ public class TrainingController : MonoBehaviour
         // Calculate number of windows from trial length and window length
         int windowCount = Mathf.RoundToInt(trialLength / windowLength);
 
-        if (string.IsNullOrEmpty(labelName))
-        {
-            labelName = "Unknown";
-        }
-
         // Assign the SPO object ID to be the same as the page number
         Debug.Log("Starting training on label: " + labelName + " (" + labelNumber + ")");
         Debug.Log("Trial length is " + trialLength + " (" + windowCount + " windows of " + windowLength + " seconds)");
-        Debug.Log("SPO is " + _SPO);
 
         // TODO - this is a null reference if application not started from main scene
         spoToyBox.SetSPO(labelNumber, _SPO, labelName);
 
-        float trainingLengthSeconds = windowCount * windowLength;
-        // int trainingLengthSecondsInt = (int)trainingLengthSeconds;
-
-        // Update the length of the animation duration
-        Debug.Log("_SPO.UITweener: Setting animation duration to " + trainingLengthSeconds);
-        // uiTweener.duration = trainingLengthSeconds;
-
-
         // Do the actual training
         // Anup: I turned this off to get around package issues
-        Debug.Log("BCIController: Do Single Training (Currently off)");
         // BCIController.WhileDoSingleTraining(_SPO, windowLength, windowCount);
 
         // Start the animation
@@ -160,11 +142,10 @@ public class TrainingController : MonoBehaviour
         }
 
         // Start the timer for the training
-        // StartCoroutine(TrainingTimer(trainingLengthSecondsInt));
-        StartCoroutine(TrainingTimer((int)trainingLengthSeconds));
+        StartCoroutine(TrainingTimer((int)trialLength));
 
         // Wait to finish the training
-        yield return new WaitForSeconds(trainingLengthSeconds);
+        yield return new WaitForSeconds(trialLength);
 
         // Needs to be updated
         // bciController.ActiveBehavior.SetLabel(userInput); // Needs to be updated
@@ -172,7 +153,7 @@ public class TrainingController : MonoBehaviour
 
         // Update the number of trainings done with the windowCount
         yield return new WaitForSeconds(uiUpdateDelay);
-        UpdateNumberOfTrainingsDone(windowCount);
+        UpdateNumberOfWindowsCompleted(windowCount);
 
         // // Anup: I turned this off to get around package issues
         // if (numberOfTrainingsDone >= 5) // Needs to be updated
@@ -204,12 +185,13 @@ public class TrainingController : MonoBehaviour
         startTrainingButton.SetActive(true); // Re-show the start button
     }
 
-    private void UpdateNumberOfTrainingsDone(int newWindowCount)
+    private void UpdateNumberOfWindowsCompleted(int newWindowCount)
     {
-        numberOfTrainingsDone += newWindowCount;
-        trainNumberText.text = "Number of Trainings: " + numberOfTrainingsDone;
+        numberWindowsCompleted += newWindowCount;
+        trainNumberText.text = "Number of Windows: " + numberWindowsCompleted;
 
-        // TODO - not sure what this is doing here
+        // TODO - TrainingController should have a reference instead of digging around in the
+        // parent object for something.  Or emit an event, etc.
         BessyTrainClassifier parentScript = GetComponentInParent<BessyTrainClassifier>();
         if (parentScript != null)
         {
