@@ -140,8 +140,40 @@ public class VideoCellManager : MonoBehaviour
     // Update the Background Color of the cell
     public void UpdateCellColor()
     {
+        // string colorText = backgroundColorDropdown.options[backgroundColorDropdown.value].text;
+        // Color color = Settings.ColorForName(colorText);
+        // backgroundCell.color = color;
+        // videoCell.backgroundColor = color;
+        // VideoCellChanged();
+        if (backgroundColorDropdown == null)
+        {
+            Debug.LogError("backgroundColorDropdown is null");
+            return;
+        }
+        if (backgroundColorDropdown.options == null)
+        {
+            Debug.LogError("backgroundColorDropdown.options is null");
+            return;
+        }
+        if (backgroundCell == null)
+        {
+            Debug.LogError("backgroundCell is null");
+            return;
+        }
+        if (videoCell == null)
+        {
+            Debug.LogError("videoCell is null");
+            return;
+        }
+
         string colorText = backgroundColorDropdown.options[backgroundColorDropdown.value].text;
         Color color = Settings.ColorForName(colorText);
+        if (color == null)
+        {
+            Debug.LogError("ColorForName returned null for colorText: " + colorText);
+            return;
+        }
+
         backgroundCell.color = color;
         videoCell.backgroundColor = color;
         VideoCellChanged();

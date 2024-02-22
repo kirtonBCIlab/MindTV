@@ -71,6 +71,12 @@ public class VideoPageManager : MonoBehaviour
         VideoCellManager.VideoCellChanged += OnVideoCellChanged;
     }
 
+    public void OnDisable()
+    {
+        // Remove listeners to avoid dangling references (event is static and persists between scenes)
+        VideoCellManager.VideoCellChanged -= OnVideoCellChanged;
+    }
+
     private void OnVideoCellChanged()
     {
         // Update the video cell list in the user's settings with the updated preference from the changed video cell.
