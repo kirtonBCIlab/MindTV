@@ -215,9 +215,9 @@ RectTransform:
   m_Children:
   - {fileID: 3903925943548559983}
   - {fileID: 8721151978414850747}
+  - {fileID: 7745500561504951903}
   - {fileID: 1053499398464578246}
   - {fileID: 2247420207744855926}
-  - {fileID: 7745500561504951903}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -257,6 +257,8 @@ MonoBehaviour:
   - {fileID: 6300967566668689675}
   previewVideoPlayer: {fileID: 424511644632131448}
   previewVideoRawImage: {fileID: 3317107637227598790}
+  videoCellPrefab: {fileID: 0}
+  videoCellParent: {fileID: 0}
 --- !u!1001 &1968143754565534710
 PrefabInstance:
   m_ObjectHideFlags: 0
