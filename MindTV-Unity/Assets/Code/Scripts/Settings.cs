@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
 using UnityEditor;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
 
@@ -15,13 +16,15 @@ public class Settings
     [System.Serializable]
     public class TrainingPrefs
     {
+        //We should replace this with a "Mental Command" object
         public int labelNumber = 0;
         public string labelName = "";
         public string animationName = "None";
+        public string imagePath = "Assets/icons/cube_primary.png";
         public Color backgroundColor = Settings.ColorForName("Blue (Theme)");
 
         // can't serialize sprite, need to record where asset is (default or user provided)
-        public string imagePath = "Assets/icons/cube_primary.png";
+
         public float imageBaseSize = 100.0f;
 
         // trial length must be a multiple of windowLength
@@ -45,6 +48,54 @@ public class Settings
         };
 
         // Add other things we need to persist for user here
+        public List<VideoCell> videoCells = new List<VideoCell>()
+        {
+            new VideoCell() { tileNumber = 0 },
+        };
+
+        // Add new cell to the videoCell list
+        public VideoCell AddVideoCell()
+        {
+            var newCell = new VideoCell() { tileNumber = videoCells.Count };
+            videoCells.Add(newCell);
+            return newCell;
+        }
+
+        public List<string> AvailableLabels()
+        {
+            // pull out labels that are not blank
+            List<string> allLabels = trainingPrefs.Select(prefs => prefs.labelName).ToList();
+            List<string> assignedLabels = allLabels.FindAll(label => label.Count() > 0);
+            return assignedLabels;
+        }
+    }
+
+    [System.Serializable]
+    public class VideoCell
+    {
+        public int tileNumber = 0;
+        public string videoTitle = "Video Title";
+        public string videoPath = "";
+        public Color backgroundColor = Settings.ColorForName("Purple (Theme)");
+        public bool includeGraphic = false;
+        public string layoutStyle = "Default";
+        public string mentalCommandLabel = "None";
+    }
+
+    public class MentalCommand
+    {
+        public string labelName = "";
+        public string animationName = "";
+
+        public string imagePath = "Assets/icons/cube_primary.png";
+
+        // public Sprite myImage;
+
+        // void Awake
+        // {
+        //     // Load the sprite from the asset path
+        //     myImage = Resources.Load<Sprite>(imagePath);
+        // }
     }
 
     // Set of user profiles
@@ -106,7 +157,6 @@ public class Settings
         {"8 s", 8.0f},
         {"10 s", 10.0f},
     };
-
 
 
     // Convert class to Json string
