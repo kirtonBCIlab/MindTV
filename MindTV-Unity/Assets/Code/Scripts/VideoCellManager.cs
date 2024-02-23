@@ -88,8 +88,11 @@ public class VideoCellManager : MonoBehaviour
         videoTitleText.text = videoCell.videoTitle;
         videoTitleInputField.text = videoCell.videoTitle;
 
-        // Set the image
-        imageGraphic.gameObject.GetComponent<Image>().enabled = videoCell.includeGraphic;
+        // Set the image based on selected label
+        imageGraphic.sprite = SettingsManager.Instance?.currentUser.GetImageForLabel(videoCell.mentalCommandLabel);
+
+        // Set the image visibility
+        imageGraphic.enabled = videoCell.includeGraphic;
         includeImageToggle.isOn = videoCell.includeGraphic;
 
         // populate the dropdown with mental commands (labels)
@@ -171,7 +174,7 @@ public class VideoCellManager : MonoBehaviour
     // Include Image in the cell
     public void UpdateImage()
     {
-        imageGraphic.gameObject.GetComponent<Image>().enabled = includeImageToggle.isOn;
+        imageGraphic.enabled = includeImageToggle.isOn;
         videoCell.includeGraphic = includeImageToggle.isOn;
     }
 
@@ -181,5 +184,8 @@ public class VideoCellManager : MonoBehaviour
         string mentalCommand = mentalCommandDropdown.options[mentalCommandDropdown.value].text;
         mentalCommandName.text = mentalCommand;
         videoCell.mentalCommandLabel = mentalCommand;
+
+        // change to image corresponding to the new label
+        imageGraphic.sprite = SettingsManager.Instance?.currentUser.GetImageForLabel(mentalCommand);
     }
 }

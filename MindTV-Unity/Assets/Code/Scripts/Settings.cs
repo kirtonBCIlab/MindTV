@@ -68,6 +68,14 @@ public class Settings
             List<string> assignedLabels = allLabels.FindAll(label => label.Count() > 0);
             return assignedLabels;
         }
+
+        public Sprite GetImageForLabel(string label)
+        {
+            TrainingPrefs prefs = trainingPrefs.Find(prefs => prefs.labelName == label);
+            string path = prefs?.imagePath ?? "";
+            Debug.Log(">>> path " + path);
+            return AssetDatabase.LoadAssetAtPath<Sprite>(path);
+        }
     }
 
     [System.Serializable]
