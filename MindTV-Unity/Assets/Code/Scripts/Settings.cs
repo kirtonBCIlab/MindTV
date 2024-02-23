@@ -47,23 +47,21 @@ public class Settings
             new TrainingPrefs() { labelNumber = 3 },
         };
 
-        // Add other things we need to persist for user here
-        public List<VideoCell> videoCells = new List<VideoCell>()
+        public List<VideoCellPrefs> videoCellPrefs = new List<VideoCellPrefs>()
         {
-            new VideoCell() { tileNumber = 0 },
+            new VideoCellPrefs() { tileNumber = 0 },
         };
 
-        // Add new cell to the videoCell list
-        public VideoCell AddVideoCell()
+        public VideoCellPrefs AddVideoCell()
         {
-            var newCell = new VideoCell() { tileNumber = videoCells.Count };
-            videoCells.Add(newCell);
+            var newCell = new VideoCellPrefs() { tileNumber = videoCellPrefs.Count };
+            videoCellPrefs.Add(newCell);
             return newCell;
         }
 
         public List<string> AvailableLabels()
         {
-            // pull out labels that are not blank
+            // discard labels that are blank
             List<string> allLabels = trainingPrefs.Select(prefs => prefs.labelName).ToList();
             List<string> assignedLabels = allLabels.FindAll(label => label.Count() > 0);
             return assignedLabels;
@@ -73,13 +71,12 @@ public class Settings
         {
             TrainingPrefs prefs = trainingPrefs.Find(prefs => prefs.labelName == label);
             string path = prefs?.imagePath ?? "";
-            Debug.Log(">>> path " + path);
             return AssetDatabase.LoadAssetAtPath<Sprite>(path);
         }
     }
 
     [System.Serializable]
-    public class VideoCell
+    public class VideoCellPrefs
     {
         public int tileNumber = 0;
         public string videoTitle = "Video Title";
