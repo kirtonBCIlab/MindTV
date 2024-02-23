@@ -182,6 +182,14 @@ public class TrainingPageManager : MonoBehaviour
                     break;
                 case "Grow":
                     break;
+                case "Left":
+                    break;
+                case "Right":
+                    break;
+                case "Up":
+                    break;
+                case "Down":
+                    break;
                 case "Shake":
                     uiTweener.shakeSpeed = 0.25f; // This shake speed will do 8 shakes per 2 second window
                     uiTweener.numShakes = (int)Math.Round(uiTweener.duration / uiTweener.shakeSpeed); // Scale the number of shakes to the target trial length

@@ -13,7 +13,11 @@ public enum UIAnimationTypes
     Grow,
     Wiggle,
     Rotate,
-    RotatePunch
+    RotatePunch,
+    Left,
+    Right,
+    Up,
+    Down
 }
 
 public class UITweener : MonoBehaviour
@@ -22,6 +26,11 @@ public class UITweener : MonoBehaviour
     public GameObject objectToAnimate;
 
     public UIAnimationTypes animationTypes;
+
+    public Transform targetLeft;
+    public Transform targetRight;
+    public Transform targetUp;
+    public Transform targetDown;
 
     public float duration = 2f;
     public float tweenXScale = 1.7f;
@@ -38,7 +47,8 @@ public class UITweener : MonoBehaviour
     public float wiggleSpeed = 0.1f;
     public float wiggleRotAngle = 45f;
 
-    private Transform _origTransform;
+    private Vector3 _origPosition;
+    private Quaternion _origRotation;
 
     // public bool loop;
     public bool pingPong;
@@ -64,7 +74,8 @@ public class UITweener : MonoBehaviour
             objectToAnimate = gameObject;
         }
 
-        _origTransform = objectToAnimate.transform;
+        _origPosition = objectToAnimate.transform.position;
+        _origRotation = objectToAnimate.transform.rotation;
     }
 
     public void Update()
@@ -105,6 +116,18 @@ public class UITweener : MonoBehaviour
                 break;
             case UIAnimationTypes.RotatePunch:
                 RotatePunchAnim();
+                break;
+            case UIAnimationTypes.Left:
+                MoveToTarget(targetLeft);
+                break;
+            case UIAnimationTypes.Right:
+                MoveToTarget(targetRight);
+                break;
+            case UIAnimationTypes.Up:
+                MoveToTarget(targetUp);
+                break;
+            case UIAnimationTypes.Down:
+                MoveToTarget(targetDown);
                 break;
         }
         Debug.Log("end of handle");
@@ -160,12 +183,20 @@ public class UITweener : MonoBehaviour
         _tweenObject = LeanTween.rotateZ(objectToAnimate, objectToAnimate.transform.rotation.z + wiggleRotAngle, wiggleSpeed).setLoopCount(numWiggles).setLoopPingPong().setOnComplete(ResetObjectToOriginal);
     }
 
+    public void MoveToTarget(Transform target)
+    {
+        LeanTween.move(objectToAnimate, target.position, duration).setOnComplete(ResetObjectToOriginal);
+    }
+
 
     //This isn't being called, and I'm not sure why. 
     public void ResetObjectToOriginal()
     {
-        Debug.Log("Resetting object to original position");
-        objectToAnimate.transform.SetPositionAndRotation(_origTransform.position, _origTransform.rotation);
+        Debug.Log("Resetting object to original position" + _origPosition + " " + _origRotation);
+        LeanTween.move(objectToAnimate, _origPosition, 0.25f);
+        LeanTween.rotate(objectToAnimate, _origRotation.eulerAngles, 0.25f);
+        
+        //objectToAnimate.transform.SetPositionAndRotation(_origPosition, _origRotation);
     }
 
     public string GetTweenAnimation()
@@ -192,6 +223,14 @@ public class UITweener : MonoBehaviour
             animationTypes = UIAnimationTypes.Rotate;
         else if (selected == "RotatePunch")
             animationTypes = UIAnimationTypes.RotatePunch;
+        else if (selected == "Left")
+            animationTypes = UIAnimationTypes.Left;
+        else if (selected == "Right")
+            animationTypes = UIAnimationTypes.Right;
+        else if (selected == "Up")
+            animationTypes = UIAnimationTypes.Up;
+        else if (selected == "Down")
+            animationTypes = UIAnimationTypes.Down;
         else if (selected == "None")
             animationTypes = UIAnimationTypes.None;
     }
