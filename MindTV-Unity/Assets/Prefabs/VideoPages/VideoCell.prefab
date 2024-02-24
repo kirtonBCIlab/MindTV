@@ -4417,7 +4417,7 @@ GameObject:
   - component: {fileID: 7695107428606520560}
   - component: {fileID: 5057531725832272674}
   m_Layer: 0
-  m_Name: VideoThumbnailButton1-TopLeft
+  m_Name: VideoThumbnailButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4520,19 +4520,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7695107428606520560}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: VideoManager, Assembly-CSharp
-        m_MethodName: LoadSelectedVideo
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &6229012775220394038
 GameObject:
   m_ObjectHideFlags: 0
@@ -5874,14 +5862,14 @@ MonoBehaviour:
   imageGraphic: {fileID: 6231908152266101946}
   mentalCommandDropdown: {fileID: 1261565822008275555}
   mentalCommandName: {fileID: 3801735461155513597}
-  previewImage: {fileID: 7695107428606520560}
+  videoThumbnailButton: {fileID: 7695107428606520560}
+  temporaryVideoClip: {fileID: 32900000, guid: e2f201665c5dc452d9f6de75f686c651, type: 3}
   videoCellPrefs:
     tileNumber: 0
     videoTitle: Video Title
     videoPath: 
     backgroundColor: {r: 0.3254902, g: 0.21960784, b: 0.57254905, a: 1}
     includeGraphic: 1
-    layoutStyle: Default
     mentalCommandLabel: 
 --- !u!1 &7363645330179824068
 GameObject:

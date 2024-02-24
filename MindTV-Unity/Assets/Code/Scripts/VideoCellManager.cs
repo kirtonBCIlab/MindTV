@@ -18,33 +18,29 @@ public class VideoCellManager : MonoBehaviour
     [SerializeField] private TMP_Dropdown mentalCommandDropdown;
     [SerializeField] private TMP_Text mentalCommandName;
 
-    public RawImage previewImage; // Assign in Inspector
-    private VideoPlayer videoPlayer; // Used for loading video frames
-    private int videoIndex; // Index of the video clip this cell represents
-    private static int instanceCount = 0; // Keep track of instantiated VideoSelectorCells
+    [SerializeField] private RawImage videoThumbnailButton;
+
+    // TODO - remove this when video selection working
+    [SerializeField] private VideoClip temporaryVideoClip;
+
+    // TODO - used to create a thumbnail, this is a bit hacky as the player hangs around
+    private VideoPlayer videoPlayer;
 
     // Cache settings for the video cell, assigned by SetVideoCellPrefs()
     public Settings.VideoCellPrefs videoCellPrefs = new Settings.VideoCellPrefs();
 
     void Start()
     {
-        // Limit instance creation to prevent memory leak
-        if (instanceCount >= 4)
-        {
-            Debug.LogWarning("Exceeding VideoSelectorCell limit. Consider reusing existing instances.");
-            return;
-        }
-        instanceCount++;
-
-        // TODO - do we need to persist this just to get a thumbnail?
-        // Initialize VideoPlayer
+        // TODO - used to create a thumbnail, this is a bit hacky as the player hangs around
+        // A nice approach would be a VideoThumbnailFactory that produces a still image from
+        // a video.  No need to persist the player in memory to show a thumbnail.
         videoPlayer = gameObject.AddComponent<VideoPlayer>();
         videoPlayer.playOnAwake = false;
         videoPlayer.renderMode = VideoRenderMode.APIOnly;
 
-        // Initialize Listeners
         InitializeListeners();
-        InitializeVideoCell();
+
+        UpdateVideoThumbnail();
     }
 
     // Called by VideoPageManager when VideoCell prefabs are created based on Settings
@@ -61,7 +57,7 @@ public class VideoCellManager : MonoBehaviour
         includeImageToggle.onValueChanged.AddListener(ImageVisibilityChanged);
         mentalCommandDropdown.onValueChanged.AddListener(MentalCommandChanged);
 
-        // TODO - add changing video clip
+        // TODO - video selection can tie in here
         //videoClipDropdown.onValueChanged.AddListener(VideoClipChanged);
     }
 
@@ -157,17 +153,22 @@ public class VideoCellManager : MonoBehaviour
     }
 
 
-    public void VideoClipChanged(string path)
+    public void VideoChanged(string path)
     {
-        // TODO - implement changing video, not sure if this menthod gets a path 
+        videoCellPrefs.videoPath = "";   // TODO - put the video path here
+        UpdateVideoThumbnail();
     }
 
 
-    // TODO - reorganize how video thumbnail is found
-    public void SetupCell(VideoClip videoClip, int index)
+    public void UpdateVideoThumbnail()
     {
-        videoIndex = index;
-        videoPlayer.clip = videoClip;
+        // TODO - Replace with actual video clip, loaded from the file chosen by the user.
+        // The temporaryVideoClip is here just to test that a thumbnail appears.
+        //
+        // videoClip = LoadVideoClipSomehow(videoCellPrefs.videoPath)
+        //
+        videoPlayer.clip = temporaryVideoClip;
+
         StartCoroutine(LoadPreview());
     }
 
@@ -179,33 +180,11 @@ public class VideoCellManager : MonoBehaviour
             yield return null;
         }
 
-        // Play and immediately pause to get the first frame
         videoPlayer.Play();
+        videoThumbnailButton.texture = videoPlayer.texture;
+
+        // TODO - figure out a way to capture the texture instead of leaving the player running.
+        // If the player is stopped or destroyed, the thumbnail will disappear.
         videoPlayer.Pause();
-
-        // Wait until the frame is ready
-        yield return new WaitForEndOfFrame();
-
-        // Set the preview image
-        previewImage.texture = videoPlayer.texture;
-
-        // Optionally, reset and cleanup
-        videoPlayer.Stop();
-    }
-
-    void OnDestroy()
-    {
-        if (videoPlayer != null)
-        {
-            Destroy(videoPlayer.gameObject); // Cleanup VideoPlayer component
-        }
-        instanceCount--; // Update the count of existing instances
-    }
-
-
-    public void OnSelect()
-    {
-        // Logic to handle video selection, possibly involving communication with VideoManager or another component
-        Debug.Log($"Video {videoIndex} selected.");
     }
 }
