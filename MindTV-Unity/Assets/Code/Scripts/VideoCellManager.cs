@@ -29,7 +29,7 @@ public class VideoCellManager : MonoBehaviour
     // Cache settings for the video cell, assigned by SetVideoCellPrefs()
     public Settings.VideoCellPrefs videoCellPrefs = new Settings.VideoCellPrefs();
 
-    void Start()
+    void Awake()
     {
         // TODO - used to create a thumbnail, this is a bit hacky as the player hangs around
         // A nice approach would be a VideoThumbnailFactory that produces a still image from
@@ -37,10 +37,12 @@ public class VideoCellManager : MonoBehaviour
         videoPlayer = gameObject.AddComponent<VideoPlayer>();
         videoPlayer.playOnAwake = false;
         videoPlayer.renderMode = VideoRenderMode.APIOnly;
+    }
 
+    void Start()
+    {
         InitializeListeners();
-
-        UpdateVideoThumbnail();
+        InitializeVideoCell();
     }
 
     // Called by VideoPageManager when VideoCell prefabs are created based on Settings
@@ -69,6 +71,7 @@ public class VideoCellManager : MonoBehaviour
         UpdateVideoTitle();
         UpdateImage();
         UpdateImageVisibility();
+        UpdateVideoThumbnail();
     }
 
 
