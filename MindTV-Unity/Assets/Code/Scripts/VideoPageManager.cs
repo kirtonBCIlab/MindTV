@@ -21,12 +21,14 @@ public class VideoPageManager : MonoBehaviour
     public static event Action VideoPrefsChanged;
 
     // Reference to training settings
+    private List<Settings.VideoCellPrefs> videoCellPrefs;
     [SerializeField] private GameObject videoCellPrefab;
     [SerializeField] private Transform videoCellParent;
 
     private void Start()
     {
         InitializeListeners();
+        InitializeSettings();
         InitializeViews();
 
         // Hide the video playback raw image component to prevent displaying the video before it's selected
@@ -50,6 +52,12 @@ public class VideoPageManager : MonoBehaviour
         VideoCellManager.VideoCellSelected -= ShowVideoForCell;
     }
 
+    private void InitializeSettings()
+    {
+        // this contains all video cell preferences
+        videoCellPrefs = SettingsManager.Instance?.currentUser.videoCellPrefs;
+    }
+
     public void InitializeListeners()
     {
         VideoCellManager.VideoCellSelected += ShowVideoForCell;
@@ -58,7 +66,6 @@ public class VideoPageManager : MonoBehaviour
     private void InitializeViews()
     {
         // Create a new video cell for each video in the user's videoCells list
-        List<Settings.VideoCellPrefs> videoCellPrefs = SettingsManager.Instance?.currentUser.videoCellPrefs;
         foreach (Settings.VideoCellPrefs videoCell in videoCellPrefs)
         {
             GameObject newVideoCell = Instantiate(videoCellPrefab, videoCellParent, false);
@@ -72,8 +79,9 @@ public class VideoPageManager : MonoBehaviour
         videoSelectionPanel.SetActive(false);
         videoPlaybackPanel.SetActive(true);
 
-        // TODO - use the provided prefs to set up for playback.  The prefs object
-        // will correspond to the Video Cell that was selected, so no need to look it up.
+        // TODO - use the provided prefs to set up for playback.  I suppose this could just
+        // send back the tile number, and then the prefs are looked up from there.  That's probably
+        // how the BCI selection will have to work... hmmm.
         Debug.Log("showing video for cell " + prefs.tileNumber);
     }
 
