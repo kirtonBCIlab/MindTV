@@ -21,14 +21,14 @@ public class VideoPageManager : MonoBehaviour
     public static event Action VideoPrefsChanged;
 
     // Reference to training settings
-    private List<Settings.VideoCellPrefs> videoCellPrefs;
-    private Settings.TrainingPrefs trainingPrefs;
     [SerializeField] private GameObject videoCellPrefab;
     [SerializeField] private Transform videoCellParent;
-    private void Awake()
+
+    private void Start()
     {
-        InitializeSettings();
+        InitializeListeners();
         InitializeViews();
+
         // Hide the video playback raw image component to prevent displaying the video before it's selected
         HideVideo();
         videoSelectionPanel.SetActive(true);
@@ -45,22 +45,38 @@ public class VideoPageManager : MonoBehaviour
         // StartCoroutine(GenerateAllPreviews()); 
     }
 
-    private void InitializeSettings()
+    private void OnDisable()
     {
-        // this contains all video cell preferences
-        videoCellPrefs = SettingsManager.Instance?.currentUser.videoCellPrefs;
+        VideoCellManager.VideoCellSelected -= ShowVideoForCell;
+    }
+
+    public void InitializeListeners()
+    {
+        VideoCellManager.VideoCellSelected += ShowVideoForCell;
     }
 
     private void InitializeViews()
     {
         // Create a new video cell for each video in the user's videoCells list
+        List<Settings.VideoCellPrefs> videoCellPrefs = SettingsManager.Instance?.currentUser.videoCellPrefs;
         foreach (Settings.VideoCellPrefs videoCell in videoCellPrefs)
         {
             GameObject newVideoCell = Instantiate(videoCellPrefab, videoCellParent, false);
             newVideoCell.GetComponent<VideoCellManager>().SetVideoCellPrefs(videoCell);
-
         }
     }
+
+
+    private void ShowVideoForCell(Settings.VideoCellPrefs prefs)
+    {
+        videoSelectionPanel.SetActive(false);
+        videoPlaybackPanel.SetActive(true);
+
+        // TODO - use the provided prefs to set up for playback.  The prefs object
+        // will correspond to the Video Cell that was selected, so no need to look it up.
+        Debug.Log("showing video for cell " + prefs.tileNumber);
+    }
+
 
     // IEnumerator GenerateAllPreviews()
     // {

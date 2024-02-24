@@ -5862,7 +5862,7 @@ MonoBehaviour:
   imageGraphic: {fileID: 6231908152266101946}
   mentalCommandDropdown: {fileID: 1261565822008275555}
   mentalCommandName: {fileID: 3801735461155513597}
-  videoThumbnailButton: {fileID: 7695107428606520560}
+  videoThumbnailButton: {fileID: 6213460652089249340}
   temporaryVideoClip: {fileID: 32900000, guid: e2f201665c5dc452d9f6de75f686c651, type: 3}
   videoCellPrefs:
     tileNumber: 0

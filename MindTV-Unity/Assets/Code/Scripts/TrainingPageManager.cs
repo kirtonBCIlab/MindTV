@@ -103,7 +103,7 @@ public class TrainingPageManager : MonoBehaviour
     public void LabelChanged(string labelText)
     {
         trainingPrefs.labelName = labelText;
-        TrainingPrefsChanged();
+        TrainingPrefsChanged?.Invoke();
     }
 
 
@@ -127,7 +127,7 @@ public class TrainingPageManager : MonoBehaviour
         trainingPrefs.backgroundColor = color;
 
         UpdateTrainingPageColor();
-        TrainingPrefsChanged();
+        TrainingPrefsChanged?.Invoke();
     }
 
 
