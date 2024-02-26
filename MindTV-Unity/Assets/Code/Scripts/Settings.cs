@@ -47,17 +47,15 @@ public class Settings
     // {
     //     public string labelName = "";
     //     public string animationName = "";
-
     //     public string imagePath = "Assets/icons/cube_primary.png";
-
     //     public Sprite myImage;
-
     //     void Awake
     //     {
     //         // Load the sprite from the asset path
     //         myImage = Resources.Load<Sprite>(imagePath);
     //     }
     // }
+
 
     [System.Serializable]
     public class User
