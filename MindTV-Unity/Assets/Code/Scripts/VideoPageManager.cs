@@ -21,7 +21,7 @@ public class VideoPageManager : MonoBehaviour
     public static event Action VideoPrefsChanged;
 
     // Reference to training settings
-    private List<Settings.VideoCell> videoCells;
+    private List<Settings.VideoCellPrefs> videoCellPrefs;
     private Settings.TrainingPrefs trainingPrefs;
     [SerializeField] private GameObject videoCellPrefab;
     [SerializeField] private Transform videoCellParent;
@@ -47,20 +47,17 @@ public class VideoPageManager : MonoBehaviour
 
     private void InitializeSettings()
     {
-        // Use the TrainingPage sibling index as the "label number".  This is needed to choose the correct
-        // TrainingPrefs object from the data model.  Use a dummy TrainingPrefs if one is not found.
-        int tileNumber = transform.GetSiblingIndex();
-        
-        videoCells = SettingsManager.Instance?.currentUser.videoCells;
+        // this contains all video cell preferences
+        videoCellPrefs = SettingsManager.Instance?.currentUser.videoCellPrefs;
     }
 
     private void InitializeViews()
     {
-       // Create a new video cell for each video in the user's videoCells list
-        foreach (Settings.VideoCell videoCell in videoCells)
+        // Create a new video cell for each video in the user's videoCells list
+        foreach (Settings.VideoCellPrefs videoCell in videoCellPrefs)
         {
             GameObject newVideoCell = Instantiate(videoCellPrefab, videoCellParent, false);
-            newVideoCell.GetComponent<VideoCellManager>().SetVideoCell(videoCell);
+            newVideoCell.GetComponent<VideoCellManager>().SetVideoCellPrefs(videoCell);
         }
     }
 
