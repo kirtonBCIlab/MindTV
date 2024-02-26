@@ -21,7 +21,7 @@ public class VideoCellManager : MonoBehaviour
     [SerializeField] private GameObject videoThumbnailButton;
 
     // Signal to parent that this 
-    public static event Action<Settings.VideoCellPrefs> VideoCellSelected;
+    public static event Action<int> VideoCellSelected;
 
     // TODO - remove this when video selection working
     [SerializeField] private VideoClip temporaryVideoClip;
@@ -202,6 +202,6 @@ public class VideoCellManager : MonoBehaviour
         enabled = false;
 
         // signal to parent that this video was chosen and provide details for playback
-        VideoCellSelected?.Invoke(videoCellPrefs);
+        VideoCellSelected?.Invoke(videoCellPrefs.tileNumber);
     }
 }

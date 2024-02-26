@@ -74,15 +74,15 @@ public class VideoPageManager : MonoBehaviour
     }
 
 
-    private void ShowVideoForCell(Settings.VideoCellPrefs prefs)
-    {
+    private void ShowVideoForCell(int tileNumber)
+    {        
         videoSelectionPanel.SetActive(false);
         videoPlaybackPanel.SetActive(true);
 
-        // TODO - use the provided prefs to set up for playback.  I suppose this could just
-        // send back the tile number, and then the prefs are looked up from there.  That's probably
-        // how the BCI selection will have to work... hmmm.
-        Debug.Log("showing video for cell " + prefs.tileNumber);
+        // TODO - VideoPageManager can look up video info it needs from videoCellPrefs
+        // using the provided tileNumber.  This function should call the same thing the BCI 
+        // integration does when a label is detected.
+        Debug.Log("Showing video for cell number " + tileNumber);
     }
 
 
