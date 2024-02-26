@@ -64,8 +64,8 @@ public class Settings
     {
         public string userProfileName = "";
 
-        // This could be handled with a getter that allocates new TrainingPrefs, want to 
-        // avoid cluttering each view with add/remove logic.
+        // Hard code the number of labels we can have to 4.  This could be changed to be more
+        // like videoCellPrefs later on.
         public List<TrainingPrefs> trainingPrefs = new List<TrainingPrefs>()
         {
             new TrainingPrefs() { labelNumber = 0 },
@@ -76,6 +76,7 @@ public class Settings
 
         public List<VideoCellPrefs> videoCellPrefs = new List<VideoCellPrefs>()
         {
+            // Start the default user out with a single video cell
             new VideoCellPrefs() { tileNumber = 0 },
         };
 

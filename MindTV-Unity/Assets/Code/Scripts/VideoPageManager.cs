@@ -4,7 +4,6 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using System;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 
 public class VideoPageManager : MonoBehaviour
 {
