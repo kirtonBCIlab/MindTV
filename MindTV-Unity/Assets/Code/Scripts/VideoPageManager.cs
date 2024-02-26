@@ -34,17 +34,6 @@ public class VideoPageManager : MonoBehaviour
         InitializeListeners();
         InitializeSettings();
         InitializeViews();
-
-        // Hide the video playback raw image component to prevent displaying the video before it's selected
-        HideVideo();
-        videoSelectionPanel.SetActive(true);
-        videoPlaybackPanel.SetActive(false);
-
-        // Setup button listeners
-        playButton.onClick.AddListener(PlayVideo);
-        pauseButton.onClick.AddListener(PauseVideo);
-        stopButton.onClick.AddListener(StopVideo);
-        chooseVideoButton.onClick.AddListener(GoToSelectionPanel);
     }
 
     private void OnDisable()
@@ -60,21 +49,45 @@ public class VideoPageManager : MonoBehaviour
 
     public void InitializeListeners()
     {
+        playButton.onClick.AddListener(PlayVideo);
+        pauseButton.onClick.AddListener(PauseVideo);
+        stopButton.onClick.AddListener(StopVideo);
+        chooseVideoButton.onClick.AddListener(ShowSelectionPanel);
+
         addVideoCellButton.onClick.AddListener(AddVideoCell);
         VideoCellManager.VideoCellSelected += ShowVideoForCell;
     }
 
     private void InitializeViews()
     {
+        ShowSelectionPanel();
+
         // Create a new video cell for each video in the user's videoCells list
         foreach (Settings.VideoCellPrefs pref in videoCellPrefs)
         {
             GameObject videoCell = Instantiate(videoCellPrefab, videoCellParent, false);
             videoCell.GetComponent<VideoCellManager>().SetVideoCellPrefs(pref);
         }
+    }
 
-        // Hide add cell if there's already four video cells
-        addVideoCellButton.gameObject.SetActive(videoCellPrefs.Count < 4);
+
+    private void ShowSelectionPanel()
+    {
+        StopVideo();
+        HideVideo();
+        videoPlaybackPanel.SetActive(false);
+
+        videoSelectionPanel.SetActive(true);
+        ShowVideoCellAddButton();
+    }
+
+    private void ShowPlaybackPanel()
+    {
+        videoSelectionPanel.SetActive(false);
+        HideVideoCellAddButton();
+
+        videoPlaybackPanel.SetActive(true);
+        ShowVideo();
     }
 
 
@@ -86,14 +99,24 @@ public class VideoPageManager : MonoBehaviour
         videoCell.GetComponent<VideoCellManager>().SetVideoCellPrefs(pref);
 
         // Hide the video cell button if we have too many now
+        ShowVideoCellAddButton();
+    }
+
+    private void ShowVideoCellAddButton()
+    {
         addVideoCellButton.gameObject.SetActive(videoCellPrefs.Count < 4);
     }
+
+    private void HideVideoCellAddButton()
+    {
+        addVideoCellButton.gameObject.SetActive(false);
+    }
+
 
 
     private void ShowVideoForCell(int tileNumber)
     {
-        videoSelectionPanel.SetActive(false);
-        videoPlaybackPanel.SetActive(true);
+        ShowPlaybackPanel();
 
         // TODO - VideoPageManager can look up video info it needs from videoCellPrefs
         // using the provided tileNumber.  This function should call the same thing the BCI 
@@ -150,21 +173,6 @@ public class VideoPageManager : MonoBehaviour
         videoPlayerRawImage.enabled = true;
     }
 
-    private void GoToSelectionPanel()
-    {
-        StopVideo();
-        HideVideo();
-        videoPlaybackPanel.SetActive(false);
-        videoSelectionPanel.SetActive(true);
-    }
-
-    private void GoToPlaybackPanel()
-    {
-        videoSelectionPanel.SetActive(false);
-        videoPlaybackPanel.SetActive(true);
-        ShowVideo();
-    }
-
     public void LoadSelectedVideo(int index)
     {
         if (videoClips == null || videoClips.Length == 0)
@@ -185,7 +193,7 @@ public class VideoPageManager : MonoBehaviour
 
         // Optionally, you might want to reset and play the video here
         ResetVideoToFirstFrame();
-        GoToPlaybackPanel();
+        ShowPlaybackPanel();
     }
 }
 
