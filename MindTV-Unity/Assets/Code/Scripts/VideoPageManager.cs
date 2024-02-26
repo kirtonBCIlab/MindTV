@@ -17,10 +17,9 @@ public class VideoPageManager : MonoBehaviour
     [SerializeField] private Button stopButton;
     [SerializeField] private Button chooseVideoButton;
 
+    [SerializeField] private Button addVideoCellButton;
     [SerializeField] private Transform videoCellParent;
-    [SerializeField] private GameObject videoAddCellPrefab;
     [SerializeField] private GameObject videoCellPrefab;
-    private GameObject videoAddCell;
 
     // TODO - remove when we're looking up the video from videoCellPrefs (ie: user selection)
     public VideoClip[] videoClips = new VideoClip[4]; // Assign VideoClips in Inspector instead of paths
@@ -52,7 +51,6 @@ public class VideoPageManager : MonoBehaviour
     private void OnDisable()
     {
         VideoCellManager.VideoCellSelected -= ShowVideoForCell;
-        VideoAddCellManager.VideoAddCellClicked -= AddVideoCell;
     }
 
     private void InitializeSettings()
@@ -63,8 +61,8 @@ public class VideoPageManager : MonoBehaviour
 
     public void InitializeListeners()
     {
+        addVideoCellButton.onClick.AddListener(AddVideoCell);
         VideoCellManager.VideoCellSelected += ShowVideoForCell;
-        VideoAddCellManager.VideoAddCellClicked += AddVideoCell;
     }
 
     private void InitializeViews()
@@ -76,12 +74,8 @@ public class VideoPageManager : MonoBehaviour
             videoCell.GetComponent<VideoCellManager>().SetVideoCellPrefs(pref);
         }
 
-        // Make the add cell the last item in the grid
-        videoAddCell = Instantiate(videoAddCellPrefab, videoCellParent, false);
-        videoAddCell.transform.SetAsLastSibling();
-
         // Hide add cell if there's already four video cells
-        videoAddCell.SetActive(videoCellPrefs.Count < 4);
+        addVideoCellButton.gameObject.SetActive(videoCellPrefs.Count < 4);
     }
 
 
@@ -92,11 +86,8 @@ public class VideoPageManager : MonoBehaviour
         GameObject videoCell = Instantiate(videoCellPrefab, videoCellParent, false);
         videoCell.GetComponent<VideoCellManager>().SetVideoCellPrefs(pref);
 
-        // Move video cell to the end        
-        videoAddCell.transform.SetAsLastSibling();
-
         // Hide the video cell button if we have too many now
-        videoAddCell.SetActive(videoCellPrefs.Count < 4);
+        addVideoCellButton.gameObject.SetActive(videoCellPrefs.Count < 4);
     }
 
 
