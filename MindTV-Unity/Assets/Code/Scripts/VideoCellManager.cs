@@ -33,7 +33,7 @@ public class VideoCellManager : MonoBehaviour
     private VideoPlayer videoPlayer;
 
     // Cache settings for the video cell, assigned by SetVideoCellPrefs()
-    public Settings.VideoCellPrefs videoCellPrefs = new Settings.VideoCellPrefs();
+    public Settings.VideoCellPrefs cellPrefs = new Settings.VideoCellPrefs();
 
     void Awake()
     {
@@ -48,14 +48,14 @@ public class VideoCellManager : MonoBehaviour
     void Start()
     {
         InitializeListeners();
-        InitializeVideoCell();
+        InitializeViews();
     }
 
     // Called by VideoPageManager when VideoCell prefabs are created based on Settings
     public void SetVideoCellPrefs(Settings.VideoCellPrefs prefs)
     {
-        videoCellPrefs = prefs;
-        InitializeVideoCell();
+        cellPrefs = prefs;
+        InitializeViews();
     }
 
     public void InitializeListeners()
@@ -71,7 +71,7 @@ public class VideoCellManager : MonoBehaviour
         videoThumbnailButton.GetComponent<Button>().onClick.AddListener(ThumbNailButtonPressed);
     }
 
-    public void InitializeVideoCell()
+    public void InitializeViews()
     {
         UpdateMentalCommandOptions();
         UpdateMentalCommand();
@@ -119,14 +119,14 @@ public class VideoCellManager : MonoBehaviour
 
     public void UpdateMentalCommand()
     {
-        mentalCommandName.text = videoCellPrefs.mentalCommandLabel;
-        mentalCommandDropdown.value = mentalCommandDropdown.options.FindIndex(option => option.text == videoCellPrefs.mentalCommandLabel);
+        mentalCommandName.text = cellPrefs.mentalCommandLabel;
+        mentalCommandDropdown.value = mentalCommandDropdown.options.FindIndex(option => option.text == cellPrefs.mentalCommandLabel);
     }
 
     public void MentalCommandChanged(int labelIndex)
     {
-        string mentalCommand = mentalCommandDropdown.options[mentalCommandDropdown.value].text;
-        videoCellPrefs.mentalCommandLabel = mentalCommand;
+        string mentalCommand = mentalCommandDropdown.options[labelIndex].text;
+        cellPrefs.mentalCommandLabel = mentalCommand;
         UpdateMentalCommand();
         UpdateImage();
     }
@@ -134,10 +134,10 @@ public class VideoCellManager : MonoBehaviour
 
     public void UpdateCellColor()
     {
-        backgroundCell.color = videoCellPrefs.backgroundColor;
+        backgroundCell.color = cellPrefs.backgroundColor;
 
         // make drop down match color
-        string colorName = Settings.NameForColor(videoCellPrefs.backgroundColor);
+        string colorName = Settings.NameForColor(cellPrefs.backgroundColor);
         int colorIndex = backgroundColorDropdown.options.FindIndex(option => option.text == colorName);
         backgroundColorDropdown.value = colorIndex;
     }
@@ -146,7 +146,7 @@ public class VideoCellManager : MonoBehaviour
     {
         string colorName = backgroundColorDropdown.options[cellIndex].text;
         Color color = Settings.ColorForName(colorName);
-        videoCellPrefs.backgroundColor = color;
+        cellPrefs.backgroundColor = color;
         UpdateCellColor();
         
         //Initialize the P300 effect listener if the BCI instance is set to P300
@@ -159,39 +159,39 @@ public class VideoCellManager : MonoBehaviour
 
     public void UpdateVideoTitle()
     {
-        videoTitleText.text = videoCellPrefs.videoTitle;
-        videoTitleInputField.text = videoCellPrefs.videoTitle;
+        videoTitleText.text = cellPrefs.videoTitle;
+        videoTitleInputField.text = cellPrefs.videoTitle;
     }
 
     public void VideoTitleChanged(string title)
     {
-        videoCellPrefs.videoTitle = title;
+        cellPrefs.videoTitle = title;
         UpdateVideoTitle();
     }
 
 
     public void UpdateImageVisibility()
     {
-        imageGraphic.enabled = videoCellPrefs.includeGraphic;
-        includeImageToggle.isOn = videoCellPrefs.includeGraphic;
+        imageGraphic.enabled = cellPrefs.includeGraphic;
+        includeImageToggle.isOn = cellPrefs.includeGraphic;
     }
 
     public void ImageVisibilityChanged(bool isOn)
     {
-        videoCellPrefs.includeGraphic = isOn;
+        cellPrefs.includeGraphic = isOn;
         UpdateImageVisibility();
     }
 
 
     public void UpdateImage()
     {
-        imageGraphic.sprite = SettingsManager.Instance?.currentUser.GetImageForLabel(videoCellPrefs.mentalCommandLabel);
+        imageGraphic.sprite = SettingsManager.Instance?.currentUser.GetImageForLabel(cellPrefs.mentalCommandLabel);
     }
 
 
     public void VideoChanged(string path)
     {
-        videoCellPrefs.videoPath = "";   // TODO - put the video path here
+        cellPrefs.videoPath = "";   // TODO - put the video path here
         UpdateVideoThumbnail();
     }
 
@@ -236,6 +236,6 @@ public class VideoCellManager : MonoBehaviour
         // TODO - the SPO may also want to call this method to select the video
 
         // signal to parent that this video was chosen and provide details for playback
-        VideoCellSelected?.Invoke(videoCellPrefs.tileNumber);
+        VideoCellSelected?.Invoke(cellPrefs.cellNumber);
     }
 }

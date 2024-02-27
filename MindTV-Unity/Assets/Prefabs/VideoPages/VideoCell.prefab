@@ -2378,7 +2378,7 @@ GameObject:
   - component: {fileID: 4681631346447411871}
   - component: {fileID: 8636393822034837018}
   m_Layer: 5
-  m_Name: VideoPageOptionPanel
+  m_Name: VideoCellOptionPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
