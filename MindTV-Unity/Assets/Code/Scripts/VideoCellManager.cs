@@ -1,10 +1,12 @@
 using System.Collections;
 using System;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using TMPro;
 using System.Collections.Generic;
+using UnityEditor;
 
 public class VideoCellManager : MonoBehaviour
 {
@@ -14,7 +16,7 @@ public class VideoCellManager : MonoBehaviour
     [SerializeField] private TMP_Text videoTitleText;
     [SerializeField] private Toggle includeImageToggle;
     [SerializeField] private Image imageGraphic;
-    // [SerializeField]    private TMP_Dropdown videoClipDropdown;
+    [SerializeField] private Button videoSelectButton;
     [SerializeField] private TMP_Dropdown mentalCommandDropdown;
     [SerializeField] private TMP_Text mentalCommandName;
 
@@ -62,9 +64,7 @@ public class VideoCellManager : MonoBehaviour
         includeImageToggle.onValueChanged.AddListener(ImageVisibilityChanged);
         mentalCommandDropdown.onValueChanged.AddListener(MentalCommandChanged);
 
-        // TODO - video selection can tie in here
-        //videoClipDropdown.onValueChanged.AddListener(VideoClipChanged);
-
+        videoSelectButton.onClick.AddListener(VideoChanged);
         videoThumbnailButton.GetComponent<Button>().onClick.AddListener(ThumbNailButtonPressed);
     }
 
@@ -161,9 +161,28 @@ public class VideoCellManager : MonoBehaviour
     }
 
 
-    public void VideoChanged(string path)
+    public void VideoChanged()
     {
-        videoCellPrefs.videoPath = "";   // TODO - put the video path here
+        string projDirectory = System.IO.Directory.GetCurrentDirectory();
+        string defaultDir = projDirectory + "\\Assets\\Videos";
+        string strPath = EditorUtility.OpenFilePanel("Choose video file ...", defaultDir, "mp4");
+
+        string filename = Path.GetFileName(strPath);
+        if (!string.IsNullOrWhiteSpace(strPath))
+        {
+            // copy file into assets/video folder and overwrite if it already exists 
+            string destination = defaultDir + "\\" + filename;
+            Debug.Log("video " + strPath + " copying to " + destination);
+            System.IO.File.Copy(strPath, destination, true);
+        }
+        else
+        {
+            Debug.Log("No video selected");
+        }
+
+        // TODO - put the video path here
+        videoCellPrefs.videoPath = "";
+
         UpdateVideoThumbnail();
     }
 
