@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BCIEssentials.Controllers;
+using TMPro;
 
 public class OptionsMenu : MonoBehaviour
 {
-    // [SerializeField] private GameObject _controllerManager;
     public bool _enableHotKeys = true;
-    // public BCIController bci;
-    // void Start()
-    // {
-    //     _controllerManager = GameObject.FindWithTag("BCIController");
-    //     bci = _controllerManager.GetComponent<BCIController>();
-    // }
+
+    [SerializeField] private TMP_Dropdown _behaviorDropdown;
+
+    private void Start()
+    {
+
+        _behaviorDropdown.onValueChanged.AddListener(UpdateBCIBehavior);
+    }
 
     public void OnToggleSelected()
     {
@@ -33,5 +35,29 @@ public class OptionsMenu : MonoBehaviour
             BCIController.EnableDisableHotkeys(true);
         else 
             BCIController.EnableDisableHotkeys(false);
+    }
+
+     public void UpdateBCIBehavior(int valueChanged)
+    {
+        string newBehavior = _behaviorDropdown.options[valueChanged].text;
+
+        switch (newBehavior)
+        {
+            case "Mental Imagery":
+                Debug.Log("Switching to Motor Imagery");
+                BCIController.ChangeBehavior(BCIBehaviorType.MI);
+                break;
+            case "P300":
+                Debug.Log("Switching to P300");
+                BCIController.ChangeBehavior(BCIBehaviorType.P300);
+                break;
+            case "SSVEP":
+                Debug.Log("Switching to SSVEP");
+                BCIController.ChangeBehavior(BCIBehaviorType.SSVEP);
+                break;
+            default:
+                Debug.Log("Invalid BCI Behavior");
+                break;
+        }
     }
 }
