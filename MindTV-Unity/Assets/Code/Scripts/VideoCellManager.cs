@@ -71,7 +71,7 @@ public class VideoCellManager : MonoBehaviour
         UpdateVideoTitle();
         UpdateImage();
         UpdateImageVisibility();
-        UpdateVideoThumbnail();
+        // UpdateVideoThumbnail();
     }
 
 
