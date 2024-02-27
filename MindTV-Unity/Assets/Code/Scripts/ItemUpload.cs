@@ -12,7 +12,11 @@ public class ItemUpload : MonoBehaviour
 {
     public Image imagePlaceholder;
     public GameObject inventorySlotPrefab;
-    public GameObject inventory;
+    public GameObject inventory_1;
+    public GameObject inventory_2;
+    public GameObject inventory_3;
+    public GameObject inventory_4;
+
     public GameObject addItemDialog;
 
     private byte[] lastUploadedBytes;
@@ -75,13 +79,17 @@ public class ItemUpload : MonoBehaviour
     {
         if (lastUploadedBytes != null)
         {
-            CreateItem();
+            CreateItem(inventory_1);
+            CreateItem(inventory_2);
+            CreateItem(inventory_3);
+            CreateItem(inventory_4);
+         
             addItemDialog.SetActive(false);
         }
     }
 
     //creates new item for training object based on user selected image
-    private void CreateItem()
+    private void CreateItem(GameObject inventory)
     {
         GameObject newItem = Instantiate(inventorySlotPrefab);
         newItem.transform.SetParent(inventory.transform);
@@ -97,8 +105,6 @@ public class ItemUpload : MonoBehaviour
             Texture2D loadTexture = new(1, 1);
             loadTexture.LoadImage(lastUploadedBytes);
 
-<<<<<<< Updated upstream
-=======
             // resizee uploaded picture to 500 by 500 
             int targetX = 500;
             int targetY = 500;
@@ -111,7 +117,6 @@ public class ItemUpload : MonoBehaviour
             loadTexture = result;
 
      
->>>>>>> Stashed changes
             SpriteRenderer spriteRenderer = trainingItem.GetComponent<SpriteRenderer>();
             Image image = trainingItem.GetComponent<Image>();
             TrainingItem trainingItemScript = trainingItem.GetComponent<TrainingItem>();
