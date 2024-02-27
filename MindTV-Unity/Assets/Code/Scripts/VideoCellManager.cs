@@ -18,7 +18,10 @@ public class VideoCellManager : MonoBehaviour
     [SerializeField] private TMP_Dropdown mentalCommandDropdown;
     [SerializeField] private TMP_Text mentalCommandName;
 
-    [SerializeField] private RawImage videoThumbnailButton;
+    [SerializeField] private GameObject videoThumbnailButton;
+
+    // Signal to parent that this 
+    public static event Action<int> VideoCellSelected;
 
     // TODO - remove this when video selection working
     [SerializeField] private VideoClip temporaryVideoClip;
@@ -61,6 +64,8 @@ public class VideoCellManager : MonoBehaviour
 
         // TODO - video selection can tie in here
         //videoClipDropdown.onValueChanged.AddListener(VideoClipChanged);
+
+        videoThumbnailButton.GetComponent<Button>().onClick.AddListener(ThumbNailButtonPressed);
     }
 
     public void InitializeVideoCell()
@@ -162,7 +167,6 @@ public class VideoCellManager : MonoBehaviour
         UpdateVideoThumbnail();
     }
 
-
     public void UpdateVideoThumbnail()
     {
         // TODO - Replace with actual video clip, loaded from the file chosen by the user.
@@ -184,10 +188,20 @@ public class VideoCellManager : MonoBehaviour
         }
 
         videoPlayer.Play();
-        videoThumbnailButton.texture = videoPlayer.texture;
+        videoThumbnailButton.GetComponent<RawImage>().texture = videoPlayer.texture;
 
         // TODO - figure out a way to capture the texture instead of leaving the player running.
         // If the player is stopped or destroyed, the thumbnail will disappear.
         videoPlayer.Pause();
+    }
+
+
+    public void ThumbNailButtonPressed()
+    {
+        // hide the video cell
+        enabled = false;
+
+        // signal to parent that this video was chosen and provide details for playback
+        VideoCellSelected?.Invoke(videoCellPrefs.tileNumber);
     }
 }
