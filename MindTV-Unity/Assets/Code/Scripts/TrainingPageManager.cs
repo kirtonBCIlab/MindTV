@@ -103,7 +103,7 @@ public class TrainingPageManager : MonoBehaviour
     public void LabelChanged(string labelText)
     {
         trainingPrefs.labelName = labelText;
-        TrainingPrefsChanged();
+        TrainingPrefsChanged?.Invoke();
     }
 
 
@@ -127,7 +127,7 @@ public class TrainingPageManager : MonoBehaviour
         trainingPrefs.backgroundColor = color;
 
         UpdateTrainingPageColor();
-        TrainingPrefsChanged();
+        TrainingPrefsChanged?.Invoke();
     }
 
 
@@ -181,6 +181,14 @@ public class TrainingPageManager : MonoBehaviour
                 case "RotatePunch":
                     break;
                 case "Grow":
+                    break;
+                case "Left":
+                    break;
+                case "Right":
+                    break;
+                case "Up":
+                    break;
+                case "Down":
                     break;
                 case "Shake":
                     uiTweener.shakeSpeed = 0.25f; // This shake speed will do 8 shakes per 2 second window

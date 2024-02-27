@@ -12,23 +12,24 @@ public class VideoPageManager : MonoBehaviour
     public GameObject videoSelectionPanel;  // Reference to the panel that contains the video selection UI
     public GameObject videoPlaybackPanel;  // Reference to the panel that contains the video playback UI
     public Button playButton, pauseButton, stopButton, chooseVideoButton;
+
+    // TODO - remove when we're looking up the video from videoCellPrefs (ie: user selection)
     public VideoClip[] videoClips = new VideoClip[4]; // Assign VideoClips in Inspector instead of paths
-    public RawImage[] videoThumbnails = new RawImage[4]; // Assign RawImages in Inspector to display video thumbnails
-    public VideoPlayer previewVideoPlayer; // Reference to the VideoPlayer game object for the video preview
-    public RawImage previewVideoRawImage; // Reference to the RawImage component that the video preview displays on
 
     // Event to signal when preferences have been changed. Think about changing this to UnityEvent instead of just Action.
     public static event Action VideoPrefsChanged;
 
     // Reference to training settings
-    private List<Settings.VideoCell> videoCells;
-    private Settings.TrainingPrefs trainingPrefs;
+    private List<Settings.VideoCellPrefs> videoCellPrefs;
     [SerializeField] private GameObject videoCellPrefab;
     [SerializeField] private Transform videoCellParent;
-    private void Awake()
+
+    private void Start()
     {
+        InitializeListeners();
         InitializeSettings();
         InitializeViews();
+
         // Hide the video playback raw image component to prevent displaying the video before it's selected
         HideVideo();
         videoSelectionPanel.SetActive(true);
@@ -39,85 +40,46 @@ public class VideoPageManager : MonoBehaviour
         pauseButton.onClick.AddListener(PauseVideo);
         stopButton.onClick.AddListener(StopVideo);
         chooseVideoButton.onClick.AddListener(GoToSelectionPanel);
+    }
 
-        // Hides the RawImage component of the video previewer to stop displaying the video
-        // previewVideoRawImage.enabled = false;
-        // StartCoroutine(GenerateAllPreviews()); 
+    private void OnDisable()
+    {
+        VideoCellManager.VideoCellSelected -= ShowVideoForCell;
     }
 
     private void InitializeSettings()
     {
-        // Use the TrainingPage sibling index as the "label number".  This is needed to choose the correct
-        // TrainingPrefs object from the data model.  Use a dummy TrainingPrefs if one is not found.
-        int tileNumber = transform.GetSiblingIndex();
-        
-        videoCells = SettingsManager.Instance?.currentUser.videoCells;
+        // this contains all video cell preferences
+        videoCellPrefs = SettingsManager.Instance?.currentUser.videoCellPrefs;
+    }
+
+    public void InitializeListeners()
+    {
+        VideoCellManager.VideoCellSelected += ShowVideoForCell;
     }
 
     private void InitializeViews()
     {
-       // Create a new video cell for each video in the user's videoCells list
-        foreach (Settings.VideoCell videoCell in videoCells)
+        // Create a new video cell for each video in the user's videoCells list
+        foreach (Settings.VideoCellPrefs videoCell in videoCellPrefs)
         {
             GameObject newVideoCell = Instantiate(videoCellPrefab, videoCellParent, false);
-            newVideoCell.GetComponent<VideoCellManager>().SetVideoCell(videoCell);
+            newVideoCell.GetComponent<VideoCellManager>().SetVideoCellPrefs(videoCell);
         }
     }
 
-    // IEnumerator GenerateAllPreviews()
-    // {
-    //     for (int i = 0; i < videoClips.Length; i++)
-    //     {
-    //         // yield return StartCoroutine(GeneratePreview(i));
-    //         Debug.Log("Generating preview for video " + i);
-    //         yield return GeneratePreview(i);
-    //     }
-    // }
 
-    // IEnumerator GeneratePreview(int index)
-    // {
-    //     if (index < 0 || index >= videoClips.Length || index >= videoThumbnails.Length)
-    //     {
-    //         Debug.LogError("Index out of range for generating video preview.");
-    //         yield break;
-    //     }
+    private void ShowVideoForCell(int tileNumber)
+    {
+        videoSelectionPanel.SetActive(false);
+        videoPlaybackPanel.SetActive(true);
 
-    //     // Dispose of the previous texture to prevent memory leaks
-    //     if (videoThumbnails[index].texture != null)
-    //     {
-    //         Destroy(videoThumbnails[index].texture);
-    //     }
+        // TODO - VideoPageManager can look up video info it needs from videoCellPrefs
+        // using the provided tileNumber.  This function should call the same thing the BCI 
+        // integration does when a label is detected.
+        Debug.Log("Showing video for cell number " + tileNumber);
+    }
 
-    //     previewVideoPlayer.clip = videoClips[index];
-    //     previewVideoPlayer.frame = 0;
-    //     previewVideoPlayer.Play();
-    //     previewVideoPlayer.Pause();
-
-    //     // Wait until the video player has prepared the frame
-    //     // while (!previewVideoPlayer.isPrepared)
-    //     // {
-    //     //     yield return null;
-    //     // }
-
-    //     // Wait until the video player has prepared the frame
-    //     yield return new WaitUntil(() => previewVideoPlayer.isPrepared);
-
-    //     // Debug.Log("Video " + index + " is being clipped.");
-    //     // Debug.Log(previewVideoPlayer.texture.width + " " + previewVideoPlayer.texture.height);
-    //     // Now that the frame is ready, assign it to the corresponding RawImage
-    //     // videoThumbnails[index].texture = previewVideoPlayer.texture;
-
-    //     // Now create a new Texture2D and copy the current frame
-    //     Texture2D frameTexture = new Texture2D(previewVideoPlayer.texture.width, previewVideoPlayer.texture.height, TextureFormat.RGBA32, false);
-    //     RenderTexture.active = previewVideoPlayer.texture as RenderTexture;
-    //     frameTexture.ReadPixels(new Rect(0, 0, frameTexture.width, frameTexture.height), 0, 0);
-    //     frameTexture.Apply();
-
-    //     // Assign this new texture to the corresponding RawImage
-    //     videoThumbnails[index].texture = frameTexture;
-
-    //     previewVideoPlayer.Stop();
-    // }
 
     private void ResetVideoToFirstFrame()
     {
@@ -152,7 +114,6 @@ public class VideoPageManager : MonoBehaviour
         // {
         //     videoPlayer.Stop();
         //     ResetVideoToFirstFrame();
-
         // }
     }
 

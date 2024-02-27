@@ -33,6 +33,33 @@ public class Settings
     }
 
     [System.Serializable]
+    public class VideoCellPrefs
+    {
+        public int tileNumber = 0;
+        public string videoTitle = "Video Title";
+        public string videoPath = "";
+        public Color backgroundColor = Settings.ColorForName("Purple (Theme)");
+        public bool includeGraphic = true;
+        public string mentalCommandLabel = "";
+    }
+
+    // public class MentalCommand
+    // {
+    //     public string labelName = "";
+    //     public string animationName = "";
+
+    //     public string imagePath = "Assets/icons/cube_primary.png";
+
+    //     public Sprite myImage;
+
+    //     void Awake
+    //     {
+    //         // Load the sprite from the asset path
+    //         myImage = Resources.Load<Sprite>(imagePath);
+    //     }
+    // }
+
+    [System.Serializable]
     public class User
     {
         public string userProfileName = "";
@@ -47,58 +74,36 @@ public class Settings
             new TrainingPrefs() { labelNumber = 3 },
         };
 
-        // Add other things we need to persist for user here
-        public List<VideoCell> videoCells = new List<VideoCell>()
+        public List<VideoCellPrefs> videoCellPrefs = new List<VideoCellPrefs>()
         {
-            new VideoCell() { tileNumber = 0 },
+            new VideoCellPrefs() { tileNumber = 0 },
         };
 
-        // Add new cell to the videoCell list
-        public VideoCell AddVideoCell()
+        public VideoCellPrefs AddVideoCell()
         {
-            var newCell = new VideoCell() { tileNumber = videoCells.Count };
-            videoCells.Add(newCell);
+            var newCell = new VideoCellPrefs() { tileNumber = videoCellPrefs.Count };
+            videoCellPrefs.Add(newCell);
             return newCell;
         }
 
         public List<string> AvailableLabels()
         {
-            // pull out labels that are not blank
+            // discard labels that are blank
             List<string> allLabels = trainingPrefs.Select(prefs => prefs.labelName).ToList();
             List<string> assignedLabels = allLabels.FindAll(label => label.Count() > 0);
             return assignedLabels;
         }
+
+        public Sprite GetImageForLabel(string label)
+        {
+            TrainingPrefs prefs = trainingPrefs.Find(prefs => prefs.labelName == label);
+            string path = prefs?.imagePath ?? "";
+            return AssetDatabase.LoadAssetAtPath<Sprite>(path);
+        }
     }
 
-    [System.Serializable]
-    public class VideoCell
-    {
-        public int tileNumber = 0;
-        public string videoTitle = "Video Title";
-        public string videoPath = "";
-        public Color backgroundColor = Settings.ColorForName("Purple (Theme)");
-        public bool includeGraphic = false;
-        public string layoutStyle = "Default";
-        public string mentalCommandLabel = "None";
-    }
 
-    public class MentalCommand
-    {
-        public string labelName = "";
-        public string animationName = "";
-
-        public string imagePath = "Assets/icons/cube_primary.png";
-
-        // public Sprite myImage;
-
-        // void Awake
-        // {
-        //     // Load the sprite from the asset path
-        //     myImage = Resources.Load<Sprite>(imagePath);
-        // }
-    }
-
-    // Set of user profiles
+    // The set of user profiles, aka "user settings"
     public List<User> users = new List<User>();
 
 

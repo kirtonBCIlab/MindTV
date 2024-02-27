@@ -8,90 +8,80 @@ using System.Collections.Generic;
 
 public class VideoCellManager : MonoBehaviour
 {
-    //Settings for the video cell
-    public Settings.VideoCell videoCell;
+    [SerializeField] private Image backgroundCell;
+    [SerializeField] private TMP_Dropdown backgroundColorDropdown;
+    [SerializeField] private TMP_InputField videoTitleInputField;
+    [SerializeField] private TMP_Text videoTitleText;
+    [SerializeField] private Toggle includeImageToggle;
+    [SerializeField] private Image imageGraphic;
+    // [SerializeField]    private TMP_Dropdown videoClipDropdown;
+    [SerializeField] private TMP_Dropdown mentalCommandDropdown;
+    [SerializeField] private TMP_Text mentalCommandName;
 
-    [SerializeField]    private Image backgroundCell;
-    [SerializeField]    private TMP_Dropdown backgroundColorDropdown;
-    [SerializeField]    private TMP_InputField videoTitleInputField;
-    [SerializeField]    private TMP_Text videoTitleText;
-    [SerializeField]    private Toggle includeImageToggle;
-    [SerializeField]    private Image imageGraphic;
-   // [SerializeField]    private TMP_Dropdown videoClipDropdown;
-    [SerializeField]    private TMP_Dropdown mentalCommandDropdown;
-    [SerializeField]    private TMP_Text mentalCommandName;
-     
-    public RawImage previewImage; // Assign in Inspector
-    private VideoPlayer videoPlayer; // Used for loading video frames
-    private int videoIndex; // Index of the video clip this cell represents
-    private static int instanceCount = 0; // Keep track of instantiated VideoSelectorCells
+    [SerializeField] private GameObject videoThumbnailButton;
+
+    // Signal to parent that this 
+    public static event Action<int> VideoCellSelected;
+
+    // TODO - remove this when video selection working
+    [SerializeField] private VideoClip temporaryVideoClip;
+
+    // TODO - used to create a thumbnail, this is a bit hacky as the player hangs around
+    private VideoPlayer videoPlayer;
+
+    // Cache settings for the video cell, assigned by SetVideoCellPrefs()
+    public Settings.VideoCellPrefs videoCellPrefs = new Settings.VideoCellPrefs();
+
+    void Awake()
+    {
+        // TODO - used to create a thumbnail, this is a bit hacky as the player hangs around
+        // A nice approach would be a VideoThumbnailFactory that produces a still image from
+        // a video.  No need to persist the player in memory to show a thumbnail.
+        videoPlayer = gameObject.AddComponent<VideoPlayer>();
+        videoPlayer.playOnAwake = false;
+        videoPlayer.renderMode = VideoRenderMode.APIOnly;
+    }
 
     void Start()
     {
-        // Limit instance creation to prevent memory leak
-        if (instanceCount >= 4)
-        {
-            Debug.LogWarning("Exceeding VideoSelectorCell limit. Consider reusing existing instances.");
-            return;
-        }
-        instanceCount++;
-
-        // Initialize VideoPlayer
-        videoPlayer = gameObject.AddComponent<VideoPlayer>();
-        videoPlayer.playOnAwake = false;
-        videoPlayer.renderMode = VideoRenderMode.APIOnly; // We only need the video frame data
-        if (SettingsManager.Instance.currentUser.videoCells.Count > 0)
-        {
-            videoCell = SettingsManager.Instance.currentUser.videoCells[0];
-        }
-        else 
-        {
-            videoCell = SettingsManager.Instance.currentUser.AddVideoCell();
-        }
-
-        // Initialize Listeners
         InitializeListeners();
+        InitializeVideoCell();
+    }
+
+    // Called by VideoPageManager when VideoCell prefabs are created based on Settings
+    public void SetVideoCellPrefs(Settings.VideoCellPrefs prefs)
+    {
+        videoCellPrefs = prefs;
         InitializeVideoCell();
     }
 
     public void InitializeListeners()
     {
-        backgroundColorDropdown.onValueChanged.AddListener(delegate { UpdateCellColor(); });
-        videoTitleInputField.onEndEdit.AddListener(delegate { UpdateVideoTitle(); });
-        includeImageToggle.onValueChanged.AddListener(delegate { UpdateImage(); });
-        //videoClipDropdown.onValueChanged.AddListener(delegate { ChangeVideoClip(); });
-        mentalCommandDropdown.onValueChanged.AddListener(delegate { UpdateMentalCommand(); });
-    }
+        backgroundColorDropdown.onValueChanged.AddListener(CellColorChanged);
+        videoTitleInputField.onEndEdit.AddListener(VideoTitleChanged);
+        includeImageToggle.onValueChanged.AddListener(ImageVisibilityChanged);
+        mentalCommandDropdown.onValueChanged.AddListener(MentalCommandChanged);
 
-    public void SetupCell(VideoClip videoClip, int index)
-    {
-        videoIndex = index;
-        videoPlayer.clip = videoClip;
-        StartCoroutine(LoadPreview());
-    }
+        // TODO - video selection can tie in here
+        //videoClipDropdown.onValueChanged.AddListener(VideoClipChanged);
 
-    public void SetVideoCell(Settings.VideoCell cell)
-    {
-        videoCell = cell;
-        InitializeVideoCell();
+        videoThumbnailButton.GetComponent<Button>().onClick.AddListener(ThumbNailButtonPressed);
     }
 
     public void InitializeVideoCell()
     {
-        // Set the background color
-        backgroundCell.color = videoCell.backgroundColor;
-        string colorName = Settings.NameForColor(videoCell.backgroundColor);
-        int colorIndex = backgroundColorDropdown.options.FindIndex(option => option.text == colorName);
-        backgroundColorDropdown.value = colorIndex;
+        UpdateMentalCommandOptions();
+        UpdateMentalCommand();
+        UpdateCellColor();
+        UpdateVideoTitle();
+        UpdateImage();
+        UpdateImageVisibility();
+        // UpdateVideoThumbnail();
+    }
 
-        // Set the video title
-        videoTitleText.text = videoCell.videoTitle;
-        videoTitleInputField.text = videoCell.videoTitle;
 
-        // Set the image
-        imageGraphic.gameObject.GetComponent<Image>().enabled = videoCell.includeGraphic;
-        includeImageToggle.isOn = videoCell.includeGraphic;
-
+    public void UpdateMentalCommandOptions()
+    {
         // populate the dropdown with mental commands (labels)
         // Add the title placeholder to the dropdown so nothing appears selected
         List<string> labels = SettingsManager.Instance?.currentUser.AvailableLabels();
@@ -102,10 +92,91 @@ public class VideoCellManager : MonoBehaviour
             TMP_Dropdown.OptionData newOption = new TMP_Dropdown.OptionData(label);
             mentalCommandDropdown.options.Add(newOption);
         }
+    }
 
-        // Set the mental command label
-        mentalCommandName.text = videoCell.mentalCommandLabel;
-        mentalCommandDropdown.value = mentalCommandDropdown.options.FindIndex(option => option.text == videoCell.mentalCommandLabel);
+
+    public void UpdateMentalCommand()
+    {
+        mentalCommandName.text = videoCellPrefs.mentalCommandLabel;
+        mentalCommandDropdown.value = mentalCommandDropdown.options.FindIndex(option => option.text == videoCellPrefs.mentalCommandLabel);
+    }
+
+    public void MentalCommandChanged(int labelIndex)
+    {
+        string mentalCommand = mentalCommandDropdown.options[mentalCommandDropdown.value].text;
+        videoCellPrefs.mentalCommandLabel = mentalCommand;
+        UpdateMentalCommand();
+        UpdateImage();
+    }
+
+
+    public void UpdateCellColor()
+    {
+        backgroundCell.color = videoCellPrefs.backgroundColor;
+
+        // make drop down match color
+        string colorName = Settings.NameForColor(videoCellPrefs.backgroundColor);
+        int colorIndex = backgroundColorDropdown.options.FindIndex(option => option.text == colorName);
+        backgroundColorDropdown.value = colorIndex;
+    }
+
+    public void CellColorChanged(int cellIndex)
+    {
+        string colorName = backgroundColorDropdown.options[cellIndex].text;
+        Color color = Settings.ColorForName(colorName);
+        videoCellPrefs.backgroundColor = color;
+        UpdateCellColor();
+    }
+
+
+    public void UpdateVideoTitle()
+    {
+        videoTitleText.text = videoCellPrefs.videoTitle;
+        videoTitleInputField.text = videoCellPrefs.videoTitle;
+    }
+
+    public void VideoTitleChanged(string title)
+    {
+        videoCellPrefs.videoTitle = title;
+        UpdateVideoTitle();
+    }
+
+
+    public void UpdateImageVisibility()
+    {
+        imageGraphic.enabled = videoCellPrefs.includeGraphic;
+        includeImageToggle.isOn = videoCellPrefs.includeGraphic;
+    }
+
+    public void ImageVisibilityChanged(bool isOn)
+    {
+        videoCellPrefs.includeGraphic = isOn;
+        UpdateImageVisibility();
+    }
+
+
+    public void UpdateImage()
+    {
+        imageGraphic.sprite = SettingsManager.Instance?.currentUser.GetImageForLabel(videoCellPrefs.mentalCommandLabel);
+    }
+
+
+    public void VideoChanged(string path)
+    {
+        videoCellPrefs.videoPath = "";   // TODO - put the video path here
+        UpdateVideoThumbnail();
+    }
+
+    public void UpdateVideoThumbnail()
+    {
+        // TODO - Replace with actual video clip, loaded from the file chosen by the user.
+        // The temporaryVideoClip is here just to test that a thumbnail appears.
+        //
+        // videoClip = LoadVideoClipSomehow(videoCellPrefs.videoPath)
+        //
+        videoPlayer.clip = temporaryVideoClip;
+
+        StartCoroutine(LoadPreview());
     }
 
     IEnumerator LoadPreview()
@@ -116,70 +187,21 @@ public class VideoCellManager : MonoBehaviour
             yield return null;
         }
 
-        // Play and immediately pause to get the first frame
         videoPlayer.Play();
+        videoThumbnailButton.GetComponent<RawImage>().texture = videoPlayer.texture;
+
+        // TODO - figure out a way to capture the texture instead of leaving the player running.
+        // If the player is stopped or destroyed, the thumbnail will disappear.
         videoPlayer.Pause();
-
-        // Wait until the frame is ready
-        yield return new WaitForEndOfFrame();
-
-        // Set the preview image
-        previewImage.texture = videoPlayer.texture;
-
-        // Optionally, reset and cleanup
-        videoPlayer.Stop();
     }
 
-    void OnDestroy()
-    {
-        if (videoPlayer != null)
-        {
-            Destroy(videoPlayer.gameObject); // Cleanup VideoPlayer component
-        }
-        instanceCount--; // Update the count of existing instances
-    }
 
-    // Method to be called when this cell is selected
-    public void OnSelect()
+    public void ThumbNailButtonPressed()
     {
-        // Logic to handle video selection, possibly involving communication with VideoManager or another component
-        Debug.Log($"Video {videoIndex} selected.");
-    }
+        // hide the video cell
+        enabled = false;
 
-    // Update the Background Color of the cell
-    public void UpdateCellColor()
-    {
-        string colorText = backgroundColorDropdown.options[backgroundColorDropdown.value].text;
-        Color color = Settings.ColorForName(colorText);
-        if (color == null)
-        {
-            Debug.LogError("ColorForName returned null for colorText: " + colorText);
-            return;
-        }
-
-        backgroundCell.color = color;
-        videoCell.backgroundColor = color;
-    }
-
-    // Update the Video Title of the cell
-    public void UpdateVideoTitle()
-    {
-        videoTitleText.text = videoTitleInputField.text;
-        videoCell.videoTitle = videoTitleInputField.text;
-    }
-
-    // Include Image in the cell
-    public void UpdateImage()
-    {
-        imageGraphic.gameObject.GetComponent<Image>().enabled = includeImageToggle.isOn;
-        videoCell.includeGraphic = includeImageToggle.isOn;
-    }
-
-    // Update the Mental Command Label of the cell
-    public void UpdateMentalCommand()
-    {
-        string mentalCommand = mentalCommandDropdown.options[mentalCommandDropdown.value].text;
-        mentalCommandName.text = mentalCommand;
-        videoCell.mentalCommandLabel = mentalCommand;
+        // signal to parent that this video was chosen and provide details for playback
+        VideoCellSelected?.Invoke(videoCellPrefs.tileNumber);
     }
 }
