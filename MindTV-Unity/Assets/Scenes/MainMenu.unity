@@ -244,6 +244,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 668789164}
     m_Modifications:
+    - target: {fileID: 91807984314875901, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[0].m_Text
+      value: Mental Imagery
+      objectReference: {fileID: 0}
+    - target: {fileID: 91807984314875901, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[1].m_Text
+      value: P300
+      objectReference: {fileID: 0}
+    - target: {fileID: 91807984314875901, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[2].m_Text
+      value: SSVEP
+      objectReference: {fileID: 0}
+    - target: {fileID: 1655396057971004908, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2660567210305813730, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2891771358169979983, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: m_Name
+      value: BCI Paradigm Option Label
+      objectReference: {fileID: 0}
     - target: {fileID: 3596128242776431347, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
       propertyPath: m_IsOn
       value: 0
@@ -356,9 +380,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4247639700129279574, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: m_text
+      value: BCI Paradigm
+      objectReference: {fileID: 0}
     - target: {fileID: 4327842273838486288, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
       propertyPath: m_text
       value: Enable BCI Hotkeys
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763209187302547013, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: m_text
+      value: Mental Imagery
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763209187302547013, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763209187302547013, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: m_overflowMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763209187302547013, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763209187302547013, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5780234401198511780, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
       propertyPath: m_Name
@@ -366,14 +414,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5780234401198511780, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7020077450630662188, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7020077450630662188, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7020077450630662188, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7421622795556176137, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7421622795556176137, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7960772359103244413, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
       propertyPath: m_text
       value: General Application Options
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4126995912313095425, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+    - {fileID: 3057980554122885938, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+    - {fileID: 6633378858669331618, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+    - {fileID: 145207807927585599, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
