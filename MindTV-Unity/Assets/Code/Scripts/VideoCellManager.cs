@@ -9,6 +9,7 @@ using BCIEssentials.Controllers;
 using BCIEssentials.StimulusObjects;
 using Unity.VisualScripting;
 
+[RequireComponent(typeof(SPO))]
 public class VideoCellManager : MonoBehaviour
 {
     [SerializeField] private Image backgroundCell;
@@ -34,6 +35,7 @@ public class VideoCellManager : MonoBehaviour
 
     // Cache settings for the video cell, assigned by SetVideoCellPrefs()
     public Settings.VideoCellPrefs cellPrefs = new Settings.VideoCellPrefs();
+    [SerializeField] private SPO _spo;
 
     void Awake()
     {
@@ -43,6 +45,7 @@ public class VideoCellManager : MonoBehaviour
         videoPlayer = gameObject.AddComponent<VideoPlayer>();
         videoPlayer.playOnAwake = false;
         videoPlayer.renderMode = VideoRenderMode.APIOnly;
+        _spo = GetComponent<SPO>();
     }
 
     void Start()
@@ -121,6 +124,7 @@ public class VideoCellManager : MonoBehaviour
     {
         mentalCommandName.text = cellPrefs.mentalCommandLabel;
         mentalCommandDropdown.value = mentalCommandDropdown.options.FindIndex(option => option.text == cellPrefs.mentalCommandLabel);
+        _spo.ObjectID = (int)(SettingsManager.Instance?.currentUser.GetIDForLabel(cellPrefs.mentalCommandLabel));
     }
 
     public void MentalCommandChanged(int labelIndex)
@@ -199,7 +203,7 @@ public class VideoCellManager : MonoBehaviour
     {
         // TODO - update the P300 effect settings
         VideoCellP300Effect p300Effect = gameObject.GetComponent<VideoCellP300Effect>();
-        p300Effect._flashOffColor = videoCellPrefs.backgroundColor;
+        p300Effect._flashOffColor = cellPrefs.backgroundColor;
     }
 
     public void UpdateVideoThumbnail()

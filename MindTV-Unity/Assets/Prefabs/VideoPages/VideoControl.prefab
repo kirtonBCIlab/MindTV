@@ -718,9 +718,10 @@ GameObject:
   - component: {fileID: 8311039138431160879}
   - component: {fileID: 951732601440124908}
   - component: {fileID: 5004642485432471423}
+  - component: {fileID: 2489817759826003516}
   m_Layer: 5
   m_Name: VideoControl
-  m_TagString: Untagged
+  m_TagString: BCI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -811,6 +812,36 @@ MonoBehaviour:
     backgroundColor: {r: 0.3254902, g: 0.21960784, b: 0.57254905, a: 1}
     includeGraphic: 1
     mentalCommandLabel: 
+--- !u!114 &2489817759826003516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2364288573718725956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58dafbcfd2f661d438f57f8ab612995a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartStimulusEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StopStimulusEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartTrainingStimulusEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StopTrainingStimulusEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  Selectable: 1
+  SelectablePoolIndex: 0
+  ObjectID: 0
 --- !u!1 &2606314745831192034
 GameObject:
   m_ObjectHideFlags: 0

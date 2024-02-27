@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using BCIEssentials.StimulusObjects;
 
-
+//Require that the object has a SPO component
+[RequireComponent(typeof(SPO))]
 public class VideoControlManager : MonoBehaviour
 {
     [SerializeField] private Image backgroundCell;
@@ -13,6 +15,8 @@ public class VideoControlManager : MonoBehaviour
     [SerializeField] private Image imageGraphic;
     [SerializeField] private TMP_Dropdown mentalCommandDropdown;
     [SerializeField] private TMP_Text mentalCommandName;
+
+    private SPO _spo;
 
     public Settings.VideoControlPrefs controlPrefs;
 
@@ -29,6 +33,8 @@ public class VideoControlManager : MonoBehaviour
         // VideoControlPrefs object from the data model.  Use a dummy object if one is not found.
         int controlNumber = transform.GetSiblingIndex();
         controlPrefs = SettingsManager.Instance?.currentUser.videoControlPrefs[controlNumber] ?? new Settings.VideoControlPrefs();
+        // Get the SPO component on this game object
+        _spo = GetComponent<SPO>(); 
     }
 
     public void InitializeListeners()
@@ -66,6 +72,8 @@ public class VideoControlManager : MonoBehaviour
     {
         mentalCommandName.text = controlPrefs.mentalCommandLabel;
         mentalCommandDropdown.value = mentalCommandDropdown.options.FindIndex(option => option.text == controlPrefs.mentalCommandLabel);
+        //Update the SPO component with the new mental command
+        _spo.ObjectID = (int)(SettingsManager.Instance?.currentUser.GetIDForLabel(controlPrefs.mentalCommandLabel));
     }
 
     public void MentalCommandChanged(int labelIndex)

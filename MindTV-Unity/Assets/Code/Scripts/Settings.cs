@@ -109,6 +109,13 @@ public class Settings
             return AssetDatabase.LoadAssetAtPath<Sprite>(path);
         }
 
+        public int GetIDForLabel(string label)
+        {
+            TrainingPrefs prefs = trainingPrefs.Find(prefs => prefs.labelName == label);
+            int labelId = prefs?.labelNumber ?? -100;
+            return labelId;
+        }
+
 
         public VideoCellPrefs AddVideoCell()
         {
