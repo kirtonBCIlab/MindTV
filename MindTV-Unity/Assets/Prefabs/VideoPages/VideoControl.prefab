@@ -338,8 +338,9 @@ GameObject:
   - component: {fileID: 3796216106021004071}
   - component: {fileID: 8311039138431160879}
   - component: {fileID: 951732601440124908}
+  - component: {fileID: 5004642485432471423}
   m_Layer: 5
-  m_Name: VideoControlButton
+  m_Name: VideoControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -408,6 +409,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5004642485432471423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2364288573718725956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a821b86ece1ac4711a6d1680fe7f38dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundCell: {fileID: 1551551192512507740}
+  imageGraphic: {fileID: 6610026434895303126}
+  mentalCommandDropdown: {fileID: 3368658857857871893}
+  mentalCommandName: {fileID: 1821333998774215919}
 --- !u!1 &3021251981638137783
 GameObject:
   m_ObjectHideFlags: 0

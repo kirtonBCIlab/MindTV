@@ -20,14 +20,12 @@ public class Settings
         public int labelNumber = 0;
         public string labelName = "";
         public string animationName = "None";
-        public string imagePath = "Assets/icons/cube_primary.png";
         public Color backgroundColor = Settings.ColorForName("Blue (Theme)");
 
-        // can't serialize sprite, need to record where asset is (default or user provided)
-
+        public string imagePath = "Assets/icons/cube_primary.png";
         public float imageBaseSize = 100.0f;
 
-        // trial length must be a multiple of windowLength
+        // trial length must be a positive multiple of windowLength
         public float windowLength = 2.0f;
         public float trialLength = 6.0f;
     }
@@ -35,10 +33,18 @@ public class Settings
     [System.Serializable]
     public class VideoCellPrefs
     {
-        public int tileNumber = 0;
+        public int cellNumber = 0;
         public string videoTitle = "Video Title";
         public string videoPath = "";
         public Color backgroundColor = Settings.ColorForName("Purple (Theme)");
+        public bool includeGraphic = true;
+        public string mentalCommandLabel = "";
+    }
+
+    [System.Serializable]
+    public class VideoControlPrefs
+    {
+        public int controlNumber = 0;
         public bool includeGraphic = true;
         public string mentalCommandLabel = "";
     }
@@ -62,10 +68,9 @@ public class Settings
     {
         public string userProfileName = "";
 
-        // Hard code the number of labels we can have to 4.  This could be changed to be more
-        // like videoCellPrefs later on.
         public List<TrainingPrefs> trainingPrefs = new List<TrainingPrefs>()
         {
+            // Hard code the number of labels we can have to 4, maybe later allow user to add
             new TrainingPrefs() { labelNumber = 0 },
             new TrainingPrefs() { labelNumber = 1 },
             new TrainingPrefs() { labelNumber = 2 },
@@ -75,15 +80,18 @@ public class Settings
         public List<VideoCellPrefs> videoCellPrefs = new List<VideoCellPrefs>()
         {
             // Start the default user out with a single video cell
-            new VideoCellPrefs() { tileNumber = 0 },
+            new VideoCellPrefs() { cellNumber = 0 },
         };
 
-        public VideoCellPrefs AddVideoCell()
+        public List<VideoControlPrefs> videoControlPrefs = new List<VideoControlPrefs>()
         {
-            var newCell = new VideoCellPrefs() { tileNumber = videoCellPrefs.Count };
-            videoCellPrefs.Add(newCell);
-            return newCell;
-        }
+            // Hard code the number of labels we can have to 4, maybe later allow user to add
+            new VideoControlPrefs() { controlNumber = 0 },
+            new VideoControlPrefs() { controlNumber = 1 },
+            new VideoControlPrefs() { controlNumber = 2 },
+            new VideoControlPrefs() { controlNumber = 3 },
+        };
+
 
         public List<string> AvailableLabels()
         {
@@ -98,6 +106,14 @@ public class Settings
             TrainingPrefs prefs = trainingPrefs.Find(prefs => prefs.labelName == label);
             string path = prefs?.imagePath ?? "";
             return AssetDatabase.LoadAssetAtPath<Sprite>(path);
+        }
+
+
+        public VideoCellPrefs AddVideoCell()
+        {
+            var newCell = new VideoCellPrefs() { cellNumber = videoCellPrefs.Count };
+            videoCellPrefs.Add(newCell);
+            return newCell;
         }
     }
 
