@@ -58,6 +58,7 @@ public class VideoPageManager : MonoBehaviour
         {
             GameObject newVideoCell = Instantiate(videoCellPrefab, videoCellParent, false);
             newVideoCell.GetComponent<VideoCellManager>().SetVideoCellPrefs(videoCell);
+
         }
     }
 
