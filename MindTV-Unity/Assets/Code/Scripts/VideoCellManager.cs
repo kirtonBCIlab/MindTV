@@ -163,25 +163,25 @@ public class VideoCellManager : MonoBehaviour
 
     public void VideoChanged()
     {
-        string projDirectory = System.IO.Directory.GetCurrentDirectory();
-        string defaultDir = projDirectory + "\\Assets\\Videos";
-        string strPath = EditorUtility.OpenFilePanel("Choose video file ...", defaultDir, "mp4");
+        // TODO - this won't work at runtime, so we need a different solution
+        string sourceFilePath = EditorUtility.OpenFilePanel("Choose video file ...", "", "mp4");
 
-        string filename = Path.GetFileName(strPath);
-        if (!string.IsNullOrWhiteSpace(strPath))
+        string videoAssetsPath = Path.Combine(Application.dataPath, "Videos");
+        if (!string.IsNullOrWhiteSpace(sourceFilePath))
         {
             // copy file into assets/video folder and overwrite if it already exists 
-            string destination = defaultDir + "\\" + filename;
-            Debug.Log("video " + strPath + " copying to " + destination);
-            System.IO.File.Copy(strPath, destination, true);
+            System.IO.File.Copy(sourceFilePath, videoAssetsPath, true);
         }
         else
         {
             Debug.Log("No video selected");
         }
 
-        // TODO - put the video path here
-        videoCellPrefs.videoPath = "";
+        // TODO - need to use the copied asset path, not the original
+        string filename = Path.GetFileName(sourceFilePath);
+        videoCellPrefs.videoPath = Path.Combine(videoAssetsPath, filename);
+
+        Debug.Log(videoCellPrefs.videoPath);
 
         UpdateVideoThumbnail();
     }
