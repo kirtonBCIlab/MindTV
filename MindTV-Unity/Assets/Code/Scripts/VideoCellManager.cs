@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using TMPro;
 using System.Collections.Generic;
+using BCIEssentials.Controllers;
+using BCIEssentials.StimulusObjects;
+using Unity.VisualScripting;
 
 public class VideoCellManager : MonoBehaviour
 {
@@ -76,6 +79,21 @@ public class VideoCellManager : MonoBehaviour
         UpdateVideoTitle();
         UpdateImage();
         UpdateImageVisibility();
+
+        //Check if the BCI Instance is set to P300
+        if (BCIController.Instance.ActiveBehavior.BehaviorType == BCIBehaviorType.P300)
+        {
+            Debug.Log("P300 is the active behavior, enabling P300 effect");
+            gameObject.GetComponent<SPO>().StartStimulusEvent.AddListener(gameObject.GetComponent<VideoCellP300Effect>().SetOn);
+            gameObject.GetComponent<SPO>().StopStimulusEvent.AddListener(gameObject.GetComponent<VideoCellP300Effect>().SetOff);
+            UpdateP300Effect();
+        }
+        else
+        {
+            Debug.Log("P300 is not the active behavior, disabling P300 effect");
+            //If not, disable the P300 effect
+            gameObject.GetComponent<VideoCellP300Effect>().enabled = false;
+        }
         // UpdateVideoThumbnail();
     }
 
@@ -126,6 +144,12 @@ public class VideoCellManager : MonoBehaviour
         Color color = Settings.ColorForName(colorName);
         videoCellPrefs.backgroundColor = color;
         UpdateCellColor();
+        
+        //Initialize the P300 effect listener if the BCI instance is set to P300
+        if (BCIController.Instance.ActiveBehavior.BehaviorType == BCIBehaviorType.P300)
+        {
+            UpdateP300Effect();
+        }
     }
 
 
@@ -165,6 +189,13 @@ public class VideoCellManager : MonoBehaviour
     {
         videoCellPrefs.videoPath = "";   // TODO - put the video path here
         UpdateVideoThumbnail();
+    }
+
+    public void UpdateP300Effect()
+    {
+        // TODO - update the P300 effect settings
+        VideoCellP300Effect p300Effect = gameObject.GetComponent<VideoCellP300Effect>();
+        p300Effect._flashOffColor = videoCellPrefs.backgroundColor;
     }
 
     public void UpdateVideoThumbnail()
