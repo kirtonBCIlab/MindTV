@@ -80,6 +80,10 @@ public class VideoCellManager : MonoBehaviour
         UpdateImage();
         UpdateImageVisibility();
 
+
+        //TODO: Add listeners if the instance is set to Motor Imagery
+
+
         //Check if the BCI Instance is set to P300
         if (BCIController.Instance.ActiveBehavior.BehaviorType == BCIBehaviorType.P300)
         {

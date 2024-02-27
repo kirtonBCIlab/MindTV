@@ -79,6 +79,7 @@ public class VideoCellP300Effect : StimulusEffect
         IsOn = false;
     }
 
+//This play method is not used in the current implementation, but it is left here for future use.
     public void Play()
     {
         Stop();
