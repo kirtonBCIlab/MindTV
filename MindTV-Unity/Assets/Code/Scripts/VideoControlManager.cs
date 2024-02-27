@@ -8,8 +8,9 @@ using TMPro;
 public class VideoControlManager : MonoBehaviour
 {
     [SerializeField] private Image backgroundCell;
+    [SerializeField] private TMP_Dropdown backgroundColorDropdown;
+    [SerializeField] private Toggle includeImageToggle;
     [SerializeField] private Image imageGraphic;
-
     [SerializeField] private TMP_Dropdown mentalCommandDropdown;
     [SerializeField] private TMP_Text mentalCommandName;
 
@@ -32,6 +33,8 @@ public class VideoControlManager : MonoBehaviour
 
     public void InitializeListeners()
     {
+        backgroundColorDropdown.onValueChanged.AddListener(CellColorChanged);
+        includeImageToggle.onValueChanged.AddListener(ImageVisibilityChanged);
         mentalCommandDropdown.onValueChanged.AddListener(MentalCommandChanged);
     }
 
@@ -40,6 +43,7 @@ public class VideoControlManager : MonoBehaviour
         UpdateMentalCommandOptions();
         UpdateMentalCommand();
         UpdateCellColor();
+        UpdateImageVisibility();
         UpdateImage();
     }
 
@@ -66,7 +70,7 @@ public class VideoControlManager : MonoBehaviour
 
     public void MentalCommandChanged(int labelIndex)
     {
-        string mentalCommand = mentalCommandDropdown.options[mentalCommandDropdown.value].text;
+        string mentalCommand = mentalCommandDropdown.options[labelIndex].text;
         controlPrefs.mentalCommandLabel = mentalCommand;
         UpdateMentalCommand();
         UpdateImage();
@@ -75,20 +79,38 @@ public class VideoControlManager : MonoBehaviour
 
     public void UpdateCellColor()
     {
-        // TODO... why do this?  make color part of mental command like image
+        backgroundCell.color = controlPrefs.backgroundColor;
 
-        // backgroundCell.color = videoCellPrefs.backgroundColor;
-
-        // // make drop down match color
-        // string colorName = Settings.NameForColor(videoCellPrefs.backgroundColor);
-        // int colorIndex = backgroundColorDropdown.options.FindIndex(option => option.text == colorName);
-        // backgroundColorDropdown.value = colorIndex;
+        // make drop down match color
+        string colorName = Settings.NameForColor(controlPrefs.backgroundColor);
+        int colorIndex = backgroundColorDropdown.options.FindIndex(option => option.text == colorName);
+        backgroundColorDropdown.value = colorIndex;
     }
+
+    public void CellColorChanged(int cellIndex)
+    {
+        string colorName = backgroundColorDropdown.options[cellIndex].text;
+        Color color = Settings.ColorForName(colorName);
+        controlPrefs.backgroundColor = color;
+        UpdateCellColor();
+    }
+
+
+    public void UpdateImageVisibility()
+    {
+        imageGraphic.enabled = controlPrefs.includeGraphic;
+        includeImageToggle.isOn = controlPrefs.includeGraphic;
+    }
+
+    public void ImageVisibilityChanged(bool isOn)
+    {
+        controlPrefs.includeGraphic = isOn;
+        UpdateImageVisibility();
+    }
+
 
     public void UpdateImage()
     {
-        // TODO - apply visibility too
-
         imageGraphic.sprite = SettingsManager.Instance?.currentUser.GetImageForLabel(controlPrefs.mentalCommandLabel);
     }
 

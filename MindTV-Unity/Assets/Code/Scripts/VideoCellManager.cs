@@ -103,7 +103,7 @@ public class VideoCellManager : MonoBehaviour
 
     public void MentalCommandChanged(int labelIndex)
     {
-        string mentalCommand = mentalCommandDropdown.options[mentalCommandDropdown.value].text;
+        string mentalCommand = mentalCommandDropdown.options[labelIndex].text;
         cellPrefs.mentalCommandLabel = mentalCommand;
         UpdateMentalCommand();
         UpdateImage();

@@ -45,6 +45,7 @@ public class Settings
     public class VideoControlPrefs
     {
         public int controlNumber = 0;
+        public Color backgroundColor = Settings.ColorForName("Purple (Theme)");
         public bool includeGraphic = true;
         public string mentalCommandLabel = "";
     }
