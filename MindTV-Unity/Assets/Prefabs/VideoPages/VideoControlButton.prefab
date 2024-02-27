@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 3796216106021004071}
   - component: {fileID: 8311039138431160879}
   - component: {fileID: 951732601440124908}
+  - component: {fileID: 8691860849799645441}
+  - component: {fileID: 7931498184178311761}
   m_Layer: 5
   m_Name: VideoControlButton
-  m_TagString: Untagged
+  m_TagString: BCI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,6 +82,52 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8691860849799645441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2364288573718725956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58dafbcfd2f661d438f57f8ab612995a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartStimulusEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StopStimulusEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSelectedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartTrainingStimulusEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StopTrainingStimulusEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  Selectable: 1
+  SelectablePoolIndex: 0
+  ObjectID: 0
+--- !u!114 &7931498184178311761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2364288573718725956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6549bc704bb2eb14e80c3602d494ea36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _backgroundCellImage: {fileID: 1551551192512507740}
+  _flashOnColor: {r: 1, g: 0, b: 0, a: 1}
+  _flashOffColor: {r: 0, g: 0, b: 0, a: 0}
+  _startOn: 0
 --- !u!1 &3021251981638137783
 GameObject:
   m_ObjectHideFlags: 0
