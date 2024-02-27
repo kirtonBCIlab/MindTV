@@ -5862,14 +5862,22 @@ MonoBehaviour:
   imageGraphic: {fileID: 6231908152266101946}
   mentalCommandDropdown: {fileID: 1261565822008275555}
   mentalCommandName: {fileID: 3801735461155513597}
+<<<<<<< Updated upstream
   videoThumbnailButton: {fileID: 6213460652089249340}
   temporaryVideoClip: {fileID: 32900000, guid: e2f201665c5dc452d9f6de75f686c651, type: 3}
+=======
+  previewImage: {fileID: 7695107428606520560}
+>>>>>>> Stashed changes
   videoCellPrefs:
     tileNumber: 0
     videoTitle: Video Title
     videoPath: 
     backgroundColor: {r: 0.3254902, g: 0.21960784, b: 0.57254905, a: 1}
     includeGraphic: 1
+<<<<<<< Updated upstream
+=======
+    layoutStyle: Default
+>>>>>>> Stashed changes
     mentalCommandLabel: 
 --- !u!1 &7363645330179824068
 GameObject:

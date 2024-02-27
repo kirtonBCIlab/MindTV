@@ -9,7 +9,7 @@ using System.Text;
 
 public class VideoSelection : MonoBehaviour
 {
-    public TextMeshProUGUI VideoLabel; 
+    // public TextMeshProUGUI VideoLabel; 
     string filename = null; 
     string strPath = null; 
     string defaultDir = null;
@@ -19,20 +19,18 @@ public class VideoSelection : MonoBehaviour
     
     public void ButtonPressed()
     {
-        defaultDir = projDirectory + "\\Assets\\VideoFiles";
-        strPath = EditorUtility.OpenFilePanel("Choose video file ...", defaultDir, "avi");
-        
+        defaultDir = projDirectory + "\\Assets\\Videos";
+        strPath = EditorUtility.OpenFilePanel("Choose video file ...", defaultDir, "mp4");
+        Debug.Log(strPath);
         // check for the correct file format 
-        if (strPath.Contains(".avi"))
+        // if (strPath.Contains(".mp4"))
+        // {
+        filename = Path.GetFileName(strPath); 
+        if (!string.IsNullOrWhiteSpace(strPath))
         {
-            filename = Path.GetFileName(strPath); 
-            VideoLabel.GetComponent<TextMeshProUGUI>().text = filename;
-        }
-        // update the text label if not correct file format 
-        else 
-        {
-            VideoLabel.GetComponent<TextMeshProUGUI>().text = "Choose valid file";
-        }
+            System.IO.File.Copy(strPath, defaultDir + "\\" + filename , true);  // copy file into assets/video folder and overwrite if it already exists 
+        } 
+        // }
 
     }
 

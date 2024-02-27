@@ -17,18 +17,39 @@ public class ItemUpload : MonoBehaviour
 
     private byte[] lastUploadedBytes;
 
+
     private void OnPhotoDialogSaved(string[] paths)
     {
         //reads and loads the bytes from the user selected image
         if (paths.Length != 0)
         {
             var path = paths[0];
+            string FileName = null;
+            FileName = Path.GetFileName(path);
             lastUploadedBytes = File.ReadAllBytes(path);
             Texture2D loadTexture = new(1, 1);
             loadTexture.LoadImage(lastUploadedBytes);
 
             imagePlaceholder.sprite = Sprite.Create(loadTexture, new Rect(0, 0, loadTexture.width, loadTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
+
+            // resizee uploaded picture to 500 by 500 and save the resized photo as png in the icons folder 
+            int targetX = 500;
+            int targetY = 500;
+            RenderTexture rt=new RenderTexture(targetX, targetY,24);
+            RenderTexture.active = rt;
+            Graphics.Blit(loadTexture,rt);
+            Texture2D result=new Texture2D(targetX,targetY);
+            result.ReadPixels(new Rect(0,0,targetX,targetY),0,0);
+            result.Apply();
+            loadTexture = result;
+            SaveImageToPng( loadTexture, FileName);
         }
+    }
+    private void SaveImageToPng(Texture2D PhotoTex, string FileName)
+    {
+        //save the photo to icons folder 
+        byte[] PhotoBytes = ImageConversion.EncodeToPNG(PhotoTex);
+        File.WriteAllBytes(Application.dataPath + "/../Assets/Icons/" + FileName +".png", PhotoBytes);
     }
 
     private void OnDialogCanceled()
@@ -76,6 +97,21 @@ public class ItemUpload : MonoBehaviour
             Texture2D loadTexture = new(1, 1);
             loadTexture.LoadImage(lastUploadedBytes);
 
+<<<<<<< Updated upstream
+=======
+            // resizee uploaded picture to 500 by 500 
+            int targetX = 500;
+            int targetY = 500;
+            RenderTexture rt=new RenderTexture(targetX, targetY,24);
+            RenderTexture.active = rt;
+            Graphics.Blit(loadTexture,rt);
+            Texture2D result=new Texture2D(targetX,targetY);
+            result.ReadPixels(new Rect(0,0,targetX,targetY),0,0);
+            result.Apply();
+            loadTexture = result;
+
+     
+>>>>>>> Stashed changes
             SpriteRenderer spriteRenderer = trainingItem.GetComponent<SpriteRenderer>();
             Image image = trainingItem.GetComponent<Image>();
             TrainingItem trainingItemScript = trainingItem.GetComponent<TrainingItem>();

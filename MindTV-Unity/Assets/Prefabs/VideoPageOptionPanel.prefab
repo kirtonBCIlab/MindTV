@@ -77,7 +77,6 @@ GameObject:
   - component: {fileID: 8393553004415696209}
   - component: {fileID: 505538574901312005}
   - component: {fileID: 7093315500186819447}
-  - component: {fileID: 3102482535290442715}
   m_Layer: 5
   m_Name: VideoPageOptionPanel
   m_TagString: Untagged
@@ -175,24 +174,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3102482535290442715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3575371181659761790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6314056b12b91047aaeef833da1784c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mentalCommandDropdown: {fileID: 5094172097168760052}
-  mentalCommandText: {fileID: 455276909515727323}
-  backgroundColorDropdown: {fileID: 2210814691222547321}
-  videoCellBackground: {fileID: 8928169452212221240}
-  videoTitleText: {fileID: 3478919345669910185}
-  videoTitleInputField: {fileID: 8668703592899700829}
 --- !u!1 &4154562331077150938
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,28 +639,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c038a0cd89a264539b48d2251337b811, type: 3}
---- !u!114 &3478919345669910185 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3463077377045020212, guid: c038a0cd89a264539b48d2251337b811, type: 3}
-  m_PrefabInstance: {fileID: 20486310038212765}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8668703592899700829 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8648498764281444544, guid: c038a0cd89a264539b48d2251337b811, type: 3}
-  m_PrefabInstance: {fileID: 20486310038212765}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &8676445643067398551 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8655959610073712906, guid: c038a0cd89a264539b48d2251337b811, type: 3}
@@ -815,17 +774,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3309008733495603704, guid: 3006f798617c344d4925678409effa07, type: 3}
   m_PrefabInstance: {fileID: 667413806496052006}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5094172097168760052 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5760389634866556882, guid: 3006f798617c344d4925678409effa07, type: 3}
-  m_PrefabInstance: {fileID: 667413806496052006}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2060762232219725655
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1256,17 +1204,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
---- !u!114 &455276909515727323 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3888124603898891935, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
-  m_PrefabInstance: {fileID: 3721120451192614724}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &5018055167910106011 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8504948679883275487, guid: aeb8b4e1ba5ac4a078d8dcd2dda0fbb3, type: 3}
@@ -1549,17 +1486,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3006f798617c344d4925678409effa07, type: 3}
---- !u!114 &2210814691222547321 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5760389634866556882, guid: 3006f798617c344d4925678409effa07, type: 3}
-  m_PrefabInstance: {fileID: 5863519477074281643}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &8985967739603744083 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3309008733495603704, guid: 3006f798617c344d4925678409effa07, type: 3}
@@ -2160,6 +2086,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChooseVideoButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4225892881998093377, guid: e330e8fea00b74975a6a7cab0cfa7390, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225892881998093377, guid: e330e8fea00b74975a6a7cab0cfa7390, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225892881998093377, guid: e330e8fea00b74975a6a7cab0cfa7390, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7311910266029488449}
+    - target: {fileID: 4225892881998093377, guid: e330e8fea00b74975a6a7cab0cfa7390, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225892881998093377, guid: e330e8fea00b74975a6a7cab0cfa7390, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ButtonPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225892881998093377, guid: e330e8fea00b74975a6a7cab0cfa7390, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: VideoSelection, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225892881998093377, guid: e330e8fea00b74975a6a7cab0cfa7390, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8175118651042573728, guid: e330e8fea00b74975a6a7cab0cfa7390, type: 3}
       propertyPath: m_text
       value: Choose Video
@@ -2175,13 +2129,33 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3485238604869302851, guid: e330e8fea00b74975a6a7cab0cfa7390, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7311910266029488449}
   m_SourcePrefab: {fileID: 100100000, guid: e330e8fea00b74975a6a7cab0cfa7390, type: 3}
 --- !u!224 &5110832296737889999 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2966169641015874143, guid: e330e8fea00b74975a6a7cab0cfa7390, type: 3}
   m_PrefabInstance: {fileID: 8053739570244308112}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6889011528693790419 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3485238604869302851, guid: e330e8fea00b74975a6a7cab0cfa7390, type: 3}
+  m_PrefabInstance: {fileID: 8053739570244308112}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7311910266029488449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6889011528693790419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72c69f88cf187d4d9b78718fe55a9ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8143753857316635627
 PrefabInstance:
   m_ObjectHideFlags: 0
