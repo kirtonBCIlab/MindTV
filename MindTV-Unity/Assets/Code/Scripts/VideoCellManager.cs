@@ -47,6 +47,11 @@ public class VideoCellManager : MonoBehaviour
         InitializeViews();
     }
 
+    public void OnEnable()
+    {
+        UpdateVideoThumbnail();
+    }
+
     // Called by VideoPageManager when VideoCell prefabs are created based on Settings
     public void SetVideoCellPrefs(Settings.VideoCellPrefs prefs)
     {
@@ -72,11 +77,8 @@ public class VideoCellManager : MonoBehaviour
         UpdateVideoTitle();
         UpdateImage();
         UpdateImageVisibility();
-
-        // TOOD - this isn't working on Windows videoThumbnailButton is invisible and not clickable
         UpdateVideoThumbnail();
     }
-
 
     public void UpdateMentalCommandOptions()
     {
@@ -183,7 +185,9 @@ public class VideoCellManager : MonoBehaviour
     public void UpdateVideoThumbnail()
     {
         videoPlayer.url = cellPrefs.videoPath;
-        StartCoroutine(LoadPreview());
+
+        // TODO - not sure why this isn't working on Windows
+        // StartCoroutine(LoadPreview());
     }
 
     IEnumerator LoadPreview()
@@ -194,7 +198,6 @@ public class VideoCellManager : MonoBehaviour
             yield return null;
         }
 
-        // TODO - not sure why this isn't working on Windows
         // TODO - figure out a way to capture the texture instead of leaving the player running.
         // If the player is stopped or destroyed, the thumbnail will disappear.
         videoPlayer.Play();
