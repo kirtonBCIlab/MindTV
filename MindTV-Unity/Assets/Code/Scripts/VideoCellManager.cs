@@ -1,5 +1,6 @@
 using System.Collections;
 using System;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using BCIEssentials.Controllers;
 using BCIEssentials.StimulusObjects;
 using Unity.VisualScripting;
+using SimpleFileBrowser;
 
 [RequireComponent(typeof(SPO))]
 public class VideoCellManager : MonoBehaviour
@@ -18,7 +20,7 @@ public class VideoCellManager : MonoBehaviour
     [SerializeField] private TMP_Text videoTitleText;
     [SerializeField] private Toggle includeImageToggle;
     [SerializeField] private Image imageGraphic;
-    // [SerializeField]    private TMP_Dropdown videoClipDropdown;
+    [SerializeField] private Button videoSelectButton;
     [SerializeField] private TMP_Dropdown mentalCommandDropdown;
     [SerializeField] private TMP_Text mentalCommandName;
 
@@ -26,9 +28,6 @@ public class VideoCellManager : MonoBehaviour
 
     // Signal to parent that this cell was selected
     public static event Action<int> VideoCellSelected;
-
-    // TODO - remove this when video selection working
-    [SerializeField] private VideoClip temporaryVideoClip;
 
     // TODO - used to create a thumbnail, this is a bit hacky as the player hangs around
     private VideoPlayer videoPlayer;
@@ -54,6 +53,11 @@ public class VideoCellManager : MonoBehaviour
         InitializeViews();
     }
 
+    public void OnEnable()
+    {
+        UpdateVideoThumbnail();
+    }
+
     // Called by VideoPageManager when VideoCell prefabs are created based on Settings
     public void SetVideoCellPrefs(Settings.VideoCellPrefs prefs)
     {
@@ -67,10 +71,7 @@ public class VideoCellManager : MonoBehaviour
         videoTitleInputField.onEndEdit.AddListener(VideoTitleChanged);
         includeImageToggle.onValueChanged.AddListener(ImageVisibilityChanged);
         mentalCommandDropdown.onValueChanged.AddListener(MentalCommandChanged);
-
-        // TODO - video selection can tie in here
-        //videoClipDropdown.onValueChanged.AddListener(VideoClipChanged);
-
+        videoSelectButton.onClick.AddListener(VideoSelectPressed);
         videoThumbnailButton.GetComponent<Button>().onClick.AddListener(ThumbNailButtonPressed);
     }
 
@@ -101,9 +102,9 @@ public class VideoCellManager : MonoBehaviour
             //If not, disable the P300 effect
             gameObject.GetComponent<VideoCellP300Effect>().enabled = false;
         }
-        // UpdateVideoThumbnail();
-    }
 
+        UpdateVideoThumbnail();
+    }
 
     public void UpdateMentalCommandOptions()
     {
@@ -193,10 +194,25 @@ public class VideoCellManager : MonoBehaviour
     }
 
 
-    public void VideoChanged(string path)
+    public void VideoSelectPressed()
     {
-        cellPrefs.videoPath = "";   // TODO - put the video path here
-        UpdateVideoThumbnail();
+        FileBrowser.SetFilters(false, new FileBrowser.Filter("Videos", "mp4"));
+        FileBrowser.ShowLoadDialog(VideoSelected, VideoSelectCancelled, FileBrowser.PickMode.Files, allowMultiSelection: false);
+    }
+
+    public void VideoSelectCancelled()
+    {
+        Debug.Log("File select cancelled");
+    }
+
+    public void VideoSelected(string[] paths)
+    {
+        if (paths.Length > 0)
+        {
+            // User is responsible for maintaining video files, we don't copy them (could be large, etc)
+            cellPrefs.videoPath = paths[0];
+            UpdateVideoThumbnail();
+        }
     }
 
     public void UpdateP300Effect()
@@ -208,14 +224,10 @@ public class VideoCellManager : MonoBehaviour
 
     public void UpdateVideoThumbnail()
     {
-        // TODO - Replace with actual video clip, loaded from the file chosen by the user.
-        // The temporaryVideoClip is here just to test that a thumbnail appears.
-        //
-        // videoClip = LoadVideoClipSomehow(videoCellPrefs.videoPath)
-        //
-        videoPlayer.clip = temporaryVideoClip;
+        videoPlayer.url = cellPrefs.videoPath;
 
-        StartCoroutine(LoadPreview());
+        // TODO - not sure why this isn't working on Windows
+        // StartCoroutine(LoadPreview());
     }
 
     IEnumerator LoadPreview()
@@ -226,12 +238,13 @@ public class VideoCellManager : MonoBehaviour
             yield return null;
         }
 
-        videoPlayer.Play();
-        videoThumbnailButton.GetComponent<RawImage>().texture = videoPlayer.texture;
-
         // TODO - figure out a way to capture the texture instead of leaving the player running.
         // If the player is stopped or destroyed, the thumbnail will disappear.
+        videoPlayer.Play();
+        videoThumbnailButton.GetComponent<RawImage>().texture = videoPlayer.texture;
         videoPlayer.Pause();
+
+        yield return null;
     }
 
 

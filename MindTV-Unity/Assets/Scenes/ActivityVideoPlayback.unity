@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1366,42 +1366,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6645006736113271009, guid: d393f8ee392536d48b7bf6418683b52e, type: 3}
   m_PrefabInstance: {fileID: 2059184432}
   m_PrefabAsset: {fileID: 0}
---- !u!328 &463769271992513421
-VideoPlayer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2797052703319400142}
-  m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: e2f201665c5dc452d9f6de75f686c651, type: 3}
-  m_TargetCameraAlpha: 1
-  m_TargetCamera3DLayout: 0
-  m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: e022bf9afeaf54620ac6141672731647, type: 2}
-  m_TimeReference: 0
-  m_TargetMaterialRenderer: {fileID: 0}
-  m_TargetMaterialProperty: <noninit>
-  m_RenderMode: 4
-  m_AspectRatio: 3
-  m_DataSource: 0
-  m_TimeUpdateMode: 2
-  m_PlaybackSpeed: 1
-  m_AudioOutputMode: 2
-  m_TargetAudioSources:
-  - {fileID: 0}
-  m_DirectAudioVolumes:
-  - 1
-  m_Url: file:///Users/satori/Documents/Work/BCI4Kids/Github/kirtonBCIlab/MindTV/MindTV-Unity/Assets/Videos/DevVideo0-Zelda.mp4
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
-  m_ControlledAudioTrackCount: 1
-  m_PlayOnAwake: 0
-  m_SkipOnDrop: 1
-  m_Looping: 0
-  m_WaitForFirstFrame: 1
-  m_FrameReadyEventEnabled: 0
-  m_VideoShaders: []
 --- !u!224 &942730866341967411
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1434,7 +1398,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3865794180797077146}
   - {fileID: 8830513379309688398}
   - {fileID: 498984551}
   - {fileID: 1772654786}
@@ -1856,25 +1819,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &2797052703319400142
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3865794180797077146}
-  - component: {fileID: 4991183891739624558}
-  - component: {fileID: 3279521541211416371}
-  - component: {fileID: 463769271992513421}
-  m_Layer: 0
-  m_Name: VideoPreviewer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &3275637528918748747
 GameObject:
   m_ObjectHideFlags: 0
@@ -1891,34 +1835,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &3279521541211416371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2797052703319400142}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Texture: {fileID: 8400000, guid: e022bf9afeaf54620ac6141672731647, type: 2}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+  m_IsActive: 0
 --- !u!1 &3415364052411530518
 GameObject:
   m_ObjectHideFlags: 0
@@ -1960,25 +1877,6 @@ MonoBehaviour:
   m_Spacing: {x: 150, y: 60}
   m_Constraint: 1
   m_ConstraintCount: 2
---- !u!224 &3865794180797077146
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2797052703319400142}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1238515077848566248}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1100, y: 500}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &3920734872901080616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2245,6 +2143,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1238515077848566248}
     m_Modifications:
+    - target: {fileID: 3154201155406548025, guid: baf908a5de3f642139b446178161fd60, type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5914450709448996011, guid: baf908a5de3f642139b446178161fd60, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2334,14 +2236,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baf908a5de3f642139b446178161fd60, type: 3}
---- !u!222 &4991183891739624558
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2797052703319400142}
-  m_CullTransparentMesh: 1
 --- !u!1 &5278306933016064803
 GameObject:
   m_ObjectHideFlags: 0
@@ -2381,11 +2275,6 @@ MonoBehaviour:
   addVideoCellButton: {fileID: 498984552}
   videoCellParent: {fileID: 942730866341967411}
   videoCellPrefab: {fileID: 7346164566015487066, guid: c287113ba0686d044b5409c995f6c5bd, type: 3}
-  videoClips:
-  - {fileID: 32900000, guid: e2f201665c5dc452d9f6de75f686c651, type: 3}
-  - {fileID: 32900000, guid: 5bc778e3442ec45008e661617790842d, type: 3}
-  - {fileID: 32900000, guid: 4e03fb2a7d70f4b82a395e3fa855d9f3, type: 3}
-  - {fileID: 32900000, guid: 4a3198f0d11f3475d93a60c0c1d2edf1, type: 3}
 --- !u!224 &8830513379309688398
 RectTransform:
   m_ObjectHideFlags: 0
