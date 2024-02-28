@@ -51,9 +51,12 @@ public class ItemUpload : MonoBehaviour
     }
     private void SaveImageToPng(Texture2D PhotoTex, string FileName)
     {
+        // TODO - Assets/ is meant to be readonly.  Writing here is like putting files in C:/Windows/System32
+        // Use Application.persistentDataPath to save files at runtime (this is where the application is allowed to save)
+        // TODO - Also, leverage FileManager to write the file, maybe add a WriteBytes function.
         //save the photo to icons folder 
-        byte[] PhotoBytes = ImageConversion.EncodeToPNG(PhotoTex);
-        File.WriteAllBytes(Application.dataPath + "/../Assets/Icons/" + FileName +".png", PhotoBytes);
+        // byte[] PhotoBytes = ImageConversion.EncodeToPNG(PhotoTex);
+        // File.WriteAllBytes(Application.dataPath + "/../Assets/Icons/" + FileName +".png", PhotoBytes);
     }
 
     private void OnDialogCanceled()
