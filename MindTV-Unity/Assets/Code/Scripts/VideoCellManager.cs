@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using TMPro;
 using System.Collections.Generic;
-using UnityEditor;
+using SimpleFileBrowser;
 
 public class VideoCellManager : MonoBehaviour
 {
@@ -24,9 +24,6 @@ public class VideoCellManager : MonoBehaviour
 
     // Signal to parent that this cell was selected
     public static event Action<int> VideoCellSelected;
-
-    // TODO - remove this when video selection working
-    [SerializeField] private VideoClip temporaryVideoClip;
 
     // TODO - used to create a thumbnail, this is a bit hacky as the player hangs around
     private VideoPlayer videoPlayer;
@@ -63,8 +60,7 @@ public class VideoCellManager : MonoBehaviour
         videoTitleInputField.onEndEdit.AddListener(VideoTitleChanged);
         includeImageToggle.onValueChanged.AddListener(ImageVisibilityChanged);
         mentalCommandDropdown.onValueChanged.AddListener(MentalCommandChanged);
-
-        videoSelectButton.onClick.AddListener(VideoChanged);
+        videoSelectButton.onClick.AddListener(VideoSelectPressed);
         videoThumbnailButton.GetComponent<Button>().onClick.AddListener(ThumbNailButtonPressed);
     }
 
@@ -76,7 +72,9 @@ public class VideoCellManager : MonoBehaviour
         UpdateVideoTitle();
         UpdateImage();
         UpdateImageVisibility();
-        // UpdateVideoThumbnail();
+
+        // TOOD - this isn't working on Windows videoThumbnailButton is invisible and not clickable
+        UpdateVideoThumbnail();
     }
 
 
@@ -161,40 +159,30 @@ public class VideoCellManager : MonoBehaviour
     }
 
 
-    public void VideoChanged()
+    public void VideoSelectPressed()
     {
-        // TODO - this won't work at runtime, so we need a different solution
-        string sourceFilePath = EditorUtility.OpenFilePanel("Choose video file ...", "", "mp4");
+        FileBrowser.SetFilters(false, new FileBrowser.Filter("Videos", "mp4"));
+        FileBrowser.ShowLoadDialog(VideoSelected, VideoSelectCancelled, FileBrowser.PickMode.Files, allowMultiSelection: false);
+    }
 
-        string videoAssetsPath = Path.Combine(Application.dataPath, "Videos");
-        if (!string.IsNullOrWhiteSpace(sourceFilePath))
+    public void VideoSelectCancelled()
+    {
+        Debug.Log("File select cancelled");
+    }
+
+    public void VideoSelected(string[] paths)
+    {
+        if (paths.Length > 0)
         {
-            // copy file into assets/video folder and overwrite if it already exists 
-            System.IO.File.Copy(sourceFilePath, videoAssetsPath, true);
+            // User is responsible for maintaining video files, we don't copy them (could be large, etc)
+            videoCellPrefs.videoPath = paths[0];
+            UpdateVideoThumbnail();
         }
-        else
-        {
-            Debug.Log("No video selected");
-        }
-
-        // TODO - need to use the copied asset path, not the original
-        string filename = Path.GetFileName(sourceFilePath);
-        videoCellPrefs.videoPath = Path.Combine(videoAssetsPath, filename);
-
-        Debug.Log(videoCellPrefs.videoPath);
-
-        UpdateVideoThumbnail();
     }
 
     public void UpdateVideoThumbnail()
     {
-        // TODO - Replace with actual video clip, loaded from the file chosen by the user.
-        // The temporaryVideoClip is here just to test that a thumbnail appears.
-        //
-        // videoClip = LoadVideoClipSomehow(videoCellPrefs.videoPath)
-        //
-        videoPlayer.clip = temporaryVideoClip;
-
+        videoPlayer.url = videoCellPrefs.videoPath;
         StartCoroutine(LoadPreview());
     }
 
@@ -206,12 +194,14 @@ public class VideoCellManager : MonoBehaviour
             yield return null;
         }
 
-        videoPlayer.Play();
-        videoThumbnailButton.GetComponent<RawImage>().texture = videoPlayer.texture;
-
+        // TODO - not sure why this isn't working on Windows
         // TODO - figure out a way to capture the texture instead of leaving the player running.
         // If the player is stopped or destroyed, the thumbnail will disappear.
+        videoPlayer.Play();
+        videoThumbnailButton.GetComponent<RawImage>().texture = videoPlayer.texture;
         videoPlayer.Pause();
+
+        yield return null;
     }
 
 
