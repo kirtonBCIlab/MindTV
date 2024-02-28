@@ -5860,6 +5860,7 @@ MonoBehaviour:
   videoTitleText: {fileID: 3896646158654992200}
   includeImageToggle: {fileID: 5061217327159027676}
   imageGraphic: {fileID: 6231908152266101946}
+  videoSelectButton: {fileID: 507268871121169634}
   mentalCommandDropdown: {fileID: 1261565822008275555}
   mentalCommandName: {fileID: 3801735461155513597}
   videoThumbnailButton: {fileID: 6213460652089249340}

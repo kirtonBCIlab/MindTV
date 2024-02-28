@@ -20,9 +20,6 @@ public class VideoPageManager : MonoBehaviour
     [SerializeField] private Transform videoCellParent;
     [SerializeField] private GameObject videoCellPrefab;
 
-    // TODO - remove when we're looking up the video from videoCellPrefs (ie: user selection)
-    public VideoClip[] videoClips = new VideoClip[4]; // Assign VideoClips in Inspector instead of paths
-
     // Event to signal when preferences have been changed. Think about changing this to UnityEvent instead of just Action.
     public static event Action VideoPrefsChanged;
 
@@ -113,15 +110,14 @@ public class VideoPageManager : MonoBehaviour
     }
 
 
-
-    private void ShowVideoForCell(int tileNumber)
+    private void ShowVideoForCell(int cellNumber)
     {
         ShowPlaybackPanel();
 
-        // TODO - VideoPageManager can look up video info it needs from videoCellPrefs
-        // using the provided tileNumber.  This function should call the same thing the BCI 
-        // integration does when a label is detected.
-        Debug.Log("Showing video for cell number " + tileNumber);
+        // If this isn't working, check that perisited settings have correct cell number
+        // It may be necessary to remove UserData.dat and start again.
+        Debug.Log("Showing video for cell number " + cellNumber);
+        videoPlayer.url = videoCellPrefs[cellNumber].videoPath;
     }
 
 
@@ -171,29 +167,6 @@ public class VideoPageManager : MonoBehaviour
     {
         // Shows the RawImage component to start displaying the video
         videoPlayerRawImage.enabled = true;
-    }
-
-    public void LoadSelectedVideo(int index)
-    {
-        if (videoClips == null || videoClips.Length == 0)
-        {
-            Debug.LogError("No video clips assigned.");
-            return;
-        }
-
-        Debug.Log("Loading video " + index + " of " + videoClips.Length + " videos.");
-        if (index < 0 || index >= videoClips.Length)
-        {
-            Debug.LogError("Selected video index out of range.");
-            return;
-        }
-
-        // Assign the selected VideoClip to the VideoPlayer
-        videoPlayer.clip = videoClips[index];
-
-        // Optionally, you might want to reset and play the video here
-        ResetVideoToFirstFrame();
-        ShowPlaybackPanel();
     }
 }
 
