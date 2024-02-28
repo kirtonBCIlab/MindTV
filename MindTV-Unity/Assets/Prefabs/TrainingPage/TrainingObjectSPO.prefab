@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 7206448854755415431}
   - component: {fileID: 7206448854755415430}
   m_Layer: 5
-  m_Name: TrainingObjectSPO 1
+  m_Name: TrainingObjectSPO
   m_TagString: BCI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
