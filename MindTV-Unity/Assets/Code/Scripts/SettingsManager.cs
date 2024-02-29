@@ -102,17 +102,15 @@ public class SettingsManager : MonoBehaviour
     }
 
 
-    public void SaveSettings()
+    private void SaveSettings()
     {
-        Debug.Log("SettingsManager: saving settings");
-        FileManager.WriteToFile("UserData.dat", settings.ToJson());
+        LocalRepository.StoreSettings(settings.ToJson());
     }
 
-    public void LoadSettings()
+    private void LoadSettings()
     {
-        if (FileManager.LoadFromFile("UserData.dat", out var json))
+        if (LocalRepository.LoadSettings(out var json))
         {
-            Debug.Log("SettingsManager: loading settings");
             settings.LoadFromJson(json);
         }
     }

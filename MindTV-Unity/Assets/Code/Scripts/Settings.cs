@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
+using System.IO;
 using UnityEditor;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
 
@@ -28,6 +28,37 @@ public class Settings
         // trial length must be a positive multiple of windowLength
         public float windowLength = 2.0f;
         public float trialLength = 6.0f;
+
+        // TODO - this may be better in an image utilities class
+        public Sprite GetImageAsSprite()
+        {
+            Sprite sprite = null;
+            try
+            {
+                byte[] imageData = File.ReadAllBytes(imagePath);
+                Texture2D texture = new(1, 1);
+                texture.LoadImage(imageData);
+
+                // resize to 500 by 500 to get consistent sizes
+                int targetX = 500;
+                int targetY = 500;
+                RenderTexture rt = new RenderTexture(targetX, targetY, 24);
+                RenderTexture.active = rt;
+                Graphics.Blit(texture, rt);
+                Texture2D result = new Texture2D(targetX, targetY);
+                result.ReadPixels(new Rect(0, 0, targetX, targetY), 0, 0);
+                result.Apply();
+                texture = result;
+
+                // generate image
+                sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"TrainingPrefs: Failed to load {imagePath} with exception {e}");
+            }
+            return sprite;
+        }
     }
 
     [System.Serializable]
@@ -49,19 +80,6 @@ public class Settings
         public bool includeGraphic = true;
         public string mentalCommandLabel = "";
     }
-
-    // public class MentalCommand
-    // {
-    //     public string labelName = "";
-    //     public string animationName = "";
-    //     public string imagePath = "Assets/icons/cube_primary.png";
-    //     public Sprite myImage;
-    //     void Awake
-    //     {
-    //         // Load the sprite from the asset path
-    //         myImage = Resources.Load<Sprite>(imagePath);
-    //     }
-    // }
 
 
     [System.Serializable]
@@ -105,10 +123,8 @@ public class Settings
         public Sprite GetImageForLabel(string label)
         {
             TrainingPrefs prefs = trainingPrefs.Find(prefs => prefs.labelName == label);
-            string path = prefs?.imagePath ?? "";
-            return AssetDatabase.LoadAssetAtPath<Sprite>(path);
+            return prefs?.GetImageAsSprite() ?? null;
         }
-
 
         public VideoCellPrefs AddVideoCell()
         {
