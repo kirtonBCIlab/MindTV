@@ -89,7 +89,7 @@ public class VideoCellManager : MonoBehaviour
 
 
         //Check if the BCI Instance is set to P300
-        if (BCIController.Instance.ActiveBehavior.BehaviorType == BCIBehaviorType.P300)
+        if (BCIController.Instance !=null && BCIController.Instance.ActiveBehavior.BehaviorType == BCIBehaviorType.P300)
         {
             Debug.Log("P300 is the active behavior, enabling P300 effect");
             gameObject.GetComponent<SPO>().StartStimulusEvent.AddListener(gameObject.GetComponent<VideoCellP300Effect>().SetOn);

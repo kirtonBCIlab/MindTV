@@ -54,7 +54,7 @@ public class VideoControlManager : MonoBehaviour
         UpdateImageVisibility();
         UpdateImage();
 
-        if (BCIController.Instance.ActiveBehavior.BehaviorType == BCIBehaviorType.P300)
+        if (BCIController.Instance !=null && BCIController.Instance.ActiveBehavior.BehaviorType == BCIBehaviorType.P300)
         {
             Debug.Log("P300 is the active behavior, enabling P300 effect");
             gameObject.GetComponent<SPO>().StartStimulusEvent.AddListener(gameObject.GetComponent<VideoPanelButtonEffect>().SetOn);
