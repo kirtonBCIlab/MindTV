@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using BCIEssentials.StimulusObjects;
+using BCIEssentials.Controllers;
 
 //Require that the object has a SPO component
 [RequireComponent(typeof(SPO))]
+[RequireComponent(typeof(VideoPanelButtonEffect))]
 public class VideoControlManager : MonoBehaviour
 {
     [SerializeField] private Image backgroundCell;
@@ -51,6 +53,20 @@ public class VideoControlManager : MonoBehaviour
         UpdateCellColor();
         UpdateImageVisibility();
         UpdateImage();
+
+        if (BCIController.Instance.ActiveBehavior.BehaviorType == BCIBehaviorType.P300)
+        {
+            Debug.Log("P300 is the active behavior, enabling P300 effect");
+            gameObject.GetComponent<SPO>().StartStimulusEvent.AddListener(gameObject.GetComponent<VideoPanelButtonEffect>().SetOn);
+            gameObject.GetComponent<SPO>().StopStimulusEvent.AddListener(gameObject.GetComponent<VideoPanelButtonEffect>().SetOff);
+            UpdateP300Effect();
+        }
+        else
+        {
+            Debug.Log("P300 is not the active behavior, disabling P300 effect");
+            //If not, disable the P300 effect
+            gameObject.GetComponent<VideoPanelButtonEffect>().enabled = false;
+        }
     }
 
     public void UpdateMentalCommandOptions()
@@ -101,6 +117,12 @@ public class VideoControlManager : MonoBehaviour
         Color color = Settings.ColorForName(colorName);
         controlPrefs.backgroundColor = color;
         UpdateCellColor();
+
+                //Initialize the P300 effect listener if the BCI instance is set to P300
+        if (BCIController.Instance.ActiveBehavior.BehaviorType == BCIBehaviorType.P300)
+        {
+            UpdateP300Effect();
+        }
     }
 
 
@@ -120,6 +142,13 @@ public class VideoControlManager : MonoBehaviour
     public void UpdateImage()
     {
         imageGraphic.sprite = SettingsManager.Instance?.currentUser.GetImageForLabel(controlPrefs.mentalCommandLabel);
+    }
+
+    public void UpdateP300Effect()
+    {
+        // TODO - get rid of the duplication of code here.
+        VideoPanelButtonEffect p300Effect = gameObject.GetComponent<VideoPanelButtonEffect>();
+        p300Effect._flashOffColor = controlPrefs.backgroundColor;
     }
 
 }

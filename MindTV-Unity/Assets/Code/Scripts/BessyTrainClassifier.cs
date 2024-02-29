@@ -51,7 +51,7 @@ public class BessyTrainClassifier : MonoBehaviour
         else
         {
             // Disable the Finish Training button
-            Debug.Log("Not enough classes with sufficient training windows. Disabling Finish Training button.");
+            Debug.Log("Not enough classes with sufficient training windows. Finish Training button remains disabled.");
             // Code to disable the Finish Training button goes here
         }
     }

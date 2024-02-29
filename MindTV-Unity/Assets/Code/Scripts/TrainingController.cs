@@ -78,9 +78,13 @@ public class TrainingController : MonoBehaviour
         countdownText.text = startTrainingMessage;
         PlayBeep(startBeepFile, startBeepVolume);
 
+        //TODO: This might need to be moved above the yield return statement - EKL
+        // StartCoroutine(StartMyTraining()); // Start the actual training
+
         // Wait a bit before removing the countdown text
         yield return new WaitForSeconds(1);
         countdownText.text = ""; // Clear the countdown text
+        //TODO: This might need to be moved above the yield return statement - EKL
         StartCoroutine(StartMyTraining()); // Start the actual training
     }
 

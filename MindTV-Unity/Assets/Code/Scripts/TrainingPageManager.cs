@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEditor;
 using SimpleFileBrowser;
 using BCIEssentials.StimulusObjects;
+using BCIEssentials.Controllers;
 
 public class TrainingPageManager : MonoBehaviour
 {
@@ -52,6 +53,11 @@ public class TrainingPageManager : MonoBehaviour
         float currentBaseSize = trainingPrefs.imageBaseSize;
         _SPO.transform.localScale = new Vector3(currentBaseSize, currentBaseSize, currentBaseSize);
         imageSizeSlider.value = currentBaseSize;
+
+        // TODO - move to a helper
+        //This shouldn't change with other things changing, because the label number is only set once.
+        //This has a plus 1 as requested by Brian for processing later
+        _SPO.GetComponent<SPO>().ObjectID = trainingPrefs.labelNumber+1;
     }
 
     private void InitializeSettings()
@@ -62,8 +68,7 @@ public class TrainingPageManager : MonoBehaviour
         trainingPrefs = SettingsManager.Instance?.currentUser.trainingPrefs[labelNumber] ?? new Settings.TrainingPrefs();
 
         //Set one time the object's ID based on the training prefs. 
-        //This shouldn't change with other things changing, because the label number is only set once.
-        _SPO.GetComponent<SPO>().ObjectID = labelNumber;
+
     }
 
     private void InitializeViews()
@@ -156,6 +161,8 @@ public class TrainingPageManager : MonoBehaviour
         trainingPrefs.trialLength = trialLength;
 
         //Update the actual values in the MIController Object.
+        Debug.Log("Setting active behavior number of windows to trial length/windowlength = " + trialLength/trainingPrefs.windowLength);
+        BCIController.Instance.ActiveBehavior.numTrainWindows = Mathf.RoundToInt(trialLength / trainingPrefs.windowLength);
 
         UpdateTrialLength();
         UpdateAnimation();

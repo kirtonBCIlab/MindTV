@@ -88,10 +88,6 @@ public class VideoPanelButtonEffect : StimulusEffect
         IsOn = false;
     }
 
-    private void TurnOnBackground()
-    {
-        AssignBackgroundColor(_flashOnColor);
-    }
 
     private void AssignBackgroundColor(Color color)
     {
