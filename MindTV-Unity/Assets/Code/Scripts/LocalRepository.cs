@@ -49,57 +49,58 @@ public static class LocalRepository
     }
 
 
-    public static List<string> GetTrainingImageNames()
-    {
-        // lookup training image pngs stored in the repository, assume they're all "training images"
-        string[] pngFiles = Directory.GetFiles(Application.persistentDataPath, "*.png");
-        List<string> names = new List<string>();
+    // TODO - use this to support a database of images for an inventory display
+    // public static List<string> GetTrainingImageNames()
+    // {
+    //     // lookup training image pngs stored in the repository, assume they're all "training images"
+    //     string[] pngFiles = Directory.GetFiles(Application.persistentDataPath, "*.png");
+    //     List<string> names = new List<string>();
 
-        // Strip out the path and just return the filenames
-        foreach(string file in pngFiles)
-        {
-            names.Add(Path.GetFileName(file));
-        }
-        return names;
-    }
+    //     // Strip out the path and just return the filenames
+    //     foreach(string file in pngFiles)
+    //     {
+    //         names.Add(Path.GetFileName(file));
+    //     }
+    //     return names;
+    // }
 
-    public static bool ImportTrainingImage(string pngFilePath, out string imageName)
-    {
-        // stores a png file to the local repository and return name of image
-        imageName = Path.GetFileName(pngFilePath);
-        bool success = false;
-        try
-        {
-            string repositoryImagePath = Path.Combine(Application.persistentDataPath, imageName);
-            File.Copy(pngFilePath, repositoryImagePath);
-            success = true;
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"LocalRepository: Failed to import {pngFilePath} with exception {e}");
-        }
-        return success;
-    }
+    // public static bool ImportTrainingImage(string pngFilePath, out string imageName)
+    // {
+    //     // stores a png file to the local repository and return name of image
+    //     imageName = Path.GetFileName(pngFilePath);
+    //     bool success = false;
+    //     try
+    //     {
+    //         string repositoryImagePath = Path.Combine(Application.persistentDataPath, imageName);
+    //         File.Copy(pngFilePath, repositoryImagePath);
+    //         success = true;
+    //     }
+    //     catch (Exception e)
+    //     {
+    //         Debug.LogError($"LocalRepository: Failed to import {pngFilePath} with exception {e}");
+    //     }
+    //     return success;
+    // }
 
-    public static bool GetTrainingImage(string imageName, out Texture2D texture)
-    {
-        // returns a texture for the given image name, caller is responsible to resize / convert to sprite as needed
-        texture = null;
-        bool success = false;
-        try
-        {
-            string repositoryImagePath = Path.Combine(Application.persistentDataPath, imageName);
-            byte[] imageData = File.ReadAllBytes(repositoryImagePath);
+    // public static bool GetTrainingImage(string imageName, out Texture2D texture)
+    // {
+    //     // returns a texture for the given image name, caller is responsible to resize / convert to sprite as needed
+    //     texture = null;
+    //     bool success = false;
+    //     try
+    //     {
+    //         string repositoryImagePath = Path.Combine(Application.persistentDataPath, imageName);
+    //         byte[] imageData = File.ReadAllBytes(repositoryImagePath);
 
-            texture = new(1, 1);
-            texture.LoadImage(imageData);
-            success = true;
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"LocalRepository: Failed to find {imageName} with exception {e}");
-        }
+    //         texture = new(1, 1);
+    //         texture.LoadImage(imageData);
+    //         success = true;
+    //     }
+    //     catch (Exception e)
+    //     {
+    //         Debug.LogError($"LocalRepository: Failed to find {imageName} with exception {e}");
+    //     }
 
-        return success;
-    }
+    //     return success;
+    // }
 }
