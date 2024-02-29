@@ -29,6 +29,7 @@ public class Settings
         public float windowLength = 2.0f;
         public float trialLength = 6.0f;
 
+        // TODO - this may be better in an image utilities class
         public Sprite GetImageAsSprite()
         {
             Sprite sprite = null;
@@ -37,6 +38,19 @@ public class Settings
                 byte[] imageData = File.ReadAllBytes(imagePath);
                 Texture2D texture = new(1, 1);
                 texture.LoadImage(imageData);
+
+                // resize to 500 by 500 to get consistent sizes
+                int targetX = 500;
+                int targetY = 500;
+                RenderTexture rt = new RenderTexture(targetX, targetY, 24);
+                RenderTexture.active = rt;
+                Graphics.Blit(texture, rt);
+                Texture2D result = new Texture2D(targetX, targetY);
+                result.ReadPixels(new Rect(0, 0, targetX, targetY), 0, 0);
+                result.Apply();
+                texture = result;
+
+                // generate image
                 sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100.0f);
             }
             catch (Exception e)
