@@ -202,7 +202,7 @@ public class VideoCellManager : MonoBehaviour
 
     public void VideoSelectCancelled()
     {
-        Debug.Log("File select cancelled");
+        Debug.Log("Video select cancelled");
     }
 
     public void VideoSelected(string[] paths)

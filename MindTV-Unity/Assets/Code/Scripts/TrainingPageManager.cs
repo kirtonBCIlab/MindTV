@@ -1,14 +1,11 @@
-using BCIEssentials.ControllerBehaviors;
-using BCIEssentials.StimulusObjects;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Text.RegularExpressions;
-using Unity.VisualScripting;
 using UnityEditor;
+using SimpleFileBrowser;
 
 public class TrainingPageManager : MonoBehaviour
 {
@@ -20,6 +17,7 @@ public class TrainingPageManager : MonoBehaviour
     [SerializeField] private TMP_Dropdown animDropdown;
     [SerializeField] private Slider imageSizeSlider;
     [SerializeField] private Button imageSizeResetButton;
+    [SerializeField] private Button imageSelectButton;
     [SerializeField] private GameObject activeTrainingFrame;
     [SerializeField] private GameObject trainingOptionsFrame;
     [SerializeField] private GameObject displayStartTrainingButton;
@@ -77,12 +75,16 @@ public class TrainingPageManager : MonoBehaviour
     private void InitializeListeners()
     {
         inventoryButton.onClick.AddListener(ToggleInventoryVisibility);
+
         trainingLabelEntry.onEndEdit.AddListener(LabelChanged);
         colorDropdown.onValueChanged.AddListener(ColorChanged);
         trialLengthDropdown.onValueChanged.AddListener(TrialLengthChanged);
         animDropdown.onValueChanged.AddListener(AnimationChanged);
+
         imageSizeSlider.onValueChanged.AddListener(ImageSizeChanged);
         imageSizeResetButton.onClick.AddListener(ResetImageSize);
+
+        imageSelectButton.onClick.AddListener(ImageSelectPressed);
     }
 
 
@@ -249,20 +251,30 @@ public class TrainingPageManager : MonoBehaviour
     }
 
 
-    public void UpdateImage()
+    public void ImageSelectPressed()
     {
-        string path = trainingPrefs.imagePath;
-        Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(path);
-        ImageChanged(sprite);
+        Debug.Log("image");
+        FileBrowser.SetFilters(false, new FileBrowser.Filter("Images", "png"));
+        FileBrowser.ShowLoadDialog(ImageSelected, ImageSelectCancelled, FileBrowser.PickMode.Files, allowMultiSelection: false);
     }
 
-    // TODO - this is called by the individual InventorySlot objects.  Refactor to work like
-    // the other UI elements managed by TrainingPageController, ie: use an image changed event, 
-    // or have TrainingPageController attach listeners to individual InventorySlot objects.
-    public void ImageChanged(Sprite sprite)
+    public void ImageSelectCancelled()
     {
-        // This may not work with user provided assets
-        trainingPrefs.imagePath = AssetDatabase.GetAssetPath(sprite);
-        _SPO.GetComponent<SpriteRenderer>().sprite = sprite;
+        Debug.Log("Image select cancelled");
+    }
+
+    public void ImageSelected(string[] paths)
+    {
+        if (paths.Length > 0)
+        {
+            // store the new image path
+            trainingPrefs.imagePath = paths[0];
+            UpdateImage();
+        }
+    }
+
+    public void UpdateImage()
+    {
+        _SPO.GetComponent<SpriteRenderer>().sprite = trainingPrefs.GetImageAsSprite();
     }
 }
