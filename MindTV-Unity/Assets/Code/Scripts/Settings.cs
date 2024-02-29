@@ -101,6 +101,7 @@ public class Settings
             return assignedLabels;
         }
 
+        // TODO - this needs to be replaced with FileManager method / just provide name of image
         public Sprite GetImageForLabel(string label)
         {
             TrainingPrefs prefs = trainingPrefs.Find(prefs => prefs.labelName == label);

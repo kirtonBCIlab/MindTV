@@ -28,8 +28,7 @@ public class ItemUpload : MonoBehaviour
         if (paths.Length != 0)
         {
             var path = paths[0];
-            string FileName = null;
-            FileName = Path.GetFileName(path);
+            string FileName = Path.GetFileName(path);
             lastUploadedBytes = File.ReadAllBytes(path);
             Texture2D loadTexture = new(1, 1);
             loadTexture.LoadImage(lastUploadedBytes);

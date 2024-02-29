@@ -259,6 +259,9 @@ public class TrainingPageManager : MonoBehaviour
     // TODO - this is called by the individual InventorySlot objects.  Refactor to work like
     // the other UI elements managed by TrainingPageController, ie: use an image changed event, 
     // or have TrainingPageController attach listeners to individual InventorySlot objects.
+
+    // TODO - replace this to operate with just the name of the sprite we want
+    // The inventory list becomes just a list of names and displayed sprites
     public void ImageChanged(Sprite sprite)
     {
         // This may not work with user provided assets
