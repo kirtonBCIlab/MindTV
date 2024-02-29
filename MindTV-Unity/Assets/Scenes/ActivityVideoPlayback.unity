@@ -1402,7 +1402,6 @@ RectTransform:
   - {fileID: 498984551}
   - {fileID: 942730866341967411}
   - {fileID: 1158998477}
-  - {fileID: 1772654786}
   m_Father: {fileID: 635879816}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1749,7 +1748,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 315305388987837568, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 1772654786}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
 --- !u!224 &1874068026563440165
@@ -2141,7 +2143,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1238515077848566248}
+    m_TransformParent: {fileID: 1158998477}
     m_Modifications:
     - target: {fileID: 3154201155406548025, guid: baf908a5de3f642139b446178161fd60, type: 3}
       propertyPath: m_VideoClip
@@ -2213,7 +2215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5914450709448996011, guid: baf908a5de3f642139b446178161fd60, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 30
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5914450709448996011, guid: baf908a5de3f642139b446178161fd60, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
