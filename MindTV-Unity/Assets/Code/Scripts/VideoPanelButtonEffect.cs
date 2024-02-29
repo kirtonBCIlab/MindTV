@@ -21,7 +21,7 @@ public class VideoPanelButtonEffect : StimulusEffect
     private Color _flashOnColor = Color.red;
 
     //This is just hard coded right now.
-    [SerializeField] Color _flashOffColor;
+    public Color _flashOffColor;
 
     [SerializeField]
     [Tooltip("If the flash on color is applied on start or the flash off color.")]
