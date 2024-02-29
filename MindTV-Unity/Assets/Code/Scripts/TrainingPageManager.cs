@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
 using SimpleFileBrowser;
+using BCIEssentials.StimulusObjects;
 
 public class TrainingPageManager : MonoBehaviour
 {
@@ -59,6 +60,10 @@ public class TrainingPageManager : MonoBehaviour
         // TrainingPrefs object from the data model.  Use a dummy TrainingPrefs if one is not found.
         int labelNumber = transform.GetSiblingIndex();
         trainingPrefs = SettingsManager.Instance?.currentUser.trainingPrefs[labelNumber] ?? new Settings.TrainingPrefs();
+
+        //Set one time the object's ID based on the training prefs. 
+        //This shouldn't change with other things changing, because the label number is only set once.
+        _SPO.GetComponent<SPO>().ObjectID = labelNumber;
     }
 
     private void InitializeViews()
@@ -149,6 +154,8 @@ public class TrainingPageManager : MonoBehaviour
         string trialLengthName = trialLengthDropdown.options[trialLengthIndex].text;
         float trialLength = Settings.TrialLengthForName(trialLengthName);
         trainingPrefs.trialLength = trialLength;
+
+        //Update the actual values in the MIController Object.
 
         UpdateTrialLength();
         UpdateAnimation();

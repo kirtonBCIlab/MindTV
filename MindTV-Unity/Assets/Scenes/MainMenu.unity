@@ -928,6 +928,10 @@ PrefabInstance:
       propertyPath: _hotkeysEnabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9114702551254449703, guid: 9aac2126a83a8e8428deaa9ae0d123e8, type: 3}
+      propertyPath: numTrainingSelections
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

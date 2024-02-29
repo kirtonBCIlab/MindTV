@@ -14,25 +14,12 @@ public class BessyTrainClassifier : MonoBehaviour
 
     [SerializeField] private int minWindowsPerClass = 5;
     [SerializeField] private int minClasses = 2;
-    // Start is called before the first frame update
-    // void Start()
-    // {
-        
-    // }
+
     private void Start()
     {
         finishTrainingButton.SetActive(false);
     }
 
-    public void FinishTraining()
-    {
-        UpdateClassifier();
-
-        // Move to the Activity scene?
-        Debug.Log("Move to the Activity scene?");
-        // Debug.Log("Number of times Label 1 trained: " + numberTimesTrainedCountLabel1.text);
-        // Debug.Log("Number of times Label 2 trained: " + numberTimesTrainedCountLabel2.text);
-    }
 
     public void CheckTotalTrainingWindows()
     {
@@ -69,12 +56,4 @@ public class BessyTrainClassifier : MonoBehaviour
         }
     }
 
-    private void UpdateClassifier()
-    {
-        // Ensure that this can't be done, until there is atleast 2 windows from each class that is being trained
-        // and that there are atleast 2 classes.
-        // Send a training complete marker
-        Debug.Log("Telling Bessy to Update the classifier (Currnetly off)");
-        // BCIController.UpdateClassifier();
-    }
 }
