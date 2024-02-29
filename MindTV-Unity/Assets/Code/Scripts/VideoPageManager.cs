@@ -21,7 +21,7 @@ public class VideoPageManager : MonoBehaviour
     [SerializeField] private GameObject videoCellPrefab;
 
     // Event to signal when preferences have been changed. Think about changing this to UnityEvent instead of just Action.
-    public static event Action VideoPrefsChanged;
+    //public static event Action VideoPrefsChanged;
 
     // Reference to training settings
     private List<Settings.VideoCellPrefs> videoCellPrefs;

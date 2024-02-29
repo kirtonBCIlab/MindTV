@@ -14,7 +14,7 @@ public class MentalCommandOnOffSwitch : MonoBehaviour
     [SerializeField] private Image _mentalCommandOnStatusIndicator;
     [SerializeField] private TextMeshProUGUI _mentalCommandOnStatusText;
     [SerializeField] private GameObject _bciControllerGO;
-    [SerializeField] private float _BessyCheckDelay = 0.1f; // In case we want a delay between the Bessy command and the UI update
+    //[SerializeField] private float _BessyCheckDelay = 0.1f; // In case we want a delay between the Bessy command and the UI update
     //[SerializeField] private LSLResponseStream _lslResponseStream;
 
     // Start is called before the first frame update
@@ -24,12 +24,12 @@ public class MentalCommandOnOffSwitch : MonoBehaviour
         //Handle what happens if BCIController Instance is not set to Motor Imagery
         if (BCIController.Instance == null)
         {
-            Debug.LogError("BCIController Instance is not set to any BCI type. Please set it to Motor Imagery");
+            Debug.LogWarning("BCIController Instance is not set to any BCI type. Please set it to Motor Imagery");
             return;
         }
         if(BCIController.Instance.ActiveBehavior.BehaviorType != BCIBehaviorType.MI)
         {
-            Debug.LogError("BCIController Instance is not set to Motor Imagery, so this button is mislabeled");
+            Debug.LogWarning("BCIController Instance is not set to Motor Imagery, so this button is mislabeled");
             return;
         }
 
