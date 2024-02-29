@@ -15,6 +15,10 @@ public class VideoPageManager : MonoBehaviour
     [SerializeField] private Button pauseButton;
     [SerializeField] private Button stopButton;
     [SerializeField] private Button chooseVideoButton;
+    [SerializeField] private GameObject playButtonGO;
+    [SerializeField] private GameObject pauseButtonGO;
+    [SerializeField] private GameObject stopButtonGO;
+    [SerializeField] private GameObject chooseVideoButtonGO;
 
     [SerializeField] private Button addVideoCellButton;
     [SerializeField] private Transform videoCellParent;
