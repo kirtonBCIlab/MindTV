@@ -72,7 +72,7 @@ public class VideoPageManager : MonoBehaviour
     }
 
 
-    private void ShowSelectionPanel()
+    public void ShowSelectionPanel()
     {
         StopVideo();
         HideVideo();
@@ -134,7 +134,7 @@ public class VideoPageManager : MonoBehaviour
         videoPlayer.frame = 0;
     }
 
-    private void PlayVideo()
+    public void PlayVideo()
     {
         if (!videoPlayer.isPlaying)
         {
@@ -142,7 +142,7 @@ public class VideoPageManager : MonoBehaviour
         }
     }
 
-    private void PauseVideo()
+    public void PauseVideo()
     {
         if (videoPlayer.isPlaying)
         {
@@ -150,7 +150,7 @@ public class VideoPageManager : MonoBehaviour
         }
     }
 
-    private void StopVideo()
+    public void StopVideo()
     {
         videoPlayer.Stop();
         ResetVideoToFirstFrame();

@@ -1622,6 +1622,34 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -160
       objectReference: {fileID: 0}
+    - target: {fileID: 1805072588044929804, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805072588044929804, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805072588044929804, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8226220636001218147}
+    - target: {fileID: 1805072588044929804, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805072588044929804, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayVideo
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805072588044929804, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: VideoPageManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1805072588044929804, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1967747673973901428, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1633,6 +1661,34 @@ PrefabInstance:
     - target: {fileID: 2865045033495288621, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901115327876320276, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901115327876320276, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901115327876320276, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8226220636001218147}
+    - target: {fileID: 2901115327876320276, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901115327876320276, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseVideo
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901115327876320276, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: VideoPageManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901115327876320276, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3233811601784832728, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1665,6 +1721,34 @@ PrefabInstance:
     - target: {fileID: 3946006618175910210, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4126267435442415227, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4126267435442415227, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4126267435442415227, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8226220636001218147}
+    - target: {fileID: 4126267435442415227, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4126267435442415227, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowSelectionPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4126267435442415227, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: VideoPageManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4126267435442415227, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4196271194999664412, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: m_IsActive
@@ -1745,6 +1829,34 @@ PrefabInstance:
     - target: {fileID: 8860344244834711501, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103005905563351297, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103005905563351297, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103005905563351297, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8226220636001218147}
+    - target: {fileID: 9103005905563351297, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103005905563351297, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StopVideo
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103005905563351297, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: VideoPageManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103005905563351297, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
