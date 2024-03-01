@@ -101,6 +101,12 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
+    public int GetIDForLabel(string label)
+    {
+        int myId = currentUser.GetIDForLabel(label);
+        return myId;
+    }
+
 
     private void SaveSettings()
     {

@@ -718,9 +718,11 @@ GameObject:
   - component: {fileID: 8311039138431160879}
   - component: {fileID: 951732601440124908}
   - component: {fileID: 5004642485432471423}
+  - component: {fileID: 2489817759826003516}
+  - component: {fileID: 6320807479664876882}
   m_Layer: 5
   m_Name: VideoControl
-  m_TagString: Untagged
+  m_TagString: BCI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -811,6 +813,100 @@ MonoBehaviour:
     backgroundColor: {r: 0.3254902, g: 0.21960784, b: 0.57254905, a: 1}
     includeGraphic: 1
     mentalCommandLabel: 
+--- !u!114 &2489817759826003516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2364288573718725956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58dafbcfd2f661d438f57f8ab612995a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartStimulusEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6320807479664876882}
+        m_TargetAssemblyTypeName: VideoPanelButtonEffect, Assembly-CSharp
+        m_MethodName: SetOn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  StopStimulusEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6320807479664876882}
+        m_TargetAssemblyTypeName: VideoPanelButtonEffect, Assembly-CSharp
+        m_MethodName: SetOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnSelectedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartTrainingStimulusEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2489817759826003516}
+        m_TargetAssemblyTypeName: BCIEssentials.StimulusObjects.SPO, Bci4Kids.BciEssentials.Runtime
+        m_MethodName: DefaultScaleEffectOn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  StopTrainingStimulusEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2489817759826003516}
+        m_TargetAssemblyTypeName: BCIEssentials.StimulusObjects.SPO, Bci4Kids.BciEssentials.Runtime
+        m_MethodName: DefaultScaleEffectOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Selectable: 1
+  SelectablePoolIndex: 0
+  ObjectID: 0
+--- !u!114 &6320807479664876882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2364288573718725956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6549bc704bb2eb14e80c3602d494ea36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _backgroundCellImage: {fileID: 1551551192512507740}
+  _flashOnColor: {r: 1, g: 0, b: 0, a: 1}
+  _flashOffColor: {r: 0, g: 0, b: 0, a: 0}
+  _startOn: 0
 --- !u!1 &2606314745831192034
 GameObject:
   m_ObjectHideFlags: 0

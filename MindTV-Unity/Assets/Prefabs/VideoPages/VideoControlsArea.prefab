@@ -192,6 +192,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 246359697178837785}
     m_Modifications:
+    - target: {fileID: 951732601440124908, guid: db2c78400cafe4ffdacc105b9acf7b3d, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 951732601440124908, guid: db2c78400cafe4ffdacc105b9acf7b3d, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 951732601440124908, guid: db2c78400cafe4ffdacc105b9acf7b3d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2364288573718725956, guid: db2c78400cafe4ffdacc105b9acf7b3d, type: 3}
       propertyPath: m_Name
       value: PlayButtonArea
@@ -279,6 +291,14 @@ PrefabInstance:
     - target: {fileID: 3796216106021004071, guid: db2c78400cafe4ffdacc105b9acf7b3d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8691860849799645441, guid: db2c78400cafe4ffdacc105b9acf7b3d, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8691860849799645441, guid: db2c78400cafe4ffdacc105b9acf7b3d, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
