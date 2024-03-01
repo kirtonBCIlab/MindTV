@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using BCIEssentials.Controllers;
+using BCIEssentials;
 using BCIEssentials.LSLFramework;
 
 public class MentalCommandOnOffSwitch : MonoBehaviour
@@ -13,20 +14,27 @@ public class MentalCommandOnOffSwitch : MonoBehaviour
     [SerializeField] private Image _mentalCommandOnStatusIndicator;
     [SerializeField] private TextMeshProUGUI _mentalCommandOnStatusText;
     [SerializeField] private GameObject _bciControllerGO;
-    [SerializeField] private float _BessyCheckDelay = 0.1f; // In case we want a delay between the Bessy command and the UI update
+    //[SerializeField] private float _BessyCheckDelay = 0.1f; // In case we want a delay between the Bessy command and the UI update
+    //[SerializeField] private LSLResponseStream _lslResponseStream;
 
     // Start is called before the first frame update
-    private void Awake()
+    private void Start()
     {
-        // Get the BCIController GameObject and the LSLResponseStream component
-        Debug.Log("BCI controller and lsl response stream are not implemented yet");
-        // _bciControllerGO = GameObject.FindWithTag("BCIController");
-        // _lslResponseStream = _bciControllerGO.GetComponent<LSLResponseStream>();
+
+        //Handle what happens if BCIController Instance is not set to Motor Imagery
+        if (BCIController.Instance == null)
+        {
+            Debug.LogWarning("BCIController Instance is not set to any BCI type. Please set it to Motor Imagery");
+            return;
+        }
+        if(BCIController.Instance.ActiveBehavior.BehaviorType != BCIBehaviorType.MI)
+        {
+            Debug.LogWarning("BCIController Instance is not set to Motor Imagery, so this button is mislabeled");
+            return;
+        }
 
         // Turn off Mental Command by default
-        // Because our functions toggle between the states, we will explicitly set the state to ON (true) and then toggle it off
-        MentalCommandOn = true;
-        ToggleMentalCommandOnOff();
+        MentalCommandOn = false;
     }
 
     public void ToggleMentalCommandOnOff()
@@ -37,17 +45,22 @@ public class MentalCommandOnOffSwitch : MonoBehaviour
             // Now, Turn OFF Mental Command
             Debug.Log("Turning mental commands OFF");
             MentalCommandOn = false;
+            // Theoretically, this should stop the running stimulus from the BCIController active behavior
+            Debug.Log("Stopping the active behavior's stimulus run");
+            BCIController.Instance.ActiveBehavior.StartStopStimulusRun();
         }
         else
         {
             // Mental Command is currently OFF
             // Now, Turn ON Mental Command
             Debug.Log("Turning mental commands ON");
+            Debug.Log("Starting the active behavior's stimulus run");
+            BCIController.Instance.ActiveBehavior.StartStopStimulusRun();
             MentalCommandOn = true;
         }
 
         // Send commands to Bessy and update the UI
-        UpdateMentalCommandStatusInBessy();
+        // UpdateMentalCommandStatusInBessy();
         // Invoke("UpdateMentalCommandStatusInUI", _BessyCheckDelay);  // If we want a delay between the Bessy command and the UI update
         UpdateMentalCommandStatusInUI();
     }
@@ -68,32 +81,6 @@ public class MentalCommandOnOffSwitch : MonoBehaviour
             // ToDo: Bessy Command to turn OFF listening for Mental Commands
         }
     }
-
-    // private void TurnOnMentalCommands()
-    // {
-    //     // Turn on Mental Command
-    //     Debug.Log("Mental Commands On (NOT IMPLEMENTED)");
-    //     // ToDo: Bessy Command to turn ON listening for Mental Commands
-
-    //     // MAYBE: Logic to check that mental commands have been turned off, if Bessy does provide some sort of feedback
-    //     // Update status
-    //     MentalCommandOn = true;
-    //     UpdateMentalCommandStatus();
-
-    //     // Note: We could combine this with TurnOffMentalCommands() and pass in a boolean to determine the state if 
-    // }
-
-    // private void TurnOffMentalCommands()
-    // {
-    //     // Turn off Mental Command
-    //     Debug.Log("Mental Commands OFF (NOT IMPLEMENTED)");
-    //     // ToDo: Bessy Command to turn OFF listening for Mental Commands
-
-    //     // MAYBE: Logic to check that mental commands have been turned off, if Bessy does provide some sort of feedback
-    //     // Update status
-    //     MentalCommandOn = false;
-    //     UpdateMentalCommandStatus();
-    // }
 
     private void UpdateMentalCommandStatusInUI()
     {

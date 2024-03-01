@@ -125,6 +125,13 @@ public class Settings
             TrainingPrefs prefs = trainingPrefs.Find(prefs => prefs.labelName == label);
             return prefs?.GetImageAsSprite() ?? null;
         }
+        public int GetIDForLabel(string label)
+        {
+            TrainingPrefs prefs = trainingPrefs.Find(prefs => prefs.labelName == label);
+            int labelId = prefs?.labelNumber ?? -100;
+            return labelId;
+        }
+
 
         public VideoCellPrefs AddVideoCell()
         {

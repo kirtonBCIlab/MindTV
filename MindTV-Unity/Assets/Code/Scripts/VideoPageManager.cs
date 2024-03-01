@@ -15,13 +15,17 @@ public class VideoPageManager : MonoBehaviour
     [SerializeField] private Button pauseButton;
     [SerializeField] private Button stopButton;
     [SerializeField] private Button chooseVideoButton;
+    [SerializeField] private GameObject playButtonGO;
+    [SerializeField] private GameObject pauseButtonGO;
+    [SerializeField] private GameObject stopButtonGO;
+    [SerializeField] private GameObject chooseVideoButtonGO;
 
     [SerializeField] private Button addVideoCellButton;
     [SerializeField] private Transform videoCellParent;
     [SerializeField] private GameObject videoCellPrefab;
 
     // Event to signal when preferences have been changed. Think about changing this to UnityEvent instead of just Action.
-    public static event Action VideoPrefsChanged;
+    //public static event Action VideoPrefsChanged;
 
     // Reference to training settings
     private List<Settings.VideoCellPrefs> videoCellPrefs;
@@ -68,7 +72,7 @@ public class VideoPageManager : MonoBehaviour
     }
 
 
-    private void ShowSelectionPanel()
+    public void ShowSelectionPanel()
     {
         StopVideo();
         HideVideo();
@@ -130,7 +134,7 @@ public class VideoPageManager : MonoBehaviour
         videoPlayer.frame = 0;
     }
 
-    private void PlayVideo()
+    public void PlayVideo()
     {
         if (!videoPlayer.isPlaying)
         {
@@ -138,7 +142,7 @@ public class VideoPageManager : MonoBehaviour
         }
     }
 
-    private void PauseVideo()
+    public void PauseVideo()
     {
         if (videoPlayer.isPlaying)
         {
@@ -146,7 +150,7 @@ public class VideoPageManager : MonoBehaviour
         }
     }
 
-    private void StopVideo()
+    public void StopVideo()
     {
         videoPlayer.Stop();
         ResetVideoToFirstFrame();

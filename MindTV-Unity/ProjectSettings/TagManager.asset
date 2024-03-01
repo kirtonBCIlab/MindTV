@@ -9,6 +9,7 @@ TagManager:
   - InventorySlot
   - ControllerManager
   - TrainingPanel
+  - ParadigmDropdown
   layers:
   - Default
   - TransparentFX

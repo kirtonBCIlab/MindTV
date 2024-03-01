@@ -3,6 +3,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using BCIEssentials.Controllers;
+using BCIEssentials.Utilities;
+using BCIEssentials.StimulusObjects;
+using BCIEssentials.ControllerBehaviors;
 
 public class TrainingController : MonoBehaviour
 {
@@ -17,9 +20,6 @@ public class TrainingController : MonoBehaviour
     [SerializeField] private TMP_Text trainRemainingTimeText;
     [SerializeField] private TMP_Text trainNumberText;
 
-    [SerializeField] private GameObject controllerManager;
-    [SerializeField] private BCIController bciController;
-
     public int numberOfCountdownSeconds = 3;
     public string startTrainingMessage = "Go!";
 
@@ -30,15 +30,6 @@ public class TrainingController : MonoBehaviour
 
     // Reference to training settings
     private Settings.TrainingPrefs trainingPrefs;
-
-    private void Awake()
-    {
-        if (bciController == null)
-        {
-            controllerManager = GameObject.FindGameObjectWithTag("ControllerManager");
-            StartCoroutine(InitCoroutine());
-        }
-    }
 
     public void Start()
     {
@@ -86,13 +77,15 @@ public class TrainingController : MonoBehaviour
         cancelCountdownButton.SetActive(false); // Hide the cancel countdown button
         countdownText.text = startTrainingMessage;
         PlayBeep(startBeepFile, startBeepVolume);
-        // bciController.ActiveBehavior.StartTraining(BCITrainingType.Iterative); // Start the actual training
 
-        StartCoroutine(StartMyTraining()); // Start the actual training
+        //TODO: This might need to be moved above the yield return statement - EKL
+        // StartCoroutine(StartMyTraining()); // Start the actual training
 
         // Wait a bit before removing the countdown text
         yield return new WaitForSeconds(1);
         countdownText.text = ""; // Clear the countdown text
+        //TODO: This might need to be moved above the yield return statement - EKL
+        StartCoroutine(StartMyTraining()); // Start the actual training
     }
 
     void PlayBeep(AudioClip clip, float volume)
@@ -100,18 +93,16 @@ public class TrainingController : MonoBehaviour
         audioSource.PlayOneShot(clip, volume);
     }
 
-    private IEnumerator InitCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        // bciController = controllerManager.GetComponent<BCIController>();
-    }
-
     IEnumerator StartMyTraining()
     {
         Debug.Log("Starting training...");
 
-        // Find the SPOToyBox object in the scene get the SPO
-        SPOToyBox spoToyBox = FindObjectOfType<SPOToyBox>();
+        //Deal with scenarios when activate behavior isn't MI
+        if (BCIController.Instance.ActiveBehavior.BehaviorType != BCIBehaviorType.MI)
+        {
+            Debug.Log("Active behavior is not MI.  Skipping training on this page.");
+            yield break;
+        }
 
         // Get settings for the training session
         int labelNumber = trainingPrefs.labelNumber;
@@ -126,12 +117,18 @@ public class TrainingController : MonoBehaviour
         Debug.Log("Starting training on label: " + labelName + " (" + labelNumber + ")");
         Debug.Log("Trial length is " + trialLength + " (" + windowCount + " windows of " + windowLength + " seconds)");
 
-        // TODO - this is a null reference if application not started from main scene
-        spoToyBox.SetSPO(labelNumber, _SPO, labelName);
-
-        // Do the actual training
-        // Anup: I turned this off to get around package issues
-        // BCIController.WhileDoSingleTraining(_SPO, windowLength, windowCount);
+        // Run the training
+        Debug.Log("Running now single training by passing in the train type of single");
+        if( BCIController.Instance.ActiveBehavior.SelectableSPOs.Count > 1)
+        {
+            BCIController.Instance.ActiveBehavior.StartTraining(BCITrainingType.Iterative);
+        }
+        else
+        {
+            BCIController.Instance.ActiveBehavior.StartTraining(BCITrainingType.Single);
+        }
+        
+        Debug.Log("Finished BCIController.Instance.ActiveBehavior");
 
         // Start the animation
         UITweener uiTweener = _SPO.GetComponent<UITweener>();
@@ -147,20 +144,9 @@ public class TrainingController : MonoBehaviour
         // Wait to finish the training
         yield return new WaitForSeconds(trialLength);
 
-        // Needs to be updated
-        // bciController.ActiveBehavior.SetLabel(userInput); // Needs to be updated
-        // bciController.ActiveBehavior.StartTraining(BCITrainingType.Iterative); // Needs to be updated
-
         // Update the number of trainings done with the windowCount
         yield return new WaitForSeconds(uiUpdateDelay);
         UpdateNumberOfWindowsCompleted(windowCount);
-
-        // // Anup: I turned this off to get around package issues
-        // if (numberOfTrainingsDone >= 5) // Needs to be updated
-        // {
-        //     // UpdateTheClassifier();
-        //     Debug.Log("BCIController: Update Classifier (Currently off)");
-        // }
 
         yield return null;
     }
