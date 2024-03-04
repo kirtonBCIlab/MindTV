@@ -7,19 +7,29 @@ using BCIEssentials.Controllers;
 
 public class BessyTrainClassifier : MonoBehaviour
 {
-    [SerializeField] private List<TMP_Text> numberTimesLabelsTrainedCount = new List<TMP_Text>(4); // Assign in Inspector
-    [SerializeField] private GameObject finishTrainingButton;  // Assign in Inspector
+    // [SerializeField] private List<TMP_Text> numberTimesLabelsTrainedCount = new List<TMP_Text>(4); // Assign in Inspector
     // [SerializeField] private TMP_Text numberTimesTrainedCountLabel1;
     // [SerializeField] private TMP_Text numberTimesTrainedCountLabel2;
+    [SerializeField] private GameObject finishTrainingButton;  // Assign in Inspector
+    [SerializeField] private TrainingController[] trainingControllers; // Reference to all TrainingController components in children
 
     [SerializeField] private int minWindowsPerClass = 5;
     [SerializeField] private int minClasses = 2;
+    // [SerializeField] private GameObject _bciControllerGO;
 
-    private void Start()
-    {
+
+    private void Awake() {
         finishTrainingButton.SetActive(false);
-    }
 
+        // trainingControllers = GetComponentsInChildren<TrainingController>();
+
+        // Add CheckTotalTrainingWindows as a listener to the event on each TrainingController
+        foreach (var controller in trainingControllers)
+        {
+            Debug.Log("Adding listener to " + controller.gameObject.name);
+            controller.onTrainingNumberUpdated.AddListener(CheckTotalTrainingWindows);
+        }
+    }
 
     public void CheckTotalTrainingWindows()
     {
@@ -27,14 +37,13 @@ public class BessyTrainClassifier : MonoBehaviour
         // Based on the set amount of Windows per class and the minimum number of classes
         // If it is, then enable the Finish Training button
         // If it is not, then disable the Finish Training button
+
         int numSufficientClasses = 0; // Track the number of classes meeting the minimum window requirement
 
-        // Loop through each label, parse the text to an int, and check if it meets the minimum window requirement
-        foreach (TMP_Text label in numberTimesLabelsTrainedCount)
+        // Loop through each TrainingController, retrieve the trainNumberCount value, and check if it meets the minimum window requirement
+        foreach (var controller in trainingControllers)
         {
-            Debug.Log("Checking label: " + label.text);
-            Debug.Log("Label value: " + label.text);
-            if (int.TryParse(label.text, out int windowCount) && windowCount >= minWindowsPerClass)
+            if (int.TryParse(controller.trainNumberCount.text, out int windowCount) && windowCount >= minWindowsPerClass)
             {
                 numSufficientClasses++; // Increment counter if this class has sufficient windows
             }
@@ -43,17 +52,27 @@ public class BessyTrainClassifier : MonoBehaviour
         // Check if the number of classes with sufficient windows is >= minClasses
         if (numSufficientClasses >= minClasses)
         {
-            // Enable the Finish Training button
+            finishTrainingButton.SetActive(true); // Enable the Finish Training button
             Debug.Log("Enabling Finish Training button");
-            finishTrainingButton.SetActive(true);
-            // Code to enable the Finish Training button goes here
         }
         else
         {
-            // Disable the Finish Training button
+            finishTrainingButton.SetActive(false); // Disable the Finish Training button
             Debug.Log("Not enough classes with sufficient training windows. Finish Training button remains disabled.");
-            // Code to disable the Finish Training button goes here
         }
     }
 
+    public void FinishTraining()
+    {
+        UpdateClassifier();
+
+        // Could also add Scene Controller code here to move to the next scene
+    }
+
+    private void UpdateClassifier()
+    {
+        // Send a training complete marker and tell Bessy Python to update the classifier (do ML model training)
+        Debug.Log("Telling Bessy to Update the classifier");
+        BCIController.UpdateClassifier();
+    }
 }
