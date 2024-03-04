@@ -116,12 +116,12 @@ public class VideoPageManager : MonoBehaviour
 
     private void ShowVideoForCell(int cellNumber)
     {
-        ShowPlaybackPanel();
-
         // If this isn't working, check that perisited settings have correct cell number
         // It may be necessary to remove UserData.dat and start again.
         Debug.Log("Showing video for cell number " + cellNumber);
         videoPlayer.url = videoCellPrefs[cellNumber].videoPath;
+
+        ShowPlaybackPanel();
     }
 
 
@@ -154,11 +154,6 @@ public class VideoPageManager : MonoBehaviour
     {
         videoPlayer.Stop();
         ResetVideoToFirstFrame();
-        // if (videoPlayer.isPlaying || videoPlayer.isPaused)
-        // {
-        //     videoPlayer.Stop();
-        //     ResetVideoToFirstFrame();
-        // }
     }
 
     private void HideVideo()
@@ -169,6 +164,7 @@ public class VideoPageManager : MonoBehaviour
 
     private void ShowVideo()
     {
+        ResetVideoToFirstFrame();
         // Shows the RawImage component to start displaying the video
         videoPlayerRawImage.enabled = true;
     }
