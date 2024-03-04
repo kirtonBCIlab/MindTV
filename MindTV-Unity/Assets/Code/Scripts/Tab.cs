@@ -14,10 +14,6 @@ public class Tab : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,IPo
     public Image background;
     public int number;
     
-    public UnityEvent onTabSelected;
-    public UnityEvent onTabDeselected;
-
-
     void Start()
     {
         number = transform.GetSiblingIndex();
@@ -64,15 +60,4 @@ public class Tab : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler,IPo
     {
         tabGroup.OnTabExit(this);
     }
-
-    public void Select()
-    {
-        onTabSelected?.Invoke();
-    }
-
-    public void Deselect()
-    {
-        onTabDeselected?.Invoke();
-    }
-
 }
