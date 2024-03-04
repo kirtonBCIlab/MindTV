@@ -465,7 +465,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 10
   m_Viewport: {fileID: 8190784044454135218}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 1354916135345064393}
@@ -2553,8 +2553,6 @@ MonoBehaviour:
     - m_Text: Blue
       m_Image: {fileID: 0}
     - m_Text: Green
-      m_Image: {fileID: 0}
-    - m_Text: White
       m_Image: {fileID: 0}
     - m_Text: Yellow
       m_Image: {fileID: 0}
@@ -5866,14 +5864,14 @@ MonoBehaviour:
   mentalCommandDropdown: {fileID: 1261565822008275555}
   mentalCommandName: {fileID: 3801735461155513597}
   videoThumbnailButton: {fileID: 6213460652089249340}
-  temporaryVideoClip: {fileID: 32900000, guid: e2f201665c5dc452d9f6de75f686c651, type: 3}
-  videoCellPrefs:
-    tileNumber: 0
+  cellPrefs:
+    cellNumber: 0
     videoTitle: Video Title
     videoPath: 
     backgroundColor: {r: 0.3254902, g: 0.21960784, b: 0.57254905, a: 1}
     includeGraphic: 1
     mentalCommandLabel: 
+  _spo: {fileID: 0}
 --- !u!114 &7921734679806633152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6801,7 +6799,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 10
   m_Viewport: {fileID: 73080911531503306}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 7090215065388982961}
