@@ -1291,7 +1291,7 @@ MonoBehaviour:
   countdownBeepFile: {fileID: 8300000, guid: ddcd871d37bfa47f196ee943171b3c28, type: 3}
   startBeepFile: {fileID: 8300000, guid: 2ddee1a54c78d4dfc890876d4ebbacfc, type: 3}
   trainRemainingTimeText: {fileID: 5822325519174262078}
-  trainNumberText: {fileID: 6169905974648477102}
+  trainNumberCount: {fileID: 2599581070242737351}
   numberOfCountdownSeconds: 3
   startTrainingMessage: Go!
   onTrainingNumberUpdated:
