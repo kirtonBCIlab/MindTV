@@ -171,7 +171,6 @@ public class Settings
         {"Red", Color.red },
         {"Blue", Color.blue },
         {"Green", Color.green },
-        {"White", Color.white },
         {"Yellow", Color.yellow },
         {"Black", Color.black },
         {"Magenta", Color.magenta},
