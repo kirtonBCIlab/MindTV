@@ -2,6 +2,7 @@ using TMPro;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using BCIEssentials.Controllers;
 using BCIEssentials.Utilities;
 using BCIEssentials.StimulusObjects;
@@ -18,7 +19,7 @@ public class TrainingController : MonoBehaviour
     [SerializeField] private AudioClip countdownBeepFile;
     [SerializeField] private AudioClip startBeepFile;
     [SerializeField] private TMP_Text trainRemainingTimeText;
-    [SerializeField] private TMP_Text trainNumberText;
+    public TMP_Text trainNumberCount;
 
     public int numberOfCountdownSeconds = 3;
     public string startTrainingMessage = "Go!";
@@ -30,10 +31,17 @@ public class TrainingController : MonoBehaviour
 
     // Reference to training settings
     private Settings.TrainingPrefs trainingPrefs;
+    public UnityEvent onTrainingNumberUpdated; // Event to trigger when the number of trainings is updated
 
     public void Start()
     {
         InitializeSettings();
+
+        // Initialize Unity event for tracking number of training windows
+        if (onTrainingNumberUpdated == null)
+        {
+            onTrainingNumberUpdated = new UnityEvent();
+        }
     }
 
     private void InitializeSettings()
@@ -174,19 +182,10 @@ public class TrainingController : MonoBehaviour
     private void UpdateNumberOfWindowsCompleted(int newWindowCount)
     {
         numberWindowsCompleted += newWindowCount;
-        trainNumberText.text = "Number of Windows: " + numberWindowsCompleted;
-
-        // TODO - TrainingController should have a reference instead of digging around in the
-        // parent object for something.  Or emit an event, etc.
-        BessyTrainClassifier parentScript = GetComponentInParent<BessyTrainClassifier>();
-        if (parentScript != null)
-        {
-            parentScript.CheckTotalTrainingWindows();
-        }
-        else
-        {
-            Debug.LogError("BessyTrainClassifier script not found on parent!");
-        }
+        trainNumberCount.text = numberWindowsCompleted.ToString();
+        
+        // Emit the event to trigger the parent script to check the total training windows
+        onTrainingNumberUpdated.Invoke();
     }
 
 
