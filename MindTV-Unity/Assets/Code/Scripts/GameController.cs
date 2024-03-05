@@ -7,6 +7,48 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    public void Update()
+    {
+        // Quit application if you are in the main menu
+        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            QuitGame();
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "MainMenu")
+        {
+            LoadMainMenu();
+        }
+    }
+    // Quit application if you are in the main menu
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 
+    // Load the main menu scene
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void SetFullScreenResolution(int width, int height)
+    {
+        Screen.SetResolution(width, height, true);
+    }
+
+    public void SetWindowedResolution(int width, int height)
+    {
+        Screen.SetResolution(width, height, false);
+    }
+
+    public void SetVolume(float volume)
+    {
+        AudioListener.volume = volume;
+    }
+
+    public void SetFullScreen(bool isFullScreen)
+    {
+        Screen.fullScreen = isFullScreen;
+    }
 
 }
