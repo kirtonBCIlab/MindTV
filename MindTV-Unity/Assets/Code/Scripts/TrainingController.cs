@@ -39,7 +39,9 @@ public class TrainingController : MonoBehaviour
 
         // Initialize Unity event for tracking number of training windows
         if (onTrainingNumberUpdated == null)
+        {
             onTrainingNumberUpdated = new UnityEvent();
+        }
     }
 
     private void InitializeSettings()
