@@ -14,6 +14,8 @@ public class OptionsMenu : MonoBehaviour
 
     [SerializeField] private TMP_Dropdown resolutionDropdown;
 
+    private int _currentResolutionIndex = 0;
+
     private void Start()
     {
 
@@ -23,7 +25,6 @@ public class OptionsMenu : MonoBehaviour
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
         List<string> optionsRes = new List<string>();
-        int currentResolutionIndex = 0;
         for(int i = 0; i < resolutions.Length; i++)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
@@ -31,12 +32,12 @@ public class OptionsMenu : MonoBehaviour
 
             if(resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
             {
-                currentResolutionIndex = i;
+                _currentResolutionIndex = i;
             }
 
         }
         resolutionDropdown.AddOptions(optionsRes);
-        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.value = _currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
     }
 

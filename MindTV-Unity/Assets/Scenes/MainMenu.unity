@@ -980,6 +980,7 @@ GameObject:
   - component: {fileID: 644514569}
   - component: {fileID: 644514568}
   - component: {fileID: 644514567}
+  - component: {fileID: 644514570}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -1051,9 +1052,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3013583488901545744}
-        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: QuitGame
+      - m_Target: {fileID: 644514570}
+        m_TargetAssemblyTypeName: QuitGame, Assembly-CSharp
+        m_MethodName: QuitTheGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1101,6 +1102,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 644514565}
   m_CullTransparentMesh: 1
+--- !u!114 &644514570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644514565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60e8a5f7bdc0be64fb7297db61665345, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &668789163
 GameObject:
   m_ObjectHideFlags: 0
@@ -2687,17 +2700,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc959fe0487fa3347bd41873ce017e94, type: 3}
---- !u!114 &3013583488901545744 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2487489911532294753, guid: bc959fe0487fa3347bd41873ce017e94, type: 3}
-  m_PrefabInstance: {fileID: 3013583488901545743}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d48118d5d08fb7b46baa15ee3e50c161, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3749841772607279261
 MonoBehaviour:
   m_ObjectHideFlags: 0
