@@ -18,8 +18,12 @@ public class TrainingTabManager : MonoBehaviour
         // Subscribe to training pref changes
         TrainingPageManager.TrainingPrefsChanged += MatchTabsToTrainingPages;
 
+        // TODO - this won't work as the child tabs don't exist yet.  A better solution is to
+        // have the tab manager create the tabs from data rather than relying on 4 tabs existing.
+        // This class could handle it, possibly asking TabManager to add the tabs.
+
         // Initial update to sync tabs to settings
-        MatchTabsToTrainingPages();
+        //MatchTabsToTrainingPages();
     }
 
     private void OnDisable()
@@ -31,11 +35,14 @@ public class TrainingTabManager : MonoBehaviour
     private void MatchTabsToTrainingPages()
     {
         Settings.User user = SettingsManager.Instance?.currentUser ?? new Settings.User();
-        TabGroup tabGroup = GetComponent<TabGroup>() ?? new TabGroup();
+        TabGroup tabGroup = GetComponent<TabGroup>();
 
-        foreach (Settings.TrainingPrefs pref in user.trainingPrefs)
+        if (tabGroup != null)
         {
-            tabGroup.SetTabAppearance(pref.labelNumber, pref.labelName, pref.backgroundColor);
+            foreach (Settings.TrainingPrefs pref in user.trainingPrefs)
+            {
+                tabGroup.SetTabAppearance(pref.labelNumber, pref.labelName, pref.backgroundColor);
+            }
         }
     }
 }
