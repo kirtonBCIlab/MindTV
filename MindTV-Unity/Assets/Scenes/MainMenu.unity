@@ -2229,6 +2229,34 @@ PrefabInstance:
       propertyPath: m_Options.m_Options.Array.data[2].m_Text
       value: 1920x1080
       objectReference: {fileID: 0}
+    - target: {fileID: 5760389634866556882, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5760389634866556882, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5760389634866556882, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3013583488901545744}
+    - target: {fileID: 5760389634866556882, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5760389634866556882, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetResolution
+      objectReference: {fileID: 0}
+    - target: {fileID: 5760389634866556882, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5760389634866556882, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6296670754055523235, guid: 3006f798617c344d4925678409effa07, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
@@ -2263,6 +2291,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3512235477949258594, guid: c3b353e14b45f41809b257c996983a83, type: 3}
   m_PrefabInstance: {fileID: 5342303326711916994}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1504942156 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5760389634866556882, guid: 3006f798617c344d4925678409effa07, type: 3}
+  m_PrefabInstance: {fileID: 1411491225}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1548449532
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2635,6 +2674,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameController
       objectReference: {fileID: 0}
+    - target: {fileID: 2487489911532294753, guid: bc959fe0487fa3347bd41873ce017e94, type: 3}
+      propertyPath: resolutionDropdown
+      value: 
+      objectReference: {fileID: 1504942156}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3608,11 +3651,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 574750525}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -537}
-  m_SizeDelta: {x: 2800, y: 10}
-  m_Pivot: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 418}
+  m_SizeDelta: {x: -80, y: 10}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
