@@ -9,23 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 608a90b6d8e2e4f1b8e568e68a9272b1
   - enabled: 1
-    path: Assets/Scenes/VideoPages.unity
-    guid: e9d2271370a2c9d44b94861a7f5b6a05
-  - enabled: 1
-    path: Assets/Scenes/TrainingScene.unity
-    guid: 811bedcba7358784eadf4f77d658833f
-  - enabled: 1
     path: Assets/Scenes/TrainingScene.unity
     guid: 811bedcba7358784eadf4f77d658833f
   - enabled: 1
     path: Assets/Scenes/UserProfiles.unity
     guid: 4cbba476e9f794897b4f829025e94d59
-  - enabled: 0
-    path: Assets/Scenes/SelectLabel.unity
-    guid: 1d6f9ab034c73c7468be07c33605e322
-  - enabled: 1
-    path: Assets/Scenes/BetaActivitySetupPage.unity
-    guid: a1cbe5bb50d9a4e08ab7757282bf42c6
   - enabled: 1
     path: Assets/Scenes/ActivityVideoPlayback.unity
     guid: 1a6784e234b4743869e07cafc59ed08e

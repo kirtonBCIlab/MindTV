@@ -39,9 +39,11 @@ public class TabGroup : MonoBehaviour
             // The tabs list may not match the order shown in the hierarchy
             // Find the correct tab by searching for tab number insead.
             Tab tab = tabs.Find(tab => tab.number == number);
-
-            tab.SetLabel(label);
-            tab.SetColor(color);
+            if(tab != null)
+            {
+                tab.SetLabel(label);
+                tab.SetColor(color);
+            }
         }
         ResetTabs();
     }
@@ -63,16 +65,9 @@ public class TabGroup : MonoBehaviour
 
     public void OnTabSelected(Tab tab)
     {
-
-        if(selectedTab !=null)
-        {
-            selectedTab.Deselect();
-        }
-
         selectedTab = tab;
-
-        selectedTab.Select();
         ResetTabs();
+
         int index = tab.transform.GetSiblingIndex();
         for(int i=0; i<objectsToSwap.Count;i++)
         {
