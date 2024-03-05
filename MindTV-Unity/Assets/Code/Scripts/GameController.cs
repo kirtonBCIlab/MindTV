@@ -60,14 +60,10 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void SetFullScreenResolution(int width, int height)
+    public void SetResolution(int resolutionIndex)
     {
-        Screen.SetResolution(width, height, true);
-    }
-
-    public void SetWindowedResolution(int width, int height)
-    {
-        Screen.SetResolution(width, height, false);
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
     public void SetVolume(float volume)
