@@ -7,21 +7,16 @@ using BCIEssentials.Controllers;
 
 public class BessyTrainClassifier : MonoBehaviour
 {
-    // [SerializeField] private List<TMP_Text> numberTimesLabelsTrainedCount = new List<TMP_Text>(4); // Assign in Inspector
-    // [SerializeField] private TMP_Text numberTimesTrainedCountLabel1;
-    // [SerializeField] private TMP_Text numberTimesTrainedCountLabel2;
     [SerializeField] private GameObject finishTrainingButton;  // Assign in Inspector
     [SerializeField] private TrainingController[] trainingControllers; // Reference to all TrainingController components in children
 
     [SerializeField] private int minWindowsPerClass = 5;
     [SerializeField] private int minClasses = 2;
-    // [SerializeField] private GameObject _bciControllerGO;
 
 
     private void Awake() {
+        
         finishTrainingButton.SetActive(false);
-
-        // trainingControllers = GetComponentsInChildren<TrainingController>();
 
         // Add CheckTotalTrainingWindows as a listener to the event on each TrainingController
         foreach (var controller in trainingControllers)
@@ -65,14 +60,12 @@ public class BessyTrainClassifier : MonoBehaviour
     public void FinishTraining()
     {
         UpdateClassifier();
-
-        // Could also add Scene Controller code here to move to the next scene
     }
 
     private void UpdateClassifier()
     {
         // Send a training complete marker and tell Bessy Python to update the classifier (do ML model training)
         Debug.Log("Telling Bessy to Update the classifier");
-        BCIController.UpdateClassifier();
+        BCIController.Instance.ActiveBehavior.UpdateClassifier();
     }
 }
