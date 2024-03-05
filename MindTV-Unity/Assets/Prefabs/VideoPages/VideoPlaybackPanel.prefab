@@ -268,6 +268,42 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 160
       objectReference: {fileID: 0}
+    - target: {fileID: 1800899490047863274, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800899490047863274, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[3].m_Text
+      value: Yellow
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800899490047863274, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[4].m_Text
+      value: Black
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800899490047863274, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[5].m_Text
+      value: Magenta
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800899490047863274, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[6].m_Text
+      value: Grey
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800899490047863274, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[7].m_Text
+      value: Cyan
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800899490047863274, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[8].m_Text
+      value: Blue (Theme)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800899490047863274, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[9].m_Text
+      value: Green (Theme)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800899490047863274, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[10].m_Text
+      value: Purple (Theme)
+      objectReference: {fileID: 0}
     - target: {fileID: 2001030541296343038, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
       propertyPath: m_Name
       value: StopButton
@@ -308,6 +344,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseButton
       objectReference: {fileID: 0}
+    - target: {fileID: 5685968434318056703, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685968434318056703, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[3].m_Text
+      value: Yellow
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685968434318056703, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[4].m_Text
+      value: Black
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685968434318056703, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[5].m_Text
+      value: Magenta
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685968434318056703, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[6].m_Text
+      value: Grey
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685968434318056703, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[7].m_Text
+      value: Cyan
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685968434318056703, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[8].m_Text
+      value: Blue (Theme)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685968434318056703, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[9].m_Text
+      value: Green (Theme)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685968434318056703, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[10].m_Text
+      value: Purple (Theme)
+      objectReference: {fileID: 0}
     - target: {fileID: 5805393671697102459, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -344,6 +416,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackButton
       objectReference: {fileID: 0}
+    - target: {fileID: 6911118263368840848, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6911118263368840848, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[3].m_Text
+      value: Yellow
+      objectReference: {fileID: 0}
+    - target: {fileID: 6911118263368840848, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[4].m_Text
+      value: Black
+      objectReference: {fileID: 0}
+    - target: {fileID: 6911118263368840848, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[5].m_Text
+      value: Magenta
+      objectReference: {fileID: 0}
+    - target: {fileID: 6911118263368840848, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[6].m_Text
+      value: Grey
+      objectReference: {fileID: 0}
+    - target: {fileID: 6911118263368840848, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[7].m_Text
+      value: Cyan
+      objectReference: {fileID: 0}
+    - target: {fileID: 6911118263368840848, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[8].m_Text
+      value: Blue (Theme)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6911118263368840848, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[9].m_Text
+      value: Green (Theme)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6911118263368840848, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[10].m_Text
+      value: Purple (Theme)
+      objectReference: {fileID: 0}
     - target: {fileID: 7052307406184427875, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -367,6 +475,42 @@ PrefabInstance:
     - target: {fileID: 7052307406184427875, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9198229348856388583, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9198229348856388583, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[3].m_Text
+      value: Yellow
+      objectReference: {fileID: 0}
+    - target: {fileID: 9198229348856388583, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[4].m_Text
+      value: Black
+      objectReference: {fileID: 0}
+    - target: {fileID: 9198229348856388583, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[5].m_Text
+      value: Magenta
+      objectReference: {fileID: 0}
+    - target: {fileID: 9198229348856388583, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[6].m_Text
+      value: Grey
+      objectReference: {fileID: 0}
+    - target: {fileID: 9198229348856388583, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[7].m_Text
+      value: Cyan
+      objectReference: {fileID: 0}
+    - target: {fileID: 9198229348856388583, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[8].m_Text
+      value: Blue (Theme)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9198229348856388583, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[9].m_Text
+      value: Green (Theme)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9198229348856388583, guid: ead93a95a2f664b3282e48d7e73a8ebe, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[10].m_Text
+      value: Purple (Theme)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
