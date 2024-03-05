@@ -2124,7 +2124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2267871353319844068, guid: c3b353e14b45f41809b257c996983a83, type: 3}
       propertyPath: m_text
-      value: Setup Videos
+      value: Activity Page
       objectReference: {fileID: 0}
     - target: {fileID: 2267871353319844068, guid: c3b353e14b45f41809b257c996983a83, type: 3}
       propertyPath: m_Enabled
@@ -2505,6 +2505,10 @@ PrefabInstance:
     - target: {fileID: 6604744367880271987, guid: c3b353e14b45f41809b257c996983a83, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6921854686068129435, guid: c3b353e14b45f41809b257c996983a83, type: 3}
+      propertyPath: m_Name
+      value: ActivityPage
       objectReference: {fileID: 0}
     - target: {fileID: 7201486789924396995, guid: c3b353e14b45f41809b257c996983a83, type: 3}
       propertyPath: m_Interactable
