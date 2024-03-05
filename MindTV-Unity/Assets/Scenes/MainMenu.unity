@@ -466,6 +466,10 @@ PrefabInstance:
       propertyPath: _behaviorDropdown
       value: 
       objectReference: {fileID: 1049702346}
+    - target: {fileID: 4008501562255705380, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
+      propertyPath: resolutionDropdown
+      value: 
+      objectReference: {fileID: 1504942156}
     - target: {fileID: 4081894865989510521, guid: 116e0418f07b27d47a7c4335f85f6aa9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1242,7 +1246,7 @@ PrefabInstance:
     - target: {fileID: 405784984828431236, guid: bf8ac7aac01af45fe9fc967ea2600b13, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3013583488901545744}
+      objectReference: {fileID: 389994427}
     - target: {fileID: 405784984828431236, guid: bf8ac7aac01af45fe9fc967ea2600b13, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1253,7 +1257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 405784984828431236, guid: bf8ac7aac01af45fe9fc967ea2600b13, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameController, Assembly-CSharp
+      value: OptionsMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 405784984828431236, guid: bf8ac7aac01af45fe9fc967ea2600b13, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -2240,7 +2244,7 @@ PrefabInstance:
     - target: {fileID: 5760389634866556882, guid: 3006f798617c344d4925678409effa07, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3013583488901545744}
+      objectReference: {fileID: 389994427}
     - target: {fileID: 5760389634866556882, guid: 3006f798617c344d4925678409effa07, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -2251,7 +2255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5760389634866556882, guid: 3006f798617c344d4925678409effa07, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameController, Assembly-CSharp
+      value: OptionsMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5760389634866556882, guid: 3006f798617c344d4925678409effa07, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
