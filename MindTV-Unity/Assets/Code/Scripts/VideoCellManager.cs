@@ -222,14 +222,15 @@ public class VideoCellManager : MonoBehaviour
         p300Effect._flashOffColor = cellPrefs.backgroundColor;
     }
 
+
+
+
     public void UpdateVideoThumbnail()
     {
         videoPlayer.url = cellPrefs.videoPath;
-
-        // TODO - not sure why this isn't working on Windows
-        // StartCoroutine(LoadPreview());
+        StartCoroutine(LoadPreview());
     }
-
+   
     IEnumerator LoadPreview()
     {
         videoPlayer.Prepare();
@@ -240,9 +241,12 @@ public class VideoCellManager : MonoBehaviour
 
         // TODO - figure out a way to capture the texture instead of leaving the player running.
         // If the player is stopped or destroyed, the thumbnail will disappear.
+        videoPlayer.frame = 30;
         videoPlayer.Play();
-        videoThumbnailButton.GetComponent<RawImage>().texture = videoPlayer.texture;
+        videoPlayer.sendFrameReadyEvents = true;
         videoPlayer.Pause();
+
+        videoThumbnailButton.GetComponent<RawImage>().texture = videoPlayer.texture;
 
         yield return null;
     }
