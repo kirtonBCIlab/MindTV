@@ -2131,6 +2131,10 @@ PrefabInstance:
       value: Resolution Dropdown
       objectReference: {fileID: 0}
     - target: {fileID: 2248192279300007672, guid: 3006f798617c344d4925678409effa07, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2248192279300007672, guid: 3006f798617c344d4925678409effa07, type: 3}
       propertyPath: m_TagString
       value: ParadigmDropdown
       objectReference: {fileID: 0}
