@@ -7,6 +7,35 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+
+    Resolution[] resolutions;
+
+    public TMP_Dropdown resolutionDropdown;
+
+    public Slider volumeSlider;
+
+    private void Start()
+    {
+        resolutions = Screen.resolutions;
+        resolutionDropdown.ClearOptions();
+        List<string> optionsRes = new List<string>();
+        int currentResolutionIndex = 0;
+        for(int i = 0; i < resolutions.Length; i++)
+        {
+            string option = resolutions[i].width + " x " + resolutions[i].height;
+            optionsRes.Add(option);
+
+            if(resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+            {
+                currentResolutionIndex = i;
+            }
+
+        }
+        resolutionDropdown.AddOptions(optionsRes);
+        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.RefreshShownValue();
+    }
+
     public void Update()
     {
         // Quit application if you are in the main menu
