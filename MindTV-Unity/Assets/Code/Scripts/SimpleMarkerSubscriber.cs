@@ -14,11 +14,6 @@ public class SimpleMarkerSubscriber : MonoBehaviour, ILSLMarkerSubscriber
     [SerializeField] private string _streamName = "PythonResponse";
     [SerializeField] private bool _subscribeOnStart = false;
 
-    [Header("UI")] [SerializeField] private Button _subscribeButton;
-    [SerializeField] private Button _unsubscribeButton;
-    [SerializeField] private TMP_Text _statusText;
-    [SerializeField] private TMP_Text _responseText;
-
     [Space(20), InspectorReadOnly] public LSLMarkerReceiver LslMarkerReceiver;
 
     public bool Subscribed { get; private set; }
@@ -26,10 +21,6 @@ public class SimpleMarkerSubscriber : MonoBehaviour, ILSLMarkerSubscriber
     // Start is called before the first frame update
     private void Start()
     {
-        _statusText.text = "No Connection";
-        _responseText.text = "No Responses";
-        _subscribeButton.onClick.AddListener(Subscribe);
-        _unsubscribeButton.onClick.AddListener(Unsubscribe);
 
         if (_provider == null)
         {
@@ -48,7 +39,6 @@ public class SimpleMarkerSubscriber : MonoBehaviour, ILSLMarkerSubscriber
         if (!Subscribed && LslMarkerReceiver != null)
         {
             Debug.Log("Subscribed!");
-            _statusText.text = "Subscribed!";
             LslMarkerReceiver.Subscribe(this);
             Subscribed = true;
         }
@@ -59,7 +49,6 @@ public class SimpleMarkerSubscriber : MonoBehaviour, ILSLMarkerSubscriber
         if (Subscribed && LslMarkerReceiver != null)
         {
             Debug.Log("Unsubscribed!");
-            _statusText.text = "Unsubscribed!";
             LslMarkerReceiver.Unsubscribe(this);
             Subscribed = false;
         }
@@ -68,8 +57,6 @@ public class SimpleMarkerSubscriber : MonoBehaviour, ILSLMarkerSubscriber
     public void NewMarkersCallback(LSLMarkerResponse[] latestMarkers)
     {
         Debug.Log($"{latestMarkers.Length} New Markers Received");
-
         var responseStrings = latestMarkers.Select(r => r.Value[0]).ToArray();
-        _responseText.text = $"Responses:\n{string.Join(", ", responseStrings)}";
     }
 }

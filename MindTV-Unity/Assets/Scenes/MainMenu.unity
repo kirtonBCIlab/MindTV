@@ -2445,7 +2445,7 @@ PrefabInstance:
       objectReference: {fileID: 985110823}
     - target: {fileID: 3587482332833661932, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpdateButtonHeadsetConnection
+      value: UnsubscribeLSLResponseStream
       objectReference: {fileID: 0}
     - target: {fileID: 4030936653785308657, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_Name
@@ -2469,7 +2469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: UpdateButtonHeadsetConnection
+      value: SubscribeLSLResponseStream
       objectReference: {fileID: 0}
     - target: {fileID: 6746055731719183002, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_Name
