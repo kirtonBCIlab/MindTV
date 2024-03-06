@@ -58,6 +58,11 @@ public class TrainingPageManager : MonoBehaviour
         _SPO.GetComponent<SPO>().ObjectID = trainingPrefs.labelNumber;
     }
 
+    private void OnEnable()
+    {
+        InitializeViews();
+    }
+
     private void InitializeSettings()
     {
         // Use the TrainingPage sibling index as the "label number".  This is needed to choose the correct
@@ -157,6 +162,10 @@ public class TrainingPageManager : MonoBehaviour
         string trialLengthName = Settings.NameForTrialLength(trialLength);
         int index = trialLengthDropdown.options.FindIndex(option => option.text == trialLengthName);
         trialLengthDropdown.value = index;
+
+        //Update the actual values in the MIController Object.
+        Debug.Log("Setting active behavior number of windows to trial length/windowlength = " + trialLength / trainingPrefs.windowLength);
+        BCIController.Instance.ActiveBehavior.numTrainWindows = Mathf.RoundToInt(trialLength / trainingPrefs.windowLength);
     }
 
     public void TrialLengthChanged(int trialLengthIndex)
@@ -165,10 +174,6 @@ public class TrainingPageManager : MonoBehaviour
         string trialLengthName = trialLengthDropdown.options[trialLengthIndex].text;
         float trialLength = Settings.TrialLengthForName(trialLengthName);
         trainingPrefs.trialLength = trialLength;
-
-        //Update the actual values in the MIController Object.
-        Debug.Log("Setting active behavior number of windows to trial length/windowlength = " + trialLength / trainingPrefs.windowLength);
-        BCIController.Instance.ActiveBehavior.numTrainWindows = Mathf.RoundToInt(trialLength / trainingPrefs.windowLength);
 
         UpdateTrialLength();
         UpdateAnimation();
