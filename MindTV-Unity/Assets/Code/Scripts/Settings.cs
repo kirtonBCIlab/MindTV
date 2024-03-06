@@ -143,6 +143,14 @@ public class Settings
             videoCellPrefs.Add(newCell);
             return newCell;
         }
+
+        public void RemoveLastVideoCell()
+        {
+            if (videoCellPrefs.Any())
+            {
+                videoCellPrefs.RemoveAt(videoCellPrefs.Count - 1);
+            }
+        }
     }
 
 
