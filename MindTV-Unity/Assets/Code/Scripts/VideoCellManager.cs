@@ -36,6 +36,10 @@ public class VideoCellManager : MonoBehaviour
     public Settings.VideoCellPrefs cellPrefs = new Settings.VideoCellPrefs();
     [SerializeField] private SPO _spo;
 
+    //Private variable for majority voting information
+    public int _majorityVoteThreshold = 3;
+    private int _majorityVoteCount = 0;
+
     void Awake()
     {
         // TODO - used to create a thumbnail, this is a bit hacky as the player hangs around
@@ -259,4 +263,40 @@ public class VideoCellManager : MonoBehaviour
         // signal to parent that this video was chosen and provide details for playback
         VideoCellSelected?.Invoke(cellPrefs.cellNumber);
     }
+
+    public void SelectVideoBCI()
+    {
+        //TODO: We could make this a switch case or other scheme to handle different BCI behaviors
+        // Handle cases for different BCI behaviors
+        if(BCIController.Instance.ActiveBehavior.BehaviorType == BCIBehaviorType.P300)
+        {
+            //Straight forward, just call the ThumbnailButtonPressed method
+            ThumbNailButtonPressed();
+        }
+        else if(BCIController.Instance.ActiveBehavior.BehaviorType == BCIBehaviorType.MI) 
+        {
+            //Have to select this a certain number of times for it to be chosen
+            if(_majorityVoteCount < _majorityVoteThreshold)
+            {
+                Debug.Log("Voted for " + cellPrefs.mentalCommandLabel + " " + _majorityVoteCount + " times");
+                _majorityVoteCount++;
+            }
+            else
+            {
+                //Reset the count and call the ThumbnailButtonPressed method
+                Debug.Log("Threshold reached, selecting " + cellPrefs.mentalCommandLabel);
+                _majorityVoteCount = 0;
+                ThumbNailButtonPressed();
+            }
+
+        }
+        else if (BCIController.Instance.ActiveBehavior.BehaviorType == BCIBehaviorType.SSVEP)
+        {
+            //Straight forward, just call the ThumbnailButtonPressed method
+            ThumbNailButtonPressed();
+        }
+
+    }
+
+
 }

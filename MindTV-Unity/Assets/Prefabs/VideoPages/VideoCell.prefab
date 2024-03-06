@@ -5614,6 +5614,7 @@ MonoBehaviour:
     includeGraphic: 1
     mentalCommandLabel: 
   _spo: {fileID: 0}
+  _majorityVoteThreshold: 3
 --- !u!114 &7921734679806633152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5637,7 +5638,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7168834188686347849}
         m_TargetAssemblyTypeName: VideoCellManager, Assembly-CSharp
-        m_MethodName: ThumbNailButtonPressed
+        m_MethodName: SelectVideoBCI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
