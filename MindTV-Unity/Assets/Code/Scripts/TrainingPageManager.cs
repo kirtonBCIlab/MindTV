@@ -55,9 +55,7 @@ public class TrainingPageManager : MonoBehaviour
         imageSizeSlider.value = currentBaseSize;
 
         // TODO - move to a helper
-        //This shouldn't change with other things changing, because the label number is only set once.
-        //This has a plus 1 as requested by Brian for processing later
-        _SPO.GetComponent<SPO>().ObjectID = trainingPrefs.labelNumber + 1;
+        _SPO.GetComponent<SPO>().ObjectID = trainingPrefs.labelNumber;
     }
 
     private void InitializeSettings()
