@@ -36,7 +36,7 @@ public class VideoControlManager : MonoBehaviour
         int controlNumber = transform.GetSiblingIndex();
         controlPrefs = SettingsManager.Instance?.currentUser.videoControlPrefs[controlNumber] ?? new Settings.VideoControlPrefs();
         // Get the SPO component on this game object
-        _spo = GetComponent<SPO>(); 
+        _spo = GetComponent<SPO>();
     }
 
     public void InitializeListeners()
@@ -54,7 +54,7 @@ public class VideoControlManager : MonoBehaviour
         UpdateImageVisibility();
         UpdateImage();
 
-        if (BCIController.Instance !=null && BCIController.Instance.ActiveBehavior.BehaviorType == BCIBehaviorType.P300)
+        if (BCIController.Instance != null && BCIController.Instance.ActiveBehavior.BehaviorType == BCIBehaviorType.P300)
         {
             Debug.Log("P300 is the active behavior, enabling P300 effect");
             gameObject.GetComponent<SPO>().StartStimulusEvent.AddListener(gameObject.GetComponent<VideoPanelButtonEffect>().SetOn);
@@ -89,7 +89,7 @@ public class VideoControlManager : MonoBehaviour
         mentalCommandName.text = controlPrefs.mentalCommandLabel;
         mentalCommandDropdown.value = mentalCommandDropdown.options.FindIndex(option => option.text == controlPrefs.mentalCommandLabel);
         //Update the SPO component with the new mental command
-        _spo.ObjectID = (int)(SettingsManager.Instance?.currentUser.GetIDForLabel(controlPrefs.mentalCommandLabel));
+        _spo.ObjectID = (int)(SettingsManager.Instance?.currentUser.GetLabelNumberForLabelName(controlPrefs.mentalCommandLabel));
     }
 
     public void MentalCommandChanged(int labelIndex)
@@ -118,7 +118,7 @@ public class VideoControlManager : MonoBehaviour
         controlPrefs.backgroundColor = color;
         UpdateCellColor();
 
-                //Initialize the P300 effect listener if the BCI instance is set to P300
+        //Initialize the P300 effect listener if the BCI instance is set to P300
         if (BCIController.Instance.ActiveBehavior.BehaviorType == BCIBehaviorType.P300)
         {
             UpdateP300Effect();
@@ -141,7 +141,7 @@ public class VideoControlManager : MonoBehaviour
 
     public void UpdateImage()
     {
-        imageGraphic.sprite = SettingsManager.Instance?.currentUser.GetImageForLabel(controlPrefs.mentalCommandLabel);
+        imageGraphic.sprite = SettingsManager.Instance?.currentUser.GetImageForLabelName(controlPrefs.mentalCommandLabel);
     }
 
     public void UpdateP300Effect()

@@ -46,10 +46,10 @@ public class TrainingController : MonoBehaviour
 
     private void InitializeSettings()
     {
-        // Use the TrainingPage sibling index as the "label number".  This is needed to choose the correct
-        // TrainingPrefs object from the data model.  Use a dummy TrainingPrefs if one is not found.
-        int labelNumber = transform.GetSiblingIndex();
-        trainingPrefs = SettingsManager.Instance?.currentUser.trainingPrefs[labelNumber] ?? new Settings.TrainingPrefs();
+        // Use the TrainingPage sibling index to look up the TrainingPrefs object from the data model.
+        //  Use a dummy TrainingPrefs if one is not found.
+        int pageIndex = transform.GetSiblingIndex();
+        trainingPrefs = SettingsManager.Instance?.currentUser.trainingPrefs[pageIndex] ?? new Settings.TrainingPrefs();
     }
 
 

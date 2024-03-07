@@ -39,9 +39,11 @@ public class TrainingTabManager : MonoBehaviour
 
         if (tabGroup != null)
         {
-            foreach (Settings.TrainingPrefs pref in user.trainingPrefs)
+            for (int index = 0; index < user.trainingPrefs.Count; index++)
             {
-                tabGroup.SetTabAppearance(pref.labelNumber, pref.labelName, pref.backgroundColor);
+                // the tab index aligns with the training page index
+                Settings.TrainingPrefs pref = user.trainingPrefs[index];
+                tabGroup.SetTabAppearance(index, pref.labelName, pref.backgroundColor);
             }
         }
     }
