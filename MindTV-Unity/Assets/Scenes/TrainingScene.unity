@@ -1343,6 +1343,42 @@ PrefabInstance:
     m_TransformParent: {fileID: 1874068026563440165}
     m_Modifications:
     - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[4].m_Text
+      value: Shrink
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[5].m_Text
+      value: Wiggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[6].m_Text
+      value: Rotate
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[7].m_Text
+      value: RotatePunch
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[8].m_Text
+      value: Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[9].m_Text
+      value: Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[10].m_Text
+      value: Up
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[11].m_Text
+      value: Down
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -2313,6 +2349,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1874068026563440165}
     m_Modifications:
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[4].m_Text
+      value: Shrink
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[5].m_Text
+      value: Wiggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[6].m_Text
+      value: Rotate
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[7].m_Text
+      value: RotatePunch
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[8].m_Text
+      value: Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[9].m_Text
+      value: Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[10].m_Text
+      value: Up
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[11].m_Text
+      value: Down
+      objectReference: {fileID: 0}
     - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 0
@@ -3570,6 +3642,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1874068026563440165}
     m_Modifications:
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[4].m_Text
+      value: Shrink
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[5].m_Text
+      value: Wiggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[6].m_Text
+      value: Rotate
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[7].m_Text
+      value: RotatePunch
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[8].m_Text
+      value: Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[9].m_Text
+      value: Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[10].m_Text
+      value: Up
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[11].m_Text
+      value: Down
+      objectReference: {fileID: 0}
     - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 0
@@ -4906,6 +5014,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1874068026563440165}
     m_Modifications:
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[3].m_Text
+      value: Grow
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[4].m_Text
+      value: Shrink
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[5].m_Text
+      value: Wiggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[6].m_Text
+      value: Rotate
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[7].m_Text
+      value: RotatePunch
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[8].m_Text
+      value: Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[9].m_Text
+      value: Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[10].m_Text
+      value: Up
+      objectReference: {fileID: 0}
+    - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[11].m_Text
+      value: Down
+      objectReference: {fileID: 0}
     - target: {fileID: 49937838688829347, guid: a7c49757987f03047883032ca83726c7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 0
