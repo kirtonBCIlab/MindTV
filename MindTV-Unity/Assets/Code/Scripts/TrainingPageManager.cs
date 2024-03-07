@@ -55,12 +55,6 @@ public class TrainingPageManager : MonoBehaviour
         imageSizeSlider.value = currentBaseSize;
     }
 
-    // TODO - this is here just to set the SPO id, move this to TrainingController.StartMyTraining() instead to avoid null ref
-    // private void OnEnable()
-    // {
-    //     InitializeViews();
-    // }
-
     private void InitializeSettings()
     {
         // Use the TrainingPage sibling index to look up the TrainingPrefs object from the data model.
@@ -158,10 +152,6 @@ public class TrainingPageManager : MonoBehaviour
         string trialLengthName = Settings.NameForTrialLength(trialLength);
         int index = trialLengthDropdown.options.FindIndex(option => option.text == trialLengthName);
         trialLengthDropdown.value = index;
-
-        //Update the actual values in the MIController Object.
-        Debug.Log("Setting active behavior number of windows to trial length/windowlength = " + trialLength / trainingPrefs.windowLength);
-        BCIController.Instance.ActiveBehavior.numTrainWindows = Mathf.RoundToInt(trialLength / trainingPrefs.windowLength);
     }
 
     public void TrialLengthChanged(int trialLengthIndex)

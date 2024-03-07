@@ -125,8 +125,9 @@ public class TrainingController : MonoBehaviour
         Debug.Log("Starting training on label: " + labelName + " (" + labelNumber + ")");
         Debug.Log("Trial length is " + trialLength + " (" + windowCount + " windows of " + windowLength + " seconds)");
 
-        // Run the training
-        if( BCIController.Instance.ActiveBehavior.SelectableSPOs.Count > 1)
+        // Set the trial length and run training
+        BCIController.Instance.ActiveBehavior.numTrainWindows = windowCount;
+        if ( BCIController.Instance.ActiveBehavior.SelectableSPOs.Count > 1)
         {
             BCIController.Instance.ActiveBehavior.StartTraining(BCITrainingType.Iterative);
         }
