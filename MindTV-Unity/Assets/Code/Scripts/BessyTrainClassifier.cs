@@ -21,7 +21,6 @@ public class BessyTrainClassifier : MonoBehaviour
         // Add CheckTotalTrainingWindows as a listener to the event on each TrainingController
         foreach (var controller in trainingControllers)
         {
-            Debug.Log("Adding listener to " + controller.gameObject.name);
             controller.onTrainingNumberUpdated.AddListener(CheckTotalTrainingWindows);
         }
     }
