@@ -198,6 +198,8 @@ public class TrainingPageManager : MonoBehaviour
                     break;
                 case "Grow":
                     break;
+                case "Shrink":
+                    break;
                 case "Left":
                     break;
                 case "Right":

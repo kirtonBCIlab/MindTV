@@ -2049,7 +2049,7 @@ MonoBehaviour:
   numWiggles: 4
   wiggleSpeed: 0.5
   wiggleRotAngle: 45
-  pingPong: 0
+  pingPong: 1
 --- !u!1001 &1510785026526365310
 PrefabInstance:
   m_ObjectHideFlags: 0
