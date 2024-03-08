@@ -93,11 +93,11 @@ public class Settings
 
         public List<TrainingPrefs> trainingPrefs = new List<TrainingPrefs>()
         {
-            // Hard code the number of labels we can have to 4, maybe later allow user to add
-            new TrainingPrefs() { labelNumber = 0 },
+            // Hard code the number of training pages to 4, maybe later allow user to add
             new TrainingPrefs() { labelNumber = 1 },
             new TrainingPrefs() { labelNumber = 2 },
             new TrainingPrefs() { labelNumber = 3 },
+            new TrainingPrefs() { labelNumber = 4 },
         };
 
         public List<VideoCellPrefs> videoCellPrefs = new List<VideoCellPrefs>()
@@ -124,16 +124,17 @@ public class Settings
             return assignedLabels;
         }
 
-        public Sprite GetImageForLabel(string label)
-        {
-            TrainingPrefs prefs = trainingPrefs.Find(prefs => prefs.labelName == label);
-            return prefs?.GetImageAsSprite() ?? null;
-        }
-        public int GetIDForLabel(string label)
+        public int GetLabelNumberForLabelName(string label)
         {
             TrainingPrefs prefs = trainingPrefs.Find(prefs => prefs.labelName == label);
             int labelId = prefs?.labelNumber ?? -100;
             return labelId;
+        }
+
+        public Sprite GetImageForLabelName(string label)
+        {
+            TrainingPrefs prefs = trainingPrefs.Find(prefs => prefs.labelName == label);
+            return prefs?.GetImageAsSprite() ?? null;
         }
 
 

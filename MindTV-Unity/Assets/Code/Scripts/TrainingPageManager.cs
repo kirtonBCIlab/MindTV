@@ -53,25 +53,14 @@ public class TrainingPageManager : MonoBehaviour
         float currentBaseSize = trainingPrefs.imageBaseSize;
         _SPO.transform.localScale = new Vector3(currentBaseSize, currentBaseSize, currentBaseSize);
         imageSizeSlider.value = currentBaseSize;
-
-        // TODO - move to a helper
-        _SPO.GetComponent<SPO>().ObjectID = trainingPrefs.labelNumber;
-    }
-
-    private void OnEnable()
-    {
-        InitializeViews();
     }
 
     private void InitializeSettings()
     {
-        // Use the TrainingPage sibling index as the "label number".  This is needed to choose the correct
-        // TrainingPrefs object from the data model.  Use a dummy TrainingPrefs if one is not found.
-        int labelNumber = transform.GetSiblingIndex();
-        trainingPrefs = SettingsManager.Instance?.currentUser.trainingPrefs[labelNumber] ?? new Settings.TrainingPrefs();
-
-        //Set one time the object's ID based on the training prefs. 
-
+        // Use the TrainingPage sibling index to look up the TrainingPrefs object from the data model.
+        // Use a dummy TrainingPrefs if one is not found.
+        int pageIndex = transform.GetSiblingIndex();
+        trainingPrefs = SettingsManager.Instance?.currentUser.trainingPrefs[pageIndex] ?? new Settings.TrainingPrefs();
     }
 
     private void InitializeViews()
@@ -84,6 +73,7 @@ public class TrainingPageManager : MonoBehaviour
         UpdateAnimation();
         UpdateImageSize();
         UpdateImage();
+        UpdateSpo();
     }
 
     private void InitializeListeners()
@@ -162,10 +152,6 @@ public class TrainingPageManager : MonoBehaviour
         string trialLengthName = Settings.NameForTrialLength(trialLength);
         int index = trialLengthDropdown.options.FindIndex(option => option.text == trialLengthName);
         trialLengthDropdown.value = index;
-
-        //Update the actual values in the MIController Object.
-        Debug.Log("Setting active behavior number of windows to trial length/windowlength = " + trialLength / trainingPrefs.windowLength);
-        BCIController.Instance.ActiveBehavior.numTrainWindows = Mathf.RoundToInt(trialLength / trainingPrefs.windowLength);
     }
 
     public void TrialLengthChanged(int trialLengthIndex)
@@ -198,7 +184,6 @@ public class TrainingPageManager : MonoBehaviour
         if (uiTweener != null)
         {
             string tweenAnimation = uiTweener.GetTweenAnimation();
-            Debug.Log("TrainingObjectSPO.UITweener: Tween animation is " + tweenAnimation);
             switch (tweenAnimation)
             {
                 case "Bounce":
@@ -226,7 +211,6 @@ public class TrainingPageManager : MonoBehaviour
                     uiTweener.numWiggles = (int)Math.Round(uiTweener.duration / uiTweener.wiggleSpeed); // Scale the number of wiggles to the target trial length
                     break;
                 default:
-                    Debug.Log("No tween animation selected.");
                     break;
             }
         }
@@ -281,7 +265,6 @@ public class TrainingPageManager : MonoBehaviour
 
     public void ImageSelectPressed()
     {
-        Debug.Log("image");
         FileBrowser.SetFilters(false, new FileBrowser.Filter("Images", "png"));
         FileBrowser.ShowLoadDialog(ImageSelected, ImageSelectCancelled, FileBrowser.PickMode.Files, allowMultiSelection: false);
     }
@@ -304,5 +287,11 @@ public class TrainingPageManager : MonoBehaviour
     public void UpdateImage()
     {
         _SPO.GetComponent<Image>().sprite = trainingPrefs.GetImageAsSprite();
+    }
+
+
+    public void UpdateSpo()
+    {
+        _SPO.GetComponent<SPO>().ObjectID = trainingPrefs.labelNumber;
     }
 }

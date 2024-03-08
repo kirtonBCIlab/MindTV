@@ -89,7 +89,7 @@ public class VideoCellManager : MonoBehaviour
 
 
         //Check if the BCI Instance is set to P300
-        if (BCIController.Instance !=null && BCIController.Instance.ActiveBehavior.BehaviorType == BCIBehaviorType.P300)
+        if (BCIController.Instance != null && BCIController.Instance.ActiveBehavior.BehaviorType == BCIBehaviorType.P300)
         {
             Debug.Log("P300 is the active behavior, enabling P300 effect");
             gameObject.GetComponent<SPO>().StartStimulusEvent.AddListener(gameObject.GetComponent<VideoCellP300Effect>().SetOn);
@@ -125,7 +125,7 @@ public class VideoCellManager : MonoBehaviour
     {
         mentalCommandName.text = cellPrefs.mentalCommandLabel;
         mentalCommandDropdown.value = mentalCommandDropdown.options.FindIndex(option => option.text == cellPrefs.mentalCommandLabel);
-        _spo.ObjectID = (int)(SettingsManager.Instance?.currentUser.GetIDForLabel(cellPrefs.mentalCommandLabel));
+        _spo.ObjectID = (int)(SettingsManager.Instance?.currentUser.GetLabelNumberForLabelName(cellPrefs.mentalCommandLabel));
     }
 
     public void MentalCommandChanged(int labelIndex)
@@ -153,7 +153,7 @@ public class VideoCellManager : MonoBehaviour
         Color color = Settings.ColorForName(colorName);
         cellPrefs.backgroundColor = color;
         UpdateCellColor();
-        
+
         //Initialize the P300 effect listener if the BCI instance is set to P300
         if (BCIController.Instance.ActiveBehavior.BehaviorType == BCIBehaviorType.P300)
         {
@@ -190,7 +190,7 @@ public class VideoCellManager : MonoBehaviour
 
     public void UpdateImage()
     {
-        imageGraphic.sprite = SettingsManager.Instance?.currentUser.GetImageForLabel(cellPrefs.mentalCommandLabel);
+        imageGraphic.sprite = SettingsManager.Instance?.currentUser.GetImageForLabelName(cellPrefs.mentalCommandLabel);
     }
 
 
@@ -230,7 +230,7 @@ public class VideoCellManager : MonoBehaviour
         videoPlayer.url = cellPrefs.videoPath;
         StartCoroutine(LoadPreview());
     }
-   
+
     IEnumerator LoadPreview()
     {
         videoPlayer.Prepare();

@@ -46,10 +46,10 @@ public class TrainingController : MonoBehaviour
 
     private void InitializeSettings()
     {
-        // Use the TrainingPage sibling index as the "label number".  This is needed to choose the correct
-        // TrainingPrefs object from the data model.  Use a dummy TrainingPrefs if one is not found.
-        int labelNumber = transform.GetSiblingIndex();
-        trainingPrefs = SettingsManager.Instance?.currentUser.trainingPrefs[labelNumber] ?? new Settings.TrainingPrefs();
+        // Use the TrainingPage sibling index to look up the TrainingPrefs object from the data model.
+        //  Use a dummy TrainingPrefs if one is not found.
+        int pageIndex = transform.GetSiblingIndex();
+        trainingPrefs = SettingsManager.Instance?.currentUser.trainingPrefs[pageIndex] ?? new Settings.TrainingPrefs();
     }
 
 
@@ -125,9 +125,9 @@ public class TrainingController : MonoBehaviour
         Debug.Log("Starting training on label: " + labelName + " (" + labelNumber + ")");
         Debug.Log("Trial length is " + trialLength + " (" + windowCount + " windows of " + windowLength + " seconds)");
 
-        // Run the training
-        Debug.Log("Running now single training by passing in the train type of single");
-        if( BCIController.Instance.ActiveBehavior.SelectableSPOs.Count > 1)
+        // Set the trial length and run training
+        BCIController.Instance.ActiveBehavior.numTrainWindows = windowCount;
+        if ( BCIController.Instance.ActiveBehavior.SelectableSPOs.Count > 1)
         {
             BCIController.Instance.ActiveBehavior.StartTraining(BCITrainingType.Iterative);
         }
@@ -136,14 +136,11 @@ public class TrainingController : MonoBehaviour
             BCIController.Instance.ActiveBehavior.StartTraining(BCITrainingType.Single);
         }
         
-        Debug.Log("Finished BCIController.Instance.ActiveBehavior");
-
         // Start the animation
         UITweener uiTweener = _SPO.GetComponent<UITweener>();
         if (uiTweener != null)
         {
             uiTweener.HandleTween(); // Call the tween handling method for animation
-            Debug.Log("Calling _SPO.UITweener.HandleTween() to start animation");
         }
 
         // Start the timer for the training
@@ -161,7 +158,6 @@ public class TrainingController : MonoBehaviour
 
     IEnumerator TrainingTimer(int trainingSeconds)
     {
-        Debug.Log("Running TrainingTimer coroutine");
         int timeLeft = trainingSeconds;
         while (timeLeft > 0)
         {
