@@ -10,10 +10,35 @@ public class OptionsMenu : MonoBehaviour
 
     [SerializeField] private TMP_Dropdown _behaviorDropdown;
 
+    // private Resolution[] resolutions;
+
+    // [SerializeField] private TMP_Dropdown resolutionDropdown;
+
+    // private int _currentResolutionIndex = 0;
+
     private void Start()
     {
 
         _behaviorDropdown.onValueChanged.AddListener(UpdateBCIBehavior);
+
+        // //Deal with Resolutions
+        // resolutions = Screen.resolutions;
+        // resolutionDropdown.ClearOptions();
+        // List<string> optionsRes = new List<string>();
+        // for(int i = 0; i < resolutions.Length; i++)
+        // {
+        //     string option = resolutions[i].width + " x " + resolutions[i].height;
+        //     optionsRes.Add(option);
+
+        //     if(resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+        //     {
+        //         _currentResolutionIndex = i;
+        //     }
+
+        // }
+        // resolutionDropdown.AddOptions(optionsRes);
+        // resolutionDropdown.value = _currentResolutionIndex;
+        // resolutionDropdown.RefreshShownValue();
     }
 
     public void OnToggleSelected()
@@ -59,5 +84,22 @@ public class OptionsMenu : MonoBehaviour
                 Debug.Log("Invalid BCI Behavior");
                 break;
         }
+    }
+
+    
+    // public void SetResolution(int resolutionIndex)
+    // {
+    //     Resolution resolution = resolutions[resolutionIndex];
+    //     Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    // }
+
+    public void SetVolume(float volume)
+    {
+        AudioListener.volume = volume;
+    }
+
+    public void SetFullScreen(bool isFullScreen)
+    {
+        Screen.fullScreen = isFullScreen;
     }
 }

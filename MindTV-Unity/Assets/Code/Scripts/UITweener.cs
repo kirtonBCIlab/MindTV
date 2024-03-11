@@ -98,7 +98,6 @@ public class UITweener : MonoBehaviour
         switch (animationTypes)
         {
             case UIAnimationTypes.None:
-                Debug.Log("none selected");
                 break;
             case UIAnimationTypes.Grow:
                 GrowAnim();
@@ -134,7 +133,6 @@ public class UITweener : MonoBehaviour
                 MoveToTarget(targetDown);
                 break;
         }
-        Debug.Log("end of handle");
     }
 
     // public void MoveAbsolute()

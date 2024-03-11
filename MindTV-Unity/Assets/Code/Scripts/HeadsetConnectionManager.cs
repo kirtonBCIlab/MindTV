@@ -15,9 +15,9 @@ public class HeadsetConnectManager : MonoBehaviour
     [SerializeField] private GameObject _bciControllerGO;
     [SerializeField] private float _headsetCheckDelay = 3.0f;
 
-    private LSLResponseStream _lslResponseStream;
+    [SerializeField] private LSLResponseStream _lslResponseStream;
 
-    private void Awake()
+    private void Start()
     {
         HeadsetConnected = false;
         _bciControllerGO = GameObject.FindWithTag("BCIController");

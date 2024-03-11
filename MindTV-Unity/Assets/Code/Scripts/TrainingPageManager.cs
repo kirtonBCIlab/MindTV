@@ -53,22 +53,14 @@ public class TrainingPageManager : MonoBehaviour
         float currentBaseSize = trainingPrefs.imageBaseSize;
         _SPO.transform.localScale = new Vector3(currentBaseSize, currentBaseSize, currentBaseSize);
         imageSizeSlider.value = currentBaseSize;
-
-        // TODO - move to a helper
-        //This shouldn't change with other things changing, because the label number is only set once.
-        //This has a plus 1 as requested by Brian for processing later
-        _SPO.GetComponent<SPO>().ObjectID = trainingPrefs.labelNumber+1;
     }
 
     private void InitializeSettings()
     {
-        // Use the TrainingPage sibling index as the "label number".  This is needed to choose the correct
-        // TrainingPrefs object from the data model.  Use a dummy TrainingPrefs if one is not found.
-        int labelNumber = transform.GetSiblingIndex();
-        trainingPrefs = SettingsManager.Instance?.currentUser.trainingPrefs[labelNumber] ?? new Settings.TrainingPrefs();
-
-        //Set one time the object's ID based on the training prefs. 
-
+        // Use the TrainingPage sibling index to look up the TrainingPrefs object from the data model.
+        // Use a dummy TrainingPrefs if one is not found.
+        int pageIndex = transform.GetSiblingIndex();
+        trainingPrefs = SettingsManager.Instance?.currentUser.trainingPrefs[pageIndex] ?? new Settings.TrainingPrefs();
     }
 
     private void InitializeViews()
@@ -76,10 +68,12 @@ public class TrainingPageManager : MonoBehaviour
         // Update the UI to match current settings
         UpdateTrainingLabel();
         UpdateTrainingPageColor();
+        UpdateTabs();
         UpdateTrialLength();
         UpdateAnimation();
         UpdateImageSize();
         UpdateImage();
+        UpdateSpo();
     }
 
     private void InitializeListeners()
@@ -115,7 +109,7 @@ public class TrainingPageManager : MonoBehaviour
     public void LabelChanged(string labelText)
     {
         trainingPrefs.labelName = labelText;
-        TrainingPrefsChanged?.Invoke();
+        UpdateTabs();
     }
 
 
@@ -139,6 +133,13 @@ public class TrainingPageManager : MonoBehaviour
         trainingPrefs.backgroundColor = color;
 
         UpdateTrainingPageColor();
+        UpdateTabs();
+    }
+
+
+    private void UpdateTabs()
+    {
+        // signals to TrainingTabManager that label or color changed
         TrainingPrefsChanged?.Invoke();
     }
 
@@ -159,10 +160,6 @@ public class TrainingPageManager : MonoBehaviour
         string trialLengthName = trialLengthDropdown.options[trialLengthIndex].text;
         float trialLength = Settings.TrialLengthForName(trialLengthName);
         trainingPrefs.trialLength = trialLength;
-
-        //Update the actual values in the MIController Object.
-        Debug.Log("Setting active behavior number of windows to trial length/windowlength = " + trialLength/trainingPrefs.windowLength);
-        BCIController.Instance.ActiveBehavior.numTrainWindows = Mathf.RoundToInt(trialLength / trainingPrefs.windowLength);
 
         UpdateTrialLength();
         UpdateAnimation();
@@ -187,7 +184,6 @@ public class TrainingPageManager : MonoBehaviour
         if (uiTweener != null)
         {
             string tweenAnimation = uiTweener.GetTweenAnimation();
-            Debug.Log("TrainingObjectSPO.UITweener: Tween animation is " + tweenAnimation);
             switch (tweenAnimation)
             {
                 case "Bounce":
@@ -217,7 +213,6 @@ public class TrainingPageManager : MonoBehaviour
                     uiTweener.numWiggles = (int)Math.Round(uiTweener.duration / uiTweener.wiggleSpeed); // Scale the number of wiggles to the target trial length
                     break;
                 default:
-                    Debug.Log("No tween animation selected.");
                     break;
             }
         }
@@ -237,17 +232,20 @@ public class TrainingPageManager : MonoBehaviour
         float currentBaseSize = trainingPrefs.imageBaseSize;
         imageSizeSlider.value = currentBaseSize;
 
-        SpriteRenderer spriteRenderer = _SPO.GetComponent<SpriteRenderer>();
-        float uniformScaleFactor = UniformImageSizeScaleFactor(spriteRenderer);
-        float scaledSize = currentBaseSize * uniformScaleFactor;
-        _SPO.transform.localScale = new Vector3(scaledSize, scaledSize, scaledSize);
+        Image image = _SPO.GetComponent<Image>();
+        if(image.sprite != null)
+        {
+            float uniformScaleFactor = UniformImageSizeScaleFactor(image.sprite);
+            float scaledSize = currentBaseSize * uniformScaleFactor;
+            _SPO.transform.localScale = new Vector3(scaledSize, scaledSize, scaledSize);
+        }
     }
 
     // Calculate the scale factor needed to resize the longest dimension to targetImageResolution (512x512)
-    private float UniformImageSizeScaleFactor(SpriteRenderer spriteRenderer)
+    private float UniformImageSizeScaleFactor(Sprite sprite)
     {
-        float width = spriteRenderer.sprite.texture.width;
-        float height = spriteRenderer.sprite.texture.height;
+        float width = sprite.texture.width;
+        float height = sprite.texture.height;
         float maxDimension = Mathf.Max(width, height);
         float scaleFactor = targetImageResolution / maxDimension;
         return scaleFactor;
@@ -269,7 +267,6 @@ public class TrainingPageManager : MonoBehaviour
 
     public void ImageSelectPressed()
     {
-        Debug.Log("image");
         FileBrowser.SetFilters(false, new FileBrowser.Filter("Images", "png"));
         FileBrowser.ShowLoadDialog(ImageSelected, ImageSelectCancelled, FileBrowser.PickMode.Files, allowMultiSelection: false);
     }
@@ -291,6 +288,12 @@ public class TrainingPageManager : MonoBehaviour
 
     public void UpdateImage()
     {
-        _SPO.GetComponent<SpriteRenderer>().sprite = trainingPrefs.GetImageAsSprite();
+        _SPO.GetComponent<Image>().sprite = trainingPrefs.GetImageAsSprite();
+    }
+
+
+    public void UpdateSpo()
+    {
+        _SPO.GetComponent<SPO>().ObjectID = trainingPrefs.labelNumber;
     }
 }

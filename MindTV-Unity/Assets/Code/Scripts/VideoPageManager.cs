@@ -21,6 +21,7 @@ public class VideoPageManager : MonoBehaviour
     [SerializeField] private GameObject chooseVideoButtonGO;
 
     [SerializeField] private Button addVideoCellButton;
+    [SerializeField] private Button removeVideoCellButton;
     [SerializeField] private Transform videoCellParent;
     [SerializeField] private GameObject videoCellPrefab;
 
@@ -56,6 +57,7 @@ public class VideoPageManager : MonoBehaviour
         chooseVideoButton.onClick.AddListener(ShowSelectionPanel);
 
         addVideoCellButton.onClick.AddListener(AddVideoCell);
+        removeVideoCellButton.onClick.AddListener(RemoveVideoCell);
         VideoCellManager.VideoCellSelected += ShowVideoForCell;
     }
 
@@ -79,7 +81,7 @@ public class VideoPageManager : MonoBehaviour
         videoPlaybackPanel.SetActive(false);
 
         videoSelectionPanel.SetActive(true);
-        ShowVideoCellAddButton();
+        ShowVideoCellAddRemoveButton();
     }
 
     private void ShowPlaybackPanel()
@@ -99,29 +101,42 @@ public class VideoPageManager : MonoBehaviour
         GameObject videoCell = Instantiate(videoCellPrefab, videoCellParent, false);
         videoCell.GetComponent<VideoCellManager>().SetVideoCellPrefs(pref);
 
-        // Hide the video cell button if we have too many now
-        ShowVideoCellAddButton();
+        // Refresh button state
+        ShowVideoCellAddRemoveButton();
     }
 
-    private void ShowVideoCellAddButton()
+    private void RemoveVideoCell()
+    {
+        // The simplest way to do this is to just remove the last cell.
+        // This avoids having to re-order the cellNumber, etc.
+        SettingsManager.Instance?.currentUser.RemoveLastVideoCell();
+        Destroy(videoCellParent.transform.GetChild(videoCellParent.childCount - 1).gameObject);
+
+        // Refresh button state
+        ShowVideoCellAddRemoveButton();
+    }
+
+    private void ShowVideoCellAddRemoveButton()
     {
         addVideoCellButton.gameObject.SetActive(videoCellPrefs.Count < 4);
+        removeVideoCellButton.gameObject.SetActive(videoCellPrefs.Count > 0);
     }
 
     private void HideVideoCellAddButton()
     {
         addVideoCellButton.gameObject.SetActive(false);
+        removeVideoCellButton.gameObject.SetActive(false);
     }
 
 
     private void ShowVideoForCell(int cellNumber)
     {
-        ShowPlaybackPanel();
-
         // If this isn't working, check that perisited settings have correct cell number
         // It may be necessary to remove UserData.dat and start again.
         Debug.Log("Showing video for cell number " + cellNumber);
         videoPlayer.url = videoCellPrefs[cellNumber].videoPath;
+
+        ShowPlaybackPanel();
     }
 
 
@@ -154,11 +169,6 @@ public class VideoPageManager : MonoBehaviour
     {
         videoPlayer.Stop();
         ResetVideoToFirstFrame();
-        // if (videoPlayer.isPlaying || videoPlayer.isPaused)
-        // {
-        //     videoPlayer.Stop();
-        //     ResetVideoToFirstFrame();
-        // }
     }
 
     private void HideVideo()
@@ -169,6 +179,7 @@ public class VideoPageManager : MonoBehaviour
 
     private void ShowVideo()
     {
+        ResetVideoToFirstFrame();
         // Shows the RawImage component to start displaying the video
         videoPlayerRawImage.enabled = true;
     }

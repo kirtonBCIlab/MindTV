@@ -22,7 +22,7 @@ public class Settings
         public string animationName = "None";
         public Color backgroundColor = Settings.ColorForName("Blue (Theme)");
 
-        public string imagePath = "Assets/icons/cube_primary.png";
+        public string imagePath = "";
         public float imageBaseSize = 100.0f;
 
         // trial length must be a positive multiple of windowLength
@@ -33,29 +33,33 @@ public class Settings
         public Sprite GetImageAsSprite()
         {
             Sprite sprite = null;
-            try
+            if (File.Exists(imagePath))
             {
-                byte[] imageData = File.ReadAllBytes(imagePath);
-                Texture2D texture = new(1, 1);
-                texture.LoadImage(imageData);
+                Debug.Log("loading sprite");
+                try
+                {
+                    byte[] imageData = File.ReadAllBytes(imagePath);
+                    Texture2D texture = new(1, 1);
+                    texture.LoadImage(imageData);
 
-                // resize to 500 by 500 to get consistent sizes
-                int targetX = 500;
-                int targetY = 500;
-                RenderTexture rt = new RenderTexture(targetX, targetY, 24);
-                RenderTexture.active = rt;
-                Graphics.Blit(texture, rt);
-                Texture2D result = new Texture2D(targetX, targetY);
-                result.ReadPixels(new Rect(0, 0, targetX, targetY), 0, 0);
-                result.Apply();
-                texture = result;
+                    // resize to 500 by 500 to get consistent sizes
+                    int targetX = 500;
+                    int targetY = 500;
+                    RenderTexture rt = new RenderTexture(targetX, targetY, 24);
+                    RenderTexture.active = rt;
+                    Graphics.Blit(texture, rt);
+                    Texture2D result = new Texture2D(targetX, targetY);
+                    result.ReadPixels(new Rect(0, 0, targetX, targetY), 0, 0);
+                    result.Apply();
+                    texture = result;
 
-                // generate image
-                sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100.0f);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"TrainingPrefs: Failed to load {imagePath} with exception {e}");
+                    // generate image
+                    sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"TrainingPrefs: Failed to load {imagePath} with exception {e}");
+                }
             }
             return sprite;
         }
@@ -89,11 +93,11 @@ public class Settings
 
         public List<TrainingPrefs> trainingPrefs = new List<TrainingPrefs>()
         {
-            // Hard code the number of labels we can have to 4, maybe later allow user to add
-            new TrainingPrefs() { labelNumber = 0 },
+            // Hard code the number of training pages to 4, maybe later allow user to add
             new TrainingPrefs() { labelNumber = 1 },
             new TrainingPrefs() { labelNumber = 2 },
             new TrainingPrefs() { labelNumber = 3 },
+            new TrainingPrefs() { labelNumber = 4 },
         };
 
         public List<VideoCellPrefs> videoCellPrefs = new List<VideoCellPrefs>()
@@ -120,16 +124,17 @@ public class Settings
             return assignedLabels;
         }
 
-        public Sprite GetImageForLabel(string label)
-        {
-            TrainingPrefs prefs = trainingPrefs.Find(prefs => prefs.labelName == label);
-            return prefs?.GetImageAsSprite() ?? null;
-        }
-        public int GetIDForLabel(string label)
+        public int GetLabelNumberForLabelName(string label)
         {
             TrainingPrefs prefs = trainingPrefs.Find(prefs => prefs.labelName == label);
             int labelId = prefs?.labelNumber ?? -100;
             return labelId;
+        }
+
+        public Sprite GetImageForLabelName(string label)
+        {
+            TrainingPrefs prefs = trainingPrefs.Find(prefs => prefs.labelName == label);
+            return prefs?.GetImageAsSprite() ?? null;
         }
 
 
@@ -138,6 +143,14 @@ public class Settings
             var newCell = new VideoCellPrefs() { cellNumber = videoCellPrefs.Count };
             videoCellPrefs.Add(newCell);
             return newCell;
+        }
+
+        public void RemoveLastVideoCell()
+        {
+            if (videoCellPrefs.Any())
+            {
+                videoCellPrefs.RemoveAt(videoCellPrefs.Count - 1);
+            }
         }
     }
 
