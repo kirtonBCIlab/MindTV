@@ -11,6 +11,7 @@ public enum UIAnimationTypes
     Shake,
     Bounce,
     Grow,
+    Shrink,
     Wiggle,
     Rotate,
     RotatePunch,
@@ -101,6 +102,9 @@ public class UITweener : MonoBehaviour
             case UIAnimationTypes.Grow:
                 GrowAnim();
                 break;
+            case UIAnimationTypes.Shrink:
+                ShrinkAnim();
+                break;
             case UIAnimationTypes.Shake:
                 ShakeAnim();
                 break;
@@ -170,6 +174,19 @@ public class UITweener : MonoBehaviour
 
     }
 
+    public void ShrinkAnim()
+    {
+        if(pingPong)
+        {
+            _tweenObject = LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * 0.5f, objectToAnimate.transform.localScale.y * 0.5f, objectToAnimate.transform.localScale.z * 0.5f), duration).setLoopCount(1).setLoopPingPong();
+        }
+        else
+        {
+            _tweenObject = LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * 0.5f, objectToAnimate.transform.localScale.y * 0.5f, objectToAnimate.transform.localScale.z * 0.5f), duration).setEase(LeanTweenType.punch);
+        }
+
+    }
+
     public void ShakeAnim()
     {
             _tweenObject = LeanTween.moveX(objectToAnimate, objectToAnimate.transform.position.x + shakeDistance, shakeSpeed).setLoopCount(numShakes).setLoopPingPong().setOnComplete(ResetObjectToOriginal);
@@ -213,6 +230,8 @@ public class UITweener : MonoBehaviour
             animationTypes = UIAnimationTypes.Shake;
         else if (selected == "Grow")
             animationTypes = UIAnimationTypes.Grow;
+        else if (selected == "Shrink")
+            animationTypes = UIAnimationTypes.Shrink;
         else if (selected == "Bounce")
             animationTypes = UIAnimationTypes.Bounce;
         else if (selected == "Wiggle")
