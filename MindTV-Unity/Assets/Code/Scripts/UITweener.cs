@@ -181,11 +181,12 @@ public class UITweener : MonoBehaviour
       {
         if(pingPong)
         {
-            _tweenObject = LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * tweenXScale, objectToAnimate.transform.localScale.y * tweenYScale, objectToAnimate.transform.localScale.z * tweenYScale), duration).setLoopCount(1).setLoopPingPong();
+
+            _tweenObject = LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * 0.5f, objectToAnimate.transform.localScale.y * 0.5f, objectToAnimate.transform.localScale.z * 0.5f), duration).setLoopCount(1).setLoopPingPong()
         }
         else
         {
-            _tweenObject = LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * tweenXScale, objectToAnimate.transform.localScale.y * tweenYScale, objectToAnimate.transform.localScale.z * tweenYScale), duration).setEase(LeanTweenType.punch);
+            _tweenObject = LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * 0.5f, objectToAnimate.transform.localScale.y * 0.5f, objectToAnimate.transform.localScale.z * 0.5f), duration).setEase(LeanTweenType.punch);
         }
 
     }
