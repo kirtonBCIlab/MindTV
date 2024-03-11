@@ -33,6 +33,6 @@ mi_data = EegData(classifier, eeg_source, marker_source, messenger)
 
 # Run
 logger.debug("Setting online to True and training to True")
-mi_data.setup(online=True, training=True)
+mi_data.setup(online=True, training=True, live_update=True)
 logger.debug("Starting run() method")
 mi_data.run()
