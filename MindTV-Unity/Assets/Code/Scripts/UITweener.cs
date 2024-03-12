@@ -50,6 +50,7 @@ public class UITweener : MonoBehaviour
 
     private Vector3 _origPosition;
     private Quaternion _origRotation;
+    private Vector3 _origScale;
 
     // public bool loop;
     public bool pingPong;
@@ -77,6 +78,9 @@ public class UITweener : MonoBehaviour
 
         _origPosition = objectToAnimate.transform.position;
         _origRotation = objectToAnimate.transform.rotation;
+        _origScale = objectToAnimate.transform.localScale;
+        Debug.Log("Original scale is " + _origScale + " " + _origPosition + " " + _origRotation.eulerAngles);
+
     }
 
     public void Update()
@@ -163,28 +167,16 @@ public class UITweener : MonoBehaviour
 
     public void GrowAnim()
     {
-        if(pingPong)
-        {
-            _tweenObject = LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * tweenXScale, objectToAnimate.transform.localScale.y * tweenYScale, objectToAnimate.transform.localScale.z * tweenYScale), duration).setLoopCount(1).setLoopPingPong();
-        }
-        else
-        {
-            _tweenObject = LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * tweenXScale, objectToAnimate.transform.localScale.y * tweenYScale, objectToAnimate.transform.localScale.z * tweenYScale), duration).setEase(LeanTweenType.punch);
-        }
-
+        _origScale = objectToAnimate.transform.localScale;
+        var finalScale = new Vector3(_origScale.x * tweenXScale, _origScale.y * tweenYScale, _origScale.z * tweenYScale);
+        _tweenObject = LeanTween.scale(objectToAnimate, finalScale, duration).setOnComplete(ResetObjectScale);
     }
 
     public void ShrinkAnim()
     {
-        if(pingPong)
-        {
-            _tweenObject = LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * 0.5f, objectToAnimate.transform.localScale.y * 0.5f, objectToAnimate.transform.localScale.z * 0.5f), duration).setLoopCount(1).setLoopPingPong();
-        }
-        else
-        {
-            _tweenObject = LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * 0.5f, objectToAnimate.transform.localScale.y * 0.5f, objectToAnimate.transform.localScale.z * 0.5f), duration).setEase(LeanTweenType.punch);
-        }
-
+        _origScale = objectToAnimate.transform.localScale;
+        var finalScale = new Vector3(_origScale.x * 0.5f, _origScale.y * 0.5f, _origScale.z * 0.5f);
+        _tweenObject = LeanTween.scale(objectToAnimate, finalScale, duration).setOnComplete(ResetObjectScale);
     }
 
     public void ShakeAnim()
@@ -212,6 +204,12 @@ public class UITweener : MonoBehaviour
         LeanTween.rotate(objectToAnimate, _origRotation.eulerAngles, 0.25f);
         
         //objectToAnimate.transform.SetPositionAndRotation(_origPosition, _origRotation);
+    }
+
+    public void ResetObjectScale()
+    {
+        Debug.Log("Resetting object to original scale" + _origScale);
+        LeanTween.scale(objectToAnimate, _origScale, 0.25f);
     }
 
     public string GetTweenAnimation()
