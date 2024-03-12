@@ -168,14 +168,15 @@ public class UITweener : MonoBehaviour
     public void GrowAnim()
     {
         _origScale = objectToAnimate.transform.localScale;
-        _tweenObject = LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * tweenXScale, objectToAnimate.transform.localScale.y * tweenYScale, objectToAnimate.transform.localScale.z * tweenYScale), duration).setOnComplete(ResetObjectScale);
+        var finalScale = new Vector3(_origScale.x * tweenXScale, _origScale.y * tweenYScale, _origScale.z * tweenYScale);
+        _tweenObject = LeanTween.scale(objectToAnimate, finalScale, duration).setOnComplete(ResetObjectScale);
     }
 
     public void ShrinkAnim()
     {
         _origScale = objectToAnimate.transform.localScale;
-        _tweenObject = LeanTween.scale(objectToAnimate, new Vector3(objectToAnimate.transform.localScale.x * 0.5f, objectToAnimate.transform.localScale.y * 0.5f, objectToAnimate.transform.localScale.z * 0.5f), duration).setOnComplete(ResetObjectScale);
-
+        var finalScale = new Vector3(_origScale.x * 0.5f, _origScale.y * 0.5f, _origScale.z * 0.5f);
+        _tweenObject = LeanTween.scale(objectToAnimate, finalScale, duration).setOnComplete(ResetObjectScale);
     }
 
     public void ShakeAnim()
