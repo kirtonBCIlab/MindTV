@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311924, g: 0.38073963, b: 0.3587269, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -128,6 +128,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6824536556853730648, guid: daa90f3a7a0d04ea4b68545bf756a888, type: 3}
   m_PrefabInstance: {fileID: 1738508172145483519}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &125923627 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1850359840112013378, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+  m_PrefabInstance: {fileID: 1791246228219107075}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a821b86ece1ac4711a6d1680fe7f38dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &223401244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -898,6 +909,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498984550}
   m_CullTransparentMesh: 1
+--- !u!114 &628430701 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9148345934190608975, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+  m_PrefabInstance: {fileID: 1791246228219107075}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a821b86ece1ac4711a6d1680fe7f38dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &635879812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,6 +1228,17 @@ RectTransform:
   m_AnchoredPosition: {x: -1300, y: 500}
   m_SizeDelta: {x: 100, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1069416680 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6826016135241674552, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+  m_PrefabInstance: {fileID: 1791246228219107075}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a821b86ece1ac4711a6d1680fe7f38dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1158998476 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8716991205889714754, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
@@ -1269,6 +1302,17 @@ MonoBehaviour:
   pagePrefab: {fileID: 5278306933016064803}
   pageGroup: {fileID: 3415364052411530518}
   tabGroup: {fileID: 0}
+--- !u!114 &1554630432 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5745263650271577431, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+  m_PrefabInstance: {fileID: 1791246228219107075}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a821b86ece1ac4711a6d1680fe7f38dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1772654786 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5914450709448996011, guid: baf908a5de3f642139b446178161fd60, type: 3}
@@ -1660,20 +1704,48 @@ PrefabInstance:
     - target: {fileID: 1805072588044929804, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8226220636001218147}
+      objectReference: {fileID: 628430701}
     - target: {fileID: 1805072588044929804, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1805072588044929804, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlayVideo
+      value: VoteWithBCI
       objectReference: {fileID: 0}
     - target: {fileID: 1805072588044929804, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: VideoPageManager, Assembly-CSharp
+      value: VideoControlManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1805072588044929804, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1850359840112013378, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1850359840112013378, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1850359840112013378, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8226220636001218147}
+    - target: {fileID: 1850359840112013378, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1850359840112013378, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StopVideo
+      objectReference: {fileID: 0}
+    - target: {fileID: 1850359840112013378, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: VideoPageManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1850359840112013378, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -1700,18 +1772,18 @@ PrefabInstance:
     - target: {fileID: 2901115327876320276, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8226220636001218147}
+      objectReference: {fileID: 1554630432}
     - target: {fileID: 2901115327876320276, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2901115327876320276, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PauseVideo
+      value: VoteWithBCI
       objectReference: {fileID: 0}
     - target: {fileID: 2901115327876320276, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: VideoPageManager, Assembly-CSharp
+      value: VideoControlManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2901115327876320276, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1768,18 +1840,18 @@ PrefabInstance:
     - target: {fileID: 4126267435442415227, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8226220636001218147}
+      objectReference: {fileID: 1069416680}
     - target: {fileID: 4126267435442415227, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4126267435442415227, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowSelectionPanel
+      value: VoteWithBCI
       objectReference: {fileID: 0}
     - target: {fileID: 4126267435442415227, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: VideoPageManager, Assembly-CSharp
+      value: VideoControlManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4126267435442415227, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1825,6 +1897,34 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5745263650271577431, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745263650271577431, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745263650271577431, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8226220636001218147}
+    - target: {fileID: 5745263650271577431, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745263650271577431, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseVideo
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745263650271577431, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: VideoPageManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745263650271577431, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6236426513044856150, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: m_ScrollSensitivity
       value: 10
@@ -1832,6 +1932,34 @@ PrefabInstance:
     - target: {fileID: 6238650492658516633, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: m_ScrollSensitivity
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6826016135241674552, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6826016135241674552, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6826016135241674552, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8226220636001218147}
+    - target: {fileID: 6826016135241674552, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6826016135241674552, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowSelectionPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6826016135241674552, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: VideoPageManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6826016135241674552, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6977626950006703191, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: m_IsActive
@@ -1900,20 +2028,48 @@ PrefabInstance:
     - target: {fileID: 9103005905563351297, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8226220636001218147}
+      objectReference: {fileID: 125923627}
     - target: {fileID: 9103005905563351297, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9103005905563351297, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StopVideo
+      value: VoteWithBCI
       objectReference: {fileID: 0}
     - target: {fileID: 9103005905563351297, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: VideoPageManager, Assembly-CSharp
+      value: VideoControlManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9103005905563351297, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148345934190608975, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148345934190608975, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148345934190608975, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8226220636001218147}
+    - target: {fileID: 9148345934190608975, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148345934190608975, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayVideo
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148345934190608975, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
+      propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: VideoPageManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148345934190608975, guid: 2ffad4d8d7f414b449543050237c69d7, type: 3}
       propertyPath: OnSelectedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
