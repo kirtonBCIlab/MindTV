@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using UnityEngine.Events;
 using TMPro;
 using System.Collections.Generic;
 using BCIEssentials.Controllers;
@@ -25,6 +26,10 @@ public class VideoCellManager : MonoBehaviour
     [SerializeField] private TMP_Text mentalCommandName;
 
     [SerializeField] private GameObject videoThumbnailButton;
+
+    [SerializeField] private Slider slider;
+
+    public UnityEvent OnSelectedEvent = new();
 
     // Signal to parent that this cell was selected
     public static event Action<int> VideoCellSelected;
@@ -256,7 +261,29 @@ public class VideoCellManager : MonoBehaviour
     {
         // TODO - the SPO may also want to call this method to select the video
 
+        // Toggle off the mental command
+        //Find the MentalCommandOnOffSwitch and turn it off
+        MentalCommandOnOffSwitch mentalCommandOnOffSwitch = FindObjectOfType<MentalCommandOnOffSwitch>();
+        mentalCommandOnOffSwitch.ToggleMentalCommandOnOff();
+
         // signal to parent that this video was chosen and provide details for playback
         VideoCellSelected?.Invoke(cellPrefs.cellNumber);
+    }
+
+    public void VoteWithBCI()
+    {
+        slider.value += 1;
+
+        if (slider.value >= slider.maxValue)
+        {
+            MakeSelectionWithBCI();
+            slider.value = slider.minValue;
+        }
+    }
+
+
+    public void MakeSelectionWithBCI()
+    {
+        OnSelectedEvent?.Invoke();
     }
 }

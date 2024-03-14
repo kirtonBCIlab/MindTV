@@ -5808,6 +5808,22 @@ MonoBehaviour:
   mentalCommandDropdown: {fileID: 1261565822008275555}
   mentalCommandName: {fileID: 3801735461155513597}
   videoThumbnailButton: {fileID: 6213460652089249340}
+  slider: {fileID: 1544383096982777737}
+  OnSelectedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7168834188686347849}
+        m_TargetAssemblyTypeName: VideoCellManager, Assembly-CSharp
+        m_MethodName: ThumbNailButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   cellPrefs:
     cellNumber: 0
     videoTitle: Video Title
@@ -5839,7 +5855,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7168834188686347849}
         m_TargetAssemblyTypeName: VideoCellManager, Assembly-CSharp
-        m_MethodName: ThumbNailButtonPressed
+        m_MethodName: VoteWithBCI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

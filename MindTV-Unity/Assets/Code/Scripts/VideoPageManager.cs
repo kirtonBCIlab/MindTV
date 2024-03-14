@@ -76,6 +76,8 @@ public class VideoPageManager : MonoBehaviour
 
     public void ShowSelectionPanel()
     {
+        ToggleOffMentalCommand();
+
         StopVideo();
         HideVideo();
         videoPlaybackPanel.SetActive(false);
@@ -151,6 +153,8 @@ public class VideoPageManager : MonoBehaviour
 
     public void PlayVideo()
     {
+        ToggleOffMentalCommand();
+
         if (!videoPlayer.isPlaying)
         {
             videoPlayer.Play();
@@ -159,6 +163,8 @@ public class VideoPageManager : MonoBehaviour
 
     public void PauseVideo()
     {
+        ToggleOffMentalCommand();
+
         if (videoPlayer.isPlaying)
         {
             videoPlayer.Pause();
@@ -167,6 +173,8 @@ public class VideoPageManager : MonoBehaviour
 
     public void StopVideo()
     {
+        ToggleOffMentalCommand();
+
         videoPlayer.Stop();
         ResetVideoToFirstFrame();
     }
@@ -182,6 +190,13 @@ public class VideoPageManager : MonoBehaviour
         ResetVideoToFirstFrame();
         // Shows the RawImage component to start displaying the video
         videoPlayerRawImage.enabled = true;
+    }
+
+    private void ToggleOffMentalCommand()
+    {
+        //Find the MentalCommandOnOffSwitch and turn it off
+        MentalCommandOnOffSwitch mentalCommandOnOffSwitch = FindObjectOfType<MentalCommandOnOffSwitch>();
+        mentalCommandOnOffSwitch.ToggleMentalCommandOnOff();
     }
 }
 
