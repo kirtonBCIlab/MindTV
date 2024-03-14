@@ -65,6 +65,31 @@ public class MentalCommandOnOffSwitch : MonoBehaviour
         UpdateMentalCommandStatusInUI();
     }
 
+    public void ToggleMentalCommandOff()
+    {
+        if (MentalCommandOn)
+        {
+            // Mental Command is currently ON
+            // Now, Turn OFF Mental Command
+            Debug.Log("Turning mental commands OFF");
+            MentalCommandOn = false;
+            // Theoretically, this should stop the running stimulus from the BCIController active behavior
+            Debug.Log("Stopping the active behavior's stimulus run");
+            BCIController.Instance.ActiveBehavior.StartStopStimulusRun();
+        }
+        else
+        {
+            // Mental Command is currently OFF
+            // Now, Turn ON Mental Command
+            return;
+        }
+
+        // Send commands to Bessy and update the UI
+        // UpdateMentalCommandStatusInBessy();
+        // Invoke("UpdateMentalCommandStatusInUI", _BessyCheckDelay);  // If we want a delay between the Bessy command and the UI update
+        UpdateMentalCommandStatusInUI();
+    }
+
     private void UpdateMentalCommandStatusInBessy()
     {
         // Update the Mental Command status in Bessy

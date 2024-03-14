@@ -272,6 +272,14 @@ public class VideoCellManager : MonoBehaviour
 
     public void VoteWithBCI()
     {
+        MentalCommandOnOffSwitch mentalCommandOnOffSwitch = FindObjectOfType<MentalCommandOnOffSwitch>();
+        bool mentalCommandOn = mentalCommandOnOffSwitch.MentalCommandOn;
+
+        if (!mentalCommandOn)
+        {
+            return;
+        }
+
         slider.value += 1;
 
         if (slider.value >= slider.maxValue)

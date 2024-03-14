@@ -196,7 +196,7 @@ public class VideoPageManager : MonoBehaviour
     {
         //Find the MentalCommandOnOffSwitch and turn it off
         MentalCommandOnOffSwitch mentalCommandOnOffSwitch = FindObjectOfType<MentalCommandOnOffSwitch>();
-        mentalCommandOnOffSwitch.ToggleMentalCommandOnOff();
+        mentalCommandOnOffSwitch.ToggleMentalCommandOff();
     }
 }
 
