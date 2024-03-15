@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using UnityEngine.Events;
 using TMPro;
 using System.Collections.Generic;
 using BCIEssentials.Controllers;
@@ -25,6 +26,12 @@ public class VideoCellManager : MonoBehaviour
     [SerializeField] private TMP_Text mentalCommandName;
 
     [SerializeField] private GameObject videoThumbnailButton;
+
+    [SerializeField] private Slider slider;
+
+    private MentalCommandOnOffSwitch mentalCommandOnOffSwitch;
+
+    public UnityEvent OnSelectedEvent = new();
 
     // Signal to parent that this cell was selected
     public static event Action<int> VideoCellSelected;
@@ -49,6 +56,8 @@ public class VideoCellManager : MonoBehaviour
 
     void Start()
     {
+        mentalCommandOnOffSwitch = FindObjectOfType<MentalCommandOnOffSwitch>();
+
         InitializeListeners();
         InitializeViews();
     }
@@ -222,9 +231,6 @@ public class VideoCellManager : MonoBehaviour
         p300Effect._flashOffColor = cellPrefs.backgroundColor;
     }
 
-
-
-
     public void UpdateVideoThumbnail()
     {
         videoPlayer.url = cellPrefs.videoPath;
@@ -251,12 +257,35 @@ public class VideoCellManager : MonoBehaviour
         yield return null;
     }
 
-
     public void ThumbNailButtonPressed()
     {
-        // TODO - the SPO may also want to call this method to select the video
+        mentalCommandOnOffSwitch.ToggleMentalCommandOff();
 
         // signal to parent that this video was chosen and provide details for playback
         VideoCellSelected?.Invoke(cellPrefs.cellNumber);
+    }
+
+    public void VoteWithBCI()
+    {
+        bool mentalCommandOn = mentalCommandOnOffSwitch.MentalCommandOn;
+
+        if (!mentalCommandOn)
+        {
+            return;
+        }
+
+        slider.value += 1;
+
+        if (slider.value >= slider.maxValue)
+        {
+            MakeSelectionWithBCI();
+            slider.value = slider.minValue;
+        }
+    }
+
+
+    public void MakeSelectionWithBCI()
+    {
+        OnSelectedEvent?.Invoke();
     }
 }

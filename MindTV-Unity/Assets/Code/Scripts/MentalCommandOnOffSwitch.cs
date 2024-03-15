@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using TMPro;
 using BCIEssentials.Controllers;
 using BCIEssentials;
@@ -44,6 +45,7 @@ public class MentalCommandOnOffSwitch : MonoBehaviour
             // Mental Command is currently ON
             // Now, Turn OFF Mental Command
             Debug.Log("Turning mental commands OFF");
+            ResetAllSliders();
             MentalCommandOn = false;
             // Theoretically, this should stop the running stimulus from the BCIController active behavior
             Debug.Log("Stopping the active behavior's stimulus run");
@@ -57,6 +59,32 @@ public class MentalCommandOnOffSwitch : MonoBehaviour
             Debug.Log("Starting the active behavior's stimulus run");
             BCIController.Instance.ActiveBehavior.StartStopStimulusRun();
             MentalCommandOn = true;
+        }
+
+        // Send commands to Bessy and update the UI
+        // UpdateMentalCommandStatusInBessy();
+        // Invoke("UpdateMentalCommandStatusInUI", _BessyCheckDelay);  // If we want a delay between the Bessy command and the UI update
+        UpdateMentalCommandStatusInUI();
+    }
+
+    public void ToggleMentalCommandOff()
+    {
+        if (MentalCommandOn)
+        {
+            // Mental Command is currently ON
+            // Now, Turn OFF Mental Command
+            Debug.Log("Turning mental commands OFF");
+            ResetAllSliders();
+            MentalCommandOn = false;
+            // Theoretically, this should stop the running stimulus from the BCIController active behavior
+            Debug.Log("Stopping the active behavior's stimulus run");
+            BCIController.Instance.ActiveBehavior.StartStopStimulusRun();
+        }
+        else
+        {
+            // Mental Command is currently OFF
+            // Now, Turn ON Mental Command
+            return;
         }
 
         // Send commands to Bessy and update the UI
@@ -94,6 +122,18 @@ public class MentalCommandOnOffSwitch : MonoBehaviour
         {
             _mentalCommandOnStatusIndicator.color = Color.red; // Unity's predefined red color
             _mentalCommandOnStatusText.text = "Mental Commands Off";
+        }
+    }
+
+    private void ResetAllSliders()
+    {
+        // Find all Slider objects in the scene
+        Slider[] sliders = FindObjectsOfType<Slider>();
+
+        // Loop through each slider and set its value to zero
+        foreach (Slider slider in sliders)
+        {
+            slider.value = 0f;
         }
     }
 }

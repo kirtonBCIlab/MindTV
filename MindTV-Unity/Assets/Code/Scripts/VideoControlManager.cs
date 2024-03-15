@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using TMPro;
 using BCIEssentials.StimulusObjects;
 using BCIEssentials.Controllers;
@@ -17,13 +18,20 @@ public class VideoControlManager : MonoBehaviour
     [SerializeField] private Image imageGraphic;
     [SerializeField] private TMP_Dropdown mentalCommandDropdown;
     [SerializeField] private TMP_Text mentalCommandName;
+    [SerializeField] private Slider slider;
+    private MentalCommandOnOffSwitch mentalCommandOnOffSwitch;
 
     private SPO _spo;
 
     public Settings.VideoControlPrefs controlPrefs;
 
+    [Tooltip("Invoked when the SPO Controller selects this SPO")]
+    public UnityEvent OnSelectedEvent = new();
+
     void Start()
     {
+        mentalCommandOnOffSwitch = FindObjectOfType<MentalCommandOnOffSwitch>();
+        
         InitializeSettings();
         InitializeListeners();
         InitializeViews();
@@ -149,6 +157,30 @@ public class VideoControlManager : MonoBehaviour
         // TODO - get rid of the duplication of code here.
         VideoPanelButtonEffect p300Effect = gameObject.GetComponent<VideoPanelButtonEffect>();
         p300Effect._flashOffColor = controlPrefs.backgroundColor;
+    }
+
+    public void VoteWithBCI()
+    {
+        bool mentalCommandOn = mentalCommandOnOffSwitch.MentalCommandOn;
+
+        if (!mentalCommandOn)
+        {
+            return;
+        }
+
+        slider.value += 1;
+
+        if (slider.value >= slider.maxValue)
+        {
+            MakeSelectionWithBCI();
+            slider.value = slider.minValue;
+        }
+    }
+
+
+    public void MakeSelectionWithBCI()
+    {
+        OnSelectedEvent?.Invoke();
     }
 
 }

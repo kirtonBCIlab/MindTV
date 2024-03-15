@@ -31,8 +31,12 @@ public class VideoPageManager : MonoBehaviour
     // Reference to training settings
     private List<Settings.VideoCellPrefs> videoCellPrefs;
 
+    private MentalCommandOnOffSwitch mentalCommandOnOffSwitch;
+
     private void Start()
     {
+        mentalCommandOnOffSwitch = FindObjectOfType<MentalCommandOnOffSwitch>();
+        
         InitializeListeners();
         InitializeSettings();
         InitializeViews();
@@ -76,6 +80,8 @@ public class VideoPageManager : MonoBehaviour
 
     public void ShowSelectionPanel()
     {
+        mentalCommandOnOffSwitch.ToggleMentalCommandOff();
+
         StopVideo();
         HideVideo();
         videoPlaybackPanel.SetActive(false);
@@ -151,6 +157,8 @@ public class VideoPageManager : MonoBehaviour
 
     public void PlayVideo()
     {
+        mentalCommandOnOffSwitch.ToggleMentalCommandOff();
+
         if (!videoPlayer.isPlaying)
         {
             videoPlayer.Play();
@@ -159,6 +167,8 @@ public class VideoPageManager : MonoBehaviour
 
     public void PauseVideo()
     {
+        mentalCommandOnOffSwitch.ToggleMentalCommandOff();
+
         if (videoPlayer.isPlaying)
         {
             videoPlayer.Pause();
@@ -167,6 +177,8 @@ public class VideoPageManager : MonoBehaviour
 
     public void StopVideo()
     {
+        mentalCommandOnOffSwitch.ToggleMentalCommandOff();
+
         videoPlayer.Stop();
         ResetVideoToFirstFrame();
     }
