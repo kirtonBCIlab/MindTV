@@ -29,6 +29,8 @@ public class VideoCellManager : MonoBehaviour
 
     [SerializeField] private Slider slider;
 
+    private MentalCommandOnOffSwitch mentalCommandOnOffSwitch;
+
     public UnityEvent OnSelectedEvent = new();
 
     // Signal to parent that this cell was selected
@@ -54,6 +56,8 @@ public class VideoCellManager : MonoBehaviour
 
     void Start()
     {
+        mentalCommandOnOffSwitch = FindObjectOfType<MentalCommandOnOffSwitch>();
+
         InitializeListeners();
         InitializeViews();
     }
@@ -227,9 +231,6 @@ public class VideoCellManager : MonoBehaviour
         p300Effect._flashOffColor = cellPrefs.backgroundColor;
     }
 
-
-
-
     public void UpdateVideoThumbnail()
     {
         videoPlayer.url = cellPrefs.videoPath;
@@ -256,15 +257,9 @@ public class VideoCellManager : MonoBehaviour
         yield return null;
     }
 
-
     public void ThumbNailButtonPressed()
     {
-        // TODO - the SPO may also want to call this method to select the video
-
-        // Toggle off the mental command
-        //Find the MentalCommandOnOffSwitch and turn it off
-        MentalCommandOnOffSwitch mentalCommandOnOffSwitch = FindObjectOfType<MentalCommandOnOffSwitch>();
-        mentalCommandOnOffSwitch.ToggleMentalCommandOnOff();
+        mentalCommandOnOffSwitch.ToggleMentalCommandOff();
 
         // signal to parent that this video was chosen and provide details for playback
         VideoCellSelected?.Invoke(cellPrefs.cellNumber);
@@ -272,7 +267,6 @@ public class VideoCellManager : MonoBehaviour
 
     public void VoteWithBCI()
     {
-        MentalCommandOnOffSwitch mentalCommandOnOffSwitch = FindObjectOfType<MentalCommandOnOffSwitch>();
         bool mentalCommandOn = mentalCommandOnOffSwitch.MentalCommandOn;
 
         if (!mentalCommandOn)

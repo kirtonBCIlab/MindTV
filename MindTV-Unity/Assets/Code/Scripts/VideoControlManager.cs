@@ -19,6 +19,7 @@ public class VideoControlManager : MonoBehaviour
     [SerializeField] private TMP_Dropdown mentalCommandDropdown;
     [SerializeField] private TMP_Text mentalCommandName;
     [SerializeField] private Slider slider;
+    private MentalCommandOnOffSwitch mentalCommandOnOffSwitch;
 
     private SPO _spo;
 
@@ -29,6 +30,8 @@ public class VideoControlManager : MonoBehaviour
 
     void Start()
     {
+        mentalCommandOnOffSwitch = FindObjectOfType<MentalCommandOnOffSwitch>();
+        
         InitializeSettings();
         InitializeListeners();
         InitializeViews();
@@ -158,7 +161,6 @@ public class VideoControlManager : MonoBehaviour
 
     public void VoteWithBCI()
     {
-        MentalCommandOnOffSwitch mentalCommandOnOffSwitch = FindObjectOfType<MentalCommandOnOffSwitch>();
         bool mentalCommandOn = mentalCommandOnOffSwitch.MentalCommandOn;
 
         if (!mentalCommandOn)

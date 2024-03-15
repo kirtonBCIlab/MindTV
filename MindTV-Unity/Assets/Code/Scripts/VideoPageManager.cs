@@ -31,8 +31,12 @@ public class VideoPageManager : MonoBehaviour
     // Reference to training settings
     private List<Settings.VideoCellPrefs> videoCellPrefs;
 
+    private MentalCommandOnOffSwitch mentalCommandOnOffSwitch;
+
     private void Start()
     {
+        mentalCommandOnOffSwitch = FindObjectOfType<MentalCommandOnOffSwitch>();
+        
         InitializeListeners();
         InitializeSettings();
         InitializeViews();
@@ -76,7 +80,7 @@ public class VideoPageManager : MonoBehaviour
 
     public void ShowSelectionPanel()
     {
-        ToggleOffMentalCommand();
+        mentalCommandOnOffSwitch.ToggleMentalCommandOff();
 
         StopVideo();
         HideVideo();
@@ -153,7 +157,7 @@ public class VideoPageManager : MonoBehaviour
 
     public void PlayVideo()
     {
-        ToggleOffMentalCommand();
+        mentalCommandOnOffSwitch.ToggleMentalCommandOff();
 
         if (!videoPlayer.isPlaying)
         {
@@ -163,7 +167,7 @@ public class VideoPageManager : MonoBehaviour
 
     public void PauseVideo()
     {
-        ToggleOffMentalCommand();
+        mentalCommandOnOffSwitch.ToggleMentalCommandOff();
 
         if (videoPlayer.isPlaying)
         {
@@ -173,7 +177,7 @@ public class VideoPageManager : MonoBehaviour
 
     public void StopVideo()
     {
-        ToggleOffMentalCommand();
+        mentalCommandOnOffSwitch.ToggleMentalCommandOff();
 
         videoPlayer.Stop();
         ResetVideoToFirstFrame();
@@ -190,13 +194,6 @@ public class VideoPageManager : MonoBehaviour
         ResetVideoToFirstFrame();
         // Shows the RawImage component to start displaying the video
         videoPlayerRawImage.enabled = true;
-    }
-
-    private void ToggleOffMentalCommand()
-    {
-        //Find the MentalCommandOnOffSwitch and turn it off
-        MentalCommandOnOffSwitch mentalCommandOnOffSwitch = FindObjectOfType<MentalCommandOnOffSwitch>();
-        mentalCommandOnOffSwitch.ToggleMentalCommandOff();
     }
 }
 
