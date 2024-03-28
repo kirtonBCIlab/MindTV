@@ -5,7 +5,7 @@ description = "Python back end for MindTV"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-	"bci-essentials>=0.1.1",
+	"bci-essentials>=0.1.3",
 	"pylsl",
 ]
 
