@@ -6,7 +6,7 @@ using TMPro;
 using BCIEssentials.Controllers;
 using BCIEssentials.LSLFramework;
 
-public class HeadsetConnectManager : MonoBehaviour
+public class HeadsetConnectionManager : MonoBehaviour
 {
     public bool HeadsetConnected { get; private set; }
 

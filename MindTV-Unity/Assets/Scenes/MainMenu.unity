@@ -359,17 +359,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 90379494}
   m_CullTransparentMesh: 1
---- !u!114 &165282721 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7629521608943371604, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
-  m_PrefabInstance: {fileID: 1548449532}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &389994424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1389,11 +1378,11 @@ PrefabInstance:
     - target: {fileID: 927915684750193732, guid: 96edad70f4c14ed499e383a68b40df9c, type: 3}
       propertyPath: _headsetStatusText
       value: 
-      objectReference: {fileID: 1254522684}
+      objectReference: {fileID: 0}
     - target: {fileID: 927915684750193732, guid: 96edad70f4c14ed499e383a68b40df9c, type: 3}
       propertyPath: _headsetStatusIndicator
       value: 
-      objectReference: {fileID: 165282721}
+      objectReference: {fileID: 0}
     - target: {fileID: 1642648857114544134, guid: 96edad70f4c14ed499e383a68b40df9c, type: 3}
       propertyPath: m_Name
       value: ConnectionManager
@@ -1438,6 +1427,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9036006834010551405, guid: 96edad70f4c14ed499e383a68b40df9c, type: 3}
+      propertyPath: _relativeDirectoryPath
+      value: BCI_Essentials-Backend/
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1449,7 +1442,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 985110822}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 622532c85905044948e9539261e93fb3, type: 3}
   m_Name: 
@@ -1700,17 +1693,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1254522684 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7311506957837321959, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
-  m_PrefabInstance: {fileID: 1548449532}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1308389492
 GameObject:
   m_ObjectHideFlags: 0
@@ -2458,11 +2440,15 @@ PrefabInstance:
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 9036006834010551405, guid: 96edad70f4c14ed499e383a68b40df9c, type: 3}
+      objectReference: {fileID: 1769817882}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 927915684750193732, guid: 96edad70f4c14ed499e383a68b40df9c, type: 3}
+    - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: LaunchExecutable
@@ -2471,12 +2457,31 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: SubscribeLSLResponseStream
       objectReference: {fileID: 0}
+    - target: {fileID: 5069746791249950990, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: MindTV-BCI_Essentials-Backend
+      objectReference: {fileID: 0}
+    - target: {fileID: 6467620235660995018, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_text
+      value: Launch
+      objectReference: {fileID: 0}
     - target: {fileID: 6746055731719183002, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
       propertyPath: m_Name
       value: RefreshStatus
       objectReference: {fileID: 0}
+    - target: {fileID: 6992834241842133485, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_Name
+      value: LaunchBessyPythonButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959571748910295529, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6065725220946298457, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+    - {fileID: 374855732633641473, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
+    - {fileID: 6746055731719183002, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
@@ -2495,6 +2500,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 306097328793029503, guid: 23c405dd6565d5b4882baccee1e89a1e, type: 3}
   m_PrefabInstance: {fileID: 1548449532}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1769817882 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9036006834010551405, guid: 96edad70f4c14ed499e383a68b40df9c, type: 3}
+  m_PrefabInstance: {fileID: 985110822}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1500ffd0b1e6f41e0accb3e36123a799, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1792977395
 PrefabInstance:
   m_ObjectHideFlags: 0

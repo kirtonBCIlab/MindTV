@@ -8,7 +8,8 @@ public class LaunchExternalApplication : MonoBehaviour
     // The relative directory path to the script or executable
     // Relative to the Unity project folder
     // Adjust the directory path as necessary
-    private string _relativeDirectoryPath = @"../MindTV-Python/";
+    // [SerializeField] private string _relativeDirectoryPath = @"../MindTV-Python/";
+    [SerializeField] private string _relativeDirectoryPath = @"BCI_Essentials-Backend/";
 
     public void LaunchExecutable(string fileName)
     {
@@ -19,15 +20,16 @@ public class LaunchExternalApplication : MonoBehaviour
         }
 
         // Append '.exe' for Windows platforms if not already present
-        #if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
-        if (!fileName.EndsWith(".exe"))
-        {
-            fileName += ".exe";
-        }
-        #endif
+        // #if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+        // if (!fileName.EndsWith(".exe"))
+        // {
+        //     fileName += ".exe";
+        // }
+        // #endif
 
         // Combine the directory path with the filename
         string fullPath = System.IO.Path.Combine(System.IO.Path.GetFullPath(_relativeDirectoryPath), fileName);
+        UnityEngine.Debug.Log("Fullpath is: " + fullPath);
 
         ProcessStartInfo processStartInfo = new ProcessStartInfo
         {
@@ -46,6 +48,7 @@ public class LaunchExternalApplication : MonoBehaviour
 
         try
         {
+            UnityEngine.Debug.Log("Trying to launch file: " + fileName + " with path: " + fullPath);
             process.Start();
         }
         catch (System.Exception e)
