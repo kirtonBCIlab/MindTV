@@ -47,7 +47,7 @@ public class TrainingPageManager : MonoBehaviour
         InitializeListeners();
 
         // TODO - move this to a helper
-        originalPosition = _SPO.transform.position;
+        originalPosition = _SPO.GetComponent<RectTransform>().position;
 
         // TODO - move to a helper
         float currentBaseSize = trainingPrefs.imageBaseSize;
