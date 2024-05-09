@@ -76,8 +76,8 @@ public class UITweener : MonoBehaviour
             objectToAnimate = gameObject;
         }
 
-        _origPosition = objectToAnimate.transform.position;
-        _origRotation = objectToAnimate.transform.rotation;
+        _origPosition = objectToAnimate.GetComponent<RectTransform>().anchoredPosition;
+        _origRotation = objectToAnimate.GetComponent<RectTransform>().rotation;
         _origScale = objectToAnimate.transform.localScale;
         Debug.Log("Original scale is " + _origScale + " " + _origPosition + " " + _origRotation.eulerAngles);
 
@@ -89,6 +89,7 @@ public class UITweener : MonoBehaviour
         {
             HandleTween();
         }
+
     }
 
     public void HandleTween()
@@ -200,7 +201,7 @@ public class UITweener : MonoBehaviour
     public void ResetObjectToOriginal()
     {
         Debug.Log("Resetting object to original position" + _origPosition + " " + _origRotation);
-        LeanTween.move(objectToAnimate, _origPosition, 0.25f);
+        LeanTween.moveLocal(objectToAnimate, _origPosition, 0.25f);
         LeanTween.rotate(objectToAnimate, _origRotation.eulerAngles, 0.25f);
         
         //objectToAnimate.transform.SetPositionAndRotation(_origPosition, _origRotation);
